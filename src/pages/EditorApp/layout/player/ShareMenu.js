@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import styles from "../../styles/player/_RightPanel.module.scss";
+import { createPortal } from "react-dom";
+import * as Popover from "@radix-ui/react-popover";
+import styles from "../../styles/player/_Panel.module.scss";
 
 import { buildDiagnosticZip } from "../../../utils/buildDiagnosticZip";
 import { downloadResolvedRecording } from "../../recorderStorage/resolveRecordingFile";
@@ -9,23 +11,22 @@ import { showEditorToast } from "../../utils/editorToast";
 
 import {
   ArrowRight,
-  Crop,
   DownloadSimple,
   Flag,
   Gif,
   GoogleDriveLogo,
-  Scissors,
-  SpeakerHigh,
   WarningCircle,
   WifiSlash,
 } from "@phosphor-icons/react";
 
-import CropUI from "../editor/CropUI";
-import AudioUI from "../editor/AudioUI";
-
 import { ContentStateContext } from "../../context/ContentState";
 
-const RightPanel = () => {
+// The Share button in the nav, with saving and exporting behind it. It also
+// owns the status alerts (offline, still processing, an edit that failed),
+// because they come from the same state; those are drawn into `alertsNode`,
+// a slot above the video, rather than inside the menu where nobody would
+// see them.
+const ShareMenu = ({ alertsNode }) => {
   const [contentState, setContentState] = useContext(ContentStateContext);
   const contentStateRef = useRef(contentState);
   // `disabled` on a <div role="button"> is inert, so the click still fires
@@ -226,68 +227,6 @@ const RightPanel = () => {
     }));
   };
 
-  const handleEdit = () => {
-    if (
-      contentState.duration > contentState.editLimit &&
-      !contentState.override
-    )
-      return;
-    if (!contentState.mp4ready) return;
-
-    contentState.createBackup();
-
-    setContentState((prevContentState) => ({
-      ...prevContentState,
-      mode: "edit",
-      dragInteracted: false,
-    }));
-  };
-
-  const handleCrop = () => {
-    if (
-      contentState.duration > contentState.editLimit &&
-      !contentState.override
-    )
-      return;
-
-    if (!contentState.mp4ready) return;
-
-    contentState.createBackup();
-
-    // If the frame isn't cached yet, request it and defer the mode switch
-    // until "new-frame" arrives, otherwise the cropper mounts over a blank
-    // stage and there's a black flash for the round-trip duration.
-    if (!contentState.frame) {
-      setContentState((prevContentState) => ({
-        ...prevContentState,
-        pendingCropEntry: true,
-      }));
-      if (!contentState.isFfmpegRunning) contentState.getFrame();
-      return;
-    }
-
-    setContentState((prevContentState) => ({
-      ...prevContentState,
-      mode: "crop",
-    }));
-  };
-
-  const handleAddAudio = async () => {
-    if (
-      contentState.duration > contentState.editLimit &&
-      !contentState.override
-    )
-      return;
-    if (!contentState.mp4ready) return;
-
-    contentState.createBackup();
-
-    setContentState((prevContentState) => ({
-      ...prevContentState,
-      mode: "audio",
-    }));
-  };
-
   // Best available blob: edited MP4 → fixed WebM → raw WebM.
   const handleDownloadOriginal = () => {
     const s = contentStateRef.current;
@@ -463,11 +402,11 @@ const RightPanel = () => {
   };
 
   return (
-    <div className={styles.panel}>
-      {contentState.mode === "audio" && <AudioUI />}
-      {contentState.mode === "crop" && <CropUI />}
-      {contentState.mode === "player" && (
-        <div>
+    <>
+      {alertsNode &&
+        contentState.mode === "player" &&
+        createPortal(
+          <>
           {!contentState.fallback && contentState.offline && (
             <div className={styles.alert}>
               <div className={styles.buttonLeft}>
@@ -747,122 +686,23 @@ const RightPanel = () => {
               </div>
             </div>
           )}
+          </>,
+          alertsNode,
+        )}
+      <Popover.Root>
+        <Popover.Trigger asChild>
+          <button className="button primaryButton">
+            {chrome.i18n.getMessage("shareLabel")}
+          </button>
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content
+            className={styles.panel}
+            align="end"
+            sideOffset={8}
+            collisionPadding={8}
+          >
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>
-              {chrome.i18n.getMessage("sandboxEditTitle")}
-            </div>
-            <div className={styles.buttonWrap}>
-              <div
-                role="button"
-                className={styles.button}
-                onClick={handleEdit}
-                disabled={
-                  (contentState.duration > contentState.editLimit &&
-                    !contentState.override) ||
-                  !contentState.mp4ready ||
-                  contentState.noffmpeg
-                }
-              >
-                <div className={styles.buttonLeft}>
-                  <Scissors size={16} />
-                </div>
-                <div className={styles.buttonMiddle}>
-                  <div className={styles.buttonTitle}>
-                    {chrome.i18n.getMessage("editButtonTitle")}
-                  </div>
-                  <div className={styles.buttonDescription}>
-                    {contentState.offline && !contentState.ffmpegLoaded
-                      ? chrome.i18n.getMessage("noConnectionLabel")
-                      : contentState.updateChrome ||
-                        contentState.noffmpeg ||
-                        (contentState.duration > contentState.editLimit &&
-                          !contentState.override)
-                      ? getNotAvailableLabel()
-                      : contentState.mp4ready
-                      ? chrome.i18n.getMessage("editButtonDescription")
-                      : getPreparingLabel()}
-                  </div>
-                </div>
-                <div className={styles.buttonRight}>
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-              <div
-                role="button"
-                className={styles.button}
-                onClick={handleCrop}
-                disabled={
-                  (contentState.duration > contentState.editLimit &&
-                    !contentState.override) ||
-                  !contentState.mp4ready ||
-                  contentState.noffmpeg
-                }
-              >
-                <div className={styles.buttonLeft}>
-                  <Crop size={16} />
-                </div>
-                <div className={styles.buttonMiddle}>
-                  <div className={styles.buttonTitle}>
-                    {chrome.i18n.getMessage("cropButtonTitle")}
-                  </div>
-                  <div className={styles.buttonDescription}>
-                    {contentState.offline && !contentState.ffmpegLoaded
-                      ? chrome.i18n.getMessage("noConnectionLabel")
-                      : contentState.updateChrome ||
-                        contentState.noffmpeg ||
-                        (contentState.duration > contentState.editLimit &&
-                          !contentState.override)
-                      ? getNotAvailableLabel()
-                      : contentState.mp4ready
-                      ? chrome.i18n.getMessage("cropButtonDescription")
-                      : getPreparingLabel()}
-                  </div>
-                </div>
-                <div className={styles.buttonRight}>
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-              <div
-                role="button"
-                className={styles.button}
-                onClick={handleAddAudio}
-                disabled={
-                  (contentState.duration > contentState.editLimit &&
-                    !contentState.override) ||
-                  !contentState.mp4ready ||
-                  contentState.noffmpeg
-                }
-              >
-                <div className={styles.buttonLeft}>
-                  <SpeakerHigh size={16} />
-                </div>
-                <div className={styles.buttonMiddle}>
-                  <div className={styles.buttonTitle}>
-                    {chrome.i18n.getMessage("addAudioButtonTitle")}
-                  </div>
-                  <div className={styles.buttonDescription}>
-                    {contentState.offline && !contentState.ffmpegLoaded
-                      ? chrome.i18n.getMessage("noConnectionLabel")
-                      : contentState.updateChrome ||
-                        contentState.noffmpeg ||
-                        (contentState.duration > contentState.editLimit &&
-                          !contentState.override)
-                      ? getNotAvailableLabel()
-                      : contentState.mp4ready
-                      ? chrome.i18n.getMessage("addAudioButtonDescription")
-                      : getPreparingLabel()}
-                  </div>
-                </div>
-                <div className={styles.buttonRight}>
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.section}>
-            <div className={styles.sectionTitle}>
-              {chrome.i18n.getMessage("sandboxSaveTitle")}
-            </div>
             {contentState.driveEnabled && (
               <div
                 className={styles.buttonLogout}
@@ -907,9 +747,6 @@ const RightPanel = () => {
             </div>
           </div>
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>
-              {chrome.i18n.getMessage("sandboxExportTitle")}
-            </div>
             <div className={styles.buttonWrap}>
               {contentState.fallback && (
                 <div
@@ -1073,9 +910,6 @@ const RightPanel = () => {
             </div>
           </div>
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>
-              {chrome.i18n.getMessage("sandboxAdvancedTitle")}
-            </div>
             <div className={styles.buttonWrap}>
               <div
                 role="button"
@@ -1123,10 +957,11 @@ const RightPanel = () => {
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    </>
   );
 };
 
-export default RightPanel;
+export default ShareMenu;

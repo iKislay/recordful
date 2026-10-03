@@ -1,56 +1,31 @@
 @use "../global/variables.scss" as *;
 :root {
-  --plyr-color-main: #3080f8;
+  --plyr-color-main: #111111;
   --plyr-font-family: "Satoshi-Medium", sans-serif;
 }
 
+// Both players (the plain one and the one that follows the timeline) fill
+// the stage and centre the video in it.
 .videoPlayer {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  height: 100vh;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
 }
 .playerWrap {
-  height: calc(100% - 300px);
-  position: absolute;
-  top: 80px;
-  left: 0px;
-  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 32px;
 }
 .plyr {
-  max-width: 900px !important;
-  left: 0px !important;
-  right: 0px !important;
-  margin: 0px !important;
-  top: 0px !important;
-  bottom: 0px !important;
   position: relative !important;
-  border-radius: 15px !important;
   width: 90% !important;
+  max-width: 900px !important;
+  max-height: 100% !important;
+  margin: 0px !important;
+  border-radius: 15px !important;
 }
 /* Customize progress bar color */
 .plyr__progress--played {
   background-color: #ff5733 !important; /* Your custom color */
-}
-
-// Max width 900px
-@media (max-width: 900px) {
-  .videoPlayer {
-    height: 100% !important;
-  }
-  .playerWrap {
-    position: relative !important;
-    height: 100% !important;
-    padding-top: 40px !important;
-    padding-bottom: 60px !important;
-    top: 0px !important;
-    position: relative !important;
-  }
 }

@@ -1,10 +1,14 @@
 @use "../global/variables.scss" as *;
 
+// The Share menu's popover. The crop and audio panels in the sidebar reuse
+// the section, input and alert styles below.
 .panel {
-  height: 100%;
-  width: 460px;
+  width: 380px;
+  max-height: calc(100vh - 72px);
   background-color: #fff;
   border: 1px solid $color-border;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   overflow-y: auto;
   z-index: 9999999;
@@ -58,7 +62,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  background-color: rgba(56, 126, 247, 0.1);
+  background-color: rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
 
   .buttonRight {

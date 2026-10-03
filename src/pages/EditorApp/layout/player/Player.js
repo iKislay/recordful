@@ -1,39 +1,26 @@
-import React, { useContext, useState, Suspense, lazy } from "react";
+import React, { useState } from "react";
 
-// Components
-import PlayerNav from "./PlayerNav";
-// Crop and Audio nav only render in their respective modes; player
-// mode is the initial state on editor open. Lazy-loading avoids
-// pulling their trees into the editor's cold-load critical path.
-const CropNav = lazy(() => import("../editor/CropNav"));
-const AudioNav = lazy(() => import("../editor/AudioNav"));
-import RightPanel from "./RightPanel";
+import Nav from "./Nav";
+import ShareMenu from "./ShareMenu";
 import Content from "./Content";
+import Sidebar from "./Sidebar";
 
 import styles from "../../styles/player/_Player.module.scss";
 
-// Context
-import { ContentStateContext } from "../../context/ContentState"; // Import the ContentState context
-
+// The whole editor on one page: nav, the video with its toolbar and
+// timeline, and a sidebar for the tool that is open.
 const Player = () => {
-  const [contentState, setContentState] = useContext(ContentStateContext); // Access the ContentState context
+  // Where the Share menu draws its status alerts (above the video).
+  const [alertsNode, setAlertsNode] = useState(null);
 
   return (
     <div className={styles.layout}>
-      {contentState.mode === "crop" && (
-        <Suspense fallback={null}>
-          <CropNav />
-        </Suspense>
-      )}
-      {contentState.mode === "player" && <PlayerNav />}
-      {contentState.mode === "audio" && (
-        <Suspense fallback={null}>
-          <AudioNav />
-        </Suspense>
-      )}
-      <div className={styles.content}>
-        <Content />
-        <RightPanel />
+      <Nav>
+        <ShareMenu alertsNode={alertsNode} />
+      </Nav>
+      <div className={styles.body}>
+        <Content alertsRef={setAlertsNode} />
+        <Sidebar />
       </div>
     </div>
   );

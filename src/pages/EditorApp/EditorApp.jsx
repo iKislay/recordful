@@ -1,10 +1,9 @@
 import "./styles/edit/_VideoPlayer.scss";
 import "./styles/global/_app.scss";
 
-import React, { useEffect, useRef, useContext, Suspense, lazy } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 // Editor (trim/cut/timeline UI) only mounts when user enters edit mode.
 // Initial open is "player" mode; defer Editor + its TrimUI dependencies.
-const Editor = lazy(() => import("./layout/editor/Editor"));
 import Player from "./layout/player/Player";
 import Modal from "./components/global/Modal";
 import Toast from "./components/global/Toast";
@@ -195,14 +194,7 @@ const EditorApp = () => {
       <Modal />
       <Toast />
       <video></video>
-      {contentState.ffmpeg &&
-        contentState.ready &&
-        contentState.mode === "edit" && (
-          <Suspense fallback={null}>
-            <Editor />
-          </Suspense>
-        )}
-      {contentState.mode != "edit" && contentState.ready && <Player />}
+      {contentState.ready && <Player />}
       {!contentState.ready &&
         new URLSearchParams(window.location.search).get("reviewPreview") !==
           null && <ReviewBanner />}
@@ -367,7 +359,7 @@ const EditorApp = () => {
 	position: absolute!important;
 	top: 0px!important;
 	left: 0px!important;
-	background-color: #3080F8!important;
+	background-color: #111111!important;
 	color: #FFF!important;
 	font-family: "Satoshi-Medium"!important;
 	z-index: 99999999999!important;

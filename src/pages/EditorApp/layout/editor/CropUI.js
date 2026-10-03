@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import styles from "../../styles/player/_RightPanel.module.scss";
+import styles from "../../styles/player/_Panel.module.scss";
 
 // Components
 import Dropdown from "../../components/editor/Dropdown";

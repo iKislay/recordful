@@ -162,21 +162,6 @@ const VideoPlayer = (props) => {
           />
         )}
       </div>
-      <style>
-        {`
-					.plyr {
-						height: 90%!important;
-					}
-					@media (max-width: 900px) {
-						.videoPlayer {
-							height: 100%!important;
-							top: 40px!important;
-						}
-						.playerWrap {
-							height: calc(100% - 300px)!important;
-						}
-					`}
-      </style>
     </div>
   );
 };

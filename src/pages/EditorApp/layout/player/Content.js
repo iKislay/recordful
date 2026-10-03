@@ -1,35 +1,57 @@
-import React, { useContext, useState, Suspense, lazy } from "react";
+import React, { useContext, useEffect, Suspense, lazy } from "react";
 import styles from "../../styles/player/_Content.module.scss";
 
-// Components
 import VideoPlayer from "../../components/player/VideoPlayer";
-// Cropper drags in react-advanced-cropper (~218KB) and is only rendered
-// when the user opens the crop tool. Lazy-load so it doesn't eat the
-// editor's initial parse budget on every recording-stop.
-const CropperWrap = lazy(() =>
-  import("../../components/editor/CropperWrap"),
-);
+import EditVideoPlayer from "../../components/editor/VideoPlayer";
+import Title from "../../components/player/Title";
 import HelpButton from "../../components/player/HelpButton";
 import ProBanner from "../../components/global/ProBanner";
 import ReviewBanner from "../../components/global/ReviewBanner";
+import TrimUI from "../editor/TrimUI";
+import Toolbar from "./Toolbar";
+import { canEdit } from "./tools";
+// Cropper drags in react-advanced-cropper (~218KB) and is only rendered
+// when the user opens the crop tool. Lazy-load so it doesn't eat the
+// editor's initial parse budget on every recording-stop.
+const CropperWrap = lazy(() => import("../../components/editor/CropperWrap"));
 
-// Context
-import { ContentStateContext } from "../../context/ContentState"; // Import the ContentState context
+import { ContentStateContext } from "../../context/ContentState";
 
-const Content = () => {
-  const [contentState, setContentState] = useContext(ContentStateContext); // Access the ContentState context
+// The main column: toolbar, status alerts, the video, its title, and the
+// timeline. `alertsRef` is the slot the Share menu draws its alerts into.
+const Content = ({ alertsRef }) => {
+  const [contentState, setContentState] = useContext(ContentStateContext);
+  const editable = canEdit(contentState);
+  const cropping = contentState.mode === "crop";
+
+  // The timeline's Undo starts from the recording as it was when it first
+  // became editable. Only then: `editable` goes true again after every edit.
+  useEffect(() => {
+    if (editable && contentState.history.length <= 1) contentState.addToHistory();
+  }, [editable]);
+
+  const seek = (time, updateTime) =>
+    setContentState((prev) => ({ ...prev, updatePlayerTime: updateTime, time }));
+
   return (
     <div className={styles.content}>
-      <div className={styles.wrap}>
-        {contentState.mode === "audio" && <VideoPlayer />}
-        {contentState.mode === "player" && <VideoPlayer />}
-        {contentState.mode === "crop" && (
+      <Toolbar />
+      <div ref={alertsRef} className={styles.alerts} />
+      <div className={styles.stage}>
+        {cropping ? (
           <Suspense fallback={null}>
             <CropperWrap />
           </Suspense>
+        ) : editable ? (
+          // Follows the timeline: dragging a handle moves the video.
+          <EditVideoPlayer onSeek={seek} />
+        ) : (
+          <VideoPlayer />
         )}
       </div>
-      {contentState.mode === "crop" && <HelpButton />}
+      {!cropping && <Title />}
+      {editable && !cropping && <TrimUI blob={contentState.blob} onSeek={seek} />}
+      {cropping && <HelpButton />}
       {contentState.reviewPrompt ? (
         <ReviewBanner />
       ) : (

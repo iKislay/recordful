@@ -1904,5 +1904,13 @@
   "unsavedRecordingModalDismiss": {
     "message": "दोबारा न दिखाएं",
     "description": "Side button: start the recording and stop prompting about unsaved recordings."
+  },
+  "shareLabel": {
+    "message": "Share",
+    "description": "Button in the editor's top bar that opens the save and export options"
+  },
+  "backgroundToolLabel": {
+    "message": "Background",
+    "description": "Editor toolbar button for the video background tool"
   }
 }

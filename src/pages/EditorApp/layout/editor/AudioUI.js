@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import styles from "../../styles/player/_RightPanel.module.scss";
+import styles from "../../styles/player/_Panel.module.scss";
 
 import Dropdown from "../../components/editor/Dropdown";
 import * as Slider from "@radix-ui/react-slider";

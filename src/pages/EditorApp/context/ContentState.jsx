@@ -350,7 +350,6 @@ const ContentState = (props) => {
     bannerSupport: false,
     reviewPrompt: false,
     reviewEligible: false,
-    backupBlob: null,
     recordingMeta: null,
   };
 
@@ -775,31 +774,6 @@ const ContentState = (props) => {
       window.onbeforeunload = null;
     }
   }, [contentState.saved]);
-
-  const createBackup = () => {
-    setContentState((prev) => ({
-      ...prev,
-      backupBlob: prev.blob,
-    }));
-  };
-
-  const restoreBackup = () => {
-    setContentState((prev) => ({
-      ...prev,
-      blob: prev.backupBlob || prev.blob,
-      mode: "player",
-      start: 0,
-      end: 1,
-      backupBlob: null,
-    }));
-  };
-
-  const clearBackup = () => {
-    setContentState((prev) => ({
-      ...prev,
-      backupBlob: null,
-    }));
-  };
 
   // each entry pins a blob (multi-GB on long recordings); cap to bound memory
   const MAX_HISTORY_DEPTH = 20;
@@ -2667,21 +2641,6 @@ const ContentState = (props) => {
     }
   };
 
-  const cancelEditOp = () => {
-    opIdRef.current += 1;
-    clearEditOp();
-    setContentState((prev) => ({
-      ...prev,
-      isFfmpegRunning: false,
-      muting: false,
-      cutting: false,
-      trimming: false,
-      reencoding: false,
-      cropping: false,
-      processingProgress: 0,
-    }));
-  };
-
   const addAudio = async (videoBlob, audioBlob, volume) => {
     if (contentState.isFfmpegRunning) return;
     if (
@@ -3874,10 +3833,6 @@ const ContentState = (props) => {
   contentState.addAudio = addAudio;
   contentState.loadFFmpeg = loadFFmpeg;
   contentState.waitForUpdatedBlob = waitForUpdatedBlob;
-  contentState.createBackup = createBackup;
-  contentState.restoreBackup = restoreBackup;
-  contentState.clearBackup = clearBackup;
-  contentState.cancelEditOp = cancelEditOp;
 
   return (
     <ContentStateContext.Provider value={[contentState, setContentState]}>

@@ -1,24 +1,23 @@
 @use "../global/variables.scss" as *;
 
+// The main column, top to bottom: alerts, the video, its title, the timeline.
 .content {
+  position: relative;
   flex: 1;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  min-height: 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
-.wrap {
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  height: 100%;
-  min-height: 50vh;
+.alerts {
+  flex: none;
 }
-
-@media (max-width: 900px) {
-  .content {
-    display: block !important;
-    height: auto !important;
-    overflow: unset !important;
-  }
+// Room for the floating toolbar above the video.
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  display: flex;
+  padding-top: 64px;
+  box-sizing: border-box;
 }

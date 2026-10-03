@@ -5,7 +5,6 @@ import "../../styles/plyr.css";
 import { ContentStateContext } from "../../context/ContentState";
 import { showEditorToast } from "../../utils/editorToast";
 
-import Title from "./Title";
 
 // Phosphor WarningCircle (regular) inlined for the non-React processing
 // banner, which is injected via innerHTML outside the React tree.
@@ -289,15 +288,9 @@ const VideoPlayer = (props) => {
             </div>,
             overlayHost
           )}
-        {contentState.mode === "player" && <Title />}
       </div>
       <style>
         {`
-					@media (max-width: 900px) {
-						.videoPlayer {
-							position: relative!important;
-						}
-					}
 					@keyframes recordful-spin {
 						to { transform: rotate(360deg); }
 					}

@@ -1,24 +1,101 @@
 @use "../global/variables.scss" as *;
 
-.content {
+.layout {
+  position: absolute;
+  inset: 0;
   display: flex;
-  position: absolute;
-  top: 80px;
-  width: 100%;
-  height: calc(100% - 80px);
-  box-sizing: border-box;
-  left: 0px;
+  flex-direction: column;
 }
-.player {
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+// Floating bar of tools above the video.
+.toolbar {
   position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+.tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: $color-text-primary;
+  cursor: pointer;
+
+  &:hover:not(:disabled),
+  &[aria-pressed="true"] {
+    background-color: $color-primary-transparent;
+  }
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-border;
+  }
+}
+
+// Settings of the open tool.
+.sidebar {
+  position: relative;
+  flex: none;
+  width: 360px;
+  overflow-y: auto;
+  background-color: #fff;
+  border-left: 1px solid $color-border;
+  box-sizing: border-box;
+}
+.sidebarClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  display: flex;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-transparent;
+  }
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
 }
 
 @media (max-width: 900px) {
-  .content {
-    display: block !important;
-    height: auto !important;
-  }
-  .player {
+  .layout {
     position: relative;
+  }
+  .body {
+    display: block;
+  }
+  .sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid $color-border;
   }
 }
