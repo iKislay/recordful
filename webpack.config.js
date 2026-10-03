@@ -98,6 +98,7 @@ const entryPoints = {
     "LocalPlaybackBridge",
     "index.js"
   ),
+  editorbridge: path.join(__dirname, "src", "pages", "EditorBridge", "index.js"),
   remuxoffscreen: path.join(
     __dirname,
     "src",
@@ -150,6 +151,7 @@ const htmlPlugins = Object.keys(entryPoints)
       offscreenrecorder: "OffscreenRecorder",
       remuxoffscreen: "RemuxOffscreen",
       localplaybackbridge: "LocalPlaybackBridge",
+      editorbridge: "EditorBridge",
     };
 
     const folderName =
@@ -295,6 +297,11 @@ const config = {
       ),
       "process.env.RECORDFUL_ENABLE_CLOUD_FEATURES": JSON.stringify(
         process.env.RECORDFUL_ENABLE_CLOUD_FEATURES
+      ),
+      // "web" opens the app's editor after a recording; anything else keeps
+      // the editor built into the extension.
+      "process.env.RECORDFUL_EDITOR": JSON.stringify(
+        process.env.RECORDFUL_EDITOR
       ),
       "process.env.MAX_RECORDING_DURATION": JSON.stringify(
         process.env.MAX_RECORDING_DURATION || 3600 // Default to 1 hour

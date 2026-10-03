@@ -62,7 +62,9 @@ Self-hosted (unpacked) builds run entirely in local-only mode: no API
 calls, no sign-in, nothing sent anywhere. Cloud features only activate in
 the official store build, which talks to the private backend over
 build-time env vars (`RECORDFUL_API_BASE_URL`, `RECORDFUL_APP_BASE`,
-`RECORDFUL_WEBSITE_BASE`, `RECORDFUL_ENABLE_CLOUD_FEATURES`).
+`RECORDFUL_WEBSITE_BASE`, `RECORDFUL_ENABLE_CLOUD_FEATURES`). Setting
+`RECORDFUL_EDITOR=web` makes a recording open in the app's editor instead of
+the one built into the extension, which stays as the offline fallback.
 
 ## License
 
