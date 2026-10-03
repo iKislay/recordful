@@ -4417,8 +4417,8 @@ const CloudRecorder = () => {
       // Only init the audio uploader when mic is actually on; a non-
       // empty getAudioTracks() isn't enough since we attach a muted
       // mic stream for system-audio mixing.
-      // A separated mic goes to Storage instead: Stream stamps an audio-only
-      // file with duration 1 and no plain URL. See uploadMicToStorage.js.
+      // A separated mic is uploaded as one file at stop instead. See
+      // uploadMicToStorage.js.
       if (
         micActive === true &&
         !separatedNow() &&
@@ -7273,9 +7273,6 @@ const CloudRecorder = () => {
       });
       micRecoveryPending.current = true;
       micUploadPromise = (async () => {
-        const { recordfulToken } = await chrome.storage.local.get([
-          "recordfulToken",
-        ]);
         // The blob above already holds every chunk and uploadMicToStorage
         // re-wraps whatever it's handed, so pass it instead of reading the
         // store again. Empty means the store gave nothing back; fall back to
@@ -7290,8 +7287,6 @@ const CloudRecorder = () => {
           mimeType: trackContainers.audio || "audio/webm",
           sceneId: uploadMeta.sceneId,
           projectId,
-          duration: usedDurations.audio || null,
-          token: recordfulToken,
         });
       })().catch((err) => ({
         ok: false,
@@ -7373,7 +7368,7 @@ const CloudRecorder = () => {
             ),
           ]);
           if (raced?.ok && raced.mediaId) {
-            separatedMic = { mediaId: raced.mediaId, url: raced.url || null };
+            separatedMic = { mediaId: raced.mediaId };
           }
           diagForward("separated-mic-pre-scene", {
             won: Boolean(separatedMic),

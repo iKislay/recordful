@@ -130,8 +130,6 @@ export const uploadAndAttachMic = async ({
     mimeType,
     sceneId,
     projectId,
-    duration,
-    token,
   });
   if (!uploaded.ok) return { ok: false, reason: `upload-${uploaded.reason}` };
 

@@ -27,6 +27,9 @@ globalThis.chrome = {
 const { default: R2Uploader } = await import(
   "../src/pages/CloudRecorder/r2Uploader.js"
 );
+const { uploadMicToStorage } = await import(
+  "../src/pages/CloudRecorder/uploadMicToStorage.js"
+);
 
 const MiB = 1024 * 1024;
 const api = async (method, path, body) => {
@@ -134,6 +137,23 @@ try {
     { status: 404 },
   );
   uploader.stopHeartbeat();
+
+  // 6. A separated mic: one file through the same uploader, no journal.
+  projectId = await newProject();
+  bytes = randomBytes(300 * 1024);
+  const mic = {
+    chunks: [new Blob([bytes])],
+    mimeType: "audio/webm;codecs=opus",
+    sceneId: "scene",
+  };
+  const sent = await uploadMicToStorage({ ...mic, projectId });
+  assert.equal(sent.ok, true, sent.reason);
+  assert.ok((await stored(projectId, sent.mediaId)).equals(bytes));
+  assert.deepEqual(await uploadMicToStorage({ ...mic, projectId: "missing" }), {
+    ok: false,
+    reason: "http-404",
+  });
+  assert.deepEqual(Object.keys(storage), ["recordfulToken"], "no journal");
 
   console.log("uploader: all checks passed");
 } finally {
