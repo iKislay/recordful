@@ -49,6 +49,7 @@ export default class R2Uploader {
     this.container = options.container || "video/webm";
     this.codec = options.codec || null;
     this.encoderKind = options.encoderKind || null;
+    this.journal = options.journal !== false;
 
     this.projectId = null;
     this.sceneId = null;
@@ -210,10 +211,11 @@ export default class R2Uploader {
 
   // --- journal -----------------------------------------------------------
   // One entry per track in chrome.storage.local. It is how the background
-  // finds an upload that a crash or a closed tab left unfinished.
+  // finds an upload that a crash or a closed tab left unfinished. A caller
+  // with its own recovery turns it off with `journal: false`.
 
   scheduleJournalPersist({ force = false } = {}) {
-    if (!this.mediaId) return;
+    if (!this.mediaId || !this.journal) return;
     if (force) {
       void this.persistUploadJournal();
       return;
@@ -230,7 +232,7 @@ export default class R2Uploader {
   }
 
   async persistUploadJournal() {
-    if (!this.mediaId) return;
+    if (!this.mediaId || !this.journal) return;
     clearTimeout(this.journalPersistTimer);
     this.journalPersistTimer = null;
     const key = `uploadJournal-${this.mediaId}`;
