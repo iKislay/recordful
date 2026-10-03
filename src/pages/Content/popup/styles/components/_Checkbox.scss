@@ -1,0 +1,191 @@
+@use "../../../styles/_variables" as *;
+
+// Shared Checkbox styles. Port of HeroUI v3 packages/styles/components/checkbox.css
+// (BEM: .checkbox / __content / __control / __indicator, --primary / --secondary,
+// ::before accent-fill animation, data-selected / data-indeterminate / data-invalid
+// / data-disabled states) remapped to this repo's SCSS variables. No Tailwind.
+
+.checkbox {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  outline: none;
+  cursor: pointer;
+
+  > [data-slot="description"],
+  > [data-slot="field-error"] {
+    width: 100%;
+    min-width: 0;
+    cursor: default;
+    padding-left: 28px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: $color-text-secondary;
+    user-select: none;
+  }
+
+  > [data-slot="field-error"] {
+    color: $color-red;
+  }
+
+  &[data-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    [data-slot="description"],
+    [data-slot="field-error"],
+    .checkbox__content {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.checkbox__content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: $font-weight-normal;
+  font-family: $font-medium;
+  color: $color-text-primary;
+  cursor: inherit;
+  user-select: none;
+
+  [data-slot="label"] {
+    user-select: none;
+  }
+}
+
+.checkbox__content-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// Visually hidden but focusable native input (zero-dep a11y base).
+.checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkbox__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1.5px solid $color-border;
+  background-color: $color-background;
+  box-shadow: $container-soft-shadow;
+  outline: none;
+  cursor: inherit;
+  transition:
+    background-color 200ms ease-out,
+    border-color 200ms ease-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    transform-origin: center;
+    transform: scale(0.7);
+    border-radius: 6px;
+    background-color: $color-primary;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 100ms linear,
+      opacity 200ms linear,
+      background-color 200ms ease-out;
+  }
+
+  // ponytail: focus ring via :focus-within, not per-element data-focus-visible like react-aria; track pressed/hovered per-part if designs need it.
+  .checkbox__content:focus-within & {
+    box-shadow: $focus-border;
+  }
+
+  .checkbox__content:hover & {
+    border-color: $color-icon;
+  }
+
+  .checkbox[data-selected="true"] &,
+  .checkbox[data-indeterminate="true"] & {
+    border-color: transparent;
+    color: $color-text-contrast;
+
+    &::before {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .checkbox[data-indeterminate="true"] & {
+    background-color: $color-primary;
+  }
+
+  .checkbox[data-invalid="true"]:not([data-selected="true"]):not([data-indeterminate="true"]) & {
+    border-color: $color-red;
+  }
+
+  .checkbox[data-invalid="true"][data-selected="true"] &,
+  .checkbox[data-invalid="true"][data-indeterminate="true"] & {
+    &::before {
+      background-color: $color-red;
+    }
+  }
+}
+
+.checkbox__indicator {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  color: $color-text-contrast;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  [data-slot="checkbox-default-indicator--checkmark"] {
+    width: 10px;
+    height: 10px;
+    stroke-width: 2.5px;
+    transition: stroke-dashoffset 150ms linear 15ms;
+  }
+
+  .checkbox[data-invalid="true"] & {
+    color: $color-text-contrast;
+  }
+}
+
+.checkbox--primary {
+  // Default: shadow + white box, accent fill when selected (above).
+}
+
+.checkbox--secondary .checkbox__control {
+  box-shadow: none;
+  background-color: $color-light-grey;
+}
+
+.checkbox--secondary:not([data-selected="true"]):not([data-indeterminate="true"])
+  .checkbox__control {
+  background-color: $color-light-grey;
+}

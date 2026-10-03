@@ -1,0 +1,119 @@
+// SW analog of emitUploadTelemetry; fire-and-forget to /log/upload-event.
+
+const API_BASE = process.env.RECORDFUL_API_BASE_URL;
+const ENDPOINT = `${API_BASE}/log/upload-event`;
+
+let disabled = false;
+
+const getOsName = () => {
+  const p =
+    (typeof navigator !== "undefined" && navigator.platform) || "";
+  if (p.includes("Mac")) return "macOS";
+  if (p.includes("Win")) return "Windows";
+  if (p.includes("Linux")) return "Linux";
+  return "Other";
+};
+
+const getBrowserName = () => {
+  const ua =
+    (typeof navigator !== "undefined" && navigator.userAgent) || "";
+  if (ua.includes("Edg/")) return "Edge";
+  if (ua.includes("Chrome/")) return "Chrome";
+  if (ua.includes("Firefox/")) return "Firefox";
+  if (ua.includes("Safari/") && !ua.includes("Chrome/")) return "Safari";
+  return "Other";
+};
+
+const getBrowserMajor = () => {
+  const ua =
+    (typeof navigator !== "undefined" && navigator.userAgent) || "";
+  const m = ua.match(/Chrome\/([0-9]+)/);
+  return m ? parseInt(m[1], 10) : null;
+};
+
+export const emitRecordingTelemetry = async (eventType, extra = {}) => {
+  if (disabled) return;
+  if (!API_BASE) return;
+  try {
+    const snap = await chrome.storage.local.get([
+      "recordingSessionId",
+      "recorderSession",
+      "recordfulToken",
+    ]);
+    const session = snap.recorderSession || null;
+    const recordingSessionId =
+      extra.recordingSessionId ||
+      session?.recordingSessionId ||
+      session?.id ||
+      snap.recordingSessionId ||
+      null;
+    if (!recordingSessionId) return;
+
+    const screenUploader = session?.tracks?.screen?.uploader || null;
+    const cameraUploader = session?.tracks?.camera?.uploader || null;
+    // The early beacons fire before this attempt has a session doc, so a
+    // recorderSession in storage is the prior recording's. Skip the fallback
+    // so we don't tag the beacon with a stale mediaId.
+    const isEarlyBeacon =
+      eventType === "recording_initiated_beacon" ||
+      eventType === "recording_click_beacon";
+    const mediaId =
+      extra.mediaId ||
+      (isEarlyBeacon
+        ? null
+        : screenUploader?.mediaId || cameraUploader?.mediaId || null);
+
+    const extVersion = chrome?.runtime?.getManifest?.()?.version || null;
+
+    const requestRecordingId =
+      extra.recordingId || mediaId || recordingSessionId || null;
+
+    const body = JSON.stringify({
+      recordingId: requestRecordingId,
+      recordingSessionId,
+      projectId: extra.projectId || session?.projectId || null,
+      sceneId: extra.sceneId || session?.sceneId || null,
+      mediaId,
+      source: "extension",
+      extVersion,
+      env: {
+        os: getOsName(),
+        browser: getBrowserName(),
+        browserMajor: getBrowserMajor(),
+        appVersion: extVersion || null,
+      },
+      event: {
+        type: eventType,
+        t: Date.now(),
+        ...extra,
+        recordingSessionId,
+        projectId: extra.projectId || session?.projectId || null,
+        sceneId: extra.sceneId || session?.sceneId || null,
+        mediaId,
+      },
+    });
+
+    const headers = {
+      "Content-Type": "application/json",
+      "x-recordful-source": "extension",
+    };
+    if (extVersion) headers["x-recordful-ext-version"] = String(extVersion);
+    if (snap.recordfulToken) {
+      headers.Authorization = `Bearer ${snap.recordfulToken}`;
+    }
+
+    const res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers,
+      credentials: "include",
+      keepalive: true,
+      body,
+    });
+    if (res.status === 404 || res.status === 405 || res.status === 413) {
+      // 413 means the payload is too big; stop sending until a redeploy.
+      disabled = true;
+    }
+  } catch {
+    // best-effort
+  }
+};

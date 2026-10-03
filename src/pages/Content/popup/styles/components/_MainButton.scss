@@ -1,0 +1,87 @@
+@use '../../../styles/_variables' as *;
+
+
+.main-button {
+	width: 100%;
+	height: 40px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-weight: 500;
+
+
+	.main-button-label {
+		color: $color-text-contrast;
+		text-align: center;
+		vertical-align: middle;
+		align-items: center;
+	}
+	.main-button-shortcut {
+		position: absolute;
+		font-size: $font-size-small;
+		right: $spacing-04;
+		color: $color-text-contrast;
+		opacity: .55;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+	&:disabled {
+		cursor: not-allowed;
+		opacity: .5;
+	}
+}
+.main-button:focus {
+	box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2)!important;
+}
+
+.recording-button {
+	margin-top: $spacing-04;
+	background: #111111;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+	position: relative;
+	z-index: 2;
+	transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recording-button:hover {
+	background: #2a2a2a;
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+.recording-button:active {
+	background: #000000;
+}
+
+.dashboard-button {
+	background: $color-text-primary;
+	transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+.dashboard-button:hover {
+	background: #2a2a2a;
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.alarm-time-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	padding: 4px 8px;
+	position: absolute;
+	color: $color-text-contrast;
+	opacity: .7;
+	font-family: $font-medium;
+	font-size: 12px;
+	left: 6px;
+
+	svg {
+		margin-top: 4px;
+		margin-right: 4px;
+		width: 14px;
+	}
+}

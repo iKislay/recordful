@@ -1,0 +1,31 @@
+name: Naming guard
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  naming:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: a reference deleted from the tree still ships if it
+          # lives in an earlier commit.
+          fetch-depth: 0
+      - name: Check contents, file names and history
+        run: bash scripts/check-naming.sh
+      - name: Check pull request title and description
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          WORD="$(printf '%s' 'c2NyZWVuaXR5' | base64 -d)"
+          if printf '%s\n%s\n' "$PR_TITLE" "$PR_BODY" | grep -qi -e "$WORD"; then
+            echo "FAIL: pull request title or description"
+            exit 1
+          fi

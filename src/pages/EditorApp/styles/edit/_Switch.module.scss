@@ -1,0 +1,16 @@
+@use "../global/variables.scss" as *;
+
+/* Toggle UI lives in src/pages/Components/Toggle.jsx (self-contained
+   rf-toggle styles). Only the settings-row layout stays here. */
+
+.SwitchRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.Label {
+  color: $color-text-secondary;
+}

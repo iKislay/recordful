@@ -1,0 +1,1908 @@
+{
+  "reviewAskTitle": {
+    "message": "Recordful आपके लिए कैसा काम कर रहा है?",
+    "description": "Review prompt step 1 question (sentiment check) in the editor"
+  },
+  "reviewAskGood": {
+    "message": "अच्छा चल रहा है",
+    "description": "Review prompt positive sentiment button label / tooltip"
+  },
+  "reviewAskBad": {
+    "message": "कुछ खास नहीं",
+    "description": "Review prompt negative sentiment button label / tooltip"
+  },
+  "reviewThanksTitle": {
+    "message": "आपने तो मेरा दिन बना दिया!",
+    "description": "Review prompt happy-branch title in the editor"
+  },
+  "reviewThanksDescription": {
+    "message": "Hey, I'm Kislay. I built Recordful because I wanted a screen recorder that respects your privacy and doesn't hold your videos hostage. Free, open source, no watermarks, no limits. Before this I built forg.to, a home for indie hackers shipping in public, so this one is getting built the same way, out in the open. If Recordful earns its keep, Pro keeps the lights on.\n\nIf Recordful has helped you, leaving a quick review is one of the best ways to support it ❤️",
+    "description": "Review prompt happy-branch description (founder voice) in the editor. Paragraphs separated by a blank line."
+  },
+  "reviewThanksButton": {
+    "message": "समीक्षा छोड़ें",
+    "description": "Review prompt button that opens the Chrome Web Store review page"
+  },
+  "reviewThanksLater": {
+    "message": "शायद बाद में",
+    "description": "Review prompt snooze button on the happy branch"
+  },
+  "reviewSorryTitle": {
+    "message": "यह सुनकर दुख हुआ",
+    "description": "Review prompt unhappy-branch title in the editor"
+  },
+  "reviewSorryDescription": {
+    "message": "Hey, I'm Kislay. I read every message myself, so tell me what went wrong and I'll do my best to fix it.",
+    "description": "Review prompt unhappy-branch description in the editor"
+  },
+  "reviewSorryButton": {
+    "message": "फीडबैक भेजें",
+    "description": "Review prompt button that opens the private feedback form"
+  },
+  "reviewSorryDismiss": {
+    "message": "नहीं, धन्यवाद",
+    "description": "Review prompt dismiss button on the unhappy branch"
+  },
+  "extName": {
+    "message": "Recordful - स्क्रीन रिकॉर्डिंग & नोट्स",
+    "description": "एक्सटेंशन का नाम"
+  },
+  "extDesc": {
+    "message": "सबसे बेहतरीन मुफ्त स्क्रीन रिकॉर्डर बिना किसी सीमा के। छवि कैद करें, टिप्पणी करें, जूम करें, धुंधला करें, वीडियो संपादित करें और और भी - किसी पंजीकरण की आवश्यकता नहीं है, और गोपनीयता का आदरणीय।",
+    "description": "एक्सटेंशन का विवरण"
+  },
+  "recordTab": {
+    "message": "रिकॉर्ड",
+    "description": "पॉपअप पर रिकॉर्ड टैब लेबल"
+  },
+  "videosTab": {
+    "message": "आपके वीडियो",
+    "description": "पॉपअप पर वीडियो टैब लेबल"
+  },
+  "screenType": {
+    "message": "स्क्रीन",
+    "description": "पॉपअप पर स्क्रीन रिकॉर्डिंग प्रकार लेबल"
+  },
+  "tabType": {
+    "message": "टैब क्षेत्र",
+    "description": "पॉपअप पर टैब क्षेत्र रिकॉर्डिंग प्रकार लेबल"
+  },
+  "cameraType": {
+    "message": "कैमरा",
+    "description": "पॉपअप पर कैमरा रिकॉर्डिंग प्रकार लेबल"
+  },
+  "mockupType": {
+    "message": "मॉकअप",
+    "description": "पॉपअप पर मॉकअप रिकॉर्डिंग प्रकार लेबल"
+  },
+  "customAreaRecordingDisabledTitle": {
+    "message": "कस्टम क्षेत्र रिकॉर्डिंग अक्षम",
+    "description": "पॉपअप के लिए 104 से पुराने क्रोम संस्करण के लिए कस्टम क्षेत्र रिकॉर्डिंग अक्षम चेतावनी"
+  },
+  "customAreaRecordingDisabledDescription": {
+    "message": "क्रोम संस्करण को 110+ पर अपडेट करें",
+    "description": "क्रोम संस्करण 104 से पुराने के लिए कस्टम क्षेत्र रिकॉर्डिंग अक्षम चेतावनी विवरण"
+  },
+  "customAreaRecordingDisabledAction": {
+    "message": "अपडेट करें",
+    "description": "क्रोम संस्करण 104 से पुराने के लिए कस्टम क्षेत्र रिकॉर्डिंग अक्षम चेतावनी क्रिया"
+  },
+  "permissionsModalTitle": {
+    "message": "अपनी अनुमतियों की जांच करें",
+    "description": "कैमरा / माइक्रोफ़ोन अनुमतियों की चेतावनी मॉडल शीर्षक"
+  },
+  "permissionsModalDescription": {
+    "message": "लगता है कि स्क्रीनिटी कैमरा या माइक्रोफ़ोन तक पहुंच नहीं पा रहा है। कृपया पता करें कि कैमरा आइकन पर क्लिक करके पहुंच को अनुमति दें।",
+    "description": "कैमरा / माइक्रोफ़ोन अनुमतियों की चेतावनी मॉडल विवरण"
+  },
+  "permissionsModalDismiss": {
+    "message": "रद्द करें",
+    "description": "कैमरा / माइक्रोफ़ोन अनुमतियों की चेतावनी मॉडल निरस्त करें बटन"
+  },
+  "sitePermissionsBlockedTitle": {
+    "message": "यह साइट कैमरा या माइक्रोफोन एक्सेस की अनुमति नहीं देती",
+    "description": "Modal title shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "sitePermissionsBlockedDescription": {
+    "message": "ऐसा लगता है कि इस वेबसाइट की सुरक्षा सेटिंग्स ब्राउज़र एक्सटेंशन को इस पेज पर आपके कैमरा या माइक्रोफोन का उपयोग करने से रोकती हैं। इनके साथ रिकॉर्ड करने के लिए, किसी अन्य टैब से रिकॉर्डिंग शुरू करें और रिकॉर्डिंग शुरू होने के बाद यहाँ वापस आएँ।",
+    "description": "Modal description shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "opfsLoadErrorTitle": {
+    "message": "आपकी रिकॉर्डिंग लोड नहीं हो सकी",
+    "description": "Modal title shown when the editor cannot read the recording file from the device's storage"
+  },
+  "opfsLoadErrorDescription": {
+    "message": "ऐसा लगता है कि Recordful आपके डिवाइस के स्टोरेज से रिकॉर्डिंग लोड नहीं कर सका। यह मिटा दी गई हो या हटाई गई हो सकती है। अगर यह समस्या बार-बार हो, तो कृपया X.com/whyKislay or forg.to/@kislay पर हमसे संपर्क करें।",
+    "description": "Modal description shown when the editor cannot read the recording file from the device's storage"
+  },
+  "recordingWriterFailedToast": {
+    "message": "स्टोरेज समस्या के कारण रिकॉर्डिंग बंद हो गई। आपकी आंशिक रिकॉर्डिंग सहेज ली गई है।",
+    "description": "Toast shown when the recording chunk writer fails mid-recording and the partial file is preserved"
+  },
+  "allowCameraAccessButton": {
+    "message": "कैमरा अनुमति दें",
+    "description": "कैमरा अनुमति दें बटन"
+  },
+  "allowMicrophoneAccessButton": {
+    "message": "माइक्रोफ़ोन अनुमति दें",
+    "description": "माइक्रोफ़ोन अनुमति दें बटन"
+  },
+  "pushToTalkLabel": {
+    "message": "बोलने के लिए दबाएं",
+    "description": "पुश टू टॉक स्विच लेबल"
+  },
+  "customAreaLabel": {
+    "message": "रिकॉर्ड करने के लिए एक क्षेत्र सेट करें",
+    "description": "कस्टम क्षेत्र स्विच लेबल"
+  },
+  "flipCameraLabel": {
+    "message": "कैमरा पलटें",
+    "description": "कैमरा पलटने का स्विच लेबल"
+  },
+  "backgroundEffectsLabel": {
+    "message": "पृष्ठभूमि प्रभाव",
+    "description": "पृष्ठभूमि प्रभाव स्विच लेबल"
+  },
+  "recordButtonLabel": {
+    "message": "रिकॉर्डिंग शुरू करें",
+    "description": "रिकॉर्ड बटन लेबल"
+  },
+  "recordButtonInProgressLabel": {
+    "message": "रिकॉर्डिंग शुरू हो रही है...",
+    "description": "रिकॉर्ड बटन कार्रवाई में लेबल"
+  },
+  "recordButtonNoCameraLabel": {
+    "message": "रिकॉर्ड करने के लिए कैमरा सेट करें",
+    "description": "कैमरा मोड में होते हुए रिकॉर्ड बटन लेबल और कोई कैमरा चयन नहीं किया गया है"
+  },
+  "showMoreOptionsLabel": {
+    "message": "अधिक विकल्प दिखाएं",
+    "description": "अधिक विकल्प लेबल"
+  },
+  "systemAudioLabel": {
+    "message": "सिस्टम ऑडियो शामिल करें",
+    "description": "टैब/सिस्टम ऑडियो लेबल"
+  },
+  "hideToolbarLabel": {
+    "message": "टूलबार छिपाएं",
+    "description": "टूलबार लेबल"
+  },
+  "countdownLabel": {
+    "message": "गिनती शुरू करें",
+    "description": "गिनती लेबल"
+  },
+  "alarmLabel": {
+    "message": "समय सीमा सेट करें",
+    "description": "अलार्म लेबल"
+  },
+  "blurTypeLabel": {
+    "message": "ब्लर",
+    "description": "पृष्ठभूमि ब्लर लेबल"
+  },
+  "noneDropdownLabel": {
+    "message": "कोई नहीं",
+    "description": "कोई डिवाइस चयन नहीं किया गया"
+  },
+  "noCameraDropdownLabel": {
+    "message": "कैमरा नहीं",
+    "description": "कोई कैमरा चयन नहीं किया गया"
+  },
+  "noMicrophoneDropdownLabel": {
+    "message": "माइक्रोफ़ोन नहीं",
+    "description": "कोई माइक्रोफ़ोन चयन नहीं किया गया"
+  },
+  "selectSourceDropdownPlaceholder": {
+    "message": "एक स्रोत चुनें",
+    "description": "स्रोत चुनने का प्लेसहोल्डर"
+  },
+  "offLabel": {
+    "message": "बंद",
+    "description": "ड्रॉपडाउन पर बंद लेबल"
+  },
+  "regionWidthLabel": {
+    "message": "चौड़ाई",
+    "description": "क्षेत्र चौड़ाई लेबल"
+  },
+  "regionHeightLabel": {
+    "message": "ऊंचाई",
+    "description": "क्षेत्र ऊंचाई लेबल"
+  },
+  "addImageToastTitle": {
+    "message": "छवि डालने के लिए क्लिक करें",
+    "description": "नई छवि जोड़ते समय टोस्ट"
+  },
+  "finishRecordingTooltip": {
+    "message": "रिकॉर्डिंग समाप्त करें",
+    "description": "रिकॉर्डिंग समाप्त करने की टूलटिप"
+  },
+  "restartRecordingTooltip": {
+    "message": "रिकॉर्डिंग फिर से शुरू करें",
+    "description": "रिकॉर्डिंग फिर से शुरू करने की टूलटिप"
+  },
+  "pauseRecordingTooltip": {
+    "message": "रिकॉर्डिंग रोकें",
+    "description": "रिकॉर्डिंग रोकने की टूलटिप"
+  },
+  "resumeRecordingTooltip": {
+    "message": "रिकॉर्डिंग फिर से शुरू करें",
+    "description": "रिकॉर्डिंग टूलटिप फिर से शुरू करें"
+  },
+  "cancelRecordingTooltip": {
+    "message": "रिकॉर्डिंग रद्द करें",
+    "description": "रिकॉर्डिंग टूलटिप रद्द करें"
+  },
+  "toggleDrawingToolsTooltip": {
+    "message": "ड्रॉइंग टूल्स टॉगल करें",
+    "description": "ड्रॉइंग टूल्स टूलटिप टॉगल करें"
+  },
+  "toggleBlurToolTooltip": {
+    "message": "ब्लर टूल टॉगल करें",
+    "description": "ब्लर टूल टूलटिप टॉगल करें"
+  },
+  "toggleCursorOptionsTooltip": {
+    "message": "कर्सर विकल्प टॉगल करें",
+    "description": "कर्सर विकल्प टूलटिप टॉगल करें"
+  },
+  "disableCameraTooltip": {
+    "message": "कैमरा बंद करें",
+    "description": "कैमरा टूलटिप बंद करें"
+  },
+  "enableCameraTooltip": {
+    "message": "कैमरा चालने के लिए",
+    "description": "कैमरा टूलटिप चालने के लिए"
+  },
+  "noCameraPermissionsTooltip": {
+    "message": "कैमरा अनुमतियाँ नहीं हैं",
+    "description": "कैमरा टूलटिप अनुमतियाँ नहीं हैं"
+  },
+  "disableMicrophoneTooltip": {
+    "message": "माइक्रोफोन बंद करें",
+    "description": "माइक्रोफोन टूलटिप बंद करें"
+  },
+  "enableMicrophoneTooltip": {
+    "message": "माइक्रोफोन चालने के लिए",
+    "description": "माइक्रोफोन टूलटिप चालने के लिए"
+  },
+  "noMicrophonePermissionsTooltip": {
+    "message": "माइक्रोफोन अनुमतियाँ नहीं हैं",
+    "description": "माइक्रोफोन टूलटिप अनुमतियाँ नहीं हैं"
+  },
+  "selectToolTooltip": {
+    "message": "टूल चुनें",
+    "description": "टूल टूलटिप चुनें"
+  },
+  "penToolTooltip": {
+    "message": "पेन टूल",
+    "description": "पेन टूलटिप"
+  },
+  "highlighterToolTooltip": {
+    "message": "हाइलाइटर टूल",
+    "description": "हाइलाइटर टूलटिप"
+  },
+  "eraserToolTooltip": {
+    "message": "मिटाने वाला टूल",
+    "description": "मिटाने वाला टूलटिप"
+  },
+  "textToolTooltip": {
+    "message": "टेक्स्ट टूल",
+    "description": "टेक्स्ट टूलटिप"
+  },
+  "shapeToolTooltip": {
+    "message": "आकार टूल",
+    "description": "आकार टूलटिप"
+  },
+  "arrowToolTooltip": {
+    "message": "तीर टूल",
+    "description": "तीर टूलटिप"
+  },
+  "imageToolTooltip": {
+    "message": "छवि टूल",
+    "description": "छवि टूलटिप"
+  },
+  "undoTooltip": {
+    "message": "पूर्ववत करें",
+    "description": "पूर्ववत करें टूलटिप"
+  },
+  "redoTooltip": {
+    "message": "फिर से करें",
+    "description": "फिर से करें टूलटिप"
+  },
+  "clearCanvasTooltip": {
+    "message": "कैनवास साफ़ करें",
+    "description": "कैनवास साफ़ करें टूलटिप"
+  },
+  "moreColorsTooltip": {
+    "message": "और रंग",
+    "description": "और रंग टूलटिप"
+  },
+  "thickStrokeTooltip": {
+    "message": "मोटा स्ट्रोक",
+    "description": "मोटा स्ट्रोक टूलटिप"
+  },
+  "mediumStrokeTooltip": {
+    "message": "मध्यम स्ट्रोक",
+    "description": "मध्यम स्ट्रोक टूलटिप"
+  },
+  "thinStrokeTooltip": {
+    "message": "पतला स्ट्रोक",
+    "description": "पतला स्ट्रोक टूलटिप"
+  },
+  "togglePictureinPictureModeTooltip": {
+    "message": "पिक्चर-इन-पिक्चर मोड टॉगल करें",
+    "description": "पिक्चर-इन-पिक्चर मोड टूलटिप"
+  },
+  "toggleFillTooltip": {
+    "message": "भराई टॉगल करें",
+    "description": "भराई टूलटिप"
+  },
+  "drawingModeToast": {
+    "message": "ड्रॉइंग मोड",
+    "description": "ड्रॉइंग मोड टोस्ट"
+  },
+  "blurModeToast": {
+    "message": "ब्लर मोड",
+    "description": "ब्लर मोड टोस्ट"
+  },
+  "clearBlurredElementsTooltip": {
+    "message": "सभी ब्लर किए गए तत्वों को हटाएं",
+    "description": "सभी ब्लर किए गए तत्वों को हटाएं टूलटिप"
+  },
+  "highlightClicksTooltip": {
+    "message": "क्लिक को हाइलाइट करें",
+    "description": "क्लिक को हाइलाइट करें टूलटिप"
+  },
+  "highlightCursorTooltip": {
+    "message": "कर्सर को हाइलाइट करें",
+    "description": "कर्सर को हाइलाइट करें टूलटिप"
+  },
+  "spotlightCursorTooltip": {
+    "message": "कर्सर को स्पॉटलाइट करें",
+    "description": "कर्सर को स्पॉटलाइट करें टूलटिप"
+  },
+  "permissionsModalNoShowAgain": {
+    "message": "फिर से न दिखाएं",
+    "description": "अनुमतियों मॉडल डिस्मिस बटन"
+  },
+  "restartModalTitle": {
+    "message": "क्या आप वीडियो को पुनः प्रारंभ करना चाहते हैं?",
+    "description": "वीडियो पुनः प्रारंभ मॉडल शीर्षक"
+  },
+  "restartModalDescription": {
+    "message": "आपकी वर्तमान वीडियो प्रगति खो जाएगी।",
+    "description": "वीडियो पुनः प्रारंभ मॉडल विवरण"
+  },
+  "restartModalRestart": {
+    "message": "वीडियो पुनः प्रारंभ करें",
+    "description": "वीडियो पुनः प्रारंभ मॉडल पुनः प्रारंभ बटन"
+  },
+  "restartModalResume": {
+    "message": "रिज्यूम रिकॉर्डिंग",
+    "description": "वीडियो पुनः प्रारंभ मॉडल रिज्यूम बटन"
+  },
+  "discardModalTitle": {
+    "message": "क्या आप वीडियो को छोड़ना चाहते हैं?",
+    "description": "वीडियो को छोड़ने का मॉडल शीर्षक"
+  },
+  "discardModalDescription": {
+    "message": "आपकी वर्तमान वीडियो प्रगति खो जाएगी।",
+    "description": "वीडियो को छोड़ने का मॉडल विवरण"
+  },
+  "discardModalDiscard": {
+    "message": "वीडियो को छोड़ें",
+    "description": "वीडियो को छोड़ने का मॉडल छोड़ने बटन"
+  },
+  "discardModalResume": {
+    "message": "रिज्यूम रिकॉर्डिंग",
+    "description": "वीडियो को छोड़ने का मॉडल रिज्यूम बटन"
+  },
+  "recorderSelectTitle": {
+    "message": "चुनें कि आप क्या रिकॉर्ड करना चाहते हैं",
+    "description": "रिकॉर्डिंग पृष्ठ में शीर्षक"
+  },
+  "recorderSelectProgressTitle": {
+    "message": "रेकॉर्डिंग...",
+    "description": "रेकॉर्डिंग पृष्ठ में रेकॉर्डिंग के दौरान शीर्षक"
+  },
+  "recorderSelectDescription": {
+    "message": "इस टैब को खुला रखें। यह आपकी रेकॉर्डिंग सहेजी जाने के बाद बंद हो जाएगा।",
+    "description": "रेकॉर्डिंग पृष्ठ में विवरण"
+  },
+  "sandboxProgressTitle": {
+    "message": "रेकॉर्डिंग की तैयारी...",
+    "description": "सैंडबॉक्स पृष्ठ में रेकॉर्डिंग / सहेजने के दौरान शीर्षक"
+  },
+  "sandboxProgressDescription": {
+    "message": "इस टैब को खुला रखें। यह आपकी रेकॉर्डिंग तैयार होने पर अपडेट हो जाएगा।",
+    "description": "सैंडबॉक्स पृष्ठ में रेकॉर्डिंग / सहेजने के दौरान विवरण"
+  },
+  "sandboxFinalizingRecording": {
+    "message": "रिकॉर्डिंग पूरी की जा रही है...",
+    "description": "Shown over the player when the editor is waiting for the recorder to finish flushing the recording to disk"
+  },
+  "sandboxToastReverted": {
+    "message": "मूल पर वापस लाया गया",
+    "description": "Toast confirmation shown when the user reverts edits to the original recording"
+  },
+  "sandboxToastSaved": {
+    "message": "बदलाव सहेजे गए",
+    "description": "Toast confirmation shown when the user saves an edit operation"
+  },
+  "sandboxEditorMainTitle": {
+    "message": "संपादक",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में नेविगेशन का शीर्षक"
+  },
+  "sandboxEditorCancelButton": {
+    "message": "रद्द करें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में रद्द करें बटन"
+  },
+  "sandboxEditorRevertButton": {
+    "message": "मूल को पुनः लाएं",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में पुनर्स्थापित करें बटन"
+  },
+  "sandboxEditorResetButton": {
+    "message": "रीसेट",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में रीसेट करें बटन"
+  },
+  "sandboxEditorSaveButton": {
+    "message": "परिवर्तन सहेजें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में सहेजें बटन"
+  },
+  "sandboxEditorSaveProgressButton": {
+    "message": "सहेज रहा है...",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में सहेजें बटन के दौरान सहेजें"
+  },
+  "sandboxAudioDragAndDrop": {
+    "message": "आपके ऑडियो फ़ाइल को खींचें और छोड़ें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में ऑडियो फ़ाइल को खींचें और छोड़ें"
+  },
+  "sandboxAudioOrBrowse": {
+    "message": "या ब्राउज़ करने के लिए क्लिक करें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में ऑडियो फ़ाइल ब्राउज़ करने के लिए क्लिक करें"
+  },
+  "sandboxAudioSettingsTitle": {
+    "message": "सेटिंग्स",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में ऑडियो सेटिंग्स शीर्षक"
+  },
+  "sandboxAudioVolumeLabel": {
+    "message": "वॉल्यूम",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में ऑडियो वॉल्यूम लेबल"
+  },
+  "sandboxAudioUpdateButton": {
+    "message": "अपडेट करें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में ऑडियो को अपडेट करें बटन"
+  },
+  "sandboxCropTitle": {
+    "message": "क्रॉप",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में क्रॉप शीर्षक"
+  },
+  "widthLabel": {
+    "message": "चौड़ाई",
+    "description": "संपत्ति के लिए चौड़ाई लेबल"
+  },
+  "heightLabel": {
+    "message": "ऊंचाई",
+    "description": "संपत्ति के लिए ऊंचाई लेबल"
+  },
+  "leftLabel": {
+    "message": "बाएं",
+    "description": "संपत्ति के लिए बाएं लेबल"
+  },
+  "topLabel": {
+    "message": "ऊपर",
+    "description": "संपत्ति के लिए ऊपर लेबल"
+  },
+  "sandboxEditorTrimInfo": {
+    "message": "चुने हुए खंड को संपादित करने के लिए हैंडल को खींचें और बाएं बटन का उपयोग करें।",
+    "description": "सैंडबॉक्स संपादक में कट आपूर्ति के बारे में जानकारी"
+  },
+  "sandboxEditorTrimButton": {
+    "message": "वीडियो को कटा जा रहा है",
+    "description": "सैंडबॉक्स संपादक में कट बटन"
+  },
+  "sandboxEditorTrimProgressButton": {
+    "message": "कटाई जा रही है...",
+    "description": "सैंडबॉक्स संपादक में कट बटन की कटाई के दौरान"
+  },
+  "sandboxEditorCutButton": {
+    "message": "खंड काटें",
+    "description": "सैंडबॉक्स संपादक में कट बटन"
+  },
+  "sandboxEditorCutProgressButton": {
+    "message": "कटाई जा रही है...",
+    "description": "सैंडबॉक्स संपादक में कट बटन की कटाई के दौरान"
+  },
+  "sandboxEditorMuteButton": {
+    "message": "ध्वनि बंद करें",
+    "description": "सैंडबॉक्स संपादक में म्यूट बटन"
+  },
+  "sandboxEditorMuteProgressButton": {
+    "message": "म्यूट किया जा रहा है...",
+    "description": "सैंडबॉक्स संपादक में म्यूट बटन की म्यूट करते समय"
+  },
+  "learnMoreDot": {
+    "message": "और जानें।",
+    "description": "एक डॉट के साथ और जानें"
+  },
+  "undoLabel": {
+    "message": "पूर्ववत करें",
+    "description": "पूर्ववत लेबल"
+  },
+  "redoLabel": {
+    "message": "फिर से करें",
+    "description": "फिर से करें लेबल"
+  },
+  "leaveReview": {
+    "message": "समीक्षा छोड़ें",
+    "description": "समीक्षा छोड़ें बटन"
+  },
+  "followForUpdates": {
+    "message": "अपडेट्स के लिए फॉलो करें",
+    "description": "अपडेट्स के लिए फॉलो करें बटन"
+  },
+  "offlineLabelTitle": {
+    "message": "आप वर्तमान में ऑफ़लाइन हैं",
+    "description": "ऑफ़लाइन लेबल"
+  },
+  "offlineLabelDescription": {
+    "message": "कुछ सुविधाएं फिर से कनेक्ट होने तक अनुपलब्ध हैं",
+    "description": "ऑफ़लाइन लेबल विवरण"
+  },
+  "offlineLabelTryAgain": {
+    "message": "फिर से प्रयास करें",
+    "description": "ऑफ़लाइन लेबल पुनः प्रयास करें बटन"
+  },
+  "serverIssueTitle": {
+    "message": "Recordful उपलब्ध नहीं है",
+    "description": "Title shown when the Recordful API is returning server errors"
+  },
+  "serverIssueDescription": {
+    "message": "क्लाउड रिकॉर्डिंग अभी उपलब्ध नहीं है। कुछ देर बाद फिर प्रयास करें।",
+    "description": "Description shown when the Recordful API is returning server errors"
+  },
+  "serverUnreachableTitle": {
+    "message": "Recordful से कनेक्ट नहीं हो पा रहा",
+    "description": "Title shown when the Recordful API cannot be reached"
+  },
+  "serverUnreachableDescription": {
+    "message": "अपना कनेक्शन जांचें या कुछ देर बाद फिर प्रयास करें।",
+    "description": "Description shown when the Recordful API cannot be reached"
+  },
+  "updateChromeLabelTitle": {
+    "message": "क्रोम को अपडेट करने की आवश्यकता है",
+    "description": "क्रोम अपडेट लेबल"
+  },
+  "updateChromeLabelDescription": {
+    "message": "और फ़ीचर्स तक पहुँचने के लिए अपडेट करें",
+    "description": "क्रोम अपडेट लेबल विवरण"
+  },
+  "learnMoreLabel": {
+    "message": "और जानें",
+    "description": "और जानें बटन"
+  },
+  "overLimitLabelTitle": {
+    "message": "वीडियो स्थानीय रूप से प्रोसेस करने के लिए बहुत लम्बा है",
+    "description": "संपादक में 5 मिनट से अधिक सीमा का लेबल"
+  },
+  "overLimitLabelDescription": {
+    "message": "संपादन और MP4 निर्यात उपलब्ध नहीं है",
+    "description": "संपादक में 5 मिनट से अधिक सीमा का विवरण"
+  },
+  "overLimitLabelDescriptionFastPath": {
+    "message": "संपादन सुविधाएँ उपलब्ध नहीं हैं",
+    "description": "Over limit description when the recording is a native MP4 (fast recorder / WebCodecs) so MP4 export still works"
+  },
+  "videoProcessingLabelTitle": {
+    "message": "वीडियो प्रसंस्करण हो रहा है...",
+    "description": "संपादक में वीडियो प्रसंस्करण लेबल"
+  },
+  "videoProcessingLabelDescription": {
+    "message": "फ़ास्ट संपादन के लिए अपग्रेड करें",
+    "description": "संपादक में वीडियो प्रसंस्करण विवरण"
+  },
+  "sandboxEditTitle": {
+    "message": "संपादन करें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में संपादन शीर्षक"
+  },
+  "noConnectionLabel": {
+    "message": "कोई कनेक्शन नहीं",
+    "description": "कोई कनेक्शन लेबल"
+  },
+  "notAvailableLabel": {
+    "message": "उपलब्ध नहीं है",
+    "description": "उपलब्ध नहीं है लेबल"
+  },
+  "editButtonTitle": {
+    "message": "वीडियो संपादित करें",
+    "description": "ट्रिम लेबल बटन"
+  },
+  "editButtonDescription": {
+    "message": "वीडियो को ट्रिम, कट या म्यूट करें",
+    "description": "ट्रिम लेबल"
+  },
+  "preparingLabel": {
+    "message": "तैयारी हो रही है...",
+    "description": "तैयारी लेबल"
+  },
+  "cropButtonTitle": {
+    "message": "क्रॉप",
+    "description": "क्रॉप लेबल बटन"
+  },
+  "cropButtonDescription": {
+    "message": "वीडियो को क्रॉप और आकार दें",
+    "description": "क्रॉप लेबल"
+  },
+  "addAudioButtonTitle": {
+    "message": "ऑडियो जोड़ें",
+    "description": "ऑडियो लेबल बटन"
+  },
+  "addAudioButtonDescription": {
+    "message": "अपना खुद का ऑडियो अपलोड करके वीडियो में जोड़ें",
+    "description": "ऑडियो लेबल"
+  },
+  "sandboxSaveTitle": {
+    "message": "सहेजें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में शीर्षक सहेजें"
+  },
+  "signOutDriveLabel": {
+    "message": "ड्राइव से लॉग आउट करें",
+    "description": "Google ड्राइव से लॉग आउट लेबल"
+  },
+  "savingDriveLabel": {
+    "message": "सहेज रहे हैं...",
+    "description": "Google ड्राइव में सहेज रहे हैं लेबल"
+  },
+  "saveDriveButtonTitle": {
+    "message": "ड्राइव में सहेजें",
+    "description": "Google ड्राइव में सहेजें बटन"
+  },
+  "saveDriveButtonDescription": {
+    "message": "वर्तमान संस्करण को Google ड्राइव में सहेजें",
+    "description": "Google ड्राइव में सहेजें लेबल"
+  },
+  "signInDriveLabel": {
+    "message": "साइन इन करें और ड्राइव में सहेजें",
+    "description": "Google ड्राइव में साइन इन करें लेबल"
+  },
+  "sandboxExportTitle": {
+    "message": "निर्यात",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में निर्यात शीर्षक"
+  },
+  "downloadingLabel": {
+    "message": "डाउनलोड हो रहा है...",
+    "description": "डाउनलोड हो रहा है लेबल"
+  },
+  "downloadWEBMButtonTitle": {
+    "message": ".webm के रूप में डाउनलोड करें",
+    "description": "WEBM डाउनलोड बटन"
+  },
+  "downloadWEBMButtonDescription": {
+    "message": ".webm वीडियो निर्यात करें",
+    "description": "WEBM डाउनलोड लेबल"
+  },
+  "downloadMP4ButtonTitle": {
+    "message": ".mp4 के रूप में डाउनलोड करें",
+    "description": "MP4 डाउनलोड बटन"
+  },
+  "downloadMP4ButtonDescription": {
+    "message": ".mp4 वीडियो निर्यात करें (सिफारिश किया जाता है)",
+    "description": "MP4 डाउनलोड लेबल"
+  },
+  "downloadGIFButtonTitle": {
+    "message": ".gif के रूप में डाउनलोड करें",
+    "description": "GIF डाउनलोड बटन"
+  },
+  "downloadGIFButtonDescription": {
+    "message": "एक GIF निर्यात करें (अधिकतम 30 सेकंड)",
+    "description": "GIF डाउनलोड लेबल"
+  },
+  "shareModalSandboxTitle": {
+    "message": "क्या आप अपनी रिकॉर्डिंग बेहतर करना चाहते हैं?",
+    "description": "Share modal title in sandbox editor page"
+  },
+  "shareModalSandboxDescription": {
+    "message": "क्लाउड शेयरिंग, ज़ूम, टेम्पलेट्स पाएं... और एक प्राइवेसी-फ्रेंडली टूल को सपोर्ट करें जिसे एक इंडी डेव ने बनाया है ❤️",
+    "description": "Share modal description in sandbox editor page"
+  },
+  "shareModalSandboxButton": {
+    "message": "Pro के बारे में जानें",
+    "description": "Share modal email placeholder in sandbox editor page"
+  },
+  "shareModalSandboxLogin": {
+    "message": "पहले से अकाउंट है? लॉग इन करें",
+    "description": "Share modal login link in sandbox editor page"
+  },
+  "shareSandboxButton": {
+    "message": "वीडियो साझा करें",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में साझा करें बटन"
+  },
+  "replaceAudioEditor": {
+    "message": "मौजूदा ऑडियो को बदलें",
+    "description": "संपादक में ऑडियो बदलें बटन"
+  },
+  "zoomToPointPopup": {
+    "message": "कर्सर पर ज़ूम करें",
+    "description": "बिंदु पॉपअप पर ज़ूम करें"
+  },
+  "stayInPagePopup": {
+    "message": "रिकॉर्डिंग के समय पेज में रहें",
+    "description": "पेज में रहें पॉपअप"
+  },
+  "micReminderPopup": {
+    "message": "माइक्रोफ़ोन बंद है चेतावनी",
+    "description": "माइक्रोफ़ोन चेतावना पॉपअप"
+  },
+  "helpPopup": {
+    "message": "सहायता",
+    "description": "सहायता पॉपअप बटन"
+  },
+  "pausedRecordingToast": {
+    "message": "रिकॉर्डिंग रोकी गई है। फिर से आरंभ करने के लिए प्ले बटन दबाएं।",
+    "description": "रुकी हुई रिकॉर्डिंग मॉडल शीर्षक"
+  },
+  "chromePermissionsModalTitle": {
+    "message": "Recordful को आपकी स्क्रीन रिकॉर्ड करने की अनुमति नहीं है",
+    "description": "अनुमति मॉडल शीर्षक"
+  },
+  "chromePermissionsModalDescription": {
+    "message": "स्क्रीन रिकॉर्डिंग सक्षम करने के लिए, आपको Recordful को आपकी स्क्रीन को कैप्चर करने की अनुमति देनी होगी जब प्रोम्प्ट होता है।",
+    "description": "अनुमति मॉडल विवरण"
+  },
+  "chromePermissionsModalAction": {
+    "message": "स्क्रीन रिकॉर्डिंग सक्षम करें",
+    "description": "अनुमति मॉडल क्रिया"
+  },
+  "chromePermissionsModalCancel": {
+    "message": "रद्द करें",
+    "description": "अनुमति मॉडल रद्द करें"
+  },
+  "micMutedModalTitle": {
+    "message": "आपका माइक्रोफ़ोन म्यूट है",
+    "description": "माइक्रोफ़ोन म्यूट हो गया मॉडल शीर्षक"
+  },
+  "micMutedModalDescription": {
+    "message": "आपकी रिकॉर्डिंग में ऑडियो शामिल करने के लिए, आपको अपने माइक्रोफ़ोन को अनम्यूट करना होगा। क्या आप बिना ऑडियो के जारी रखना चाहते हैं?",
+    "description": "माइक्रोफ़ोन म्यूट हो गया मॉडल विवरण"
+  },
+  "micMutedModalAction": {
+    "message": "हाँ, जारी रखें",
+    "description": "माइक्रोफ़ोन म्यूट हो गया मॉडल जारी रखें"
+  },
+  "micMutedModalCancel": {
+    "message": "रद्द करें",
+    "description": "माइक्रोफ़ोन म्यूट हो गया मॉडल रद्द करें"
+  },
+  "setupTitle": {
+    "message": "Recordful के साथ तीन सरल कदमों में शुरू हो जाइए:",
+    "description": "सेटअप कदम शीर्षक"
+  },
+  "setupStep1Before": {
+    "message": "1- क्लिक करें ",
+    "description": "सेटअप कदम 1, चिन्ह के पहले। इसे आखिरी में एक स्पेस की आवश्यकता है।"
+  },
+  "setupStep1After": {
+    "message": " एक्सटेंशन चिन्ह",
+    "description": "सेटअप कदम 1, चिन्ह के बाद। इसे पहले एक स्पेस की आवश्यकता है।"
+  },
+  "setupStep2Before": {
+    "message": "2- दबाएं ",
+    "description": "सेटअप कदम 2, चिन्ह के पहले। इसे आखिरी में एक स्पेस की आवश्यकता है।"
+  },
+  "setupStep2After": {
+    "message": " पिन आइकन",
+    "description": "सेटअप कदम 2, चिन्ह के बाद। इसे पहले एक स्पेस की आवश्यकता है।"
+  },
+  "setupStep3Before": {
+    "message": "3- क्लिक करें ",
+    "description": "सेटअप कदम 3, चिन्ह के पहले। इसे आखिरी में एक स्पेस की आवश्यकता है।"
+  },
+  "setupStep3After": {
+    "message": " Recordful आइकन को शुरू करने के लिए",
+    "description": "सेटअप कदम 3, चिन्ह के बाद। इसे पहले एक स्पेस की आवश्यकता है।"
+  },
+  "setupCompleteTitle": {
+    "message": "बढ़िया! आपका सेटअप पूरा है",
+    "description": "सेटअप पूरा शीर्षक"
+  },
+  "setupCompleteDescription": {
+    "message": "आप अब यहां या किसी और टैब में रिकॉर्डिंग शुरू कर सकते हैं।",
+    "description": "सेटअप पूरा विवरण"
+  },
+  "clickHereDrawOnboarding": {
+    "message": "ड्रा करने के लिए यहां क्लिक करें",
+    "description": "यहां क्लिक करने पर आग्रहण"
+  },
+  "countdownMessage": {
+    "message": "आराम करें। किसी भी जगह पर क्लिक करके गिनती रोकने के लिए।",
+    "description": "गिनती संदेश"
+  },
+  "sandboxEditorTooSmallInfo": {
+    "message": "संवाद के बीच के अंतराल के कारण छोटे समय सीमाओं के लिए संशोधन अशुद्ध हो सकते हैं।",
+    "description": "संपादक बहुत छोटा होने के बारे में जानकारी"
+  },
+  "processingBannerEditor": {
+    "message": "वीडियो प्रोसेस हो रहा है, प्लेबैक अशुद्ध या टूट सकता है।",
+    "description": "संपादक में प्रोसेसिंग बैनर"
+  },
+  "croppingInfoTitle": {
+    "message": "क्रॉपिंग कुछ समय लग सकता है",
+    "description": "क्रॉपिंग जानकारी शीर्षक"
+  },
+  "croppingInfoDescription": {
+    "message": "तेज प्रोसेसिंग के लिए अपग्रेड करें",
+    "description": "क्रॉपिंग जानकारी विवरण"
+  },
+  "micOnToast": {
+    "message": "माइक्रोफ़ोन सक्षम है",
+    "description": "माइक्रोफ़ोन सक्षम टोस्ट शीर्षक"
+  },
+  "micOffToast": {
+    "message": "माइक्रोफ़ोन बंद है",
+    "description": "माइक्रोफ़ोन बंद टोस्ट शीर्षक"
+  },
+  "hideUIAlerts": {
+    "message": "UI सूचनाओं को छुपाएं",
+    "description": "UI सूचनाओं को छुपाएं बटन"
+  },
+  "noShowAgain": {
+    "message": "फिर से दिखाना नहीं",
+    "description": "फिर से दिखाना नहीं बटन"
+  },
+  "toolbarHoverOnly": {
+    "message": "उपयोग न करने पर टूलबार छुपाएं",
+    "description": "केवल हवाकारी पर टूलबार दिखाएं बटन"
+  },
+  "stopRecording": {
+    "message": "रिकॉर्डिंग बंद करें",
+    "description": "रिकॉर्डिंग स्क्रीन में बंद करें बटन"
+  },
+  "updateAnnouncementTitle": {
+    "message": "नए Recordful में आपका स्वागत है!",
+    "description": "मौजूदा उपयोगकर्ताओं के लिए अपडेट घोषणा शीर्षक"
+  },
+  "updateAnnouncementDescription": {
+    "message": "हम एक नए दिखावट और कई रोमांचक सुविधाओं का परिचय कर रहे हैं, लेकिन चिंता न करें, यह वही मुफ्त, निजी और ओपन सोर्स एक्सटेंशन है जो आप जानते और पसंद करते हैं।",
+    "description": "मौजूदा उपयोगकर्ताओं के लिए अपडेट घोषणा विवरण"
+  },
+  "updateAnnouncementLearnMore": {
+    "message": "अपडेट के बारे में और अधिक जानें।",
+    "description": "मौजूदा उपयोगकर्ताओं के लिए अपडेट घोषणा और अधिक जानें लिंक"
+  },
+  "updateAnnouncementButton": {
+    "message": "शुरू हो जाओ",
+    "description": "मौजूदा उपयोगकर्ताओं के लिए अपडेट घोषणा बटन"
+  },
+  "streamErrorModalTitle": {
+    "message": "रिकॉर्डिंग शुरू करने में त्रुटि",
+    "description": "स्ट्रीम त्रुटि मॉडल शीर्षक"
+  },
+  "streamErrorModalDescription": {
+    "message": "लगता है कि रिकॉर्डिंग शुरू करने में त्रुटि हुई है। अपने ब्राउज़र को फिर से चालने और पुनः प्रयास करें। यदि समस्या बरकरार रहती है, कृपया हमसे संपर्क करें X.com/whyKislay or forg.to/@kislay पर।",
+    "description": "स्ट्रीम त्रुटि मॉडल विवरण"
+  },
+  "accountErrorModalTitle": {
+    "message": "सदस्यता आवश्यक है",
+    "description": "Title of the modal shown when a cloud recording is refused because the account has no active subscription"
+  },
+  "accountErrorModalDescription": {
+    "message": "Recordful क्लाउड रिकॉर्डिंग शुरू नहीं कर सका क्योंकि इस खाते की कोई सक्रिय सदस्यता नहीं है। आपकी रिकॉर्डिंग और सेटिंग्स सुरक्षित हैं।",
+    "description": "Body shown when the account has never had an active subscription (server: upgrade_required)"
+  },
+  "accountErrorModalDescriptionLapsed": {
+    "message": "Recordful क्लाउड रिकॉर्डिंग शुरू नहीं कर सका क्योंकि इस खाते की Pro पहुँच समाप्त हो गई है। आपकी रिकॉर्डिंग और सेटिंग्स सुरक्षित हैं।",
+    "description": "Body shown when the account's subscription has ended (server: reactivate_required)"
+  },
+  "accountErrorModalAction": {
+    "message": "सदस्यता देखें",
+    "description": "Button that opens the subscription page"
+  },
+  "authErrorModalTitle": {
+    "message": "फिर से साइन इन करें",
+    "description": "Title of the modal shown when a cloud recording is refused because the session expired, not the subscription"
+  },
+  "authErrorModalDescription": {
+    "message": "Recordful क्लाउड रिकॉर्डिंग शुरू नहीं कर सका क्योंकि यह सत्र समाप्त हो गया है। आपकी सदस्यता, रिकॉर्डिंग और सेटिंग्स सुरक्षित हैं।",
+    "description": "Body shown when the session/token failed; the account may well be a paying subscriber"
+  },
+  "authErrorModalAction": {
+    "message": "साइन इन करें",
+    "description": "Button that reopens the login flow"
+  },
+  "highestQuality": {
+    "message": "सर्वोत्तम गुणवत्ता",
+    "description": "पॉपअप में सर्वोत्तम गुणवत्ता का लेबल टॉगल करें"
+  },
+  "restoreRecording": {
+    "message": "आखिरी रिकॉर्डिंग को पुनर्स्थापित करें",
+    "description": "पॉपअप में आखिरी रिकॉर्डिंग को पुनर्स्थापित करने के लिए बटन"
+  },
+  "havingIssuesButton": {
+    "message": "कोई समस्या है?",
+    "description": "संपादक में समस्या बटन"
+  },
+  "havingIssuesModalTitle": {
+    "message": "अपनी रिकॉर्डिंग देख नहीं सकते?",
+    "description": "संपादक में समस्या मॉडल टाइटल"
+  },
+  "havingIssuesModalDescription": {
+    "message": "अगर आपने अपनी रिकॉर्डिंग पूरी की है और इस पृष्ठ पर अपने वीडियो को देखते बिना पाए हैं, तो यदि यह उपलब्ध है, आप वीडियो के रॉ डेटा को डाउनलोड करने का प्रयास कर सकते हैं। आप भी हमसे संपर्क कर सकते हैं और एक बग रिपोर्ट सबमिट कर सकते हैं।",
+    "description": "संपादक में समस्या मॉडल विवरण"
+  },
+  "havingIssuesModalButton": {
+    "message": "रॉ वीडियो डेटा डाउनलोड करें",
+    "description": "संपादक में समस्या मॉडल बटन"
+  },
+  "havingIssuesModalButton2": {
+    "message": "बग रिपोर्ट करें",
+    "description": "संपादक में समस्या मॉडल बटन 2"
+  },
+  "noRecordingFound": {
+    "message": "कोई रिकॉर्डिंग नहीं मिली, दुखी हैं :(",
+    "description": "संपादक में कोई रिकॉर्डिंग नहीं मिली अलर्ट"
+  },
+  "memoryLimitTitle": {
+    "message": "मेमोरी सीमा पहुंच गई",
+    "description": "मेमोरी सीमा पहुंच गई शीर्षक"
+  },
+  "memoryLimitDescription": {
+    "message": "आपके डिवाइस की रिकॉर्डिंग के लिए उपलब्ध मेमोरी का समय समाप्त हो गया है, इसके परिणामस्वरूप रिकॉर्डिंग स्वतः बंद हो गई है। अगर आप और लंबे समय तक रिकॉर्ड करना चाहते हैं, तो वीडियो की गुणवत्ता को कम करने का प्रयास करें या अपने डिवाइस पर कुछ स्थान मुक्त करें।",
+    "description": "मेमोरी सीमा पहुंच गई विवरण"
+  },
+  "understoodButton": {
+    "message": "समझा",
+    "description": "समझा बटन"
+  },
+  "notEnoughSpaceTitle": {
+    "message": "पर्याप्त स्थान नहीं",
+    "description": "पर्याप्त स्थान नहीं शीर्षक"
+  },
+  "notEnoughSpaceDescription": {
+    "message": "Recordful को रिकॉर्ड करने के लिए कम से कम 1 जीबी फ्री स्थान की आवश्यकता है। कृपया स्थान मुक्त करें और पुनः प्रयास करें।",
+    "description": "पर्याप्त स्थान नहीं विवरण"
+  },
+  "clearSpaceButton": {
+    "message": "पिछली रिकॉर्डिंग हटाएं",
+    "description": "पिछली रिकॉर्डिंग हटाएं बटन"
+  },
+  "sandboxAdvancedTitle": {
+    "message": "उन्नत",
+    "description": "सैंडबॉक्स संपादक पृष्ठ में उन्नत खंड"
+  },
+  "rawRecordingButtonTitle": {
+    "message": "कच्चा वीडियो फ़ाइल डाउनलोड करें",
+    "description": "कच्चे रिकॉर्डिंग बटन डाउनलोड करें"
+  },
+  "rawRecordingButtonDescription": {
+    "message": "मूल रिकॉर्डिंग डेटा को निर्यात करें",
+    "description": "कच्चे रिकॉर्डिंग लेबल डाउनलोड करें"
+  },
+  "troubleshootButtonTitle": {
+    "message": "अपनी रिकॉर्डिंग के लिए मदद प्राप्त करें",
+    "description": "समस्या समाधान बटन"
+  },
+  "troubleShootButtonDescription": {
+    "message": "अपने वीडियो को पुनः प्राप्त करें और अन्य समस्याओं का समाधान करें",
+    "description": "समस्या समाधान लेबल"
+  },
+  "rawRecordingModalTitle": {
+    "message": "कच्चा वीडियो फ़ाइल डाउनलोड करें",
+    "description": "कच्चे रिकॉर्डिंग मॉडल शीर्षक"
+  },
+  "rawRecordingModalDescription": {
+    "message": "कच्चा वीडियो फ़ाइल वह मूल वीडियो फ़ाइल है जो Recordful द्वारा रिकॉर्ड की गई है। इस वीडियो को प्रोसेस या संपादित नहीं किया गया है, इसलिए यह बहुत बड़ा हो सकता है और सभी उपकरणों पर प्लेबल नहीं हो सकता है। यदि आपको प्रोसेस्ड वीडियो के साथ समस्या हो रही है, तो आप इस फ़ाइल का उपयोग अपने वीडियो को पुनः प्राप्त करने के लिए कर सकते हैं।",
+    "description": "कच्चे रिकॉर्डिंग मॉडल विवरण"
+  },
+  "rawRecordingModalButton": {
+    "message": "डाउनलोड करें",
+    "description": "कच्चे रिकॉर्डिंग मॉडल बटन"
+  },
+  "troubleshootModalTitle": {
+    "message": "सिस्टम जानकारी और वीडियो डेटा डाउनलोड करें और समस्या समाधान के लिए भेजें",
+    "description": "समस्या समाधान मॉडल शीर्षक"
+  },
+  "troubleshootModalDescription": {
+    "message": "डाउनलोड करने के बाद, सहायता@recordful.app पर फ़ाइल भेजें और संबंधित जानकारी के साथ। हम इन डेटा का उपयोग आपकी एक्सटेंशन के साथ किसी भी समस्या को समाधान करने और आपके वीडियो को यदि संभव हो तो पुनः प्राप्त करने के लिए करेंगे।",
+    "description": "समस्या समाधान मॉडल विवरण"
+  },
+  "troubleshootModalButton": {
+    "message": "डाउनलोड करें",
+    "description": "समस्या समाधान मॉडल बटन"
+  },
+  "overLimitModalTitle": {
+    "message": "वीडियो को आपके डिवाइस में प्रोसेस करने के लिए बहुत लम्बी है",
+    "description": "5 मिनट सीमा मॉडल शीर्षक"
+  },
+  "overLimitModalDescription": {
+    "message": "क्योंकि Recordful पूरी तरह से निजी है और स्थानीय रूप से चलता है, यह आपके डिवाइस के हार्डवेयर द्वारा सीमित होता है। इस लम्बाई के वीडियो को प्रोसेस करना बहुत समय लगेगा और बहुत अधिक संसाधनों की आवश्यकता होगी। फिकर न करें, आप फिर भी WEBM फ़ाइल या रॉ रिकॉर्डिंग डाउनलोड कर सकते हैं, लेकिन संपादन और MP4 निर्यात उपलब्ध नहीं हैं। इसके बावजूद, आप फिर भी कोशिश कर सकते हैं कि वीडियो को प्रोसेस करने का प्रयास करें, अगर आप खतरों को समझते हैं।",
+    "description": "5 मिनट सीमा मॉडल विवरण"
+  },
+  "overLimitModalDescriptionFastPath": {
+    "message": "क्योंकि Recordful पूरी तरह से निजी है और स्थानीय रूप से चलता है, यह आपके डिवाइस के हार्डवेयर द्वारा सीमित होता है। इस लम्बाई के वीडियो को प्रोसेस करना बहुत समय लगेगा और बहुत अधिक संसाधनों की आवश्यकता होगी। आपका MP4 डाउनलोड करने के लिए तैयार है, लेकिन इतनी लंबी क्लिप के लिए ब्राउज़र में संपादन उपलब्ध नहीं है। इसके बावजूद, आप फिर भी कोशिश कर सकते हैं कि वीडियो को प्रोसेस करने का प्रयास करें, अगर आप खतरों को समझते हैं।",
+    "description": "Over 5 minutes limit modal description when the recording is a native MP4 (fast recorder / WebCodecs)"
+  },
+  "overLimitModalButton": {
+    "message": "मैं खतरा समझता हूँ, फिर भी कोशिश करें",
+    "description": "5 मिनट सीमा मॉडल बटन"
+  },
+  "overLimitModalLearnMore": {
+    "message": "लंबे वीडियो को प्रोसेस करने के बारे में और जानें।",
+    "description": "5 मिनट सीमा मॉडल की अधिक जानकारी वाला लिंक"
+  },
+  "recoveryModeTitle": {
+    "message": "पुनर्प्राप्ति मोड",
+    "description": "पुनर्प्राप्ति मोड का शीर्षक"
+  },
+  "downloadForTroubleshootingOption": {
+    "message": "समस्या समाधान के लिए डेटा डाउनलोड करें",
+    "description": "समस्या समाधान के लिए डाउनलोड करने का विकल्प"
+  },
+  "getHelpNav": {
+    "message": "सहायता केंद्र",
+    "description": "सहायता नेविगेशन आइटम"
+  },
+  "audioWarningTitle": {
+    "message": "कंप्यूटर ऑडियो रिकॉर्ड करें",
+    "description": "ऑडियो चेतावनी शीर्षक"
+  },
+  "audioWarningDescription": {
+    "message": "इस पेज से ऑडियो रिकॉर्ड करने के लिए, आपको '$tab$' पर स्विच करना होगा।",
+    "description": "ऑडियो चेतावनी विवरण",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "टैब क्षेत्र"
+      }
+    }
+  },
+  "extensionNotSupportedTitle": {
+    "message": "एक्सटेंशन टैब पर समर्थित नहीं",
+    "description": "एक्सटेंशन टैब पर समर्थित नहीं शीर्षक"
+  },
+  "extensionNotSupportedDescription": {
+    "message": "आपके पिछले टैब पर Recordful समर्थित नहीं था। आप अपनी रिकॉर्डिंग यहाँ पर शुरू कर सकते हैं और फिर टैब पर स्विच कर सकते हैं, लेकिन आपका कैमरा और टूलबार दिखाई नहीं देंगे।",
+    "description": "एक्सटेंशन टैब पर समर्थित नहीं शीर्षक विवरण"
+  },
+  "backupsDescription1": {
+    "message": "आपकी सभी रिकॉर्डिंग्स की प्रतिलिपि रखें। यदि आप बैकअप सेट नहीं करते हैं, तो आपकी रिकॉर्डिंग्स को डाउनलोड करने के लिए ही बचाया जाएगा।",
+    "description": "बैकअप विवरण"
+  },
+  "backupsDescription2": {
+    "message": "यदि आप डाउनलोड्स या अन्य सिस्टम फ़ोल्डर्स में सहेजने का प्रयास कर रहे हैं, तो आपको पहले एक नया फ़ोल्डर बनाने की आवश्यकता हो सकती है।",
+    "description": "बैकअप विवरण"
+  },
+  "recordAudioWarningMacTitle": {
+    "message": "कंप्यूटर ऑडियो रिकॉर्ड करें",
+    "description": "ऑडियो चेतावना शीर्षक"
+  },
+  "recordAudioWarningMacDescription": {
+    "message": "macOS में, आप केवल टैब ऑडियो को रिकॉर्ड कर सकते हैं। 'भी Chrome टैब ऑडियो साझा करें' को सक्षम करने के लिए Chrome टैब विकल्प का चयन करें और सुनिश्चित करें।",
+    "description": "macOS ऑडियो चेतावना विवरण"
+  },
+  "recordAudioWarningOtherTitle": {
+    "message": "कंप्यूटर ऑडियो रिकॉर्ड करें",
+    "description": "ऑडियो चेतावना शीर्षक"
+  },
+  "recordAudioWarningOtherDescription": {
+    "message": "कंप्यूटर ऑडियो को रिकॉर्ड करना चाहते हैं तो 'सिस्टम ऑडियो साझा करें' विकल्प को टॉगल करने की सुनिश्चित करें। इस विकल्प को दिखाई नहीं देता है, तो कृपया Chrome को अपडेट करने का प्रयास करें, या टैब रिकॉर्डिंग पर स्विच करें।",
+    "description": "अन्य ऑडियो चेतावना विवरण"
+  },
+  "maxResolutionLabel": {
+    "message": "अधिकतम रिज़ॉल्यूशन",
+    "description": "सेटिंग्स मेनू में अधिकतम रिज़ॉल्यूशन का लेबल"
+  },
+  "maxFPSLabel": {
+    "message": "अधिकतम FPS",
+    "description": "सेटिंग्स मेनू में अधिकतम FPS का लेबल"
+  },
+  "notEnoughRAM": {
+    "message": "पर्याप्त रैम नहीं",
+    "description": "सेटिंग्स मेनू में 'पर्याप्त रैम नहीं' लेबल"
+  },
+  "resizeWindowLabel": {
+    "message": "विंडो का आकार बदलें",
+    "description": "सेटिंग्स मेनू में विंडो के आकार के लिए लेबल"
+  },
+  "screenTooSmallTooltip": {
+    "message": "इस रिज़ॉल्यूशन के लिए स्क्रीन बहुत छोटा है",
+    "description": "सेटिंग्स मेनू में स्क्रीन बहुत छोटा है टूलटिप"
+  },
+  "maxResolutionTooltip": {
+    "message": "इस उपकरण पर इस रिज़ॉल्यूशन पर रिकॉर्ड नहीं किया जा सकता है",
+    "description": "सेटिंग्स मेनू में इस रिज़ॉल्यूशन पर रिकॉर्ड नहीं किया जा सकता है टूलटिप"
+  },
+  "permissionsModalReview": {
+    "message": "अनुमतियों की समीक्षा करें",
+    "description": "अनुमतियों की समीक्षा करने का बटन"
+  },
+  "recordButtonMultiLabel": {
+    "message": "एक और रिकॉर्डिंग जोड़ें",
+    "description": "Record button label (multi mode)"
+  },
+  "recorderSetupTitle": {
+    "message": "तैयारी की जा रही है...",
+    "description": "Title in recording page while setting up project before countdown starts"
+  },
+  "recorderSetupDescription": {
+    "message": "थोड़ा रुकिए! आपकी रिकॉर्डिंग तैयार की जा रही है।",
+    "description": "Description in recording page before countdown starts"
+  },
+  "reopenToolbarToast": {
+    "message": "टूलबार छुपा हुआ है। पॉपअप विकल्पों में फिर से सक्षम करें।",
+    "description": "Toast message explaining to reopen the toolbar in the popup options"
+  },
+  "loginButtonLabel": {
+    "message": "लॉग इन करें या साइन अप करें",
+    "description": "Login button label in popup settings menu"
+  },
+  "logoutButtonLabel": {
+    "message": "लॉग आउट करें",
+    "description": "Logout button label in popup settings menu"
+  },
+  "loggedOutToastTitle": {
+    "message": "आप लॉग आउट हो चुके हैं",
+    "description": "Toast message shown when the user logs out"
+  },
+  "storageLimitReachedTitle": {
+    "message": "स्टोरेज सीमा पूरी हो गई है",
+    "description": "Modal message shown when the storage limit is reached"
+  },
+  "storageLimitReachedDescription": {
+    "message": "आपने अपनी पूरी 100 GB स्टोरेज का उपयोग कर लिया है। कृपया रिकॉर्डिंग जारी रखने के लिए पुराने वीडियो या सीन हटाएं।",
+    "description": "Modal description shown when the storage limit is reached"
+  },
+  "manageStorageButtonLabel": {
+    "message": "स्टोरेज प्रबंधित करें",
+    "description": "Button label to manage storage in the popup settings menu"
+  },
+  "closeModalLabel": {
+    "message": "बंद करें",
+    "description": "Agnostic close modal button label"
+  },
+  "storageCheckFailTitle": {
+    "message": "स्टोरेज जांच नहीं हो सकी",
+    "description": "Title shown when the storage check fails"
+  },
+  "storageCheckFailAuthDescription": {
+    "message": "आपकी स्टोरेज जांचने में समस्या हुई। कृपया दोबारा लॉग इन करें और रिकॉर्डिंग आज़माएं।",
+    "description": "Description shown when the storage check fails due to authentication"
+  },
+  "storageCheckFailDescription": {
+    "message": "हम आपकी स्टोरेज कोटा सत्यापित नहीं कर सके। कुछ सेकंड में दोबारा प्रयास करें या पेज रीफ़्रेश करें।",
+    "description": "Description shown when the storage check fails"
+  },
+  "retryButtonLabel": {
+    "message": "फिर से प्रयास करें",
+    "description": "Agnostic button label to try again"
+  },
+  "addedToMultiToast": {
+    "message": "सीन को Multi रिकॉर्डिंग में जोड़ा गया",
+    "description": "Toast message shown when a scene is added to multi-recording"
+  },
+  "readyRecordSceneToast": {
+    "message": "अपने वीडियो में नया सीन रिकॉर्ड करने के लिए तैयार",
+    "description": "Toast message shown when the user is in an existing project and ready to record a new scene"
+  },
+  "reachingRecordingLimitToast": {
+    "message": "रिकॉर्डिंग 90 मिनट की सीमा के करीब है, यह जल्द ही बंद हो जाएगी",
+    "description": "Toast message shown when the recording is reaching the 90 minute limit"
+  },
+  "recordingLimitReachedToast": {
+    "message": "90 मिनट की सीमा के कारण रिकॉर्डिंग बंद हो गई",
+    "description": "Toast message shown when the recording limit is reached"
+  },
+  "tabRecordingDisabledToast": {
+    "message": "इस पेज पर टैब रिकॉर्डिंग अक्षम है। स्क्रीन रिकॉर्डिंग पर स्विच किया गया।",
+    "description": "Toast message shown when tab recording is disabled on a page"
+  },
+  "projectRecordingCancelledToast": {
+    "message": "वीडियो रिकॉर्डिंग रद्द कर दी गई",
+    "description": "Toast message shown when the user cancels project recording"
+  },
+  "copiedToClipboardToast": {
+    "message": "लिंक क्लिपबोर्ड पर कॉपी किया गया",
+    "description": "Toast message shown when link has been copied to clipboard"
+  },
+  "failedToCopyToClipboardToast": {
+    "message": "लिंक कॉपी करने में विफल",
+    "description": "Toast message shown when failed to copy link to clipboard"
+  },
+  "sortByHeading": {
+    "message": "इसके अनुसार क्रमबद्ध करें",
+    "description": "Section heading in the videos sort dropdown for the field being sorted on"
+  },
+  "orderHeading": {
+    "message": "क्रम",
+    "description": "Section heading in the videos sort dropdown for the sort direction"
+  },
+  "sortFieldLastEdited": {
+    "message": "अंतिम बार संपादित",
+    "description": "Sort field option: when the video was last edited"
+  },
+  "sortFieldDateCreated": {
+    "message": "बनाने की तारीख़",
+    "description": "Sort field option: when the video was created"
+  },
+  "sortFieldName": {
+    "message": "नाम",
+    "description": "Sort field option: the video's title"
+  },
+  "sortFieldLength": {
+    "message": "अवधि",
+    "description": "Sort field option: the video's duration"
+  },
+  "orderNewestFirst": {
+    "message": "पहले नवीनतम",
+    "description": "Sort order option for date fields"
+  },
+  "orderOldestFirst": {
+    "message": "पहले सबसे पुराने",
+    "description": "Sort order option for date fields"
+  },
+  "orderAToZ": {
+    "message": "A से Z",
+    "description": "Sort order option for the name field"
+  },
+  "orderZToA": {
+    "message": "Z से A",
+    "description": "Sort order option for the name field"
+  },
+  "orderLongestFirst": {
+    "message": "पहले सबसे लंबे",
+    "description": "Sort order option for the length field"
+  },
+  "orderShortestFirst": {
+    "message": "पहले सबसे छोटे",
+    "description": "Sort order option for the length field"
+  },
+  "allVideosHeading": {
+    "message": "सभी वीडियो",
+    "description": "Heading for the all videos section in the popup"
+  },
+  "noVideosFound": {
+    "message": "कोई वीडियो नहीं मिला",
+    "description": "Message shown when no videos are found in the popup"
+  },
+  "loadingVideosLabel": {
+    "message": "वीडियो लोड हो रहे हैं...",
+    "description": "Label shown when videos are loading in the popup"
+  },
+  "loadingMoreVideosLabel": {
+    "message": "और लोड हो रहे हैं...",
+    "description": "Label shown at the bottom of the videos list while loading additional pages"
+  },
+  "searchVideosPlaceholder": {
+    "message": "वीडियो खोजें",
+    "description": "Placeholder text for the videos search input in the popup"
+  },
+  "noVideosMatchSearchTitle": {
+    "message": "\"$SEARCHTERM$\" के लिए कुछ नहीं मिला",
+    "description": "Heading shown when no videos match the current search query in the popup",
+    "placeholders": {
+      "searchterm": {
+        "content": "$1",
+        "example": "design review"
+      }
+    }
+  },
+  "noVideosMatchSearchHint": {
+    "message": "अपना खोज शब्द बदलकर देखें।",
+    "description": "Subtext shown under the no search results heading in the popup"
+  },
+  "privateVideoTooltip": {
+    "message": "निजी",
+    "description": "Tooltip shown on the lock badge over a private video's thumbnail"
+  },
+  "goToDashboardButtonLabel": {
+    "message": "डैशबोर्ड पर जाएं",
+    "description": "Button label to go to the dashboard in the popup"
+  },
+  "welcomePopupTitle": {
+    "message": "Recordful में आपका स्वागत है",
+    "description": "Title for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionTop": {
+    "message": "कोई विज्ञापन नहीं। कोई ट्रैकिंग नहीं। कोई सीमा नहीं।",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionBottom": {
+    "message": "बस रिकॉर्ड दबाएँ।",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupCTA": {
+    "message": "इसे मुफ्त में इस्तेमाल करें — साइन अप की ज़रूरत नहीं!",
+    "description": "Call to action button for the welcome popup shown to new users"
+  },
+  "welcomePopupCloudTitle": {
+    "message": "अपने वीडियो से और ज़्यादा करना चाहते हैं?",
+    "description": "Title for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupCloudFeature1": {
+    "message": "क्लाउड स्टोरेज, लिंक के साथ वीडियो साझा करें",
+    "description": "Feature 1 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature2": {
+    "message": "कई क्लिप को एक कहानी में जोड़ें",
+    "description": "Feature 2 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature3": {
+    "message": "क्लिक पर स्मार्ट ज़ूम (या अपना जोड़ें!)",
+    "description": "Feature 3 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature4": {
+    "message": "टेम्पलेट, कैप्शन, लेआउट जोड़ें...",
+    "description": "Feature 4 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature5": {
+    "message": "कस्टम बैकग्राउंड और मॉकअप",
+    "description": "Feature 5 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudCTA": {
+    "message": "🔓 अतिरिक्त सुविधाएँ अनलॉक करें",
+    "description": "Call to action button for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupSupport": {
+    "message": "+ एक सोलो इंडी मेकर के विकास को सपोर्ट करें!",
+    "description": "Message for supporting the indie maker in the welcome popup"
+  },
+  "accountSettingsOption": {
+    "message": "अकाउंट सेटिंग्स",
+    "description": "Label for the account settings option in the popup"
+  },
+  "supportSettingsOption": {
+    "message": "सहायता",
+    "description": "Label for the support option in the popup"
+  },
+  "inactiveSubscriptionTitle": {
+    "message": "आपकी Pro सदस्यता सक्रिय नहीं है",
+    "description": "Title shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionDescription": {
+    "message": "आपकी Recordful Pro सदस्यता सक्रिय नहीं है।",
+    "description": "Description shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionReactivation": {
+    "message": "कृपया एक्सेस फिर से शुरू करने के लिए पुनः सक्रिय करें।",
+    "description": "Message prompting the user to reactivate their subscription"
+  },
+  "inactiveSubscriptionDeletionWarning": {
+    "message": "आपके वीडियो और डेटा को स्थायी रूप से हटाया जाएगा ",
+    "description": "Warning message about the deletion of videos and data"
+  },
+  "manageSubscriptionButton": {
+    "message": "अपनी सदस्यता प्रबंधित करें",
+    "description": "Button to manage the user's subscription"
+  },
+  "inactiveSubscriptionFreeVersion": {
+    "message": "क्या आप मुफ्त संस्करण का उपयोग जारी रखना चाहते हैं?",
+    "description": "Message prompting the user to continue using the free version"
+  },
+  "downgradeToFreeButton": {
+    "message": "लॉग आउट करें और डाउनग्रेड करें",
+    "description": "Button to log out and downgrade to the free version"
+  },
+  "loggedOutTitle": {
+    "message": "आप लॉग आउट हो चुके हैं",
+    "description": "Title shown when the user is logged out"
+  },
+  "loggedOutDescription": {
+    "message": "अपनी रिकॉर्डिंग को अकाउंट से सिंक रखने और प्रीमियम फीचर्स का उपयोग जारी रखने के लिए, दोबारा लॉग इन करना होगा।",
+    "description": "Description shown when the user is logged out"
+  },
+  "logBackInButton": {
+    "message": "दोबारा लॉग इन करें",
+    "description": "Button to log back in after being logged out"
+  },
+  "loggedOutFreeVersion": {
+    "message": "आप बिना अकाउंट के एक्सटेंशन का उपयोग कर सकते हैं — लेकिन आपकी रिकॉर्डिंग सेव नहीं होगी और बाद में पुनः प्राप्त नहीं की जा सकेगी।",
+    "description": "Message shown when the user is logged out and using the free version"
+  },
+  "continueWithoutLogin": {
+    "message": "लॉगिन के बिना जारी रखें",
+    "description": "Button to continue using the extension without logging in"
+  },
+  "instantRecordingModeLabel": {
+    "message": "तत्काल रिकॉर्डिंग मोड",
+    "description": "Label for the instant recording mode"
+  },
+  "instantRecordingModeTooltip": {
+    "message": "तत्काल डाउनलोड, लेकिन कैमरा और लेआउट बाद में संपादन योग्य नहीं होंगे।",
+    "description": "Tooltip for the instant recording mode"
+  },
+  "instantRecordingModeTitle": {
+    "message": "तत्काल रिकॉर्डिंग मोड",
+    "description": "Title for the instant recording mode"
+  },
+  "instantRecordingModeDescription": {
+    "message": "यह सब कुछ एक वीडियो में रिकॉर्ड करता है ताकि तुरंत डाउनलोड और साझा किया जा सके। आप बाद में कैमरा लेआउट नहीं बदल सकेंगी, लेकिन अन्य संपादन संभव हैं।",
+    "description": "Description for the instant recording mode"
+  },
+  "instantRecordingModeAction": {
+    "message": "समझ गई",
+    "description": "Action button for the instant recording mode"
+  },
+  "tabRecordingDisabledTooltip": {
+    "message": "इस पेज पर टैब रिकॉर्डिंग अक्षम है",
+    "description": "Tooltip shown when tab recording is disabled on a page"
+  },
+  "addingToLabel": {
+    "message": "इसमें जोड़ रहे हैं: ",
+    "description": "Label shown when a scene is being recorded to a project"
+  },
+  "multiLabel": {
+    "message": "Multi",
+    "description": "Label for the multi-recording mode"
+  },
+  "finishLabelMulti": {
+    "message": "समाप्त करें",
+    "description": "Label for the finish multi-recording button"
+  },
+  "welcomeProTitle": {
+    "message": "अपनी रिकॉर्डिंग से और अधिक करना चाहती हैं?",
+    "description": "Title for the welcome Pro popup"
+  },
+  "welcomeProDescription": {
+    "message": "रिकॉर्डिंग को एक साफ़ लिंक से शेयर करें, उन्हें क्लाउड में सेव करें, और ज़रूरत पड़ने पर ज़ूम, कैप्शन और लेआउट जोड़ें।",
+    "description": "Description for the welcome Pro popup"
+  },
+  "welcomeProButton": {
+    "message": "एडिटर अनलॉक करें",
+    "description": "Button to sign in to Recordful Pro"
+  },
+  "welcomeProSupport": {
+    "message": "एक सोलो इंडी मेकर के विकास को सपोर्ट करें",
+    "description": "Message for supporting the indie maker in the welcome Pro popup"
+  },
+  "unlockMoreFeatures": {
+    "message": "और अधिक फीचर्स अनलॉक करें",
+    "description": "Button to unlock more features in the editor"
+  },
+  "shareUnlockButton": {
+    "message": "साझा करने के लिए साइन इन करें (pro)",
+    "description": "Button to sign in to share in the editor"
+  },
+  "proBannerTitle": {
+    "message": "क्लाउड शेयरिंग, मल्टी-सीन एडिटिंग, ऑटो ज़ूम, कैप्शन और बहुत कुछ अनलॉक करें",
+    "description": "Pro banner title in the editor"
+  },
+  "proBannerDescription": {
+    "message": "Recordful हमेशा मुफ्त, ओपन-सोर्स और विज्ञापन मुक्त रहेगा। Pro क्लाउड और इन्फ्रास्ट्रक्चर लागत को कवर करता है और एक सोलो इंडी डेव का समर्थन करता है! ❤️",
+    "description": "Pro banner description in the editor"
+  },
+  "proBannerAltButton": {
+    "message": "फिर से न दिखाएं",
+    "description": "Pro banner don't show again button in the editor"
+  },
+  "proBannerButton": {
+    "message": "आज़माएं",
+    "description": "Pro banner button in the editor"
+  },
+  "multiRecordingModeTitle": {
+    "message": "मल्टी मोड",
+    "description": "Title for the multi-recording mode modal"
+  },
+  "multiRecordingModeDescription": {
+    "message": "एक के बाद एक कई सीन रिकॉर्ड करें — जैसे आपकी स्क्रीन, कैमरा या दोनों। यह कई टेक लेने, व्यू बदलने या रिकॉर्डिंग को हिस्सों में बाँटने के लिए बेहतरीन है। जब आप समाप्त कर लें, तो सभी सीन को एक ही वीडियो में जोड़ने के लिए 'Finish' पर क्लिक करें।",
+    "description": "Description for the multi-recording mode modal"
+  },
+  "noSubscriptionYetTitle": {
+    "message": "शुरू करने के लिए Pro सक्रिय करें",
+    "description": "Title shown when the user has no active subscription"
+  },
+  "noSubscriptionYetDescription": {
+    "message": "Pro सुविधाओं का उपयोग करने के लिए सदस्यता लें।",
+    "description": "Message prompting the user to subscribe to reactivate their Pro features"
+  },
+  "upgradeToProButton": {
+    "message": "Pro सदस्यता लें",
+    "description": "Button to upgrade to Pro"
+  },
+  "hostBannerTitle": {
+    "message": "क्या आप लोकली Recordful का इस्तेमाल कर रहे हैं? भविष्य के विकास में मदद करें!",
+    "description": "एडिटर में सेल्फ-होस्ट बैनर का शीर्षक"
+  },
+  "hostBannerDescription": {
+    "message": "Recordful एक अकेली इंडी डेवलपर द्वारा बनाया गया है। सेल्फ-होस्टिंग पूरी तरह मुफ्त है, लेकिन अगर यह आपके काम आया हो, तो Pro के ज़रिए समर्थन देने पर विचार करें ❤️",
+    "description": "एडिटर में सेल्फ-होस्ट बैनर का विवरण"
+  },
+  "welcomeBackPopupTitle": {
+    "message": "स्क्रीनिटी में वापस स्वागत है",
+    "description": "वापसी करने वाले उपयोगकर्ताओं को दिखाए जाने वाले वेलकम पॉपअप का शीर्षक"
+  },
+  "welcomeBackProTitle": {
+    "message": "✨ नया: अपनी रिकॉर्डिंग को अगले स्तर पर ले जाएं",
+    "description": "वेलकम पॉपअप में क्लाउड स्टोरेज फीचर का शीर्षक"
+  },
+  "welcomeBackProDescription": {
+    "message": "Recordful Pro एक वैकल्पिक नया प्लेटफ़ॉर्म है जहाँ आप अपने वीडियो क्लाउड में सेव कर सकते हैं, लिंक के ज़रिए शेयर कर सकते हैं, और ज़रूरत पड़ने पर एडवांस्ड एडिटिंग टूल्स का इस्तेमाल कर सकते हैं।",
+    "description": "वेलकम पॉपअप में क्लाउड स्टोरेज फीचर का विवरण"
+  },
+  "welcomeBackProCTA": {
+    "message": "Recordful Pro के बारे में और जानें",
+    "description": "वेलकम पॉपअप में क्लाउड फीचर के लिए कॉल-टू-एक्शन बटन"
+  },
+  "welcomeToProTitleModal": {
+    "message": "Recordful Pro में आपका स्वागत है",
+    "description": "Pro वेलकम मोडल का शीर्षक"
+  },
+  "welcomeToProDescriptionModal": {
+    "message": "रिकॉर्डिंग शुरू करने के लिए सब कुछ तैयार है! कुछ बातों का ध्यान रखें:\n\n- रिकॉर्डिंग के दौरान कैमरा बबल गायब हो सकता है, यह सामान्य है। इसे बैकग्राउंड में अलग से कैप्चर किया जाता है ताकि आप बाद में इसे कहीं भी रख सकें।\n- ज़ूम केवल Chrome टैब्स में क्लिक करने पर अपने आप बनते हैं — यह ब्राउज़र की सीमा है। आप रिकॉर्डिंग के बाद मैन्युअली ज़ूम जोड़ सकते हैं।\n- त्वरित रिकॉर्डिंग और तुरंत डाउनलोड के लिए Instant Mode का उपयोग करें। ध्यान रखें कि इसमें एडिटिंग के विकल्प सीमित होते हैं: कोई बैकग्राउंड्स, लेआउट्स या एडवांस टूल्स नहीं।",
+    "description": "Pro वेलकम मोडल का विवरण"
+  },
+  "welcomeToProActionModal": {
+    "message": "ठीक है",
+    "description": "Pro वेलकम मोडल का एक्शन बटन"
+  },
+  "webcodecsToggleLabel": {
+    "message": "Fast MP4",
+    "description": "WebCodecs recorder toggle label"
+  },
+  "webcodecsFailedOffToast": {
+    "message": "Fast MP4 विफल — ऑफ",
+    "description": "WebCodecs failure auto-disable toast"
+  },
+  "proOnboardingWelcomeTitle": {
+    "message": "Recordful Pro एक्सटेंशन में आपका स्वागत है",
+    "description": "Pro onboarding welcome step title"
+  },
+  "proOnboardingWelcomeDescription": {
+    "message": "रिकॉर्डिंग शुरू करने से पहले कुछ ज़रूरी टिप्स।<br/>ऑटो-ज़ूम केवल <strong>Chrome टैब्स</strong> के अंदर किए गए क्लिक पर काम करता है। बाद में आप ज़ूम मैन्युअली जोड़ सकते हैं।",
+    "description": "Pro onboarding welcome step description"
+  },
+  "proOnboardingToolbarTitle": {
+    "message": "रिकॉर्डिंग टूलबार और इफेक्ट्स",
+    "description": "Pro onboarding toolbar step title"
+  },
+  "proOnboardingToolbarDescription": {
+    "message": "इस टूलबार से ड्रॉ करें, कर्सर इफेक्ट्स लगाएँ, ब्लर करें और रिकॉर्डिंग कंट्रोल करें।<br/><br/><strong>यह टूलबार वीडियो में दिखेगा</strong> अगर आप इसे छिपाएँगे नहीं।",
+    "description": "Pro onboarding toolbar step description"
+  },
+  "proOnboardingCameraTitle": {
+    "message": "कैमरा अलग से कैप्चर होता है",
+    "description": "Pro onboarding camera step title"
+  },
+  "proOnboardingCameraDescription": {
+    "message": "रिकॉर्डिंग के दौरान आपका कैमरा <strong>छिप सकता है या PiP में जा सकता है</strong>, यह सामान्य है।<br/><br/>इसे अलग से कैप्चर किया जाता है ताकि आप बाद में इसकी पोज़िशन बदल सकें।",
+    "description": "Pro onboarding camera step description"
+  },
+  "proOnboardingInstantTitle": {
+    "message": "इंस्टेंट मोड",
+    "description": "Pro onboarding instant mode step title"
+  },
+  "proOnboardingInstantDescription": {
+    "message": "तेज़ शेयरिंग और <strong>अनलिमिटेड डाउनलोड्स</strong> के लिए सबसे अच्छा।<br/><br/>इस मोड में एडवांस लेआउट और एडिटर विकल्प उपलब्ध नहीं हैं।",
+    "description": "Pro onboarding instant mode step description"
+  },
+  "proOnboardingDone": {
+    "message": "ठीक है",
+    "description": "Pro onboarding done button text"
+  },
+  "proOnboardingNext": {
+    "message": "आगे",
+    "description": "Pro onboarding next button text"
+  },
+  "proOnboardingBack": {
+    "message": "वापस",
+    "description": "Pro onboarding back button text"
+  },
+  "proOnboardingToolbarLearnMore": {
+    "message": "और जानें",
+    "description": "Pro onboarding toolbar learn more link label"
+  },
+  "resetOnboardingOption": {
+    "message": "ऑनबोर्डिंग रीसेट करें",
+    "description": "Reset pro onboarding option label in popup settings menu"
+  },
+  "recoverLastRecordingOption": {
+    "message": "Recover last recording",
+    "description": "Settings menu item to manually trigger cloud recording recovery"
+  },
+  "toastRecoveredSession": {
+    "message": "Recovered unsaved recording from the previous session.",
+    "description": "Toast shown when a crashed recording session is auto-recovered on startup"
+  },
+  "toastStorageCritical": {
+    "message": "डिस्क में कम जगह। आपकी रिकॉर्डिंग सहेजी जा रही है। अब तक कैप्चर किया गया सब कुछ सुरक्षित है।",
+    "description": "Toast shown when available storage drops below the critical threshold during recording; reassures that captured data is preserved"
+  },
+  "toastStorageLow": {
+    "message": "Storage is running low. Upload reliability may degrade for long recordings.",
+    "description": "Toast shown when available storage drops below the warning threshold during recording"
+  },
+  "toastAudioCaptureDegraded": {
+    "message": "Transcription capture paused due to memory pressure. Video upload continues.",
+    "description": "Toast shown when the audio recorder is stopped early because the audio buffer limit was reached"
+  },
+  "toastNetworkOffline": {
+    "message": "Network offline. Upload paused. Screen chunks are saved locally.",
+    "description": "Toast shown when the browser goes offline during a cloud recording upload"
+  },
+  "longRecordingTitle": {
+    "message": "लंबी रिकॉर्डिंग",
+    "description": "Banner title shown when a recording exceeds the local processing limit but is otherwise successful"
+  },
+  "longRecordingDescription": {
+    "message": "आपकी रिकॉर्डिंग पूर्ण और सुरक्षित है। नीचे WebM के रूप में डाउनलोड करें।",
+    "description": "Banner description for long recordings that can be downloaded but not edited locally"
+  },
+  "notAvailableLongRecording": {
+    "message": "लंबी रिकॉर्डिंग के लिए अनुपलब्ध",
+    "description": "Disabled button label for features not available due to recording length"
+  },
+  "notAvailableRecoveryMode": {
+    "message": "पुनर्प्राप्ति मोड में अनुपलब्ध",
+    "description": "Disabled button label for features not available in recovery/fallback mode"
+  },
+  "editTooLongTitle": {
+    "message": "ऑडियो संपादन बहुत लंबा",
+    "description": "Alert title when an audio mute/mix edit is rejected because the clip exceeds 15 minutes"
+  },
+  "editTooLongDescription": {
+    "message": "यह ऑडियो संपादन 15 मिनट से अधिक के क्लिप के लिए समर्थित नहीं है। आपका मूल अपरिवर्तित है। पहले क्लिप को ट्रिम करने का प्रयास करें।",
+    "description": "Alert body explaining the 15-minute limit and suggesting trimming first"
+  },
+  "editTimeoutTitle": {
+    "message": "संपादन का समय समाप्त",
+    "description": "Alert title when an edit operation does not complete within the 5-minute watchdog period"
+  },
+  "editTimeoutDescription": {
+    "message": "संपादन समय पर पूरा नहीं हुआ। आपकी मूल रिकॉर्डिंग अपरिवर्तित है। फिर से प्रयास करें या पहले क्लिप ट्रिम करें।",
+    "description": "Alert body for the timeout case, prompting retry or shorter clip"
+  },
+  "streamEndedWarningToast": {
+    "message": "स्क्रीन शेयरिंग बंद हो गई। आपकी रिकॉर्डिंग सहेजी गई है। जब तैयार हों तब रोकें।",
+    "description": "Toast shown when screen share track ends mid-recording. Recording continues; removes false urgency about data loss."
+  },
+  "recoveryModeDescription": {
+    "message": "प्रोसेसिंग में कोई समस्या थी, लेकिन आपकी रिकॉर्डिंग सुरक्षित है। आप इसे नीचे डाउनलोड कर सकते हैं।",
+    "description": "Recovery mode banner description — reassures user their recording is accessible despite the processing failure"
+  },
+  "editProcessingSafeDescription": {
+    "message": "आपका संपादन प्रोसेस हो रहा है। आपकी मूल रिकॉर्डिंग अपरिवर्तित है।",
+    "description": "Shown in the editor processing alert when a user-initiated edit is running, to reassure the original is safe"
+  },
+  "editFailedTitle": {
+    "message": "संपादन लागू नहीं हो सका",
+    "description": "Alert title when an edit operation fails due to an encoding or processing error"
+  },
+  "editFailedDescription": {
+    "message": "प्रोसेसिंग के दौरान कुछ गलत हो गया। आपकी मूल रिकॉर्डिंग सुरक्षित है। आप फिर से कोशिश कर सकते हैं या इसे वैसे ही डाउनलोड कर सकते हैं।",
+    "description": "Alert body for edit failure; explicitly confirms the original recording is untouched"
+  },
+  "videoTrackEndedToast": {
+    "message": "स्क्रीन शेयरिंग बंद हो गई। आपकी रिकॉर्डिंग सहेजी जा रही है। अब तक कैप्चर किया गया सब कुछ सुरक्षित है।",
+    "description": "Toast shown when the video track ends mid-recording (e.g. monitor disconnected, screen share revoked)"
+  },
+  "audioTrackEndedToast": {
+    "message": "ऑडियो डिस्कनेक्ट हो गया। आपकी रिकॉर्डिंग सहेजी जा रही है। अब तक कैप्चर किया गया वीडियो सुरक्षित है।",
+    "description": "Toast shown when the audio track ends mid-recording (e.g. mic unplugged, permission revoked)"
+  },
+  "captureAudioUnavailableToast": {
+    "message": "कंप्यूटर का ऑडियो कैप्चर नहीं हो सका, इसलिए यह रिकॉर्डिंग केवल वीडियो है।",
+    "description": "Toast shown when the system/tab audio source fails to start and recording continues without it"
+  },
+  "captureAudioRepickToast": {
+    "message": "कंप्यूटर का ऑडियो कैप्चर नहीं हो सका। केवल वीडियो रिकॉर्ड करने के लिए अपनी स्क्रीन फिर से चुनें।",
+    "description": "Toast shown before the screen picker reopens because system audio could not start and capture is retrying without it"
+  },
+  "editorRecoveryToast": {
+    "message": "आपकी रिकॉर्डिंग सहेजी गई है। एडिटर नहीं खुला। फिर से कोशिश करने के लिए Recordful आइकन पर क्लिक करें।",
+    "description": "Toast shown on the active tab when the post-recording editor tab fails to open"
+  },
+  "stopAckTimeoutToast": {
+    "message": "सहेजने में अपेक्षा से अधिक समय लग रहा है। आपका डेटा सुरक्षित है। एडिटर जल्द खुलेगा।",
+    "description": "Toast shown when the recorder does not acknowledge the stop request within a few seconds"
+  },
+  "copyDebugInfoButton": {
+    "message": "डीबग जानकारी कॉपी करें",
+    "description": "Button to copy technical debug info to clipboard for support"
+  },
+  "debugInfoCopiedToast": {
+    "message": "डीबग जानकारी कॉपी हो गई",
+    "description": "Toast shown after debug info is copied"
+  },
+  "getHelpButton": {
+    "message": "सहायता प्राप्त करें",
+    "description": "Side button on error modals that opens a prefilled support form"
+  },
+  "recordingTooShortToast": {
+    "message": "रिकॉर्डिंग सेव करने के लिए बहुत छोटी थी",
+    "description": "Toast shown when a region recording is stopped by navigation but no chunks were saved"
+  },
+  "fastRecorderFailedTitle": {
+    "message": "तेज़ रिकॉर्डर विफल हुआ",
+    "description": "Title for the modal shown when the fast MP4 recorder output could not be validated"
+  },
+  "fastRecorderFailedDescription": {
+    "message": "इस डिवाइस पर तेज़ रिकॉर्डर का आउटपुट सत्यापित नहीं हो सका।\nआप फिर भी फ़ाइल डाउनलोड कर सकते हैं।",
+    "description": "Body text for the fast recorder failure modal"
+  },
+  "downloadAnywayButton": {
+    "message": "फिर भी डाउनलोड करें",
+    "description": "Button to download the recording file despite validation failure"
+  },
+  "cancelButton": {
+    "message": "रद्द करें",
+    "description": "Generic cancel button label"
+  },
+  "editorStuckTitle": {
+    "message": "आपकी रिकॉर्डिंग अभी भी तैयार हो रही है…"
+  },
+  "editorStuckDescription": {
+    "message": "Recordful को आपकी रिकॉर्डिंग लोड करने में सामान्य से अधिक समय लग रहा है। आपका डेटा अब भी इस डिवाइस पर हो सकता है। इसे रिकवर करने का प्रयास करें, या यदि यह वापस न आए तो हमसे संपर्क करें।"
+  },
+  "editorStuckTryRecover": {
+    "message": "रिकवर करने का प्रयास करें"
+  },
+  "editorStuckGetHelp": {
+    "message": "मदद लें"
+  },
+  "editorRecoveryFailedTitle": {
+    "message": "आपकी रिकॉर्डिंग नहीं खुल सकी"
+  },
+  "editorRecoveryFailedDescription": {
+    "message": "रिकॉर्डिंग को एडिटर में लोड करते समय कुछ गड़बड़ हो गई। आपकी रिकॉर्डिंग अब भी आपके डिवाइस पर सहेजी हो सकती है। आप इसे अभी रिकवर करने का प्रयास कर सकते हैं।"
+  },
+  "downloadGIFTooLongToast": {
+    "message": "GIF एक्सपोर्ट की सीमा 30 सेकंड है। अपनी क्लिप को छोटा करें और फिर से प्रयास करें।"
+  },
+  "audioSilentToast": {
+    "message": "कोई ऑडियो नहीं मिला। अपना माइक, म्यूट स्विच, या ऑडियो डिवाइस जांचें।"
+  },
+  "restartFailedToast": {
+    "message": "आपकी रिकॉर्डिंग दोबारा शुरू नहीं हो सकी। रोककर फिर से शुरू करने का प्रयास करें।"
+  },
+  "recordingFailedModalTitle": {
+    "message": "रिकॉर्डिंग शुरू नहीं हो सकी"
+  },
+  "recordingFailedModalDescription": {
+    "message": "किसी कारण से रिकॉर्डिंग शुरू नहीं हो पाई। कृपया फिर से प्रयास करें। यदि यह बार-बार हो रहा है, तो हमें X.com/whyKislay or forg.to/@kislay पर संपर्क करें।"
+  },
+  "editAudioTooLargeTitle": {
+    "message": "ऑडियो फ़ाइल बहुत बड़ी है"
+  },
+  "editAudioTooLargeDescription": {
+    "message": "छोटी ऑडियो क्लिप आज़माएं। बड़ी फ़ाइलें ब्राउज़र में प्रोसेस नहीं हो सकतीं। आपकी मूल रिकॉर्डिंग सुरक्षित है।"
+  },
+  "restoreEmptyToast": {
+    "message": "कोई रिकवर करने योग्य रिकॉर्डिंग नहीं मिली। डेटा क्लियर हो चुका हो सकता है।"
+  },
+  "restoreTimeoutToast": {
+    "message": "रिकवरी में बहुत समय लग रहा है। आपकी रिकॉर्डिंग सुरक्षित है। थोड़ी देर में रिकवर पर फिर से क्लिक करें।"
+  },
+  "cameraUnavailableToast": {
+    "message": "कैमरा डिस्कनेक्ट हो गया। स्क्रीन रिकॉर्डिंग जारी है।"
+  },
+  "downloadInterruptedLargeToast": {
+    "message": "डाउनलोड बाधित हुआ। रिकॉर्डिंग इतनी बड़ी है कि स्वचालित रूप से दोबारा प्रयास नहीं हो सकता। एडिटर से दोबारा सहेजने का प्रयास करें।"
+  },
+  "recordingCorruptToast": {
+    "message": "यह रिकॉर्डिंग प्ले नहीं की जा सकती। फ़ाइल अधूरी या ख़राब हो सकती है। सेव मेनू से रॉ फ़ाइल डाउनलोड करने का प्रयास करें।"
+  },
+  "storageFullRecordingError": {
+    "message": "रिकॉर्ड करने के लिए पर्याप्त स्टोरेज नहीं है। डिस्क पर जगह खाली करें और फिर से कोशिश करें।",
+    "description": "Shown when the browser can't allocate enough local storage to start a recording"
+  },
+  "storageLowRecordingWarning": {
+    "message": "आपके ब्राउज़र का स्टोरेज लगभग भर गया है। इस रिकॉर्डिंग को सुरक्षित रखने के लिए डिस्क पर जगह खाली करें।",
+    "description": "Shown when local storage is running low while a recording is in progress"
+  },
+  "screenStreamUnavailableError": {
+    "message": "स्क्रीन तक पहुंचा नहीं जा सका। रिकॉर्डिंग फिर से शुरू करें।",
+    "description": "Shown when the screen capture stream is missing after the user picked a source"
+  },
+  "tabStreamUnavailableError": {
+    "message": "इस टैब के वीडियो तक पहुंचा नहीं जा सका। टैब को फिर से लोड करें और फिर से कोशिश करें।",
+    "description": "Shown when Chrome won't return a tab capture stream for the chosen tab"
+  },
+  "streamingDataTimeoutError": {
+    "message": "रिकॉर्डिंग समय पर शुरू नहीं हुई। कृपया फिर से कोशिश करें।",
+    "description": "Shown when the recorder tab never received streaming-data from the background script"
+  },
+  "unsupportedVideoCodecError": {
+    "message": "आपका ब्राउज़र ज़रूरी वीडियो कोडेक्स का समर्थन नहीं करता। Chrome को अपडेट करें और फिर से कोशिश करें।",
+    "description": "Shown when no supported MediaRecorder mimeType is available"
+  },
+  "cancelLabel": {
+    "message": "रद्द करें",
+    "description": "Cancel button on the download-in-progress banner"
+  },
+  "webmSlowTitle": {
+    "message": "WebM में बदलने में कुछ समय लग सकता है",
+    "description": "Title of the modal warning that MP4 to WebM conversion is slow"
+  },
+  "webmSlowDescription": {
+    "message": "WebM के रूप में सहेजने पर पूरा वीडियो फिर से एन्कोड होता है, इसलिए लंबी रिकॉर्डिंग में कुछ मिनट लग सकते हैं। MP4 तुरंत सहेजा जाता है।",
+    "description": "Body of the slow-WebM warning modal"
+  },
+  "webmSlowMp4": {
+    "message": "इसके बजाय MP4 डाउनलोड करें",
+    "description": "Primary button: download MP4 instead of the slow WebM conversion"
+  },
+  "webmSlowContinue": {
+    "message": "WebM के साथ जारी रखें",
+    "description": "Secondary button: proceed with the slow WebM conversion"
+  },
+  "downloadProcessingTitle": {
+    "message": "आपका डाउनलोड तैयार किया जा रहा है",
+    "description": "Title of the download-in-progress banner with the Cancel button"
+  },
+  "downloadProcessingDescription": {
+    "message": "लंबी रिकॉर्डिंग में इसमें कुछ समय लग सकता है।",
+    "description": "Body of the download-in-progress banner"
+  },
+  "cameraMicBlockedTitle": {
+    "message": "कैमरा और माइक्रोफोन की अनुमति नहीं है",
+    "description": "Toast title shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "cameraMicBlockedDescription": {
+    "message": "यह वेबसाइट आपके कैमरा और माइक्रोफोन तक पहुँच को रोकती है। आप यहाँ फिर भी रिकॉर्ड कर सकते हैं, लेकिन आपका कैमरा दिखाई नहीं देगा।",
+    "description": "Toast description shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "downloadFailedModalTitle": {
+    "message": "डाउनलोड पूरा नहीं हुआ",
+    "description": "Modal title when a download to disk times out or fails"
+  },
+  "downloadFailedModalDescription": {
+    "message": "कृपया फिर से कोशिश करें।",
+    "description": "Toast->modal description: what to do after a failed download"
+  },
+  "driveGenericModalTitle": {
+    "message": "Google ड्राइव में सहेजा नहीं जा सका",
+    "description": "Modal title for a generic Google Drive save failure"
+  },
+  "driveGenericModalDescription": {
+    "message": "कृपया फिर से कोशिश करें।",
+    "description": "Modal description for a generic Google Drive save failure"
+  },
+  "driveQuotaModalTitle": {
+    "message": "आपका Google ड्राइव भर गया है",
+    "description": "Modal title when the Google Drive account is out of storage"
+  },
+  "driveQuotaModalDescription": {
+    "message": "जगह खाली करें और फिर से कोशिश करें।",
+    "description": "Modal description when the Google Drive account is out of storage"
+  },
+  "driveTooLargeModalTitle": {
+    "message": "रिकॉर्डिंग बहुत बड़ी है",
+    "description": "Modal title when a recording exceeds Google Drive limits"
+  },
+  "driveTooLargeModalDescription": {
+    "message": "यह रिकॉर्डिंग Google ड्राइव में सहेजने के लिए बहुत बड़ी है।",
+    "description": "Modal description when a recording exceeds Google Drive limits"
+  },
+  "driveAuthModalTitle": {
+    "message": "Google ड्राइव तक नहीं पहुँचा जा सका",
+    "description": "Modal title when Google Drive authentication expired or was revoked"
+  },
+  "driveAuthModalDescription": {
+    "message": "कृपया फिर से साइन इन करें।",
+    "description": "Modal description when Google Drive authentication expired or was revoked"
+  },
+  "emptyRecordingTitle": {
+    "message": "यह रिकॉर्डिंग खाली है",
+    "description": "Modal title when the recording file contains no video"
+  },
+  "emptyRecordingDescription": {
+    "message": "कोई वीडियो कैप्चर नहीं हुआ। कृपया दोबारा रिकॉर्ड करें।",
+    "description": "Modal description when the recording file contains no video"
+  },
+  "unsavedRecordingModalTitle": {
+    "message": "आपकी पिछली रिकॉर्डिंग सहेजी नहीं गई है",
+    "description": "Title of the modal shown when starting a recording while the previous one is unsaved."
+  },
+  "unsavedRecordingModalDescription": {
+    "message": "यह अब भी दूसरे टैब में खुली है और उस टैब को बंद करते ही खो जाएगी। इसे रखने के लिए पहले डाउनलोड करें।",
+    "description": "Body of the unsaved-previous-recording modal."
+  },
+  "unsavedRecordingModalAction": {
+    "message": "फिर भी रिकॉर्ड करें",
+    "description": "Confirm button: start the new recording anyway."
+  },
+  "unsavedRecordingModalCancel": {
+    "message": "रिकॉर्डिंग खोलें",
+    "description": "Cancel button: bring the unsaved recording's tab forward instead."
+  },
+  "unsavedRecordingModalDismiss": {
+    "message": "दोबारा न दिखाएं",
+    "description": "Side button: start the recording and stop prompting about unsaved recordings."
+  }
+}

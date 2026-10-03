@@ -1,0 +1,1908 @@
+{
+  "reviewAskTitle": {
+    "message": "Recordful உங்களுக்கு எப்படி வேலை செய்கிறது?",
+    "description": "Review prompt step 1 question (sentiment check) in the editor"
+  },
+  "reviewAskGood": {
+    "message": "நன்றாக இருக்கிறது",
+    "description": "Review prompt positive sentiment button label / tooltip"
+  },
+  "reviewAskBad": {
+    "message": "அவ்வளவு நன்றாக இல்லை",
+    "description": "Review prompt negative sentiment button label / tooltip"
+  },
+  "reviewThanksTitle": {
+    "message": "நீங்கள் என் நாளை அழகாக்கிவிட்டீர்கள்!",
+    "description": "Review prompt happy-branch title in the editor"
+  },
+  "reviewThanksDescription": {
+    "message": "Hey, I'm Kislay. I built Recordful because I wanted a screen recorder that respects your privacy and doesn't hold your videos hostage. Free, open source, no watermarks, no limits. Before this I built forg.to, a home for indie hackers shipping in public, so this one is getting built the same way, out in the open. If Recordful earns its keep, Pro keeps the lights on.\n\nIf Recordful has helped you, leaving a quick review is one of the best ways to support it ❤️",
+    "description": "Review prompt happy-branch description (founder voice) in the editor. Paragraphs separated by a blank line."
+  },
+  "reviewThanksButton": {
+    "message": "ஒரு மதிப்பீட்டை எழுதுங்கள்",
+    "description": "Review prompt button that opens the Chrome Web Store review page"
+  },
+  "reviewThanksLater": {
+    "message": "ஒருவேளை பிறகு",
+    "description": "Review prompt snooze button on the happy branch"
+  },
+  "reviewSorryTitle": {
+    "message": "அதைக் கேட்க வருந்துகிறேன்",
+    "description": "Review prompt unhappy-branch title in the editor"
+  },
+  "reviewSorryDescription": {
+    "message": "Hey, I'm Kislay. I read every message myself, so tell me what went wrong and I'll do my best to fix it.",
+    "description": "Review prompt unhappy-branch description in the editor"
+  },
+  "reviewSorryButton": {
+    "message": "கருத்தை அனுப்புங்கள்",
+    "description": "Review prompt button that opens the private feedback form"
+  },
+  "reviewSorryDismiss": {
+    "message": "வேண்டாம், நன்றி",
+    "description": "Review prompt dismiss button on the unhappy branch"
+  },
+  "extName": {
+    "message": "Recordful - திரைப்பதிவு & குறிப்புகள்",
+    "description": "நீட்சிதம் பெயர்"
+  },
+  "extDesc": {
+    "message": "எந்த வரம்பின்னரும் இல்லாமாக உள்ள சிறந்த இலவச திரை படிக்குழு. படத்தை பிடிக்க, குறிப்பிடுக, அமை, மெதுவாக்கு, வீடியோக்களை திருத்துகின்றன மற்றும் மேலும் - புகுபதிக்க அந்த பேர் பதிவு செய்ய இல்லை, மற்றும் தனியுரிமை பருவமாக இருக்கின்றது.",
+    "description": "நீட்சிதம் விளக்கம்"
+  },
+  "recordTab": {
+    "message": "பதிவு",
+    "description": "பதிவு தலைப்பு படிதம்"
+  },
+  "videosTab": {
+    "message": "உங்கள் வீடியோக்கள்",
+    "description": "வீடியோக்கள் தலைப்பு படிதம்"
+  },
+  "screenType": {
+    "message": "திரை",
+    "description": "திரை படம் பதிவு வகை படிதம்"
+  },
+  "tabType": {
+    "message": "கையெழுத்து பகுதி",
+    "description": "கையெழுத்து பகுதி படம் பதிவு வகை படிதம்"
+  },
+  "cameraType": {
+    "message": "கேமரா",
+    "description": "கேமரா பதிவு வகை படிதம்"
+  },
+  "mockupType": {
+    "message": "மாக்கப்",
+    "description": "மாக்கப் பதிவு வகை படிதம்"
+  },
+  "customAreaRecordingDisabledTitle": {
+    "message": "தனிப்பட்ட பகுதி பதிவு முடக்கப்பட்டுள்ளது",
+    "description": "கூடித் தனிப்பட்ட பகுதி பதிவு முடக்கப்பட்டுள்ளது எச்சரிக்கை படம் (Chrome பதிப்பு 104 க்கு குறைந்த பதிப்புகள்)"
+  },
+  "customAreaRecordingDisabledDescription": {
+    "message": "Chrome பதிப்பு 110+ க்கு புதுப்பிக்கவும்",
+    "description": "கூடித் தனிப்பட்ட பகுதி பதிவு முடக்கப்பட்டுள்ளது எச்சரிக்கை விளக்கம் (Chrome பதிப்பு 104 க்கு குறைந்த பதிப்புகள்)"
+  },
+  "customAreaRecordingDisabledAction": {
+    "message": "புதுப்பிக்க",
+    "description": "104 க்கு குறுகிய க்ரோம் பதிப்புகளுக்கு மேம்படுத்த மாட்சியை முடக்கிய பிரிவு பதிப்பு எச்சரிக்கை செய்தியாகும்"
+  },
+  "permissionsModalTitle": {
+    "message": "உங்கள் அனுமதிகளை சரிபார்க்கவும்",
+    "description": "கேமரா / மைக்ரோஃபோன் அனுமதிகள் எச்சரிக்கை செய்தியின் தலைப்பு"
+  },
+  "permissionsModalDescription": {
+    "message": "Recordful உங்கள் கேமரா அல்லது மைக்ரோஃபோனை அணுக முடியவில்லை போல் தெரிகிறது. முகவரிப் பட்டியில் உள்ள கேமரா ஐகானைக் கிளிக் செய்து அணுகலை அனுமதியுங்கள்.",
+    "description": "கேமரா / மைக்ரோஃபோன் அனுமதிகள் எச்சரிக்கை செய்தியின் விளக்கம் விளக்கம்"
+  },
+  "permissionsModalDismiss": {
+    "message": "விலகு",
+    "description": "கேமரா / மைக்ரோஃபோன் அனுமதிகள் எச்சரிக்கை செய்தியின் விளக்கம் விளக்கம்"
+  },
+  "sitePermissionsBlockedTitle": {
+    "message": "இந்த தளம் கேமரா அல்லது மைக்ரோஃபோன் அணுகலை அனுமதிக்கவில்லை",
+    "description": "Modal title shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "sitePermissionsBlockedDescription": {
+    "message": "இந்த வலைத்தளத்தின் பாதுகாப்பு அமைப்புகள் உலாவி நீட்டிப்புகள் இந்தப் பக்கத்தில் உங்கள் கேமராவையோ அல்லது மைக்ரோஃபோனையோ பயன்படுத்துவதைத் தடுக்கின்றன. இவற்றுடன் பதிவு செய்ய, மற்றொரு தாவலில் பதிவைத் தொடங்கி, அது தொடங்கியதும் இங்கே திரும்பவும்.",
+    "description": "Modal description shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "opfsLoadErrorTitle": {
+    "message": "உங்கள் பதிவை ஏற்ற முடியவில்லை",
+    "description": "Modal title shown when the editor cannot read the recording file from the device's storage"
+  },
+  "opfsLoadErrorDescription": {
+    "message": "Recordful உங்கள் சாதனத்தின் சேமிப்பகத்திலிருந்து பதிவை ஏற்ற முடியவில்லை. அது அழிக்கப்பட்டிருக்கலாம் அல்லது நகர்த்தப்பட்டிருக்கலாம். இது தொடர்ந்து நடந்தால், X.com/whyKislay or forg.to/@kislay இல் எங்களை தொடர்பு கொள்ளவும்.",
+    "description": "Modal description shown when the editor cannot read the recording file from the device's storage"
+  },
+  "recordingWriterFailedToast": {
+    "message": "சேமிப்பக சிக்கல் காரணமாக பதிவு நிறுத்தப்பட்டது. உங்கள் பகுதி பதிவு சேமிக்கப்பட்டது.",
+    "description": "Toast shown when the recording chunk writer fails mid-recording and the partial file is preserved"
+  },
+  "allowCameraAccessButton": {
+    "message": "கேமரா அணுகலை அனுமதிக்கவும்",
+    "description": "கேமரா அணுகலை அனுமதிக்க பொத்தான்"
+  },
+  "allowMicrophoneAccessButton": {
+    "message": "மைக்ரோஃபோன் அணுகலை அனுமதிக்கவும்",
+    "description": "மைக்ரோஃபோன் அணுகலை அனுமதிக்க பொத்தான்"
+  },
+  "pushToTalkLabel": {
+    "message": "அழுக்கு",
+    "description": "அழுக்கு ஸ்விட்ச் பொத்தான்"
+  },
+  "customAreaLabel": {
+    "message": "புதுப்பிக்க பருவத்தை அமைக்கவும்",
+    "description": "புதுப்பிக்க ஸ்விட்ச் பொத்தான்"
+  },
+  "flipCameraLabel": {
+    "message": "கேமரா தளம்",
+    "description": "கேமரா தளம் ஸ்விட்ச் பொத்தான்"
+  },
+  "backgroundEffectsLabel": {
+    "message": "பின்னணி விளைவுகள்",
+    "description": "பின்னணி விளைவுகள் ஸ்விட்ச் பொத்தான்"
+  },
+  "recordButtonLabel": {
+    "message": "பதிவு செய்ய ஆரம்பிக்கவும்",
+    "description": "பதிவு பொத்தான் பொத்தான்"
+  },
+  "recordButtonInProgressLabel": {
+    "message": "பதிவு ஆரம்பிக்கின்றது...",
+    "description": "பதிவு பொத்தான் செயலி ஆரம்பிக்கின்றது செய்தி"
+  },
+  "recordButtonNoCameraLabel": {
+    "message": "கேமரா அமைக்கவும்",
+    "description": "கேமரா முறையில் உள்ளபடியாக கேமரா தேர்வு செய்தால் உள்ளபடி கேமரா செய்தி"
+  },
+  "showMoreOptionsLabel": {
+    "message": "மேலும் விருப்பங்கள் காட்டு",
+    "description": "மேலும் விருப்பங்கள் செய்தி"
+  },
+  "systemAudioLabel": {
+    "message": "அமைப்பு ஒலியை சேர்க்கவும்",
+    "description": "அமைப்பு ஒலி குறியீடு/அறை"
+  },
+  "hideToolbarLabel": {
+    "message": "கட்டுப்பாடு மறை",
+    "description": "கட்டுப்பாடு மறை செய்தி"
+  },
+  "countdownLabel": {
+    "message": "எண்ணிக்கை செய்யவும்",
+    "description": "எண்ணிக்கை செய்தி"
+  },
+  "alarmLabel": {
+    "message": "நேரம் எதிர்க்காட்டவும்",
+    "description": "அலாரம் செய்தி"
+  },
+  "blurTypeLabel": {
+    "message": "மறை",
+    "description": "பிரிவு பிரிப்பு செய்தி"
+  },
+  "noneDropdownLabel": {
+    "message": "இல்லை",
+    "description": "சாதனம் தேர்வு செய்தி"
+  },
+  "noCameraDropdownLabel": {
+    "message": "கேமரா இல்லை",
+    "description": "கேமரா தேர்வு செய்தி"
+  },
+  "noMicrophoneDropdownLabel": {
+    "message": "மைக்ரோஃபோன் இல்லை",
+    "description": "மைக்ரோஃபோன் தேர்வு செய்தி"
+  },
+  "selectSourceDropdownPlaceholder": {
+    "message": "ஒரு மூலம் தேர்வு செய்யவும்",
+    "description": "மூலம் தேர்வு செய்தி உள்ளிடம்"
+  },
+  "offLabel": {
+    "message": "அணுக்கம் இல்லை",
+    "description": "அணுக்கம் இல்லை செய்தி கீழே"
+  },
+  "regionWidthLabel": {
+    "message": "அகலம்",
+    "description": "பிரிவு அகல செய்தி"
+  },
+  "regionHeightLabel": {
+    "message": "உயரம்",
+    "description": "பிரிவு உயர செய்தி"
+  },
+  "addImageToastTitle": {
+    "message": "படம் வைக்க கிளிக் செய்யவும்",
+    "description": "புதிய படம் சேர்க்கும் போப்அப் தலைப்பு"
+  },
+  "finishRecordingTooltip": {
+    "message": "பதிவு முடிக்க",
+    "description": "பதிவு முடிக்க குழப்பு"
+  },
+  "restartRecordingTooltip": {
+    "message": "பதிவு மீட்டல்",
+    "description": "பதிவு மீட்டல் குழப்பு"
+  },
+  "pauseRecordingTooltip": {
+    "message": "பதிவு முடிக்க",
+    "description": "பதிவு முடிக்க குழப்பு"
+  },
+  "resumeRecordingTooltip": {
+    "message": "பதிவு தொடங்க",
+    "description": "பதிவு தொடங்க குழப்பு"
+  },
+  "cancelRecordingTooltip": {
+    "message": "பதிவு ரத்து செய்",
+    "description": "பதிவு ரத்து செய் உத்திபத்தி"
+  },
+  "toggleDrawingToolsTooltip": {
+    "message": "வரையறு கருவிகள் சோதனை செய்யுங்கள்",
+    "description": "வரையறு கருவிகள் சோதனை செய் உத்திபத்தி"
+  },
+  "toggleBlurToolTooltip": {
+    "message": "சுரூரிட கருவியை மாற்று",
+    "description": "சுரூரிட கருவிகள் சோதனை செய் உத்திபத்தி"
+  },
+  "toggleCursorOptionsTooltip": {
+    "message": "கோசர் விருப்பங்களை மாற்று",
+    "description": "கோசர் விருப்பங்களை மாற்று உத்திபத்தி"
+  },
+  "disableCameraTooltip": {
+    "message": "கேமரா முடக்கு",
+    "description": "கேமரா முடக்கு உத்திபத்தி"
+  },
+  "enableCameraTooltip": {
+    "message": "கேமரா இயக்கு",
+    "description": "கேமரா இயக்கு உத்திபத்தி"
+  },
+  "noCameraPermissionsTooltip": {
+    "message": "கேமரா அனுமதிகள் இல்லை",
+    "description": "கேமரா அனுமதிகள் இல்லை உத்திபத்தி"
+  },
+  "disableMicrophoneTooltip": {
+    "message": "மைக்ரோஃபோன் முடக்கு",
+    "description": "மைக்ரோஃபோன் முடக்கு உத்திபத்தி"
+  },
+  "enableMicrophoneTooltip": {
+    "message": "மைக்ரோஃபோன் இயக்கு",
+    "description": "மைக்ரோஃபோன் இயக்கு உத்திபத்தி"
+  },
+  "noMicrophonePermissionsTooltip": {
+    "message": "மைக்ரோஃபோன் அனுமதிகள் இல்லை",
+    "description": "மைக்ரோஃபோன் அனுமதிகள் இல்லை உத்திபத்தி"
+  },
+  "selectToolTooltip": {
+    "message": "கருவியை தேர்ந்தெடு",
+    "description": "கருவி உத்திபத்தி"
+  },
+  "penToolTooltip": {
+    "message": "பேன் கருவி",
+    "description": "பேன் கருவி உத்திபத்தி"
+  },
+  "highlighterToolTooltip": {
+    "message": "முக்கியமான கருவி",
+    "description": "முக்கியமான கருவி உத்திபத்தி"
+  },
+  "eraserToolTooltip": {
+    "message": "மொழி கருவி",
+    "description": "மொழி கருவி உத்திபத்தி"
+  },
+  "textToolTooltip": {
+    "message": "உரை கருவி",
+    "description": "உரை கருவி உத்திபத்தி"
+  },
+  "shapeToolTooltip": {
+    "message": "வடிவ கருவி",
+    "description": "வடிவ கருவி உத்திபத்தி"
+  },
+  "arrowToolTooltip": {
+    "message": "அம்பு கருவி",
+    "description": "அம்பு கருவி உத்திபத்தி"
+  },
+  "imageToolTooltip": {
+    "message": "படம் கருவி",
+    "description": "படம் கருவி உத்திபத்தி"
+  },
+  "undoTooltip": {
+    "message": "மீட்டமை",
+    "description": "மீட்டமை குருவி"
+  },
+  "redoTooltip": {
+    "message": "மீட்டமை செய்",
+    "description": "மீட்டமை செய் குருவி"
+  },
+  "clearCanvasTooltip": {
+    "message": "கவசம் அழி",
+    "description": "கவச டூல்டிப்"
+  },
+  "moreColorsTooltip": {
+    "message": "மேலும் வண்ணங்கள்",
+    "description": "மேலும் வண்ணங்கள் டூல்டிப்"
+  },
+  "thickStrokeTooltip": {
+    "message": "படிக்குழப்பு அச்சு",
+    "description": "படிக்குழப்பு அச்சு டூல்டிப்"
+  },
+  "mediumStrokeTooltip": {
+    "message": "இடைச்சுழப்பு அச்சு",
+    "description": "இடைச்சுழப்பு அச்சு டூல்டிப்"
+  },
+  "thinStrokeTooltip": {
+    "message": "இலேமெண்ட் அச்சு",
+    "description": "இலேமெண்ட் அச்சு டூல்டிப்"
+  },
+  "togglePictureinPictureModeTooltip": {
+    "message": "புகைப்படத்தில் புகைப்பட",
+    "description": "புகைப்படத்தில் புகைப்பட டூல்டிப்"
+  },
+  "toggleFillTooltip": {
+    "message": "நிரப்பு செய்",
+    "description": "நிரப்பு செய் டூல்டிப்"
+  },
+  "drawingModeToast": {
+    "message": "வரைபட முடிந்தது",
+    "description": "வரைபட முடிந்தது டோஸ்ட்"
+  },
+  "blurModeToast": {
+    "message": "மயிர் முடிந்தது",
+    "description": "மயிர் முடிந்தது டோஸ்ட்"
+  },
+  "clearBlurredElementsTooltip": {
+    "message": "அனைத்து மூடிய உருக்கங்களையும் அகற்று",
+    "description": "அனைத்து மூடிய உருக்கங்களையும் அகற்று டூல்டிப்"
+  },
+  "highlightClicksTooltip": {
+    "message": "கிளிக்குகளை குறிக்க",
+    "description": "கிளிக்குகளை குறிக்க டூல்டிப்"
+  },
+  "highlightCursorTooltip": {
+    "message": "கோர்சரை குறிக்க",
+    "description": "கோர்சரை குறிக்க டூல்டிப்"
+  },
+  "spotlightCursorTooltip": {
+    "message": "கோர்சரை ஒளிப்படுத்து",
+    "description": "கோர்சரை ஒளிப்படுத்து டூல்டிப்"
+  },
+  "permissionsModalNoShowAgain": {
+    "message": "மீது காண்பிக்க வேண்டாம்",
+    "description": "அனுமதிகள் மோடால் காண்பிக்க பொதுப்படுத்து பொத்தான்"
+  },
+  "restartModalTitle": {
+    "message": "புதியதாக பதிவுசெய்ய விரும்புகிறீர்களா?",
+    "description": "புதியதாக பதிவுசெய்ய விரும்புகிறீர்களா மோடால் தலைப்பு"
+  },
+  "restartModalDescription": {
+    "message": "உங்கள் தற்போதைய வீடியோ முன்னேற்றம் இழக்கப்படும்.",
+    "description": "மீள் அமைப்பு மாடல் விளக்கம்"
+  },
+  "restartModalRestart": {
+    "message": "வீடியோ மீள் அமைப்பு",
+    "description": "மீள் அமைப்பு மாடல் மீள் அமைப்பு பொத்தான்"
+  },
+  "restartModalResume": {
+    "message": "வீடியோ செயலாக்கம் தொடர்க",
+    "description": "மீள் அமைப்பு மாடல் தொடர்க பொத்தான்"
+  },
+  "discardModalTitle": {
+    "message": "நீங்கள் வீடியோ செயலாக்கியில் துணைமைக்கப்படுவீர்களா?",
+    "description": "வீடியோ விலக்க மாடல் தலைப்பு"
+  },
+  "discardModalDescription": {
+    "message": "உங்கள் தற்போதைய வீடியோ முன்னேற்றம் இழக்கப்படும்.",
+    "description": "வீடியோ விலக்க மாடல் விளக்கம்"
+  },
+  "discardModalDiscard": {
+    "message": "வீடியோ விலக்கு",
+    "description": "வீடியோ விலக்க மாடல் விலக்கு பொத்தான்"
+  },
+  "discardModalResume": {
+    "message": "வீடியோ செயலாக்கம் தொடர்க",
+    "description": "வீடியோ விலக்க மாடல் தொடர்க பொத்தான்"
+  },
+  "recorderSelectTitle": {
+    "message": "நீங்கள் எந்தவையை பதிவு செய்ய விரும்புகின்றீர்கள் என்று தேர்ந்தெடுக்கவும்",
+    "description": "பதிவு பக்கத்தில் தலைப்பு"
+  },
+  "recorderSelectProgressTitle": {
+    "message": "பதிவுசெய்தல்...",
+    "description": "பதிவு பக்கத்தில் பதிவுசெய்தல் போன்ற தலைப்பு"
+  },
+  "recorderSelectDescription": {
+    "message": "இந்த உதவியை மூட வேண்டும். உங்கள் பதிவு சேமிக்கப்பட்ட பிறகு அந்த உதவியும் மூடப்படும்.",
+    "description": "பதிவு பக்கத்தில் விளக்கம்"
+  },
+  "sandboxProgressTitle": {
+    "message": "பதிவுசெய்தல் தயாராகிக் கொள்ளப்படுகின்றது...",
+    "description": "பதிவு பக்கத்தில் பதிவுசெய்தல் / சேமிக்குகின்ற போன்ற தலைப்பு"
+  },
+  "sandboxProgressDescription": {
+    "message": "இந்த உதவியை மூட வேண்டும். அது உங்கள் பதிவு சேமிக்கப்பட்ட பிறகு அப்டேட் செய்யும்.",
+    "description": "பதிவு பக்கத்தில் விளக்கம்"
+  },
+  "sandboxFinalizingRecording": {
+    "message": "பதிவு முடிக்கப்படுகிறது...",
+    "description": "Shown over the player when the editor is waiting for the recorder to finish flushing the recording to disk"
+  },
+  "sandboxToastReverted": {
+    "message": "மூலத்திற்கு மீட்டமைக்கப்பட்டது",
+    "description": "Toast confirmation shown when the user reverts edits to the original recording"
+  },
+  "sandboxToastSaved": {
+    "message": "மாற்றங்கள் சேமிக்கப்பட்டன",
+    "description": "Toast confirmation shown when the user saves an edit operation"
+  },
+  "sandboxEditorMainTitle": {
+    "message": "எடிட்டர்",
+    "description": "மையத்தின் வழிமுறைப்பு பக்கத்தின் தலைப்பு"
+  },
+  "sandboxEditorCancelButton": {
+    "message": "ரத்து செய்",
+    "description": "ரத்து செய்க பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxEditorRevertButton": {
+    "message": "மூல செய்தி திரும்பு",
+    "description": "மூல செய்தி திரும்பு பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxEditorResetButton": {
+    "message": "மீட்டமை",
+    "description": "மீட்டமை பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxEditorSaveButton": {
+    "message": "மாற்றங்கள் சேமிக்க",
+    "description": "சேமிப்பு பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxEditorSaveProgressButton": {
+    "message": "சேமிப்பதில்...",
+    "description": "சேமிப்பு பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxAudioDragAndDrop": {
+    "message": "உங்கள் ஒலியின் கோப்பை விளக்கம் செய்யவும்",
+    "description": "ஒலி கோப்பை விளக்கம் செய்யவும் பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxAudioOrBrowse": {
+    "message": "அல்லது பார்க்க கிளிக் செய்யவும்",
+    "description": "ஒலி கோப்பை பார்க்க கிளிக் செய்யவும் பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxAudioSettingsTitle": {
+    "message": "அமைப்புகள்",
+    "description": "ஒலி அமைப்புகள் தலைப்பு பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxAudioVolumeLabel": {
+    "message": "ஒலி அளவு",
+    "description": "ஒலி அளவு விளக்கம் பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxAudioUpdateButton": {
+    "message": "புதுப்பி",
+    "description": "ஒலி புதுப்பி பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "sandboxCropTitle": {
+    "message": "வெட்டு",
+    "description": "வெட்டு தலைப்பு பொத்தான் முகத்தில் உள்ள பொத்தான்"
+  },
+  "widthLabel": {
+    "message": "பருவம்",
+    "description": "சொத்துக்கள் குறிப்புக்கு பருவம் விளக்கம்"
+  },
+  "heightLabel": {
+    "message": "உயரம்",
+    "description": "சொத்துக்கள் குறிப்புக்கு உயரம் விளக்கம்"
+  },
+  "leftLabel": {
+    "message": "இடம்",
+    "description": "குறிப்பிட்ட பணியாளர் விவரங்கள் சிட்டில் இடம் குறிப்பு"
+  },
+  "topLabel": {
+    "message": "மேல்",
+    "description": "குறிப்பிட்ட பணியாளர் விவரங்கள் சிட்டில் மேல் குறிப்பு"
+  },
+  "sandboxEditorTrimInfo": {
+    "message": "ஹாண்டிளை இழுக்கவும் மற்றும் தொகுப்புகளை பயன்படுத்த இடது பட்டன்களை பயன்படுத்தவும்.",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் வித்திக்குது பற்றிய விவரங்கள்"
+  },
+  "sandboxEditorTrimButton": {
+    "message": "வீடியோ குறை",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் குறை பட்டன்"
+  },
+  "sandboxEditorTrimProgressButton": {
+    "message": "குறைக்கின்றது...",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் குறை பட்டன் வித்திக்கின்றது போன்ற போது"
+  },
+  "sandboxEditorCutButton": {
+    "message": "பிளவு வைத்துப்படு",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் கட் பட்டன்"
+  },
+  "sandboxEditorCutProgressButton": {
+    "message": "கட்டுகின்றது...",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் கட் பட்டன் வித்திக்கின்றது போன்ற போது"
+  },
+  "sandboxEditorMuteButton": {
+    "message": "ஒலியை முடக்கு",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் ஒலி முடக்கு பட்டன்"
+  },
+  "sandboxEditorMuteProgressButton": {
+    "message": "ஒலி முடக்குகின்றது...",
+    "description": "சாண்ட்பாக்ஸ் எடிட்டிங்கில் ஒலி முடக்கு பட்டன் வித்திக்கின்றது போன்ற போது"
+  },
+  "learnMoreDot": {
+    "message": "அதிகம் அறிய",
+    "description": "ஒரு டாட் சொல் சார்பு வெளியீடு செய்யும்"
+  },
+  "undoLabel": {
+    "message": "மீட்டமை",
+    "description": "மீட்டமை செய்"
+  },
+  "redoLabel": {
+    "message": "மீட்டமை செய்",
+    "description": "மீட்டமை செய் செய்"
+  },
+  "leaveReview": {
+    "message": "ஒரு மதிப்பீடு விளக்க",
+    "description": "விமர்சனம் விடுங்கள் பட்டன்"
+  },
+  "followForUpdates": {
+    "message": "புதுப்பிப்புக்காக பின்னுங்கள்",
+    "description": "புதுப்பிப்புக்காக பின்னுங்கள் பட்டன்"
+  },
+  "offlineLabelTitle": {
+    "message": "நீங்கள் தற்போது ஆஃப்லைன்",
+    "description": "ஆஃப்லைன் லேபிள்"
+  },
+  "offlineLabelDescription": {
+    "message": "சில அம்சங்கள் மீண்டும் இணைக்கப்படும் வரை கிடைக்காது",
+    "description": "ஆஃப்லைன் லேபிள் விளக்கம்"
+  },
+  "offlineLabelTryAgain": {
+    "message": "மீண்டும் முயற்சி செய்",
+    "description": "ஆஃப்லைன் லேபிள் மீண்டும் முயற்சி செய் பொத்தான்"
+  },
+  "serverIssueTitle": {
+    "message": "Recordful கிடைக்கவில்லை",
+    "description": "Title shown when the Recordful API is returning server errors"
+  },
+  "serverIssueDescription": {
+    "message": "கிளவுட் பதிவு தற்போது கிடைக்கவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Description shown when the Recordful API is returning server errors"
+  },
+  "serverUnreachableTitle": {
+    "message": "Recordful ஐ அணுக முடியவில்லை",
+    "description": "Title shown when the Recordful API cannot be reached"
+  },
+  "serverUnreachableDescription": {
+    "message": "உங்கள் இணைப்பைச் சரிபார்க்கவும் அல்லது சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Description shown when the Recordful API cannot be reached"
+  },
+  "updateChromeLabelTitle": {
+    "message": "கூகுள் புதுப்பிக்க வேண்டும்",
+    "description": "கைப்பு கூகுள் புதுப்பிப்பு லேபிள்"
+  },
+  "updateChromeLabelDescription": {
+    "message": "கூகுள் கைப்பு கூட்டுத்தளம் அணுக புதுப்பிக்கவும்",
+    "description": "கைப்பு கூகுள் புதுப்பிப்பு லேபிள் விளக்கம்"
+  },
+  "learnMoreLabel": {
+    "message": "மேலும் அறிய",
+    "description": "மேலும் அறிய பொத்தான்"
+  },
+  "overLimitLabelTitle": {
+    "message": "உங்கள் சாதனத்தில் வீடியோ மிகம் நீளம்",
+    "description": "எடிட்டரில் 5 நிமிடத்திற்குக் கீழ் வரும் கட்டுரை"
+  },
+  "overLimitLabelDescription": {
+    "message": "திருத்தல் மற்றும் MP4 வடிவம் விரும்பில்லை",
+    "description": "எடிட்டரில் 5 நிமிடத்திற்குக் கீழ் வரும் விளக்கம்"
+  },
+  "overLimitLabelDescriptionFastPath": {
+    "message": "திருத்தல் அம்சங்கள் கிடைக்கவில்லை",
+    "description": "Over limit description when the recording is a native MP4 (fast recorder / WebCodecs) so MP4 export still works"
+  },
+  "videoProcessingLabelTitle": {
+    "message": "வீடியோ செயலாக்கப்படுகின்றது...",
+    "description": "வீடியோ செயலாக்க லேபிள் இன் பதிவு"
+  },
+  "videoProcessingLabelDescription": {
+    "message": "விரிவாக்க மற்றும் விருத்திப் பதிவு செய்வதற்கு மேல் புதுப்பிப்பு செய்யவும்",
+    "description": "வீடியோ செயலாக்க விளக்கம் இன் பதிவு"
+  },
+  "sandboxEditTitle": {
+    "message": "திருத்து",
+    "description": "மின்னணு திருத்து பக்கத்தில் திருத்த தலைப்பு"
+  },
+  "noConnectionLabel": {
+    "message": "இணைப்பு இல்லை",
+    "description": "இணைப்பு லேபிள்"
+  },
+  "notAvailableLabel": {
+    "message": "கிடைக்காது",
+    "description": "கிடைக்காது லேபிள்"
+  },
+  "editButtonTitle": {
+    "message": "வீடியோ திருத்து",
+    "description": "குறைத்து திருத்த பொத்தான்"
+  },
+  "editButtonDescription": {
+    "message": "வீடியோவை குறைத்து, வெட்டுக்கள் அல்லது பாரம் செய்யுங்கள்",
+    "description": "குறைத்து பொத்தான்"
+  },
+  "preparingLabel": {
+    "message": "தயாராகிறது...",
+    "description": "தயாரிக்கின்றது லேபிள்"
+  },
+  "cropButtonTitle": {
+    "message": "வீடியோவை வெட்டு",
+    "description": "வெட்டு பொத்தான் பொத்தான்"
+  },
+  "cropButtonDescription": {
+    "message": "வீடியோவை வெட்டுக்கும் மற்றும் அளவை அமைக்கவும்",
+    "description": "வெட்டு பொத்தான்"
+  },
+  "addAudioButtonTitle": {
+    "message": "ஒலியை சேர்",
+    "description": "ஒலி பொத்தான் பொத்தான்"
+  },
+  "addAudioButtonDescription": {
+    "message": "உங்கள் சொந்த ஒலியை வீடியோக்கு சேர்க்க பொத்தான்",
+    "description": "ஒலி பொத்தான்"
+  },
+  "sandboxSaveTitle": {
+    "message": "சேமிக்க",
+    "description": "மின்னணு திருத்து பக்கத்தில் சேமிக்க தலைப்பு"
+  },
+  "signOutDriveLabel": {
+    "message": "டிரைவை விடு",
+    "description": "கூகுள் டிரைவ் பெயர் விடுக"
+  },
+  "savingDriveLabel": {
+    "message": "சேமிக்கப்படுகின்றது...",
+    "description": "கூகுள் டிரைவ் கீபேழ்க"
+  },
+  "saveDriveButtonTitle": {
+    "message": "டிரைவ் கீபேழ்க",
+    "description": "கூகுள் டிரைவ் பொத்தான் பொத்தான்"
+  },
+  "saveDriveButtonDescription": {
+    "message": "தற்போதைய பதிப்பை கூகுள் டிரைவ் கீபேழ்க",
+    "description": "கூகுள் டிரைவ் பொத்தான்"
+  },
+  "signInDriveLabel": {
+    "message": "உள்நுழைக்கி டிரைவ் கீபேழ்க",
+    "description": "கூகுள் டிரைவ் பெயர் விடுக"
+  },
+  "sandboxExportTitle": {
+    "message": "ஏற்று",
+    "description": "மின்னணு திருத்து பக்கத்தில் ஏற்ற தலைப்பு"
+  },
+  "downloadingLabel": {
+    "message": "பதிவிறக்குதல்...",
+    "description": "பதிவிறக்குதல் லேபிள்"
+  },
+  "downloadWEBMButtonTitle": {
+    "message": ".webm ஆகப் பதிவிறக்க",
+    "description": "WEBM பொத்தான் பொத்தான்"
+  },
+  "downloadWEBMButtonDescription": {
+    "message": ".webm வீடியோவை ஏற்று",
+    "description": "WEBM பொத்தான்"
+  },
+  "downloadMP4ButtonTitle": {
+    "message": ".mp4 ஆகப் பதிவிறக்க",
+    "description": "MP4 பொத்தான் பொத்தான்"
+  },
+  "downloadMP4ButtonDescription": {
+    "message": ".mp4 வீடியோ ஏற்றுக் கொள்ள (பரிந்துரைக்கப்படுகின்றது)",
+    "description": ".mp4 பொத்தான் பொத்தான்"
+  },
+  "downloadGIFButtonTitle": {
+    "message": ".gif ஆகப் பதிவிறக்க",
+    "description": "GIF பொத்தான் பொத்தான்"
+  },
+  "downloadGIFButtonDescription": {
+    "message": "GIF ஐ ஏற்று (அதிகம் 30 வினாடிகள்)",
+    "description": "GIF பொத்தான்"
+  },
+  "shareModalSandboxTitle": {
+    "message": "உங்கள் பதிவு தரத்தை உயர்த்த தயாரா?",
+    "description": "Share modal title in sandbox editor page"
+  },
+  "shareModalSandboxDescription": {
+    "message": "க்ளவுட் பகிர்வு, பூம், டெம்ப்ளேட்டுகள்... மற்றும் தனியொரு டெவலப்பரால் உருவாக்கப்பட்ட, தனியுரிமையை மதிக்கும் டூலை ஆதரிக்கவும் ❤️",
+    "description": "Share modal description in sandbox editor page"
+  },
+  "shareModalSandboxButton": {
+    "message": "Pro பற்றி மேலும் அறிக",
+    "description": "Share modal email placeholder in sandbox editor page"
+  },
+  "shareModalSandboxLogin": {
+    "message": "ஏற்கனவே கணக்கு உள்ளதா? உள்நுழைக",
+    "description": "Share modal login link in sandbox editor page"
+  },
+  "shareSandboxButton": {
+    "message": "வீடியோ பகிர்",
+    "description": "மின்னணு திருத்தி மின்னணு பெயர் மின்னணு பெயர்"
+  },
+  "replaceAudioEditor": {
+    "message": "தற்போதைய ஒலியை மாற்றுக",
+    "description": "தொகுப்பாளி இல் ஒலி பெயர்"
+  },
+  "zoomToPointPopup": {
+    "message": "கோர்சரை முடக்கு",
+    "description": "புள்ளி புள்ளி பெயர் பொத்தான்"
+  },
+  "stayInPagePopup": {
+    "message": "பதிவு செய்யும் பேஜில் உள்ளே இரு",
+    "description": "பக்க படுகின்றது பப்ப்"
+  },
+  "micReminderPopup": {
+    "message": "மைக்ரோஃபோன் அணை எச்சரிக்கை",
+    "description": "மைக் அனுக்கிரிப் பப்"
+  },
+  "helpPopup": {
+    "message": "உத்தமம்",
+    "description": "உத்தமம் பப் பொத்தான்"
+  },
+  "pausedRecordingToast": {
+    "message": "பதிவு நிறுத்தப்பட்டது. மீடியோ தொடர இயக்க புத்தரம் அழுக்கவும்.",
+    "description": "தற்போது இயக்கப்படுகின்ற விசை பட்டியல் தற்போது இயக்கப்படுகின்றது"
+  },
+  "chromePermissionsModalTitle": {
+    "message": "Recordful உங்கள் திரையை பதிவு செய்ய அனுமதியில்லை",
+    "description": "அனுமதி பட்டியல் தலைப்பு"
+  },
+  "chromePermissionsModalDescription": {
+    "message": "திரைப் பதிவை இயக்க, கேட்கப்படும்போது உங்கள் திரையைப் பிடிக்க Recordful-க்கு அனுமதி வழங்க வேண்டும்.",
+    "description": "அனுமதி பட்டியல் விளக்கம்"
+  },
+  "chromePermissionsModalAction": {
+    "message": "திரை பதிவை இயக்கு",
+    "description": "அனுமதி பட்டியல் செயல்"
+  },
+  "chromePermissionsModalCancel": {
+    "message": "ரத்து செய்",
+    "description": "அனுமதி பட்டியல் ரத்து"
+  },
+  "micMutedModalTitle": {
+    "message": "உங்கள் மைக்ரோஃபோன் அமைக்கப்பட்டுள்ளது",
+    "description": "மைக்ரோஃபோன் அமைக்கப்பட்டுள்ள தலைப்பு"
+  },
+  "micMutedModalDescription": {
+    "message": "உங்கள் பதிவில் ஒலியைச் சேர்க்க, மைக்ரோஃபோனின் ஒலியடக்கத்தை நீக்க வேண்டும். ஒலி இல்லாமல் தொடர விரும்புகிறீர்களா?",
+    "description": "மைக்ரோஃபோன் அமைக்கப்பட்டுள்ள விளக்கம்"
+  },
+  "micMutedModalAction": {
+    "message": "ஆம், தொடர",
+    "description": "மைக்ரோஃபோன் அமைக்கப்பட்டுள்ள விளக்கம் தொடர்வது"
+  },
+  "micMutedModalCancel": {
+    "message": "ரத்து செய்",
+    "description": "மைக்ரோஃபோன் அமைக்கப்பட்டுள்ள விளக்கம் ரத்து"
+  },
+  "setupTitle": {
+    "message": "மூன்று எளிய படிகளில் ஸ்கிரீனிடி பயன்படுத்த ஆரம்பிக்கவும்:",
+    "description": "அமைதிகள் தலைப்பு"
+  },
+  "setupStep1Before": {
+    "message": "1- கிளிக் செய்யவும் ",
+    "description": "அமைதிப் படிகள் பட்டியல் 1, ஐகானுக்கு முந்திர விசை தேவை."
+  },
+  "setupStep1After": {
+    "message": " நீக்குதல் ஐகான்",
+    "description": "அமைதிப் படிகள் பட்டியல் 1, ஐகானுக்கு பின்னர் விசை தேவை."
+  },
+  "setupStep2Before": {
+    "message": "2- அழுத்தவும் ",
+    "description": "அமைதிப் படிகள் பட்டியல் 2, ஐகானுக்கு முந்திர விசை தேவை."
+  },
+  "setupStep2After": {
+    "message": " அடைவு ஐகான்",
+    "description": "அமைதிப் படிகள் பட்டியல் 2, ஐகானுக்கு பின்னர் விசை தேவை."
+  },
+  "setupStep3Before": {
+    "message": "3- கிளிக் செய்யவும் ",
+    "description": "அமைதிப் படிகள் பட்டியல் 3, ஐகானுக்கு முந்திர விசை தேவை."
+  },
+  "setupStep3After": {
+    "message": " Recordful ஐகானை தொடர்க",
+    "description": "அமைதிப் படிகள் பட்டியல் 3, ஐகானுக்கு பின்னர் விசை தேவை."
+  },
+  "setupCompleteTitle": {
+    "message": "அற்புதம்! உங்கள் அமைப்பு அனைத்து அமைப்புகளும் அமைந்துவிட்டன",
+    "description": "அமைதிப் படிகள் படிகள் பட்டியல் தலைப்பு"
+  },
+  "setupCompleteDescription": {
+    "message": "நீங்கள் இப்போது இங்கே அல்லது வேறு பக்கத்தில் பதிவு செய்ய முடியும்.",
+    "description": "அமைதிப் படிகள் படிகள் பட்டியல் விளக்கம்"
+  },
+  "clickHereDrawOnboarding": {
+    "message": "எங்கேயும் வரையுங்கள்",
+    "description": "இங்கே செய்ய வரையுங்கள்"
+  },
+  "countdownMessage": {
+    "message": "சமாதானமாக. எங்கேயும் கிளிக் செய்யவும் எண்ணிக்கொள்ள முடியும்.",
+    "description": "எண்ணிக்கொள்ள செய்தி"
+  },
+  "sandboxEditorTooSmallInfo": {
+    "message": "பட்டியல்கள் படிகளை திருத்த நிரப்பாது கூடிய கால இடங்களுக்காக வடிவங்கள் இடைவெளிக்காட்டப்படும் காரணமாக, திருத்தங்கள் தவறாக இருக்கலாம்.",
+    "description": "எடிட்டர் சிறியப் படிகள் படிக்கும் தகவல்"
+  },
+  "processingBannerEditor": {
+    "message": "வீடியோ செயலாக்கப்படுகின்றது, விளக்கத்துக்குச் சிறந்த அல்லது அடுத்துப் பார்க்கப்படும் என்று புதியது சொல்கின்றது.",
+    "description": "எடிட்டரில் செயலாக்கப்படும் அற்புத விளக்கம்"
+  },
+  "croppingInfoTitle": {
+    "message": "வெட்டுத்ததம் சிறிய நேரம் ஆகலாம்",
+    "description": "வெட்டுத்தம் தகவல் தலைப்பு"
+  },
+  "croppingInfoDescription": {
+    "message": "விரைவாக செயலாக்க முடியும் என்று மேம்படுகின்றது",
+    "description": "வெட்டுத்தம் தகவல் விளக்கம்"
+  },
+  "micOnToast": {
+    "message": "மைக்ரோஃபோன் இயக்கப்பட்டுள்ளது",
+    "description": "மைக்ரோஃபோன் இயக்கப்பட்டுள்ளது விளக்க தலைப்பு"
+  },
+  "micOffToast": {
+    "message": "மைக்ரோஃபோன் முடக்கப்பட்டுள்ளது",
+    "description": "மைக்ரோஃபோன் முடக்கப்பட்டுள்ளது விளக்க தலைப்பு"
+  },
+  "hideUIAlerts": {
+    "message": "UI அறிவிப்புகளை மறை",
+    "description": "UI அறிவிப்புகளை மறைக்க பொது பொது"
+  },
+  "noShowAgain": {
+    "message": "மீண்டும் காட்ட விரும்பாதே",
+    "description": "மீண்டும் காட்ட விரும்பாதே பொது"
+  },
+  "toolbarHoverOnly": {
+    "message": "பயன்படுத்தப்பட்ட போக்குகை மீட்டை மறை",
+    "description": "ஹோவர் பொத்தாக்கல் முக்கியம் பொது பொது"
+  },
+  "stopRecording": {
+    "message": "பதிவு முடிக்க",
+    "description": "பதிவு முடிக்க பொது பொது"
+  },
+  "updateAnnouncementTitle": {
+    "message": "புதிய Recordful க்கு வரவேற்கின்றது!",
+    "description": "அந்தப் பயனாளர்களுக்காக புதியது அற்புதம் தலைப்பு"
+  },
+  "updateAnnouncementDescription": {
+    "message": "நாங்கள் புதிய பார்வையும் அந்தப் பயனாளர்களுக்கு அற்புதமான அமைப்பை அறிமுகப்படுத்துகின்றோம், ஆனால் சிறுபக்கங்கள் அனைத்து இலவச, தனியுரிமையுடன் மூன்று விளம்பரச் செயல்பாடுகளாக இல்லை என்றாக, அதே கூட நீங்கள் அறிந்து கொள்ளும் மற்றும் காத்திருப்பதே அந்த படிவிக்கு மீதம்.",
+    "description": "அப்டேட் அறிவிப்பு விளக்கம் ஏற்படும் பயனாளர்களுக்கு"
+  },
+  "updateAnnouncementLearnMore": {
+    "message": "அப்டேட் பற்றி மேலும் அறிந்து கொள்ளவும்.",
+    "description": "அப்டேட் அறிவிப்பு மேலும் அறிந்து கொள்ள பட்டன் பயனாளர்களுக்கு"
+  },
+  "updateAnnouncementButton": {
+    "message": "ஆரம்பிக்கவும்",
+    "description": "அப்டேட் அறிவிப்பு பட்டன் பயனாளர்களுக்கு"
+  },
+  "streamErrorModalTitle": {
+    "message": "பதிவு ஆரம்பிப்பதில் பிழை",
+    "description": "ஸ்ட்ரீம் பிழை மாடல் தலைப்பு"
+  },
+  "streamErrorModalDescription": {
+    "message": "பதிவில் ஏதோ பிழை ஏற்பட்டது போல் தெரிகிறது. உங்கள் உலாவியை மீண்டும் தொடங்கி, மீண்டும் முயற்சிக்கவும். சிக்கல் தொடர்ந்தால், தயவுசெய்து X.com/whyKislay or forg.to/@kislay முகவரியில் எங்களைத் தொடர்பு கொள்ளவும்.",
+    "description": "ஸ்ட்ரீம் பிழை மாடல் விளக்கம்"
+  },
+  "accountErrorModalTitle": {
+    "message": "சந்தா தேவை",
+    "description": "Title of the modal shown when a cloud recording is refused because the account has no active subscription"
+  },
+  "accountErrorModalDescription": {
+    "message": "இந்தக் கணக்கில் செயலில் உள்ள சந்தா இல்லாததால் Recordful கிளவுட் பதிவைத் தொடங்க முடியவில்லை. உங்கள் பதிவுகளும் அமைப்புகளும் பாதுகாப்பாக உள்ளன.",
+    "description": "Body shown when the account has never had an active subscription (server: upgrade_required)"
+  },
+  "accountErrorModalDescriptionLapsed": {
+    "message": "இந்தக் கணக்கின் Pro அணுகல் முடிந்துவிட்டதால் Recordful கிளவுட் பதிவைத் தொடங்க முடியவில்லை. உங்கள் பதிவுகளும் அமைப்புகளும் பாதுகாப்பாக உள்ளன.",
+    "description": "Body shown when the account's subscription has ended (server: reactivate_required)"
+  },
+  "accountErrorModalAction": {
+    "message": "சந்தாவைப் பார்க்க",
+    "description": "Button that opens the subscription page"
+  },
+  "authErrorModalTitle": {
+    "message": "மீண்டும் உள்நுழையவும்",
+    "description": "Title of the modal shown when a cloud recording is refused because the session expired, not the subscription"
+  },
+  "authErrorModalDescription": {
+    "message": "அமர்வு காலாவதியானதால் Recordful கிளவுட் பதிவைத் தொடங்க முடியவில்லை. உங்கள் சந்தா, பதிவுகள், அமைப்புகள் அனைத்தும் பாதுகாப்பாக உள்ளன.",
+    "description": "Body shown when the session/token failed; the account may well be a paying subscriber"
+  },
+  "authErrorModalAction": {
+    "message": "உள்நுழை",
+    "description": "Button that reopens the login flow"
+  },
+  "highestQuality": {
+    "message": "அதிசய உயர தரம்",
+    "description": "பாப் பப் வரிசையில் அதிசய உயர தரம் லேபிள்"
+  },
+  "restoreRecording": {
+    "message": "கடைசி பதிவு மீட்டமை",
+    "description": "பாப் பப் வரிசையில் கடைசி பதிவு மீட்டமை பட்டன்"
+  },
+  "havingIssuesButton": {
+    "message": "பிரச்சினைகள் உள்ளனவா?",
+    "description": "எடிட்டரில் பிரச்சினைகள் பொத்தான்"
+  },
+  "havingIssuesModalTitle": {
+    "message": "உங்கள் ரெக்கார்டிங் காணாதுவா?",
+    "description": "எடிட்டரில் பிரச்சினை படிக்கு தலைப்பு"
+  },
+  "havingIssuesModalDescription": {
+    "message": "உங்கள் பதிவு முடிந்த பிறகும் வீடியோ காட்டப்படாமல் இந்தப் பக்கத்தைக் காணும்பட்சத்தில், மூல வீடியோ தரவு கிடைக்குமானால் அதைப் பதிவிறக்க முயற்சிக்கலாம். எங்களைத் தொடர்பு கொண்டு பிழை அறிக்கையையும் சமர்ப்பிக்கலாம்.",
+    "description": "எடிட்டரில் பிரச்சினை படிவம்"
+  },
+  "havingIssuesModalButton": {
+    "message": "அவகாச வீடியோ தரவை பதிவிறக்குங்கள்",
+    "description": "எடிட்டரில் பிரச்சினை படிக்கு பொத்தான்"
+  },
+  "havingIssuesModalButton2": {
+    "message": "பிழை அறிக்கை செய்க",
+    "description": "எடிட்டரில் பிரச்சினை படிக்கு இரண்டாவது பொத்தான்"
+  },
+  "noRecordingFound": {
+    "message": "ஒரு பதிவுக்கு காணப்பட்டதில்லை, மன்னிக்கவும் :(",
+    "description": "எடிட்டரில் ஒரு பதிவுக்கு காணப்பட்டதில்லை எச்சரிக்கை"
+  },
+  "memoryLimitTitle": {
+    "message": "நினைவர வரம்பு அடைந்துள்ளது",
+    "description": "நினைவர வரம்பு அடைந்துள்ளது தலைப்பு"
+  },
+  "memoryLimitDescription": {
+    "message": "உங்கள் சாதனத்தின் சேமிப்பகம் தீர்ந்துவிட்டதால், பதிவு தானாக நிறுத்தப்பட்டது. அதுவரையிலான உங்கள் பதிவு பாதுகாப்பாக உள்ளது; அதை எடிட்டரிலிருந்து பதிவிறக்கலாம். நீண்ட நேரம் பதிவு செய்ய, வீடியோ தரத்தைக் குறைக்கவும் அல்லது உங்கள் சாதனத்தில் இடத்தைக் காலி செய்யவும்.",
+    "description": "நினைவர வரம்பு அடைந்துள்ளது விளக்கம்"
+  },
+  "understoodButton": {
+    "message": "புரிந்தேன்",
+    "description": "புரிந்தேன் பட்டன்"
+  },
+  "notEnoughSpaceTitle": {
+    "message": "புதியவில் போக்கு இல்லை",
+    "description": "புதியவில் போக்கு இல்லை தலைப்பு"
+  },
+  "notEnoughSpaceDescription": {
+    "message": "பதிவு செய்ய Recordful-க்கு குறைந்தபட்சம் 1GB இலவச இடம் தேவை. தயவுசெய்து சிறிது இடத்தைக் காலி செய்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "புதியவில் போக்கு இல்லை விளக்கம்"
+  },
+  "clearSpaceButton": {
+    "message": "முந்தைய பதிவுகளை நீக்கு",
+    "description": "முந்தைய பதிவுகளை நீக்கு பட்டன்"
+  },
+  "sandboxAdvancedTitle": {
+    "message": "உயர்தரம்",
+    "description": "பராமரிப்பு எடிட்டர் பகுதி பரம்பரையில்"
+  },
+  "rawRecordingButtonTitle": {
+    "message": "மூல வீடியோ கோப்புகளை பதிவிறக்கம் செய்க",
+    "description": "மூல பதிவிறக்கம் பட்டன்"
+  },
+  "rawRecordingButtonDescription": {
+    "message": "உயர்நிலை பதிவிறக்க தரவை வழங்குக",
+    "description": "மூல பதிவிறக்கம் லேபிள்"
+  },
+  "troubleshootButtonTitle": {
+    "message": "உங்கள் பதிவிறக்கத்தில் உதவியை பெறுங்கள்",
+    "description": "பிரச்சினைக்கு பெறுவதற்கான பட்டன்"
+  },
+  "troubleShootButtonDescription": {
+    "message": "உங்கள் வீடியோவை மீட்டரியாக்குகின்றது மற்றும் பிற சிக்கல்களை தீர்க்க",
+    "description": "பிரச்சினைக்கு பெறுவதற்கான லேபிள்"
+  },
+  "rawRecordingModalTitle": {
+    "message": "மூல வீடியோ கோப்புகளை பதிவிறக்கம் செய்க",
+    "description": "மூல பதிவிறக்கம் மாடல் தலைப்பு"
+  },
+  "rawRecordingModalDescription": {
+    "message": "மூல வீடியோ கோப்பு என்பது Recordful பதிவு செய்த அசல் வீடியோ கோப்பாகும். இது செயலாக்கப்படவோ திருத்தப்படவோ இல்லை, எனவே மிகப் பெரியதாகவும் எல்லாச் சாதனங்களிலும் இயக்க முடியாததாகவும் இருக்கலாம். செயலாக்கப்பட்ட வீடியோவில் சிக்கல்கள் ஏற்பட்டால், உங்கள் வீடியோவை மீட்டெடுக்க இந்தக் கோப்பைப் பயன்படுத்தலாம்.",
+    "description": "மூல பதிவிறக்கம் மாடல் விளக்கம்"
+  },
+  "rawRecordingModalButton": {
+    "message": "பதிவிறக்குக",
+    "description": "மூல பதிவிறக்கம் மாடல் பட்டன்"
+  },
+  "troubleshootModalTitle": {
+    "message": "அமைப்பு தகவலுக்கு மற்றும் வீடியோ தரவுகளுக்கு உதவிக்கு அளிக்கவும்",
+    "description": "தகவலுக்கு உதவி மாடல் தலைப்பு"
+  },
+  "troubleshootModalDescription": {
+    "message": "இது கணினித் தகவல்கள் மற்றும் சமீபத்திய பதிவு அமர்வுத் தரவுகளுடன் ஒரு கண்டறிதல் அறிக்கையைப் பதிவிறக்கும். உங்கள் சிக்கலை நாங்கள் தீர்க்க உதவ அதை X.com/whyKislay or forg.to/@kislay-க்கு அனுப்புங்கள். எந்த வீடியோ அல்லது ஒலித் தரவும் இதில் சேர்க்கப்படவில்லை.",
+    "description": "தகவலுக்கு உதவி மாடல் விளக்கம்"
+  },
+  "troubleshootModalButton": {
+    "message": "பதிவிறக்குக",
+    "description": "தகவலுக்கு உதவி மாடல் பட்டன்"
+  },
+  "overLimitModalTitle": {
+    "message": "உங்கள் சாதனத்தில் விடியோ பொதுவாக செயல்படுத்த முடியவில்லை",
+    "description": "5 நிமிட வாரந்தோற்ற உள்ளடக்கம் உடைய மாதிரி மோடல் தலைப்பு"
+  },
+  "overLimitModalDescription": {
+    "message": "Recordful முற்றிலும் தனிப்பட்டது மற்றும் உள்ளூரில் இயங்குவதால், உங்கள் சாதனத்தின் வன்பொருளால் வரையறுக்கப்படுகிறது. இவ்வளவு நீளமான வீடியோவைச் செயலாக்க அதிக நேரமும் வளங்களும் தேவைப்படும். கவலைப்பட வேண்டாம், WEBM கோப்பையோ மூலப் பதிவையோ இன்னும் பதிவிறக்கலாம், ஆனால் திருத்துதலும் MP4 ஏற்றுமதியும் கிடைக்காது. அபாயங்களைப் புரிந்திருந்தால், வீடியோவை எப்படியாயினும் செயலாக்க முயற்சிக்கலாம்.",
+    "description": "5 நிமிட வாரந்தோற்ற உள்ளடக்கம் மோடல் விளக்கம்"
+  },
+  "overLimitModalDescriptionFastPath": {
+    "message": "Recordful முற்றிலும் தனிப்பட்டதாகவும் உள்ளூரில் இயங்குவதால், உங்கள் சாதன வன்பொருளால் வரையறுக்கப்படுகிறது. இந்த நீளமான வீடியோவை செயலாக்க அதிக நேரம் மற்றும் வளங்கள் தேவைப்படும். உங்கள் MP4 பதிவிறக்கத் தயாராக உள்ளது, ஆனால் இவ்வளவு நீளமான கிளிப்புகளுக்கு உலாவியில் திருத்தம் கிடைக்காது. இருந்தாலும், நீங்கள் அபாயங்களைப் புரிந்தால் வீடியோவை செயலாக்க முயற்சி செய்யலாம்.",
+    "description": "Over 5 minutes limit modal description when the recording is a native MP4 (fast recorder / WebCodecs)"
+  },
+  "overLimitModalButton": {
+    "message": "ஞாபகம், அதை முயற்சிக்கவும்",
+    "description": "5 நிமிட வாரந்தோற்ற உள்ளடக்கம் மோடல் பட்டன்"
+  },
+  "overLimitModalLearnMore": {
+    "message": "நீண்ட வீடியோக்களை செயல்படுத்துவது பற்றிய மேலும் அறிந்து கொள்ளுங்கள்.",
+    "description": "5 நிமிட வாரந்தோற்ற உள்ளடக்கம் மோடல் மேலும் அறிந்து கொள்ளுங்கள் இணைப்பு மூலம்"
+  },
+  "recoveryModeTitle": {
+    "message": "மீட்டமைப்பு முறை",
+    "description": "மீட்டமைப்பு முறை தலைப்பு"
+  },
+  "downloadForTroubleshootingOption": {
+    "message": "பிரச்சனைகளை தீர்க்க தரவை பதிவிறக்கவும்",
+    "description": "பிரச்சனைகளை தீர்க்க விருப்ப பதிவிறக்க விருப்பம்"
+  },
+  "getHelpNav": {
+    "message": "உதவி மையம்",
+    "description": "உதவி வழியிடம் உருவாக்குதல்"
+  },
+  "audioWarningTitle": {
+    "message": "பக்கத்தில் ஒலி பதிவு",
+    "description": "ஒலி எச்சரிக்கை தலைப்பு"
+  },
+  "audioWarningDescription": {
+    "message": "இந்த பக்கத்தில் ஒலியை பதிவு செய்ய உங்கள் விருப்பத்தை '$tab$' விருப்பம் பயன்படுத்த வேண்டும்.",
+    "description": "ஒலி எச்சரிக்கை விளக்கம்",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Tab area"
+      }
+    }
+  },
+  "extensionNotSupportedTitle": {
+    "message": "பக்கத்தில் கொள்ளும்போது ஆதரிக்கப்படாத நீக்கம்",
+    "description": "அட்டவணை ஆதரிக்கப்படாத நீக்கம் தலைப்பு"
+  },
+  "extensionNotSupportedDescription": {
+    "message": "உங்கள் முந்தைய தாவலில் Recordful ஆதரிக்கப்படவில்லை. இங்கே பதிவைத் தொடங்கி அந்தத் தாவலுக்குத் திரும்பலாம், ஆனால் உங்கள் கேமராவும் கருவிப்பட்டியும் தெரியாது.",
+    "description": "அட்டவணை ஆதரிக்கப்படாத நீக்கம் விளக்கம்"
+  },
+  "backupsDescription1": {
+    "message": "நீங்கள் எடுக்கும் அனைத்துப் பதிவுகளின் ஒரு நகலையும் வைத்திருங்கள். காப்புப் பிரதிகளை அமைக்கவில்லை எனில், நீங்கள் பதிவிறக்கத் தேர்வு செய்யும்போது மட்டுமே பதிவுகள் சேமிக்கப்படும்.",
+    "description": "காப்பிடுதல் விளக்கம்"
+  },
+  "backupsDescription2": {
+    "message": "Downloads அல்லது வேறு கணினிக் கோப்பகங்களில் சேமிக்க முயற்சித்தால், முதலில் ஒரு புதிய கோப்பகத்தை உருவாக்க வேண்டியிருக்கலாம்.",
+    "description": "காப்பிடுதல் விளக்கம்"
+  },
+  "recordAudioWarningMacTitle": {
+    "message": "கணினியிலிருந்து ஒலியை பதிவுசெய்ய",
+    "description": "macOS க்கு ஒலியின் எச்சரிக்கை தலைப்பு"
+  },
+  "recordAudioWarningMacDescription": {
+    "message": "macOS-ல், தாவல் ஒலியை மட்டுமே பதிவு செய்ய முடியும். 'Chrome Tab' விருப்பத்தைத் தேர்வு செய்து, 'Also share tab audio' இயக்கப்பட்டிருப்பதை உறுதி செய்யுங்கள்.",
+    "description": "macOS க்கு ஒலியை பதிவுசெய்தல் விருப்பம் தலைப்பு"
+  },
+  "recordAudioWarningOtherTitle": {
+    "message": "கணினியிலிருந்து ஒலியை பதிவுசெய்ய",
+    "description": "பிற கணினி வடிவம் க்கு ஒலியின் எச்சரிக்கை தலைப்பு"
+  },
+  "recordAudioWarningOtherDescription": {
+    "message": "கணினி ஒலியைப் பதிவு செய்ய விரும்பினால், 'Share system audio' விருப்பத்தை இயக்க உறுதி செய்யுங்கள். இந்த விருப்பம் தெரியவில்லை எனில், Chrome-ஐப் புதுப்பிக்க முயற்சிக்கவும் அல்லது தாவல் பதிவுக்கு மாறவும்.",
+    "description": "பிற கணினி வடிவம் க்கு ஒலியின் எச்சரிக்கை தலைப்பு"
+  },
+  "maxResolutionLabel": {
+    "message": "அதிசய கருவி",
+    "description": "அமைப்புகள் பட்டியலில் அதிசய கருவி குறியீட்டு"
+  },
+  "maxFPSLabel": {
+    "message": "அதிகபட்ச FPS",
+    "description": "அமைப்புகள் பட்டியலில் அதிசய கோட்டிகள் குறியீட்டு"
+  },
+  "notEnoughRAM": {
+    "message": "புதிய ரேம் போதுமில்லை",
+    "description": "அமைப்புக்கு அந்த ரேம் போதுமில்லை பதில்"
+  },
+  "resizeWindowLabel": {
+    "message": "சாளரம் பருவமை",
+    "description": "அமைப்புகள் பட்டியலில் சாளரம் பருவமை குறிப்பு"
+  },
+  "screenTooSmallTooltip": {
+    "message": "இந்த திசையுக்கு உயர்வு மிகவும் சிறியது",
+    "description": "அமைப்புகள் பட்டியலில் திசை மிகவும் சிறியது குறிப்பு"
+  },
+  "maxResolutionTooltip": {
+    "message": "உங்கள் சாதனத்தில் இந்த உயர்வில் பதிவு செய்ய முடியாது",
+    "description": "அமைப்புகள் பட்டியலில் அதிசய உயர்வு குறிப்பு"
+  },
+  "permissionsModalReview": {
+    "message": "அனுமதிகளை பரவி",
+    "description": "அனுமதிகளை பரவி பொத்தானை"
+  },
+  "recordButtonMultiLabel": {
+    "message": "மற்றொரு பதிவைச் சேர்க்கவும்",
+    "description": "Record button label (multi mode)"
+  },
+  "recorderSetupTitle": {
+    "message": "தயார் செய்கிறோம்...",
+    "description": "Title in recording page while setting up project before countdown starts"
+  },
+  "recorderSetupDescription": {
+    "message": "கொஞ்சம் பொறுங்கள்! உங்கள் பதிவு தயாராகிக்கொண்டிருக்கிறது.",
+    "description": "Description in recording page before countdown starts"
+  },
+  "reopenToolbarToast": {
+    "message": "கருவிப்பட்டை மறைக்கப்பட்டது. பாப்அப் விருப்பங்களில் அதை மீண்டும் இயக்கவும்.",
+    "description": "Toast message explaining to reopen the toolbar in the popup options"
+  },
+  "loginButtonLabel": {
+    "message": "உள்நுழையவும் அல்லது பதிவு செய்யவும்",
+    "description": "Login button label in popup settings menu"
+  },
+  "logoutButtonLabel": {
+    "message": "வெளியேறு",
+    "description": "Logout button label in popup settings menu"
+  },
+  "loggedOutToastTitle": {
+    "message": "நீங்கள் வெளியேற்றப்பட்டுவிட்டீர்கள்",
+    "description": "Toast message shown when the user logs out"
+  },
+  "storageLimitReachedTitle": {
+    "message": "சேமிப்பக வரம்பு எட்டப்பட்டது",
+    "description": "Modal message shown when the storage limit is reached"
+  },
+  "storageLimitReachedDescription": {
+    "message": "உங்கள் முழு 100 GB சேமிப்பகத்தையும் பயன்படுத்திவிட்டீர்கள். தொடர்ந்து பதிவு செய்ய பழைய வீடியோக்கள் அல்லது காட்சிகளை நீக்கவும்.",
+    "description": "Modal description shown when the storage limit is reached"
+  },
+  "manageStorageButtonLabel": {
+    "message": "சேமிப்பகத்தை நிர்வகிக்கவும்",
+    "description": "Button label to manage storage in the popup settings menu"
+  },
+  "closeModalLabel": {
+    "message": "மூடு",
+    "description": "Agnostic close modal button label"
+  },
+  "storageCheckFailTitle": {
+    "message": "சேமிப்பகத்தைச் சரிபார்க்க முடியவில்லை",
+    "description": "Title shown when the storage check fails"
+  },
+  "storageCheckFailAuthDescription": {
+    "message": "உங்கள் சேமிப்பகத்தைச் சரிபார்ப்பதில் சிக்கல் ஏற்பட்டது. மீண்டும் உள்நுழைந்து பதிவு செய்ய முயற்சிக்கவும்.",
+    "description": "Description shown when the storage check fails due to authentication"
+  },
+  "storageCheckFailDescription": {
+    "message": "உங்கள் சேமிப்பக ஒதுக்கீட்டை எங்களால் சரிபார்க்க முடியவில்லை. சில வினாடிகளில் மீண்டும் முயற்சிக்கவும் அல்லது பக்கத்தைப் புதுப்பிக்கவும்.",
+    "description": "Description shown when the storage check fails"
+  },
+  "retryButtonLabel": {
+    "message": "மீண்டும் முயற்சிக்கவும்",
+    "description": "Agnostic button label to try again"
+  },
+  "addedToMultiToast": {
+    "message": "காட்சி பல-பதிவில் சேர்க்கப்பட்டது",
+    "description": "Toast message shown when a scene is added to multi-recording"
+  },
+  "readyRecordSceneToast": {
+    "message": "உங்கள் வீடியோவில் புதிய காட்சியைப் பதிவு செய்யத் தயார்",
+    "description": "Toast message shown when the user is in an existing project and ready to record a new scene"
+  },
+  "reachingRecordingLimitToast": {
+    "message": "பதிவு 90 நிமிட வரம்பை நெருங்குகிறது, விரைவில் நிறுத்தப்படும்",
+    "description": "Toast message shown when the recording is reaching the 90 minute limit"
+  },
+  "recordingLimitReachedToast": {
+    "message": "90 நிமிட வரம்பின் காரணமாக பதிவு நிறுத்தப்பட்டது",
+    "description": "Toast message shown when the recording limit is reached"
+  },
+  "tabRecordingDisabledToast": {
+    "message": "இந்தப் பக்கத்தில் தாவல் பதிவு முடக்கப்பட்டுள்ளது. திரைப் பதிவாக மாற்றப்பட்டது.",
+    "description": "Toast message shown when tab recording is disabled on a page"
+  },
+  "projectRecordingCancelledToast": {
+    "message": "வீடியோ பதிவு ரத்து செய்யப்பட்டது",
+    "description": "Toast message shown when the user cancels project recording"
+  },
+  "copiedToClipboardToast": {
+    "message": "இணைப்பு கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது",
+    "description": "Toast message shown when link has been copied to clipboard"
+  },
+  "failedToCopyToClipboardToast": {
+    "message": "இணைப்பை நகலெடுக்க முடியவில்லை",
+    "description": "Toast message shown when failed to copy link to clipboard"
+  },
+  "sortByHeading": {
+    "message": "வரிசைப்படுத்து",
+    "description": "Section heading in the videos sort dropdown for the field being sorted on"
+  },
+  "orderHeading": {
+    "message": "வரிசை",
+    "description": "Section heading in the videos sort dropdown for the sort direction"
+  },
+  "sortFieldLastEdited": {
+    "message": "கடைசியாக திருத்தப்பட்டது",
+    "description": "Sort field option: when the video was last edited"
+  },
+  "sortFieldDateCreated": {
+    "message": "உருவாக்கப்பட்ட தேதி",
+    "description": "Sort field option: when the video was created"
+  },
+  "sortFieldName": {
+    "message": "பெயர்",
+    "description": "Sort field option: the video's title"
+  },
+  "sortFieldLength": {
+    "message": "நீளம்",
+    "description": "Sort field option: the video's duration"
+  },
+  "orderNewestFirst": {
+    "message": "சமீபத்தியவை முதலில்",
+    "description": "Sort order option for date fields"
+  },
+  "orderOldestFirst": {
+    "message": "பழையவை முதலில்",
+    "description": "Sort order option for date fields"
+  },
+  "orderAToZ": {
+    "message": "A முதல் Z வரை",
+    "description": "Sort order option for the name field"
+  },
+  "orderZToA": {
+    "message": "Z முதல் A வரை",
+    "description": "Sort order option for the name field"
+  },
+  "orderLongestFirst": {
+    "message": "நீளமானவை முதலில்",
+    "description": "Sort order option for the length field"
+  },
+  "orderShortestFirst": {
+    "message": "குறுகியவை முதலில்",
+    "description": "Sort order option for the length field"
+  },
+  "allVideosHeading": {
+    "message": "அனைத்து வீடியோக்கள்",
+    "description": "Heading for the all videos section in the popup"
+  },
+  "noVideosFound": {
+    "message": "வீடியோக்கள் எதுவும் இல்லை",
+    "description": "Message shown when no videos are found in the popup"
+  },
+  "loadingVideosLabel": {
+    "message": "வீடியோக்களை ஏற்றுகிறது...",
+    "description": "Label shown when videos are loading in the popup"
+  },
+  "loadingMoreVideosLabel": {
+    "message": "மேலும் ஏற்றுகிறது...",
+    "description": "Label shown at the bottom of the videos list while loading additional pages"
+  },
+  "searchVideosPlaceholder": {
+    "message": "வீடியோக்களைத் தேடு",
+    "description": "Placeholder text for the videos search input in the popup"
+  },
+  "noVideosMatchSearchTitle": {
+    "message": "\"$SEARCHTERM$\" க்கு எதுவும் கிடைக்கவில்லை",
+    "description": "Heading shown when no videos match the current search query in the popup",
+    "placeholders": {
+      "searchterm": {
+        "content": "$1",
+        "example": "design review"
+      }
+    }
+  },
+  "noVideosMatchSearchHint": {
+    "message": "வேறு தேடல் சொல்லை முயற்சிக்கவும்.",
+    "description": "Subtext shown under the no search results heading in the popup"
+  },
+  "privateVideoTooltip": {
+    "message": "தனியுரிமை",
+    "description": "Tooltip shown on the lock badge over a private video's thumbnail"
+  },
+  "goToDashboardButtonLabel": {
+    "message": "டாஷ்போர்டுக்குச் செல்லவும்",
+    "description": "Button label to go to the dashboard in the popup"
+  },
+  "welcomePopupTitle": {
+    "message": "Recordful-க்கு வரவேற்கிறோம்",
+    "description": "Title for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionTop": {
+    "message": "விளம்பரங்கள் இல்லை. கண்காணிப்பு இல்லை. வரம்புகள் இல்லை.",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionBottom": {
+    "message": "  பதிவைத் தொடங்குங்கள்.",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupCTA": {
+    "message": "இலவசமாகப் பயன்படுத்துங்கள் — பதிவு செய்ய வேண்டிய அவசியமில்லை!",
+    "description": "Call to action button for the welcome popup shown to new users"
+  },
+  "welcomePopupCloudTitle": {
+    "message": "உங்கள் வீடியோக்களுடன் இன்னும் அதிகம் செய்ய விரும்புகிறீர்களா?",
+    "description": "Title for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupCloudFeature1": {
+    "message": "கிளவுட் சேமிப்பகம், இணைப்பு மூலம் வீடியோக்களைப் பகிரவும்",
+    "description": "Feature 1 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature2": {
+    "message": "பல கிளிப்புகளை ஒரே கதையாக இணைக்கவும்",
+    "description": "Feature 2 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature3": {
+    "message": "கிளிக் செய்யும்போது ஸ்மார்ட் ஜூம்கள் (அல்லது உங்களுடையதைச் சேர்க்கவும்!)",
+    "description": "Feature 3 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature4": {
+    "message": "டெம்ப்ளேட்டுகள், தலைப்புகள், தளவமைப்புகளைச் சேர்க்கவும்...",
+    "description": "Feature 4 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature5": {
+    "message": "தனிப்பயன் பின்னணிகள் மற்றும் மாக்கப்கள்",
+    "description": "Feature 5 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudCTA": {
+    "message": "🔓 கூடுதல் அம்சங்களைத் திறக்கவும்",
+    "description": "Call to action button for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupSupport": {
+    "message": "+ ஒரு தனி சுயாதீன படைப்பாளரின் வளர்ச்சிக்கு ஆதரவளியுங்கள்!",
+    "description": "Message for supporting the indie maker in the welcome popup"
+  },
+  "accountSettingsOption": {
+    "message": "கணக்கு அமைப்புகள்",
+    "description": "Label for the account settings option in the popup"
+  },
+  "supportSettingsOption": {
+    "message": "ஆதரவு",
+    "description": "Label for the support option in the popup"
+  },
+  "inactiveSubscriptionTitle": {
+    "message": "உங்கள் Pro சந்தா செயலற்ற நிலையில் உள்ளது",
+    "description": "Title shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionDescription": {
+    "message": "உங்கள் Recordful Pro சந்தா செயலற்ற நிலையில் உள்ளது.",
+    "description": "Description shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionReactivation": {
+    "message": "அணுகலை மீண்டும் தொடர அதை மீண்டும் செயல்படுத்தவும்.",
+    "description": "Message prompting the user to reactivate their subscription"
+  },
+  "inactiveSubscriptionDeletionWarning": {
+    "message": "உங்கள் வீடியோக்களும் தரவும் நிரந்தரமாக நீக்கப்படும்: ",
+    "description": "Warning message about the deletion of videos and data"
+  },
+  "manageSubscriptionButton": {
+    "message": "உங்கள் சந்தாவை நிர்வகிக்கவும்",
+    "description": "Button to manage the user's subscription"
+  },
+  "inactiveSubscriptionFreeVersion": {
+    "message": "இலவசப் பதிப்பைத் தொடர்ந்து பயன்படுத்த விரும்புகிறீர்களா?",
+    "description": "Message prompting the user to continue using the free version"
+  },
+  "downgradeToFreeButton": {
+    "message": "வெளியேறி தரம் குறைக்கவும்",
+    "description": "Button to log out and downgrade to the free version"
+  },
+  "loggedOutTitle": {
+    "message": "நீங்கள் வெளியேற்றப்பட்டுவிட்டீர்கள்",
+    "description": "Title shown when the user is logged out"
+  },
+  "loggedOutDescription": {
+    "message": "உங்கள் பதிவுகளை உங்கள் கணக்குடன் ஒத்திசைத்து வைத்திருக்கவும், பிரீமியம் அம்சங்களை அணுகவும், நீங்கள் மீண்டும் உள்நுழைய வேண்டும்.",
+    "description": "Description shown when the user is logged out"
+  },
+  "logBackInButton": {
+    "message": "மீண்டும் உள்நுழையவும்",
+    "description": "Button to log back in after being logged out"
+  },
+  "loggedOutFreeVersion": {
+    "message": "கணக்கு இல்லாமலேயே நீட்டிப்பைத் தொடர்ந்து பயன்படுத்தலாம் - ஆனால் உங்கள் பதிவுகள் சேமிக்கப்படாது, பின்னர் மீட்டெடுக்கவும் முடியாது.",
+    "description": "Message shown when the user is logged out and using the free version"
+  },
+  "continueWithoutLogin": {
+    "message": "உள்நுழையாமல் தொடரவும்",
+    "description": "Button to continue using the extension without logging in"
+  },
+  "instantRecordingModeLabel": {
+    "message": "உடனடி பதிவு பயன்முறை",
+    "description": "Label for the instant recording mode"
+  },
+  "instantRecordingModeTooltip": {
+    "message": "உடனடியாகப் பதிவிறக்கலாம், ஆனால் கேமரா மற்றும் தளவமைப்பைப் பின்னர் திருத்த முடியாது.",
+    "description": "Tooltip for the instant recording mode"
+  },
+  "instantRecordingModeTitle": {
+    "message": "உடனடி பதிவு பயன்முறை",
+    "description": "Title for the instant recording mode"
+  },
+  "instantRecordingModeDescription": {
+    "message": "இது உடனடியாகப் பதிவிறக்கம் மற்றும் பகிர்வதற்காக அனைத்தையும் ஒரே வீடியோவாகப் பதிவு செய்கிறது. பின்னர் கேமரா தளவமைப்பை மாற்ற முடியாது, ஆனால் மற்ற திருத்தங்கள் இன்னும் சாத்தியமே.",
+    "description": "Description for the instant recording mode"
+  },
+  "instantRecordingModeAction": {
+    "message": "புரிந்தது",
+    "description": "Action button for the instant recording mode"
+  },
+  "tabRecordingDisabledTooltip": {
+    "message": "இந்தப் பக்கத்தில் தாவல் பதிவு முடக்கப்பட்டுள்ளது",
+    "description": "Tooltip shown when tab recording is disabled on a page"
+  },
+  "addingToLabel": {
+    "message": "சேர்க்கப்படுகிறது: ",
+    "description": "Label shown when a scene is being recorded to a project"
+  },
+  "multiLabel": {
+    "message": "பல",
+    "description": "Label for the multi-recording mode"
+  },
+  "finishLabelMulti": {
+    "message": "முடிக்கவும்",
+    "description": "Label for the finish multi-recording button"
+  },
+  "welcomeProTitle": {
+    "message": "உங்கள் பதிவுகளுடன் இன்னும் அதிகம் செய்ய விரும்புகிறீர்களா?",
+    "description": "Title for the welcome Pro popup"
+  },
+  "welcomeProDescription": {
+    "message": "பதிவுகளை ஒரு சுத்தமான இணைப்பின் மூலம் பகிரவும், அவற்றை கிளவுட்டில் சேமிக்கவும், தேவைப்படும்போது ஜூம், வசன வரிகள் மற்றும் தளவமைப்புகளைச் சேர்க்கவும்.",
+    "description": "Description for the welcome Pro popup"
+  },
+  "welcomeProButton": {
+    "message": "எடிட்டரைத் திறக்கவும்",
+    "description": "Button to sign in to Recordful Pro"
+  },
+  "welcomeProSupport": {
+    "message": "ஒரு தனி சுயாதீன படைப்பாளரின் வளர்ச்சிக்கு ஆதரவளியுங்கள்",
+    "description": "Message for supporting the indie maker in the welcome Pro popup"
+  },
+  "unlockMoreFeatures": {
+    "message": "மேலும் அம்சங்களைத் திறக்கவும்",
+    "description": "Button to unlock more features in the editor"
+  },
+  "shareUnlockButton": {
+    "message": "பகிர உள்நுழையவும் (Pro)",
+    "description": "Button to sign in to share in the editor"
+  },
+  "proBannerTitle": {
+    "message": "கிளவுட் பகிர்வு, பல-காட்சி திருத்தம், தானியங்கி ஜூம்கள், தலைப்புகள் மற்றும் பலவற்றைத் திறக்கவும்",
+    "description": "Pro banner title in the editor"
+  },
+  "proBannerDescription": {
+    "message": "Recordful எப்போதும் இலவசமாகவும், திறந்த மூலமாகவும், விளம்பரம் இல்லாமலும் இருக்கும். Pro கிளவுட் மற்றும் உள்கட்டமைப்பு செலவுகளைச் சமாளிக்க உதவுகிறது, மேலும் ஒரு தனி சுயாதீன டெவலப்பரின் வளர்ச்சிக்கு ஆதரவளிக்கிறது! ❤️",
+    "description": "Pro banner description in the editor"
+  },
+  "proBannerAltButton": {
+    "message": "மீண்டும் காட்ட வேண்டாம்",
+    "description": "Pro banner don't show again button in the editor"
+  },
+  "proBannerButton": {
+    "message": "முயற்சிக்கவும்",
+    "description": "Pro banner button in the editor"
+  },
+  "multiRecordingModeTitle": {
+    "message": "பல-பதிவு பயன்முறை",
+    "description": "Title for the multi-recording mode modal"
+  },
+  "multiRecordingModeDescription": {
+    "message": "உங்கள் திரை, கேமரா அல்லது இரண்டையும் போன்ற பல காட்சிகளை ஒன்றன்பின் ஒன்றாகப் பதிவு செய்யுங்கள். பல டேக்குகள் எடுக்க, காட்சிகளை மாற்ற, அல்லது உங்கள் பதிவைப் பகுதிகளாகப் பிரிக்க இது சிறந்தது. நீங்கள் முடித்ததும், உங்கள் அனைத்துக் காட்சிகளும் ஒரே திட்டத்தில் இணைக்கப்பட்ட நிலையில் எடிட்டரைத் திறக்க முடிக்கவும் என்பதைக் கிளிக் செய்யவும்.",
+    "description": "Description for the multi-recording mode modal"
+  },
+  "noSubscriptionYetTitle": {
+    "message": "தொடங்க Pro-ஐத் திறக்கவும்",
+    "description": "Title shown when the user has no active subscription"
+  },
+  "noSubscriptionYetDescription": {
+    "message": "Pro அம்சங்களை அணுக சந்தா செலுத்தவும்.",
+    "description": "Message prompting the user to subscribe to reactivate their Pro features"
+  },
+  "upgradeToProButton": {
+    "message": "Pro-க்கு மேம்படுத்தவும்",
+    "description": "Button to upgrade to Pro"
+  },
+  "hostBannerTitle": {
+    "message": "Recordful-ஐ உள்ளூர் சேவையகத்தில் பயன்படுத்திக் கொண்டிருக்கிறீர்களா? எதிர்கால மேம்பாட்டை ஆதரிக்குங்கள்!",
+    "description": "தானாக ஹோஸ்ட் செய்யும் பயனர்களுக்கான பேனர் தலைப்பு"
+  },
+  "hostBannerDescription": {
+    "message": "Recordful ஒரு தனிப்பட்ட பெண் டெவலப்பரால் உருவாக்கப்பட்டதாகும். தானாக ஹோஸ்ட் செய்வது இலவசம், ஆனால் இது பயனுள்ளதாக இருந்தால், Pro பதிப்பின் மூலம் ஆதரியுங்கள் ❤️",
+    "description": "தானாக ஹோஸ்ட் செய்யும் பயனர்களுக்கான பேனர் விளக்கம்"
+  },
+  "welcomeBackPopupTitle": {
+    "message": "திரும்ப வருக Recordful-க்கு!",
+    "description": "திரும்ப வந்த பயனர்களுக்கான வரவேற்பு பாப்அப்பின் தலைப்பு"
+  },
+  "welcomeBackProTitle": {
+    "message": "✨ புதியது: உங்கள் பதிவு அனுபவத்தை மேம்படுத்துங்கள்",
+    "description": "மேகம் சார்ந்த சேமிப்பு அம்சத்துக்கான தலைப்பு"
+  },
+  "welcomeBackProDescription": {
+    "message": "Recordful Pro என்பது உங்கள் வீடியோக்களை மேகத்தில் சேமிக்க, ஒரு இணைப்பின் மூலம் பகிர, மேலும் மேம்பட்ட தொகுப்பு கருவிகளை அணுக ஒரு விருப்பமான புதிய தளமாகும் – நீங்கள் விரும்பும் நேரத்தில் பயன்படுத்தலாம்.",
+    "description": "மேக சேமிப்பு அம்சத்தின் விளக்கம்"
+  },
+  "welcomeBackProCTA": {
+    "message": "Recordful Pro பற்றி மேலும் அறிக",
+    "description": "மேக சேமிப்பு அம்சத்துக்கான செயல் அழைப்பு பொத்தான்"
+  },
+  "welcomeToProTitleModal": {
+    "message": "Recordful Pro-க்கு வரவேற்கிறோம்",
+    "description": "Pro வரவேற்பு தோன்றும் பதிலின் தலைப்பு"
+  },
+  "welcomeToProDescriptionModal": {
+    "message": "பதிவைத் தொடங்க தயார்! நினைவில் கொள்ள சில விஷயங்கள்:\n\n- பதிவு செய்யும் போது கேமரா பபிள் மறைந்துவிடலாம், இது சாதாரணம். இது பின்னணியில் தனியாகப் பதிவாகும், பிறகு நீங்கள் விரும்பும் இடத்தில் அதை அமைக்கலாம்.\n- பெரிதாக்கங்கள் (zooms) Chrome தாவல்கள் உள்ளே கிளிக் செய்தால் மட்டுமே தானாக உருவாகும் — இது ஒரு உலாவி கட்டுப்பாடு. பதிவுக்குப் பிறகு கைமுறையாக மேலும் பெரிதாக்கங்களைச் சேர்க்கலாம்.\n- உடனடி பதிவுகளுக்காக Instant Mode-ஐ முயற்சிக்கவும். ஆனால், தொகுப்பதற்கான விருப்பங்கள் குறைவாக இருக்கும்: பின்னணிகள், அமைப்புகள், மேம்பட்ட கட்டுப்பாடுகள் கிடையாது.",
+    "description": "Pro வரவேற்பு தோன்றும் பதிலின் விளக்கம்"
+  },
+  "welcomeToProActionModal": {
+    "message": "சரி, புரிந்துவிட்டது",
+    "description": "Pro வரவேற்பு தோன்றும் பதிலின் செயல்பாடு பொத்தான்"
+  },
+  "webcodecsToggleLabel": {
+    "message": "வேகமான MP4",
+    "description": "WebCodecs recorder toggle label"
+  },
+  "webcodecsFailedOffToast": {
+    "message": "Fast MP4 தோல்வி — ஆஃப்",
+    "description": "WebCodecs failure auto-disable toast"
+  },
+  "proOnboardingWelcomeTitle": {
+    "message": "Recordful Pro நீட்டிப்புக்கு வரவேற்கிறோம்",
+    "description": "Pro onboarding welcome step title"
+  },
+  "proOnboardingWelcomeDescription": {
+    "message": "பதிவு செய்ய முன் சில வேகமான குறிப்புகள்.<br/>தானியங்கி zoom என்பது <strong>Chrome தாவல்கள்</strong> உள்ள கிளிக்குகளுக்கு மட்டும் வேலை செய்யும். பிறகு நீங்கள் zoom-ஐ கைமுறையாகச் சேர்க்கலாம்.",
+    "description": "Pro onboarding welcome step description"
+  },
+  "proOnboardingToolbarTitle": {
+    "message": "பதிவு கருவிப்பட்டை மற்றும் விளைவுகள்",
+    "description": "Pro onboarding toolbar step title"
+  },
+  "proOnboardingToolbarDescription": {
+    "message": "வரைதல், கர்சர் விளைவுகள், blur, மற்றும் பதிவுக் கட்டுப்பாடுகளுக்கு இந்தக் கருவிப்பட்டியைப் பயன்படுத்தவும்.<br/><br/><strong>மறைக்காவிட்டால் இந்தக் கருவிப்பட்டி வீடியோவில் சேர்க்கப்படும்.</strong>",
+    "description": "Pro onboarding toolbar step description"
+  },
+  "proOnboardingCameraTitle": {
+    "message": "கேமரா தனியாக பதிவு செய்யப்படுகிறது",
+    "description": "Pro onboarding camera step title"
+  },
+  "proOnboardingCameraDescription": {
+    "message": "பதிவு செய்யும்போது கேமரா <strong>மறையவோ அல்லது PiP-க்கு மாறவோ</strong>லாம்; இது சாதாரணம்.<br/><br/>பிறகு நீங்கள் இடத்தை மாற்றுவதற்கு அது தனியாகப் பதிவு செய்யப்படுகிறது.",
+    "description": "Pro onboarding camera step description"
+  },
+  "proOnboardingInstantTitle": {
+    "message": "உடனடி முறை",
+    "description": "Pro onboarding instant mode step title"
+  },
+  "proOnboardingInstantDescription": {
+    "message": "வேகமாக பகிர்வதற்கு மற்றும் <strong>வரம்பில்லா பதிவிறக்கங்களுக்கு</strong> சிறந்தது.<br/><br/>இந்த முறையில் மேம்பட்ட layout/editor விருப்பங்கள் கிடைக்காது.",
+    "description": "Pro onboarding instant mode step description"
+  },
+  "proOnboardingDone": {
+    "message": "சரி",
+    "description": "Pro onboarding done button text"
+  },
+  "proOnboardingNext": {
+    "message": "அடுத்து",
+    "description": "Pro onboarding next button text"
+  },
+  "proOnboardingBack": {
+    "message": "பின்",
+    "description": "Pro onboarding back button text"
+  },
+  "proOnboardingToolbarLearnMore": {
+    "message": "மேலும் அறிக",
+    "description": "Pro onboarding toolbar learn more link label"
+  },
+  "resetOnboardingOption": {
+    "message": "Onboarding-ஐ மீட்டமை",
+    "description": "Reset pro onboarding option label in popup settings menu"
+  },
+  "recoverLastRecordingOption": {
+    "message": "கடைசிப் பதிவை மீட்டெடுக்கவும்",
+    "description": "Settings menu item to manually trigger cloud recording recovery"
+  },
+  "toastRecoveredSession": {
+    "message": "முந்தைய அமர்விலிருந்து சேமிக்கப்படாத பதிவு மீட்டெடுக்கப்பட்டது.",
+    "description": "Toast shown when a crashed recording session is auto-recovered on startup"
+  },
+  "toastStorageCritical": {
+    "message": "டிஸ்க் இடம் குறைவு. உங்கள் பதிவு சேமிக்கப்படுகிறது. இதுவரை பதிவான அனைத்தும் பாதுகாப்பாக உள்ளது.",
+    "description": "Toast shown when available storage drops below the critical threshold during recording; reassures that captured data is preserved"
+  },
+  "toastStorageLow": {
+    "message": "சேமிப்பகம் குறைந்து வருகிறது. நீண்ட பதிவுகளுக்கு பதிவேற்ற நம்பகத்தன்மை குறையலாம்.",
+    "description": "Toast shown when available storage drops below the warning threshold during recording"
+  },
+  "toastAudioCaptureDegraded": {
+    "message": "நினைவக அழுத்தத்தின் காரணமாக படியெடுப்புப் பிடிப்பு இடைநிறுத்தப்பட்டது. வீடியோ பதிவேற்றம் தொடர்கிறது.",
+    "description": "Toast shown when the audio recorder is stopped early because the audio buffer limit was reached"
+  },
+  "toastNetworkOffline": {
+    "message": "நெட்வொர்க் ஆஃப்லைனில் உள்ளது. பதிவேற்றம் இடைநிறுத்தப்பட்டது. திரைத் துண்டுகள் உள்ளூரில் சேமிக்கப்படுகின்றன.",
+    "description": "Toast shown when the browser goes offline during a cloud recording upload"
+  },
+  "longRecordingTitle": {
+    "message": "நீண்ட பதிவு",
+    "description": "Banner title shown when a recording exceeds the local processing limit but is otherwise successful"
+  },
+  "longRecordingDescription": {
+    "message": "உங்கள் பதிவு முழுமையானது மற்றும் பாதுகாப்பானது. கீழே WebM ஆக பதிவிறக்கம் செய்யுங்கள்.",
+    "description": "Banner description for long recordings that can be downloaded but not edited locally"
+  },
+  "notAvailableLongRecording": {
+    "message": "நீண்ட பதிவுகளுக்கு கிடைக்காது",
+    "description": "Disabled button label for features not available due to recording length"
+  },
+  "notAvailableRecoveryMode": {
+    "message": "மீட்டமைப்பு முறையில் கிடைக்காது",
+    "description": "Disabled button label for features not available in recovery/fallback mode"
+  },
+  "editTooLongTitle": {
+    "message": "ஆடியோ திருத்தம் மிக நீளமானது",
+    "description": "Alert title when an audio mute/mix edit is rejected because the clip exceeds 15 minutes"
+  },
+  "editTooLongDescription": {
+    "message": "இந்த ஆடியோ திருத்தம் 15 நிமிடங்களுக்கு மேல் உள்ள கிளிப்களுக்கு ஆதரவில்லை. அசல் மாற்றப்படவில்லை. முதலில் கிளிப்பை வெட்டி சுருக்க முயற்சிக்கவும்.",
+    "description": "Alert body explaining the 15-minute limit and suggesting trimming first"
+  },
+  "editTimeoutTitle": {
+    "message": "திருத்தத்திற்கான நேரம் முடிந்தது",
+    "description": "Alert title when an edit operation does not complete within the 5-minute watchdog period"
+  },
+  "editTimeoutDescription": {
+    "message": "திருத்தம் சரியான நேரத்தில் முடியவில்லை. அசல் பதிவு மாற்றப்படவில்லை. மீண்டும் முயற்சிக்கவும் அல்லது முதலில் கிளிப்பை வெட்டுங்கள்.",
+    "description": "Alert body for the timeout case, prompting retry or shorter clip"
+  },
+  "streamEndedWarningToast": {
+    "message": "திரைப் பகிர்வு நிறுத்தப்பட்டது. உங்கள் பதிவு சேமிக்கப்பட்டது. தயாரானதும் நிறுத்துங்கள்.",
+    "description": "Toast shown when screen share track ends mid-recording. Recording continues; removes false urgency about data loss."
+  },
+  "recoveryModeDescription": {
+    "message": "செயலாக்கத்தில் சிக்கல் ஏற்பட்டது, ஆனால் உங்கள் பதிவு பாதுகாப்பாக உள்ளது. கீழே பதிவிறக்கம் செய்யலாம்.",
+    "description": "Recovery mode banner description — reassures user their recording is accessible despite the processing failure"
+  },
+  "editProcessingSafeDescription": {
+    "message": "உங்கள் திருத்தம் செயலாக்கப்படுகிறது. அசல் பதிவு மாற்றப்படவில்லை.",
+    "description": "Shown in the editor processing alert when a user-initiated edit is running, to reassure the original is safe"
+  },
+  "editFailedTitle": {
+    "message": "திருத்தத்தைப் பயன்படுத்த முடியவில்லை",
+    "description": "Alert title when an edit operation fails due to an encoding or processing error"
+  },
+  "editFailedDescription": {
+    "message": "செயலாக்கத்தின் போது ஏதோ தவறு ஏற்பட்டது. உங்கள் அசல் பதிவு பாதுகாப்பாக உள்ளது. மீண்டும் முயற்சிக்கலாம் அல்லது அப்படியே பதிவிறக்கம் செய்யலாம்.",
+    "description": "Alert body for edit failure; explicitly confirms the original recording is untouched"
+  },
+  "videoTrackEndedToast": {
+    "message": "திரைப் பகிர்வு நிறுத்தப்பட்டது. உங்கள் பதிவு சேமிக்கப்படுகிறது. இதுவரை பதிவான அனைத்தும் பாதுகாப்பாக உள்ளது.",
+    "description": "Toast shown when the video track ends mid-recording (e.g. monitor disconnected, screen share revoked)"
+  },
+  "audioTrackEndedToast": {
+    "message": "ஆடியோ துண்டிக்கப்பட்டது. உங்கள் பதிவு சேமிக்கப்படுகிறது. இதுவரை பதிவான வீடியோ பாதுகாப்பாக உள்ளது.",
+    "description": "Toast shown when the audio track ends mid-recording (e.g. mic unplugged, permission revoked)"
+  },
+  "captureAudioUnavailableToast": {
+    "message": "கணினி ஒலியைப் பதிவு செய்ய முடியவில்லை, எனவே இந்தப் பதிவில் காணொளி மட்டுமே உள்ளது.",
+    "description": "Toast shown when the system/tab audio source fails to start and recording continues without it"
+  },
+  "captureAudioRepickToast": {
+    "message": "கணினி ஒலியைப் பதிவு செய்ய முடியவில்லை. காணொளியை மட்டும் பதிவு செய்ய திரையை மீண்டும் தேர்ந்தெடுக்கவும்.",
+    "description": "Toast shown before the screen picker reopens because system audio could not start and capture is retrying without it"
+  },
+  "editorRecoveryToast": {
+    "message": "உங்கள் பதிவு சேமிக்கப்பட்டது. எடிட்டர் திறக்கப்படவில்லை. மீண்டும் முயற்சிக்க Recordful சின்னத்தைக் கிளிக் செய்யுங்கள்.",
+    "description": "Toast shown on the active tab when the post-recording editor tab fails to open"
+  },
+  "stopAckTimeoutToast": {
+    "message": "சேமிப்பு எதிர்பார்த்ததை விட அதிக நேரம் எடுக்கிறது. உங்கள் தரவு பாதுகாப்பாக உள்ளது. எடிட்டர் விரைவில் திறக்கும்.",
+    "description": "Toast shown when the recorder does not acknowledge the stop request within a few seconds"
+  },
+  "copyDebugInfoButton": {
+    "message": "Debug தகவலை நகலெடு",
+    "description": "Button to copy technical debug info to clipboard for support"
+  },
+  "debugInfoCopiedToast": {
+    "message": "Debug தகவல் நகலெடுக்கப்பட்டது",
+    "description": "Toast shown after debug info is copied"
+  },
+  "getHelpButton": {
+    "message": "உதவி பெறுங்கள்",
+    "description": "Side button on error modals that opens a prefilled support form"
+  },
+  "recordingTooShortToast": {
+    "message": "பதிவு சேமிக்க முடியாத அளவுக்கு சிறியது",
+    "description": "Toast shown when a region recording is stopped by navigation but no chunks were saved"
+  },
+  "fastRecorderFailedTitle": {
+    "message": "வேகமான பதிவி தோல்வியடைந்தது",
+    "description": "Title for the modal shown when the fast MP4 recorder output could not be validated"
+  },
+  "fastRecorderFailedDescription": {
+    "message": "இந்த சாதனத்தில் வேகமான பதிவியின் வெளியீட்டைச் சரிபார்க்க முடியவில்லை.\nநீங்கள் கோப்பை எப்படியும் பதிவிறக்கலாம்.",
+    "description": "Body text for the fast recorder failure modal"
+  },
+  "downloadAnywayButton": {
+    "message": "எப்படியும் பதிவிறக்கு",
+    "description": "Button to download the recording file despite validation failure"
+  },
+  "cancelButton": {
+    "message": "ரத்துசெய்",
+    "description": "Generic cancel button label"
+  },
+  "editorStuckTitle": {
+    "message": "உங்கள் பதிவு இன்னும் தயாராகிறது…"
+  },
+  "editorStuckDescription": {
+    "message": "Recordful உங்கள் பதிவை ஏற்ற வழக்கத்தை விட அதிக நேரம் எடுக்கிறது. உங்கள் தரவு இந்தச் சாதனத்தில் இருக்கக்கூடும். மீட்க முயற்சிக்கவும், அது திரும்ப வரவில்லை எனில் எங்களைத் தொடர்பு கொள்ளவும்."
+  },
+  "editorStuckTryRecover": {
+    "message": "மீட்க முயற்சிக்கவும்"
+  },
+  "editorStuckGetHelp": {
+    "message": "உதவி பெறவும்"
+  },
+  "editorRecoveryFailedTitle": {
+    "message": "உங்கள் பதிவைத் திறக்க முடியவில்லை"
+  },
+  "editorRecoveryFailedDescription": {
+    "message": "பதிவை எடிட்டரில் ஏற்றும் போது சிக்கல் ஏற்பட்டது. உங்கள் பதிவு இன்னும் உங்கள் சாதனத்தில் சேமிக்கப்பட்டிருக்கலாம். இப்போது அதை மீட்க முயற்சிக்கலாம்."
+  },
+  "downloadGIFTooLongToast": {
+    "message": "GIF ஏற்றுமதி அதிகபட்சம் 30 வினாடிகள். உங்கள் கிளிப்பை குறைத்து மீண்டும் முயற்சிக்கவும்."
+  },
+  "audioSilentToast": {
+    "message": "ஆடியோ எதுவும் கண்டறியப்படவில்லை. உங்கள் மைக், முடக்கு சுவிட்ச் அல்லது ஆடியோ சாதனத்தை சரிபார்க்கவும்."
+  },
+  "restartFailedToast": {
+    "message": "உங்கள் பதிவை மீண்டும் தொடங்க முடியவில்லை. நிறுத்திவிட்டு மீண்டும் தொடங்க முயற்சிக்கவும்."
+  },
+  "recordingFailedModalTitle": {
+    "message": "பதிவு தொடங்க முடியவில்லை"
+  },
+  "recordingFailedModalDescription": {
+    "message": "பதிவு தொடங்குவதில் சிக்கல் ஏற்பட்டது. மீண்டும் முயற்சிக்கவும். இது தொடர்ந்து நடந்தால், X.com/whyKislay or forg.to/@kislay மூலம் எங்களைத் தொடர்பு கொள்ளவும்."
+  },
+  "editAudioTooLargeTitle": {
+    "message": "ஆடியோ கோப்பு மிகப் பெரியது"
+  },
+  "editAudioTooLargeDescription": {
+    "message": "குறுகிய ஆடியோ கிளிப்பை முயற்சிக்கவும். பெரிய கோப்புகளை உலாவியில் செயலாக்க முடியாது. உங்கள் அசல் பதிவு பாதுகாப்பாக உள்ளது."
+  },
+  "restoreEmptyToast": {
+    "message": "மீட்க முடியக்கூடிய பதிவு எதுவும் கிடைக்கவில்லை. தரவு அழிக்கப்பட்டிருக்கலாம்."
+  },
+  "restoreTimeoutToast": {
+    "message": "மீட்பு அதிக நேரம் எடுக்கிறது. உங்கள் பதிவு பாதுகாப்பாக உள்ளது. சிறிது நேரத்தில் மீட்பு பொத்தானை மீண்டும் கிளிக் செய்யவும்."
+  },
+  "cameraUnavailableToast": {
+    "message": "கேமரா துண்டிக்கப்பட்டது. திரைப் பதிவு தொடர்கிறது."
+  },
+  "downloadInterruptedLargeToast": {
+    "message": "பதிவிறக்கம் தடைப்பட்டது. கோப்பு மிகப் பெரியதாக இருப்பதால் தானாக மீண்டும் முயற்சிக்க முடியாது. எடிட்டரில் இருந்து மீண்டும் சேமிக்க முயற்சிக்கவும்."
+  },
+  "recordingCorruptToast": {
+    "message": "இந்தப் பதிவை இயக்க முடியாது. கோப்பு முழுமையடையாமல் அல்லது சேதமடைந்திருக்கலாம். சேமி மெனுவில் இருந்து மூலக் கோப்பைப் பதிவிறக்க முயற்சிக்கவும்."
+  },
+  "storageFullRecordingError": {
+    "message": "பதிவு செய்ய போதுமான சேமிப்பகம் இல்லை. வட்டில் இடம் காலி செய்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Shown when the browser can't allocate enough local storage to start a recording"
+  },
+  "storageLowRecordingWarning": {
+    "message": "உங்கள் உலாவியின் சேமிப்பகம் கிட்டத்தட்ட நிரம்பிவிட்டது. இந்தப் பதிவை இழக்காமல் இருக்க வட்டில் இடம் காலி செய்யவும்.",
+    "description": "Shown when local storage is running low while a recording is in progress"
+  },
+  "screenStreamUnavailableError": {
+    "message": "திரையை அணுக முடியவில்லை. பதிவை மீண்டும் தொடங்கவும்.",
+    "description": "Shown when the screen capture stream is missing after the user picked a source"
+  },
+  "tabStreamUnavailableError": {
+    "message": "இந்த தாவலின் வீடியோவை அணுக முடியவில்லை. தாவலை மீண்டும் ஏற்றி, மீண்டும் முயற்சிக்கவும்.",
+    "description": "Shown when Chrome won't return a tab capture stream for the chosen tab"
+  },
+  "streamingDataTimeoutError": {
+    "message": "பதிவு சரியான நேரத்தில் தொடங்கவில்லை. தயவுசெய்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Shown when the recorder tab never received streaming-data from the background script"
+  },
+  "unsupportedVideoCodecError": {
+    "message": "உங்கள் உலாவி தேவையான வீடியோ கோடெக்குகளை ஆதரிக்கவில்லை. Chrome ஐ புதுப்பித்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Shown when no supported MediaRecorder mimeType is available"
+  },
+  "cancelLabel": {
+    "message": "ரத்து செய்",
+    "description": "Cancel button on the download-in-progress banner"
+  },
+  "webmSlowTitle": {
+    "message": "WebM ஆக மாற்றுவதற்கு சிறிது நேரம் ஆகலாம்",
+    "description": "Title of the modal warning that MP4 to WebM conversion is slow"
+  },
+  "webmSlowDescription": {
+    "message": "WebM ஆகச் சேமிக்கும்போது முழு வீடியோவும் மீண்டும் குறியாக்கம் செய்யப்படுகிறது, எனவே நீண்ட பதிவுகளுக்கு சில நிமிடங்கள் ஆகலாம். MP4 உடனடியாகச் சேமிக்கப்படும்.",
+    "description": "Body of the slow-WebM warning modal"
+  },
+  "webmSlowMp4": {
+    "message": "மாறாக MP4 ஐப் பதிவிறக்கவும்",
+    "description": "Primary button: download MP4 instead of the slow WebM conversion"
+  },
+  "webmSlowContinue": {
+    "message": "WebM உடன் தொடரவும்",
+    "description": "Secondary button: proceed with the slow WebM conversion"
+  },
+  "downloadProcessingTitle": {
+    "message": "உங்கள் பதிவிறக்கம் தயாராகிறது",
+    "description": "Title of the download-in-progress banner with the Cancel button"
+  },
+  "downloadProcessingDescription": {
+    "message": "நீண்ட பதிவுகளுக்கு இதற்கு சிறிது நேரம் ஆகலாம்.",
+    "description": "Body of the download-in-progress banner"
+  },
+  "cameraMicBlockedTitle": {
+    "message": "கேமரா மற்றும் மைக்ரோஃபோன் அனுமதிக்கப்படவில்லை",
+    "description": "Toast title shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "cameraMicBlockedDescription": {
+    "message": "இந்த வலைத்தளம் உங்கள் கேமரா மற்றும் மைக்ரோஃபோன் அணுகலைத் தடுக்கிறது. நீங்கள் இங்கே இன்னும் பதிவு செய்யலாம், ஆனால் உங்கள் கேமரா தெரியாது.",
+    "description": "Toast description shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "downloadFailedModalTitle": {
+    "message": "பதிவிறக்கம் முடியவில்லை",
+    "description": "Modal title when a download to disk times out or fails"
+  },
+  "downloadFailedModalDescription": {
+    "message": "மீண்டும் முயற்சிக்கவும்.",
+    "description": "Toast->modal description: what to do after a failed download"
+  },
+  "driveGenericModalTitle": {
+    "message": "Google Drive இல் சேமிக்க முடியவில்லை",
+    "description": "Modal title for a generic Google Drive save failure"
+  },
+  "driveGenericModalDescription": {
+    "message": "மீண்டும் முயற்சிக்கவும்.",
+    "description": "Modal description for a generic Google Drive save failure"
+  },
+  "driveQuotaModalTitle": {
+    "message": "உங்கள் Google Drive நிரம்பிவிட்டது",
+    "description": "Modal title when the Google Drive account is out of storage"
+  },
+  "driveQuotaModalDescription": {
+    "message": "இடத்தைக் காலி செய்து மீண்டும் முயற்சிக்கவும்.",
+    "description": "Modal description when the Google Drive account is out of storage"
+  },
+  "driveTooLargeModalTitle": {
+    "message": "பதிவு மிகப் பெரியது",
+    "description": "Modal title when a recording exceeds Google Drive limits"
+  },
+  "driveTooLargeModalDescription": {
+    "message": "இந்தப் பதிவு Google Drive இல் சேமிக்க முடியாத அளவுக்குப் பெரியது.",
+    "description": "Modal description when a recording exceeds Google Drive limits"
+  },
+  "driveAuthModalTitle": {
+    "message": "Google Drive ஐ அணுக முடியவில்லை",
+    "description": "Modal title when Google Drive authentication expired or was revoked"
+  },
+  "driveAuthModalDescription": {
+    "message": "மீண்டும் உள்நுழையவும்.",
+    "description": "Modal description when Google Drive authentication expired or was revoked"
+  },
+  "emptyRecordingTitle": {
+    "message": "இந்தப் பதிவு காலியாக உள்ளது",
+    "description": "Modal title when the recording file contains no video"
+  },
+  "emptyRecordingDescription": {
+    "message": "எந்த வீடியோவும் பதிவாகவில்லை. மீண்டும் பதிவு செய்ய முயற்சிக்கவும்.",
+    "description": "Modal description when the recording file contains no video"
+  },
+  "unsavedRecordingModalTitle": {
+    "message": "உங்கள் கடைசி பதிவு சேமிக்கப்படவில்லை",
+    "description": "Title of the modal shown when starting a recording while the previous one is unsaved."
+  },
+  "unsavedRecordingModalDescription": {
+    "message": "அது இன்னும் மற்றொரு தாவலில் திறந்திருக்கிறது, அந்தத் தாவலை மூடியவுடன் இழக்கப்படும். வைத்திருக்க முதலில் பதிவிறக்குங்கள்.",
+    "description": "Body of the unsaved-previous-recording modal."
+  },
+  "unsavedRecordingModalAction": {
+    "message": "எப்படியும் பதிவுசெய்யுங்கள்",
+    "description": "Confirm button: start the new recording anyway."
+  },
+  "unsavedRecordingModalCancel": {
+    "message": "பதிவைத் திறங்கள்",
+    "description": "Cancel button: bring the unsaved recording's tab forward instead."
+  },
+  "unsavedRecordingModalDismiss": {
+    "message": "மீண்டும் காட்ட வேண்டாம்",
+    "description": "Side button: start the recording and stop prompting about unsaved recordings."
+  }
+}

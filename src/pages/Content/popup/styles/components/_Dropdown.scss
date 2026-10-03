@@ -1,0 +1,173 @@
+@use "../../../styles/_variables" as *;
+
+/* reset */
+button {
+  all: unset;
+}
+
+.SelectTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+  line-height: 1;
+  height: 36px;
+  gap: 5px;
+  background-color: #fff;
+  color: $color-text-primary;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: $spacing-02;
+  margin-bottom: $spacing-02;
+  padding-left: 4px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.SelectTrigger:hover {
+  border-color: #d4d3d0;
+  background: #fafafa;
+  cursor: pointer;
+}
+.SelectTrigger:focus {
+  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2) !important;
+}
+.SelectTrigger[data-placeholder] {
+  color: var(--violet9);
+}
+.SelectTrigger[data-state="open"] {
+  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2);
+}
+
+.SelectValue {
+  text-align: left;
+  flex: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+    line-height: 34px;
+  }
+}
+
+.SelectIconDrop,
+.SelectIconType {
+  text-align: center;
+}
+.SelectIconType {
+  padding-left: 6px;
+  padding-right: 0px;
+}
+.SelectIconDrop {
+  padding-right: $spacing-03;
+}
+.SelectTrigger[data-state="open"] .SelectIconDrop img {
+  transform: rotate(180deg);
+}
+
+.SelectContent {
+  overflow: hidden;
+  z-index: $z-index-max;
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+  font-family: $font-medium;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  margin-top: $spacing-02;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 4px;
+}
+.SelectItem {
+  font-size: 13px;
+  line-height: 1;
+  color: var(--violet11);
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding-left: $spacing-03;
+  padding-right: $spacing-03;
+  border-radius: 6px;
+  color: $color-text-primary;
+  position: relative;
+  user-select: none;
+}
+.SelectItem[data-disabled] {
+  color: $color-text-secondary;
+  pointer-events: none;
+}
+.SelectItem[data-highlighted] {
+  background: $color-light-grey;
+  outline: none !important;
+}
+.SelectItem:hover {
+  background: $color-light-grey;
+  cursor: pointer;
+}
+
+.SelectSeparator {
+  height: 1px;
+  background-color: $color-border;
+  width: calc(100% - $spacing-04 * 2);
+  margin: auto;
+  border-radius: $container-border-radius;
+  margin-top: $spacing-02;
+  margin-bottom: $spacing-02;
+}
+
+.SelectItemIndicator {
+  position: absolute;
+  right: $spacing-04;
+  width: 24px;
+  height: 24px;
+  background: #111111;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SelectScrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  background-color: white;
+  color: var(--violet11);
+  cursor: default;
+}
+
+.SelectOff {
+  background: rgba(0, 0, 0, 0.05);
+  color: $color-text-secondary;
+  padding-left: $spacing-03;
+  padding-right: $spacing-03;
+  padding-top: $spacing-02;
+  padding-bottom: $spacing-02;
+  margin-right: $spacing-02;
+  border-radius: 6px;
+  font-size: $font-size-small;
+  font-weight: $font-weight-bold;
+}
+.SelectIconButton {
+  border-radius: 6px;
+  position: relative;
+  padding: 6px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.SelectItemWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-02;
+}

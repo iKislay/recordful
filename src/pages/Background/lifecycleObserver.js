@@ -1,0 +1,100 @@
+// watches chrome.storage.local for transitions on a fixed set of
+// recording-state keys and logs them to lifecycleLog so we don't have
+// to instrument each BG call site. wired once at SW startup.
+import { lifecycle } from "../utils/lifecycleLog";
+import { handleTabActivation } from "./listeners/onTabActivatedListener";
+
+// Keys whose transitions we care about for cross-recording bug analysis.
+// `lifecycleLog` itself is excluded to avoid infinite recursion.
+const TRACKED_KEYS = new Set([
+  "recordingTab",
+  "recordingUiTabId",
+  "tabRecordedID",
+  "sandboxTab",
+  "recording",
+  "pendingRecording",
+  "restarting",
+  "offscreen",
+  "region",
+  "customRegion",
+  "recordingType",
+  "useWebCodecsRecorder",
+  "fastRecorderInUse",
+  "fastRecorderDisabledForDevice",
+  "memoryError",
+  "lastRecordingBackendRef",
+  "editorRecordingError",
+]);
+
+const summarizeValue = (v) => {
+  if (v === null || v === undefined) return v;
+  if (typeof v === "object") {
+    try {
+      const json = JSON.stringify(v);
+      return json.length > 120 ? json.slice(0, 117) + "..." : v;
+    } catch {
+      return "[unserializable]";
+    }
+  }
+  return v;
+};
+
+export const initLifecycleObserver = () => {
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return;
+    for (const key of Object.keys(changes)) {
+      if (!TRACKED_KEYS.has(key)) continue;
+      const { oldValue, newValue } = changes[key];
+      // Skip no-op writes. `===` alone only catches primitives: storage hands
+      // back a fresh object each time, so object-valued keys (e.g.
+      // lastRecordingBackendRef) compared unequal on every rewrite and logged
+      // even when nothing changed.
+      if (oldValue === newValue) continue;
+      if (
+        oldValue !== null &&
+        newValue !== null &&
+        typeof oldValue === "object" &&
+        typeof newValue === "object"
+      ) {
+        try {
+          if (JSON.stringify(oldValue) === JSON.stringify(newValue)) continue;
+        } catch {}
+      }
+      lifecycle("BG.storage", "set", {
+        key,
+        from: summarizeValue(oldValue),
+        to: summarizeValue(newValue),
+      });
+    }
+
+    // Reactive icon sync. Anchors the action icon to storage.recording
+    // so it can never drift out of sync when an imperative
+    // chrome.action.setIcon call is missed (e.g. a stop path
+    // interrupted by SW teardown). Imperative setIcon calls in the
+    // start/stop sites still run; this is the safety net.
+    if (changes.recording && changes.recording.oldValue !== changes.recording.newValue) {
+      try {
+        chrome.action.setIcon({
+          path: changes.recording.newValue
+            ? "assets/recording-logo.png"
+            : "assets/icon-34.png",
+        });
+      } catch (err) {
+        console.warn("[Recordful][BG] reactive setIcon failed:", err);
+      }
+
+      // Hand the UI to the focused tab. onActivated has no branch for the
+      // countdown window, so a tab switched to mid-countdown never got it.
+      if (changes.recording.newValue === true) {
+        try {
+          chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tabId = tabs?.[0]?.id;
+            if (tabId) void handleTabActivation({ tabId });
+          });
+        } catch (err) {
+          console.warn("[Recordful][BG] recording-start UI handoff failed:", err);
+        }
+      }
+    }
+  });
+};

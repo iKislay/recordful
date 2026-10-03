@@ -1,0 +1,254 @@
+import React, { useState, useEffect, useRef, useContext } from "react";
+
+import { contentStateContext } from "../context/ContentState";
+
+const ZoomContainer = () => {
+  const [contentState, setContentState] = useContext(contentStateContext);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const scaleRef = useRef(1);
+  const translateXRef = useRef(0);
+  const translateYRef = useRef(0);
+  const cursorXRef = useRef(0);
+  const cursorYRef = useRef(0);
+  const isKeyDownRef = useRef(false);
+  const isKeyUpRef = useRef(false);
+  const zoomSelector = useRef(null);
+  const oldPosition = useRef(null);
+  const oldWidth = useRef(null);
+  const oldHeight = useRef(null);
+  const oldOverflow = useRef(null);
+  const oldTop = useRef(null);
+  const oldLeft = useRef(null);
+  const contentStateRef = useRef(contentState);
+  const observer = useRef(null);
+
+  useEffect(() => {
+    oldPosition.current = document.body.style.position;
+    oldWidth.current = document.body.style.width;
+    oldHeight.current = document.body.style.height;
+    oldOverflow.current = document.body.style.overflow;
+    oldTop.current = document.body.style.top;
+    oldLeft.current = document.body.style.left;
+  }, []);
+
+  useEffect(() => {
+    contentStateRef.current = contentState;
+  }, [contentState]);
+
+  const handleKeyDown = (e) => {
+    // Alt/Option + Shift + Z
+    if (e.code === "KeyE" && e.altKey && e.shiftKey) {
+      if (!contentStateRef.current.zoomEnabled) return;
+      if (isKeyDownRef.current) return;
+      isKeyDownRef.current = true;
+      zoomIn();
+    }
+  };
+
+  const handleKeyUp = (e) => {
+    // Skip when we didn't zoom in; avoids re-render on plain shift/alt keyup.
+    if (!isKeyDownRef.current) return;
+    if (e.code === "KeyE" || e.altKey || e.shiftKey) {
+      isKeyDownRef.current = false;
+      isKeyUpRef.current = true;
+      zoomOut();
+
+      setTimeout(() => {
+        isKeyUpRef.current = false;
+        setTimeout(() => {
+          enableScrolling();
+        }, 500);
+      }, 500);
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!contentStateRef.current.zoomEnabled) return;
+
+    // pageX/pageY avoid the getBoundingClientRect reflow.
+    cursorXRef.current = e.pageX;
+    cursorYRef.current = e.pageY;
+    applyTransform();
+  };
+
+  const zoomIn = () => {
+    scaleRef.current *= 1.5;
+    setZoomLevel(scaleRef.current);
+    applyTransformWithTransition();
+    preventScrolling();
+  };
+
+  const zoomOut = () => {
+    scaleRef.current = 1;
+    translateXRef.current = 0;
+    translateYRef.current = 0;
+    setZoomLevel(scaleRef.current);
+  };
+
+  // applyTransform runs every mousemove.
+  const canvasWrapperCache = useRef(null);
+  const getCanvasWrapper = () => {
+    const cached = canvasWrapperCache.current;
+    if (cached && cached.isConnected) return cached;
+    const node = document.querySelector("#canvas-wrapper-recordful");
+    canvasWrapperCache.current = node;
+    return node;
+  };
+
+  const applyTransform = () => {
+    if (!zoomSelector.current) return;
+    const { current: scale } = scaleRef;
+    const { current: translateX } = translateXRef;
+    const { current: translateY } = translateYRef;
+
+    const originX = cursorXRef.current - translateX;
+    const originY = cursorYRef.current - translateY;
+
+    zoomSelector.current.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+    zoomSelector.current.style.transformOrigin = `${originX}px ${originY}px`;
+
+    const canvasWrapper = getCanvasWrapper();
+
+    const fixedOriginX = originX - window.scrollX;
+    const fixedOriginY = originY - window.scrollY;
+    if (canvasWrapper) {
+      canvasWrapper.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+      canvasWrapper.style.transformOrigin = `${fixedOriginX}px ${fixedOriginY}px`;
+    }
+  };
+
+  const applyTransformWithTransition = () => {
+    if (!zoomSelector.current) return;
+
+    zoomSelector.current.style.transition = "transform 0.5s";
+    const canvasWrapper = getCanvasWrapper();
+    if (canvasWrapper) {
+      canvasWrapper.style.transition = "transform 0.5s";
+    }
+    applyTransform();
+  };
+
+  const preventScrolling = () => {};
+
+  const enableScrolling = () => {
+    if (!zoomSelector.current) return;
+    zoomSelector.current.style.position = oldPosition.current;
+    zoomSelector.current.style.top = oldTop.current;
+    zoomSelector.current.style.left = oldLeft.current;
+    zoomSelector.current.style.overflow = oldOverflow.current;
+    zoomSelector.current.style.width = oldWidth.current;
+    zoomSelector.current.style.height = oldHeight.current;
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [contentState.zoomEnabled, contentState.showExtension]);
+
+  useEffect(() => {
+    if (!contentState.zoomEnabled) return;
+    if (!contentState.showPopup) return;
+
+    setTimeout(() => {
+      if (document.querySelector("#recordful-zoom-wrap")) return;
+      const div = document.createElement("div");
+      div.id = "recordful-zoom-wrap";
+      div.style.width = "100vw";
+      div.style.height = "100vh";
+
+      while (
+        document.body.firstChild &&
+        document.body.firstChild.id !== "recordful-ui"
+      ) {
+        if (document.body.firstChild.id !== "recordful-ui") {
+          div.appendChild(document.body.firstChild);
+        }
+      }
+
+      document.body.prepend(div);
+
+      document.body.appendChild(document.getElementById("recordful-ui"));
+      zoomSelector.current = document.querySelector("#recordful-zoom-wrap");
+
+      observer.current = new MutationObserver((mutations) => {
+        if (!contentState.showExtension) {
+          mutations.forEach((mutation) => {
+            if (mutation.addedNodes.length > 0) {
+              const recordfulUi = document.querySelector("#recordful-ui");
+              if (recordfulUi) {
+                observer.current.disconnect();
+              }
+            }
+          });
+        }
+      });
+
+      observer.current.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }, 500);
+
+    return () => {
+      setTimeout(() => {
+        if (observer.current && typeof observer.current === "object") {
+          observer.current.disconnect();
+        }
+        const zoomWrap = document.querySelector("#recordful-zoom-wrap");
+        if (zoomWrap) {
+          while (zoomWrap.firstChild) {
+            document.body.prepend(zoomWrap.firstChild);
+          }
+
+          if (document.body.contains(zoomWrap)) {
+            document.body.removeChild(zoomWrap);
+          }
+        }
+        scaleRef.current = 1;
+        translateXRef.current = 0;
+        translateYRef.current = 0;
+        setZoomLevel(scaleRef.current);
+      }, 500);
+    };
+  }, [contentState.zoomEnabled, contentState.showExtension]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (!contentState.zoomEnabled || !contentState.showExtension) {
+        const zoomWrap = document.querySelector("#recordful-zoom-wrap");
+        if (zoomWrap) {
+          while (zoomWrap.firstChild) {
+            document.body.prepend(zoomWrap.firstChild);
+          }
+
+          if (document.body.contains(zoomWrap)) {
+            document.body.removeChild(zoomWrap);
+          }
+        }
+        scaleRef.current = 1;
+        translateXRef.current = 0;
+        translateYRef.current = 0;
+        setZoomLevel(scaleRef.current);
+      }
+    }, 500);
+  }, [contentState.zoomEnabled, contentState.showExtension]);
+
+  useEffect(() => {
+    if (!zoomSelector.current) return;
+    if (!contentStateRef.current.zoomEnabled) return;
+    if (isKeyDownRef.current || isKeyUpRef.current) {
+      applyTransform();
+    }
+  }, [zoomLevel]);
+
+  return null;
+};
+
+export default ZoomContainer;

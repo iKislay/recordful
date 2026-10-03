@@ -1,0 +1,1908 @@
+{
+  "reviewAskTitle": {
+    "message": "Como está a correr o Recordful para ti?",
+    "description": "Review prompt step 1 question (sentiment check) in the editor"
+  },
+  "reviewAskGood": {
+    "message": "Está a correr bem",
+    "description": "Review prompt positive sentiment button label / tooltip"
+  },
+  "reviewAskBad": {
+    "message": "Nem por isso",
+    "description": "Review prompt negative sentiment button label / tooltip"
+  },
+  "reviewThanksTitle": {
+    "message": "Acabaste de me alegrar o dia!",
+    "description": "Review prompt happy-branch title in the editor"
+  },
+  "reviewThanksDescription": {
+    "message": "Hey, I'm Kislay. I built Recordful because I wanted a screen recorder that respects your privacy and doesn't hold your videos hostage. Free, open source, no watermarks, no limits. Before this I built forg.to, a home for indie hackers shipping in public, so this one is getting built the same way, out in the open. If Recordful earns its keep, Pro keeps the lights on.\n\nIf Recordful has helped you, leaving a quick review is one of the best ways to support it ❤️",
+    "description": "Review prompt happy-branch description (founder voice) in the editor. Paragraphs separated by a blank line."
+  },
+  "reviewThanksButton": {
+    "message": "Deixa uma avaliação",
+    "description": "Review prompt button that opens the Chrome Web Store review page"
+  },
+  "reviewThanksLater": {
+    "message": "Talvez mais tarde",
+    "description": "Review prompt snooze button on the happy branch"
+  },
+  "reviewSorryTitle": {
+    "message": "Lamento saber isso",
+    "description": "Review prompt unhappy-branch title in the editor"
+  },
+  "reviewSorryDescription": {
+    "message": "Hey, I'm Kislay. I read every message myself, so tell me what went wrong and I'll do my best to fix it.",
+    "description": "Review prompt unhappy-branch description in the editor"
+  },
+  "reviewSorryButton": {
+    "message": "Enviar comentários",
+    "description": "Review prompt button that opens the private feedback form"
+  },
+  "reviewSorryDismiss": {
+    "message": "Agora não",
+    "description": "Review prompt dismiss button on the unhappy branch"
+  },
+  "extName": {
+    "message": "Recordful - Grave o ecrã e faça anotações",
+    "description": "Nome da extensão"
+  },
+  "extDesc": {
+    "message": "O melhor gravador de ecrã para o Chrome sem limites. Captura, desenha, amplia, desfoca, edita vídeos e muito mais, sem necessidade de registo, totalmente privado e gratuito.",
+    "description": "Descrição da extensão"
+  },
+  "recordTab": {
+    "message": "Gravar",
+    "description": "Etiqueta da página de gravação no popup"
+  },
+  "videosTab": {
+    "message": "Os teus vídeos",
+    "description": "Etiqueta da página de vídeos no popup"
+  },
+  "screenType": {
+    "message": "Ecrã",
+    "description": "Etiqueta de tipo de gravação de ecrã no popup"
+  },
+  "tabType": {
+    "message": "Área",
+    "description": "Etiqueta de tipo de gravação de área de página no popup"
+  },
+  "cameraType": {
+    "message": "Câmara",
+    "description": "Etiqueta de tipo de gravação de câmara no popup"
+  },
+  "mockupType": {
+    "message": "Mockup",
+    "description": "Etiqueta de tipo de gravação de mockup no popup"
+  },
+  "customAreaRecordingDisabledTitle": {
+    "message": "Gravação de área personalizada desativada",
+    "description": "Aviso de gravação de área personalizada desativada para versões do Chrome anteriores à 104"
+  },
+  "customAreaRecordingDisabledDescription": {
+    "message": "Atualiza a versão do Chrome para 110+",
+    "description": "Descrição do aviso de gravação de área personalizada desativada para versões do Chrome anteriores à 104"
+  },
+  "customAreaRecordingDisabledAction": {
+    "message": "Atualizar",
+    "description": "Ação do aviso de gravação de área personalizada desativada para versões do Chrome anteriores à 104"
+  },
+  "permissionsModalTitle": {
+    "message": "Verifica as tuas permissões",
+    "description": "Título do modal de aviso de permissões de câmara/microfone"
+  },
+  "permissionsModalDescription": {
+    "message": "Parece que o Recordful não consegue aceder à tua câmara ou microfone. Certifica-te de permitir o acesso ao clicar no ícone da câmara na barra de endereço.",
+    "description": "Descrição do modal de aviso de permissões de câmara/microfone"
+  },
+  "permissionsModalDismiss": {
+    "message": "Ignorar",
+    "description": "Botão de ignorar no modal de aviso de permissões de câmara/microfone"
+  },
+  "sitePermissionsBlockedTitle": {
+    "message": "Este site não permite acesso à câmara ou ao microfone",
+    "description": "Modal title shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "sitePermissionsBlockedDescription": {
+    "message": "Parece que as definições de segurança deste site impedem que extensões do navegador utilizem a tua câmara ou microfone nesta página. Para gravar com eles, inicia uma gravação noutro separador e volta para aqui assim que começar.",
+    "description": "Modal description shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "opfsLoadErrorTitle": {
+    "message": "Não é possível carregar a sua gravação",
+    "description": "Modal title shown when the editor cannot read the recording file from the device's storage"
+  },
+  "opfsLoadErrorDescription": {
+    "message": "Parece que o Recordful não conseguiu carregar a gravação do armazenamento do teu dispositivo. Pode ter sido apagada ou movida. Se isto continuar a acontecer, contacta-nos em X.com/whyKislay or forg.to/@kislay.",
+    "description": "Modal description shown when the editor cannot read the recording file from the device's storage"
+  },
+  "recordingWriterFailedToast": {
+    "message": "Gravação interrompida devido a um problema de armazenamento. A gravação parcial foi guardada.",
+    "description": "Toast shown when the recording chunk writer fails mid-recording and the partial file is preserved"
+  },
+  "allowCameraAccessButton": {
+    "message": "Permitir acesso à câmara",
+    "description": "Botão de permitir acesso à câmara"
+  },
+  "allowMicrophoneAccessButton": {
+    "message": "Permitir acesso ao microfone",
+    "description": "Botão de permitir acesso ao microfone"
+  },
+  "pushToTalkLabel": {
+    "message": "Premir para falar",
+    "description": "Etiqueta do interruptor premir para falar"
+  },
+  "customAreaLabel": {
+    "message": "Definir uma área para gravar",
+    "description": "Etiqueta do interruptor de área personalizada"
+  },
+  "flipCameraLabel": {
+    "message": "Inverter câmara",
+    "description": "Etiqueta do interruptor de inverter câmara"
+  },
+  "backgroundEffectsLabel": {
+    "message": "Efeitos de fundo",
+    "description": "Etiqueta do interruptor de efeitos de fundo"
+  },
+  "recordButtonLabel": {
+    "message": "Iniciar gravação",
+    "description": "Etiqueta do botão de gravar"
+  },
+  "recordButtonNoCameraLabel": {
+    "message": "Defina uma câmara para gravar",
+    "description": "Rótulo do botão de gravação quando no modo de câmera e nenhuma câmera está selecionada"
+  },
+  "recordButtonInProgressLabel": {
+    "message": "A iniciar gravação...",
+    "description": "Etiqueta em progresso do botão de gravar"
+  },
+  "showMoreOptionsLabel": {
+    "message": "Mostrar mais opções",
+    "description": "Etiqueta de mostrar mais opções"
+  },
+  "systemAudioLabel": {
+    "message": "Incluir áudio do sistema",
+    "description": "Etiqueta de áudio do sistema/guia"
+  },
+  "hideToolbarLabel": {
+    "message": "Ocultar barra de ferramentas",
+    "description": "Etiqueta de ocultar barra de ferramentas"
+  },
+  "countdownLabel": {
+    "message": "Contagem decrescente",
+    "description": "Etiqueta de contagem decrescente"
+  },
+  "alarmLabel": {
+    "message": "Definir um limite de tempo",
+    "description": "Etiqueta de alarme"
+  },
+  "blurTypeLabel": {
+    "message": "Blur",
+    "description": "Etiqueta de desfocar fundo"
+  },
+  "noneDropdownLabel": {
+    "message": "Nenhum",
+    "description": "Nenhum dispositivo selecionado"
+  },
+  "noCameraDropdownLabel": {
+    "message": "Sem câmara",
+    "description": "Nenhuma câmara selecionada"
+  },
+  "noMicrophoneDropdownLabel": {
+    "message": "Sem microfone",
+    "description": "Nenhum microfone selecionado"
+  },
+  "selectSourceDropdownPlaceholder": {
+    "message": "Selecionar uma fonte",
+    "description": "Marcador de posição para selecionar fonte"
+  },
+  "offLabel": {
+    "message": "Desligado",
+    "description": "Etiqueta de desligado no menu suspenso"
+  },
+  "regionWidthLabel": {
+    "message": "Largura",
+    "description": "Etiqueta de largura de região"
+  },
+  "regionHeightLabel": {
+    "message": "Altura",
+    "description": "Etiqueta de altura de região"
+  },
+  "addImageToastTitle": {
+    "message": "Clica para colocar a imagem",
+    "description": "Brinde que aparece ao adicionar uma nova imagem"
+  },
+  "finishRecordingTooltip": {
+    "message": "Terminar gravação",
+    "description": "Dica de terminar gravação"
+  },
+  "restartRecordingTooltip": {
+    "message": "Reiniciar gravação",
+    "description": "Dica de reiniciar gravação"
+  },
+  "pauseRecordingTooltip": {
+    "message": "Pausar gravação",
+    "description": "Dica de pausar gravação"
+  },
+  "resumeRecordingTooltip": {
+    "message": "Continuar gravação",
+    "description": "Dica de continuar gravação"
+  },
+  "cancelRecordingTooltip": {
+    "message": "Cancelar gravação",
+    "description": "Dica de cancelar gravação"
+  },
+  "toggleDrawingToolsTooltip": {
+    "message": "Ferramentas de desenho",
+    "description": "Dica de alternar ferramentas de desenho"
+  },
+  "toggleBlurToolTooltip": {
+    "message": "Ferramenta de desfoque",
+    "description": "Dica de alternar ferramentas de desfoque"
+  },
+  "toggleCursorOptionsTooltip": {
+    "message": "Opções de cursor",
+    "description": "Dica de alternar opções de cursor"
+  },
+  "disableCameraTooltip": {
+    "message": "Desativar câmara",
+    "description": "Dica de desativar câmara"
+  },
+  "enableCameraTooltip": {
+    "message": "Ativar câmara",
+    "description": "Dica de ativar câmara"
+  },
+  "noCameraPermissionsTooltip": {
+    "message": "Sem permissões de câmara",
+    "description": "Dica de sem permissões de câmara"
+  },
+  "disableMicrophoneTooltip": {
+    "message": "Desativar microfone",
+    "description": "Dica de desativar microfone"
+  },
+  "enableMicrophoneTooltip": {
+    "message": "Ativar microfone",
+    "description": "Dica de ativar microfone"
+  },
+  "noMicrophonePermissionsTooltip": {
+    "message": "Sem permissões de microfone",
+    "description": "Dica de sem permissões de microfone"
+  },
+  "selectToolTooltip": {
+    "message": "Selecionar ferramenta",
+    "description": "Dica de selecionar ferramenta"
+  },
+  "penToolTooltip": {
+    "message": "Ferramenta de caneta",
+    "description": "Dica de ferramenta de caneta"
+  },
+  "highlighterToolTooltip": {
+    "message": "Ferramenta de marcador",
+    "description": "Dica de ferramenta de marcador"
+  },
+  "eraserToolTooltip": {
+    "message": "Ferramenta de borracha",
+    "description": "Dica de ferramenta de borracha"
+  },
+  "textToolTooltip": {
+    "message": "Ferramenta de texto",
+    "description": "Dica de ferramenta de texto"
+  },
+  "shapeToolTooltip": {
+    "message": "Ferramenta de formas",
+    "description": "Dica de ferramenta de formas"
+  },
+  "arrowToolTooltip": {
+    "message": "Ferramenta de seta",
+    "description": "Dica de ferramenta de seta"
+  },
+  "imageToolTooltip": {
+    "message": "Ferramenta de imagem",
+    "description": "Dica de ferramenta de imagem"
+  },
+  "undoTooltip": {
+    "message": "Desfazer",
+    "description": "Dica de desfazer"
+  },
+  "redoTooltip": {
+    "message": "Refazer",
+    "description": "Dica de refazer"
+  },
+  "clearCanvasTooltip": {
+    "message": "Limpar tela",
+    "description": "Dica de limpar tela"
+  },
+  "moreColorsTooltip": {
+    "message": "Mais cores",
+    "description": "Dica de mais cores"
+  },
+  "thickStrokeTooltip": {
+    "message": "Traço grosso",
+    "description": "Dica de traço grosso"
+  },
+  "mediumStrokeTooltip": {
+    "message": "Traço médio",
+    "description": "Dica de traço médio"
+  },
+  "thinStrokeTooltip": {
+    "message": "Traço fino",
+    "description": "Dica de traço fino"
+  },
+  "togglePictureinPictureModeTooltip": {
+    "message": "Alternar modo de Picture-in-Picture (PIP)",
+    "description": "Dica de alternar modo de imagem sobre imagem"
+  },
+  "toggleFillTooltip": {
+    "message": "Alternar preenchimento",
+    "description": "Dica de alternar preenchimento"
+  },
+  "drawingModeToast": {
+    "message": "Modo de desenho",
+    "description": "Brinde de modo de desenho"
+  },
+  "blurModeToast": {
+    "message": "Modo de desfoque",
+    "description": "Brinde de modo de desfoque"
+  },
+  "clearBlurredElementsTooltip": {
+    "message": "Limpar todos os elementos desfocados",
+    "description": "Dica de limpar todos os elementos desfocados"
+  },
+  "highlightClicksTooltip": {
+    "message": "Destacar cliques",
+    "description": "Dica de destacar cliques"
+  },
+  "highlightCursorTooltip": {
+    "message": "Destacar cursor",
+    "description": "Dica de destacar cursor"
+  },
+  "spotlightCursorTooltip": {
+    "message": "Foco no cursor",
+    "description": "Dica de foco no cursor"
+  },
+  "permissionsModalNoShowAgain": {
+    "message": "Não mostrar novamente",
+    "description": "Botão de fechar modal de permissões"
+  },
+  "restartModalTitle": {
+    "message": "Tens a certeza que queres reiniciar a gravação?",
+    "description": "Título do modal de reiniciar gravação"
+  },
+  "restartModalDescription": {
+    "message": "O teu progresso no vídeo será perdido.",
+    "description": "Descrição do modal de reiniciar gravação"
+  },
+  "restartModalRestart": {
+    "message": "Reiniciar gravação",
+    "description": "Botão de reiniciar gravação no modal"
+  },
+  "restartModalResume": {
+    "message": "Continuar gravação",
+    "description": "Botão de continuar gravação no modal"
+  },
+  "discardModalTitle": {
+    "message": "Tens a certeza que queres descartar a gravação?",
+    "description": "Título do modal de descartar gravação"
+  },
+  "discardModalDescription": {
+    "message": "O teu progresso no vídeo será perdido.",
+    "description": "Descrição do modal de descartar gravação"
+  },
+  "discardModalDiscard": {
+    "message": "Descartar gravação",
+    "description": "Botão de descartar gravação no modal"
+  },
+  "discardModalResume": {
+    "message": "Continuar gravação",
+    "description": "Botão de continuar gravação no modal"
+  },
+  "recorderSelectTitle": {
+    "message": "Escolhe o que queres gravar",
+    "description": "Título na página de gravação"
+  },
+  "recorderSelectProgressTitle": {
+    "message": "Gravando...",
+    "description": "Título na página de gravação durante a gravação"
+  },
+  "recorderSelectDescription": {
+    "message": "Mantém este separador aberto. Será fechado assim que a tua gravação for guardada.",
+    "description": "Descrição na página de gravação"
+  },
+  "sandboxProgressTitle": {
+    "message": "Preparando a gravação...",
+    "description": "Título na página de testes durante a gravação/salvamento"
+  },
+  "sandboxProgressDescription": {
+    "message": "Mantém este separador aberto. Será atualizado com a tua gravação quando estiver pronta.",
+    "description": "Descrição na página de testes durante a gravação/salvamento"
+  },
+  "sandboxFinalizingRecording": {
+    "message": "A finalizar gravação...",
+    "description": "Shown over the player when the editor is waiting for the recorder to finish flushing the recording to disk"
+  },
+  "sandboxToastReverted": {
+    "message": "Revertido para o original",
+    "description": "Toast confirmation shown when the user reverts edits to the original recording"
+  },
+  "sandboxToastSaved": {
+    "message": "Alterações guardadas",
+    "description": "Toast confirmation shown when the user saves an edit operation"
+  },
+  "sandboxEditorMainTitle": {
+    "message": "Editor",
+    "description": "Título na navegação da página do editor de testes"
+  },
+  "sandboxEditorCancelButton": {
+    "message": "Cancelar",
+    "description": "Botão de cancelar na página do editor de testes"
+  },
+  "sandboxEditorRevertButton": {
+    "message": "Reverter para o original",
+    "description": "Botão de reverter na página do editor de testes"
+  },
+  "sandboxEditorResetButton": {
+    "message": "Redefinir",
+    "description": "Botão de redefinir na página do editor de testes"
+  },
+  "sandboxEditorSaveButton": {
+    "message": "Guardar alterações",
+    "description": "Botão de salvar na página do editor de testes"
+  },
+  "sandboxEditorSaveProgressButton": {
+    "message": "Guardando...",
+    "description": "Botão de salvar na página do editor de testes durante o salvamento"
+  },
+  "sandboxAudioDragAndDrop": {
+    "message": "Arrasta o teu ficheiro de áudio",
+    "description": "Arraste e solte arquivo de áudio na página do editor de testes"
+  },
+  "sandboxAudioOrBrowse": {
+    "message": "Ou clica para procurar",
+    "description": "Ou clique para procurar arquivo de áudio na página do editor de testes"
+  },
+  "sandboxAudioSettingsTitle": {
+    "message": "Configurações",
+    "description": "Título de configurações de áudio na página do editor de testes"
+  },
+  "sandboxAudioVolumeLabel": {
+    "message": "Volume",
+    "description": "Rótulo de volume de áudio na página do editor de testes"
+  },
+  "sandboxAudioUpdateButton": {
+    "message": "Aplicar",
+    "description": "Botão de atualizar áudio na página do editor de testes"
+  },
+  "sandboxCropTitle": {
+    "message": "Recortar",
+    "description": "Título de recorte na página do editor de testes"
+  },
+  "widthLabel": {
+    "message": "Largura",
+    "description": "Rótulo de largura para propriedades"
+  },
+  "heightLabel": {
+    "message": "Altura",
+    "description": "Rótulo de altura para propriedades"
+  },
+  "leftLabel": {
+    "message": "Esquerda",
+    "description": "Rótulo de esquerda para propriedades"
+  },
+  "topLabel": {
+    "message": "Topo",
+    "description": "Rótulo de topo para propriedades"
+  },
+  "sandboxEditorTrimInfo": {
+    "message": "Arrasta as abas e usa os botões à esquerda para editar a secção selecionada.",
+    "description": "Informações sobre recorte na página do editor de testes"
+  },
+  "sandboxEditorTrimButton": {
+    "message": "Recortar vídeo",
+    "description": "Botão de recortar na página do editor de testes"
+  },
+  "sandboxEditorTrimProgressButton": {
+    "message": "Recortando...",
+    "description": "Botão de recortar na página do editor de testes durante o recorte"
+  },
+  "sandboxEditorCutButton": {
+    "message": "Cortar secção",
+    "description": "Botão de cortar na página do editor de testes"
+  },
+  "sandboxEditorCutProgressButton": {
+    "message": "Cortando...",
+    "description": "Botão de cortar na página do editor de testes durante o corte"
+  },
+  "sandboxEditorMuteButton": {
+    "message": "Silenciar áudio",
+    "description": "Botão de silenciar na página do editor de testes"
+  },
+  "sandboxEditorMuteProgressButton": {
+    "message": "Silenciando...",
+    "description": "Botão de silenciar na página do editor de testes durante o silenciamento"
+  },
+  "learnMoreDot": {
+    "message": "Sabe mais.",
+    "description": "Saiba mais com um ponto"
+  },
+  "undoLabel": {
+    "message": "Desfazer",
+    "description": "Rótulo de desfazer"
+  },
+  "redoLabel": {
+    "message": "Refazer",
+    "description": "Rótulo de refazer"
+  },
+  "leaveReview": {
+    "message": "Deixa uma avaliação",
+    "description": "Botão de deixar uma avaliação"
+  },
+  "followForUpdates": {
+    "message": "Seguir para atualizações",
+    "description": "Botão de seguir para atualizações"
+  },
+  "offlineLabelTitle": {
+    "message": "Atualmente offline",
+    "description": "Rótulo de offline"
+  },
+  "offlineLabelDescription": {
+    "message": "Algumas funcionalidades estão indisponíveis até te reconectares",
+    "description": "Descrição do rótulo de offline"
+  },
+  "offlineLabelTryAgain": {
+    "message": "Tentar novamente",
+    "description": "Botão de tentar novamente do rótulo de offline"
+  },
+  "serverIssueTitle": {
+    "message": "O Recordful está indisponível",
+    "description": "Title shown when the Recordful API is returning server errors"
+  },
+  "serverIssueDescription": {
+    "message": "A gravação na nuvem está indisponível de momento. Tenta novamente dentro de momentos.",
+    "description": "Description shown when the Recordful API is returning server errors"
+  },
+  "serverUnreachableTitle": {
+    "message": "Não foi possível contactar o Recordful",
+    "description": "Title shown when the Recordful API cannot be reached"
+  },
+  "serverUnreachableDescription": {
+    "message": "Verifica a tua ligação ou tenta novamente dentro de momentos.",
+    "description": "Description shown when the Recordful API cannot be reached"
+  },
+  "updateChromeLabelTitle": {
+    "message": "O Chrome precisa de ser atualizado",
+    "description": "Rótulo de atualizar o Chrome"
+  },
+  "updateChromeLabelDescription": {
+    "message": "Atualiza para aceder a mais funcionalidades",
+    "description": "Descrição do rótulo de atualizar o Chrome"
+  },
+  "learnMoreLabel": {
+    "message": "Sabe mais",
+    "description": "Botão de saiba mais"
+  },
+  "overLimitLabelTitle": {
+    "message": "Vídeo demasiado longo para processar no teu dispositivo",
+    "description": "Etiqueta de limite superior a 5 minutos no editor"
+  },
+  "overLimitLabelDescription": {
+    "message": "Edição e exportação em formato MP4 não estão disponíveis",
+    "description": "Descrição de limite superior a 5 minutos no editor"
+  },
+  "overLimitLabelDescriptionFastPath": {
+    "message": "As funcionalidades de edição não estão disponíveis",
+    "description": "Over limit description when the recording is a native MP4 (fast recorder / WebCodecs) so MP4 export still works"
+  },
+  "videoProcessingLabelTitle": {
+    "message": "O vídeo está a ser processado...",
+    "description": "Rótulo de processamento de vídeo no editor"
+  },
+  "videoProcessingLabelDescription": {
+    "message": "Faz upgrade para um editor mais rápido",
+    "description": "Descrição do processamento de vídeo no editor"
+  },
+  "sandboxEditTitle": {
+    "message": "Editar",
+    "description": "Título de edição na página do editor de testes"
+  },
+  "noConnectionLabel": {
+    "message": "Sem conexão",
+    "description": "Rótulo de sem conexão"
+  },
+  "notAvailableLabel": {
+    "message": "Indisponível",
+    "description": "Rótulo de não disponível"
+  },
+  "editButtonTitle": {
+    "message": "Editar vídeo",
+    "description": "Rótulo de botão de recorte"
+  },
+  "editButtonDescription": {
+    "message": "Remove, corta ou silencia o vídeo",
+    "description": "Rótulo de recorte"
+  },
+  "preparingLabel": {
+    "message": "A preparar...",
+    "description": "Rótulo de preparação"
+  },
+  "cropButtonTitle": {
+    "message": "Recortar",
+    "description": "Rótulo de botão de recorte"
+  },
+  "cropButtonDescription": {
+    "message": "Recorta e redimensiona o vídeo",
+    "description": "Rótulo de recorte"
+  },
+  "addAudioButtonTitle": {
+    "message": "Adicionar áudio",
+    "description": "Rótulo de botão de adicionar áudio"
+  },
+  "addAudioButtonDescription": {
+    "message": "Carrega o teu próprio áudio para o vídeo",
+    "description": "Rótulo de adicionar áudio"
+  },
+  "sandboxSaveTitle": {
+    "message": "Guardar",
+    "description": "Título de salvar na página do editor de testes"
+  },
+  "signOutDriveLabel": {
+    "message": "Sair do Google Drive",
+    "description": "Rótulo de sair do Google Drive"
+  },
+  "savingDriveLabel": {
+    "message": "Guardando...",
+    "description": "Rótulo de salvamento no Google Drive"
+  },
+  "saveDriveButtonTitle": {
+    "message": "Guardar no Google Drive",
+    "description": "Botão de salvar no Google Drive"
+  },
+  "saveDriveButtonDescription": {
+    "message": "Guarda a versão atual do vídeo",
+    "description": "Rótulo de salvar no Google Drive"
+  },
+  "signInDriveLabel": {
+    "message": "Inicia a sessão e guarda no Google Drive",
+    "description": "Rótulo de iniciar sessão no Google Drive"
+  },
+  "sandboxExportTitle": {
+    "message": "Exportar",
+    "description": "Título de exportação na página do editor de testes"
+  },
+  "downloadingLabel": {
+    "message": "Descarregando...",
+    "description": "Rótulo de download"
+  },
+  "downloadWEBMButtonTitle": {
+    "message": "Descarregar como .webm",
+    "description": "Botão de baixar WEBM"
+  },
+  "downloadWEBMButtonDescription": {
+    "message": "Exportar um vídeo .webm",
+    "description": "Rótulo de baixar WEBM"
+  },
+  "downloadMP4ButtonTitle": {
+    "message": "Descarregar como .mp4",
+    "description": "Botão de baixar MP4"
+  },
+  "downloadMP4ButtonDescription": {
+    "message": "Exportar um vídeo .mp4 (recomendado)",
+    "description": "Rótulo de baixar MP4"
+  },
+  "downloadGIFButtonTitle": {
+    "message": "Descarregar como .gif",
+    "description": "Botão de baixar GIF"
+  },
+  "downloadGIFButtonDescription": {
+    "message": "Exportar um GIF (máximo de 30 segundos)",
+    "description": "Rótulo de baixar GIF"
+  },
+  "shareModalSandboxTitle": {
+    "message": "Pronto para melhorar as tuas gravações?",
+    "description": "Share modal title in sandbox editor page"
+  },
+  "shareModalSandboxDescription": {
+    "message": "Partilha na cloud, usa zooms, modelos... e apoia uma dev indie que respeita a tua privacidade ❤️",
+    "description": "Share modal description in sandbox editor page"
+  },
+  "shareModalSandboxButton": {
+    "message": "Sabe mais sobre o Pro",
+    "description": "Share modal email placeholder in sandbox editor page"
+  },
+  "shareModalSandboxLogin": {
+    "message": "Já tens conta? Inicia sessão",
+    "description": "Share modal login link in sandbox editor page"
+  },
+  "shareSandboxButton": {
+    "message": "Partilhar vídeo",
+    "description": "Botão de partilha na página do editor de testes"
+  },
+  "replaceAudioEditor": {
+    "message": "Substituir áudio existente",
+    "description": "Botão de substituição de áudio no editor"
+  },
+  "zoomToPointPopup": {
+    "message": "Zoom para o cursor",
+    "description": "Popup de zoom para o ponto"
+  },
+  "stayInPagePopup": {
+    "message": "Permanece na página durante a gravação",
+    "description": "Popup de permanência na página"
+  },
+  "micReminderPopup": {
+    "message": "Mostrar aviso de microfone desligado",
+    "description": "Popup de lembrete de microfone"
+  },
+  "helpPopup": {
+    "message": "Ajuda",
+    "description": "Botão de popup de ajuda"
+  },
+  "pausedRecordingToast": {
+    "message": "Gravação pausada. Pressiona o botão de reprodução para continuar.",
+    "description": "Título do modal de gravação pausada"
+  },
+  "chromePermissionsModalTitle": {
+    "message": "O Recordful não tem permissão para gravar o teu ecrã",
+    "description": "Título do modal de permissões"
+  },
+  "chromePermissionsModalDescription": {
+    "message": "Para permitir a gravação de ecrã, deves dar permissões ao Recordful.",
+    "description": "Descrição do modal de permissões"
+  },
+  "chromePermissionsModalAction": {
+    "message": "Ativar gravação de ecrã",
+    "description": "Ação do modal de permissões"
+  },
+  "chromePermissionsModalCancel": {
+    "message": "Cancelar",
+    "description": "Cancelar do modal de permissões"
+  },
+  "micMutedModalTitle": {
+    "message": "O teu microfone está desligado",
+    "description": "Título do modal de microfone desligado"
+  },
+  "micMutedModalDescription": {
+    "message": "Para incluir áudio na tua gravação, terás de ativar o teu microfone. Queres continuar sem áudio?",
+    "description": "Descrição do modal de microfone desligado"
+  },
+  "micMutedModalAction": {
+    "message": "Sim, continuar",
+    "description": "Continuar do modal de microfone desligado"
+  },
+  "micMutedModalCancel": {
+    "message": "Cancelar",
+    "description": "Cancelar do modal de microfone desligado"
+  },
+  "setupTitle": {
+    "message": "Começa com o Recordful em três passos simples:",
+    "description": "Título dos passos de configuração"
+  },
+  "setupStep1Before": {
+    "message": "1- Clica no ícone de ",
+    "description": "Passo 1 de configuração, antes do ícone. Precisa de um espaço no final."
+  },
+  "setupStep1After": {
+    "message": " extensões",
+    "description": "Passo 1 de configuração, depois do ícone. Precisa de um espaço no início."
+  },
+  "setupStep2Before": {
+    "message": "2- Pressiona o ícone de ",
+    "description": "Passo 2 de configuração, antes do ícone. Precisa de um espaço no final."
+  },
+  "setupStep2After": {
+    "message": " alfinete",
+    "description": "Passo 2 de configuração, depois do ícone. Precisa de um espaço no início."
+  },
+  "setupStep3Before": {
+    "message": "3- Clica no ícone de ",
+    "description": "Passo 3 de configuração, antes do ícone. Precisa de um espaço no final."
+  },
+  "setupStep3After": {
+    "message": " Recordful para começar",
+    "description": "Passo 3 de configuração, depois do ícone. Precisa de um espaço no início."
+  },
+  "setupCompleteTitle": {
+    "message": "Fantástico! Vamos começar",
+    "description": "Título de configuração completa"
+  },
+  "setupCompleteDescription": {
+    "message": "Agora podes começar a gravar aqui ou em qualquer outro separdor.",
+    "description": "Descrição de configuração completa"
+  },
+  "clickHereDrawOnboarding": {
+    "message": "Clica aqui para desenhar",
+    "description": "Instruções para clicar aqui"
+  },
+  "countdownMessage": {
+    "message": "Relaxa. Clica em qualquer lugar para parar a contagem decrescente.",
+    "description": "Mensagem de contagem regressiva"
+  },
+  "sandboxEditorTooSmallInfo": {
+    "message": "A edição de vídeos com durações curtas pode ser imprecisa devido aos pequenos intervalos entre imagens.",
+    "description": "Informação sobre o editor ser demasiado pequeno"
+  },
+  "processingBannerEditor": {
+    "message": "O vídeo está a ser processado, a reprodução pode ser imprecisa ou interrompida.",
+    "description": "Banner de processamento no editor"
+  },
+  "croppingInfoTitle": {
+    "message": "Recortar o vídeo pode demorar algum tempo",
+    "description": "Título da informação de recorte"
+  },
+  "croppingInfoDescription": {
+    "message": "Subscreva para editar vídeos mais rapidamente",
+    "description": "Descrição da informação de recorte"
+  },
+  "micOnToast": {
+    "message": "Microfone ativado",
+    "description": "Título do aviso de microfone ativado"
+  },
+  "micOffToast": {
+    "message": "Microfone desativado",
+    "description": "Título do aviso de microfone desativado"
+  },
+  "hideUIAlerts": {
+    "message": "Ocultar notificações da interface",
+    "description": "Botão para ocultar alertas da interface"
+  },
+  "noShowAgain": {
+    "message": "Não mostrar novamente",
+    "description": "Botão de não mostrar novamente"
+  },
+  "toolbarHoverOnly": {
+    "message": "Ocultar os controles quando não estiverem em uso",
+    "description": "Botão para mostrar a barra de ferramentas apenas ao passar o cursor"
+  },
+  "stopRecording": {
+    "message": "Parar gravação",
+    "description": "Stop recording button in recording screen"
+  },
+  "updateAnnouncementTitle": {
+    "message": "Bem-vindo ao novo Recordful!",
+    "description": "Título do anúncio de atualização para usuários existentes"
+  },
+  "updateAnnouncementDescription": {
+    "message": "Atualizamos o design e desenvolvemos novas funcionalidades, mas não te preocupes, continua a ser a mesma extensão gratuita, privada e de código de acesso livre.",
+    "description": "Descrição do anúncio de atualização para utilizadores existentes"
+  },
+  "updateAnnouncementLearnMore": {
+    "message": "Obtém mais informações sobre a atualização.",
+    "description": "Link 'Saber mais' do anúncio de atualização para usuários existentes"
+  },
+  "updateAnnouncementButton": {
+    "message": "Começar",
+    "description": "Botão do anúncio de atualização para usuários existentes"
+  },
+  "streamErrorModalTitle": {
+    "message": "Erro ao iniciar a gravação",
+    "description": "Título do modal de erro de transmissão"
+  },
+  "streamErrorModalDescription": {
+    "message": "Houve um erro ao iniciar a gravação. Reinicia o teu navegador e tenta novamente. Se o problema persistir, por favor, entra em contato conosco em X.com/whyKislay or forg.to/@kislay.",
+    "description": "Descrição do modal de erro de transmissão"
+  },
+  "accountErrorModalTitle": {
+    "message": "Subscrição necessária",
+    "description": "Title of the modal shown when a cloud recording is refused because the account has no active subscription"
+  },
+  "accountErrorModalDescription": {
+    "message": "O Recordful não conseguiu iniciar uma gravação na nuvem porque esta conta não tem uma subscrição ativa. As suas gravações e definições estão seguras.",
+    "description": "Body shown when the account has never had an active subscription (server: upgrade_required)"
+  },
+  "accountErrorModalDescriptionLapsed": {
+    "message": "O Recordful não conseguiu iniciar uma gravação na nuvem porque o acesso Pro desta conta terminou. As suas gravações e definições estão seguras.",
+    "description": "Body shown when the account's subscription has ended (server: reactivate_required)"
+  },
+  "accountErrorModalAction": {
+    "message": "Ver subscrição",
+    "description": "Button that opens the subscription page"
+  },
+  "authErrorModalTitle": {
+    "message": "Inicie sessão novamente",
+    "description": "Title of the modal shown when a cloud recording is refused because the session expired, not the subscription"
+  },
+  "authErrorModalDescription": {
+    "message": "O Recordful não conseguiu iniciar uma gravação na nuvem porque esta sessão expirou. A sua subscrição, gravações e definições estão seguras.",
+    "description": "Body shown when the session/token failed; the account may well be a paying subscriber"
+  },
+  "authErrorModalAction": {
+    "message": "Iniciar sessão",
+    "description": "Button that reopens the login flow"
+  },
+  "highestQuality": {
+    "message": "Qualidade mais alta",
+    "description": "Rótulo de alternar a qualidade mais alta no popup"
+  },
+  "restoreRecording": {
+    "message": "Restaurar a última gravação",
+    "description": "Botão para restaurar a última gravação no popup"
+  },
+  "havingIssuesButton": {
+    "message": "A ter problemas?",
+    "description": "Botão de problemas no editor"
+  },
+  "havingIssuesModalTitle": {
+    "message": "Não consegue ver a sua gravação?",
+    "description": "Título do modal de problemas no editor"
+  },
+  "havingIssuesModalDescription": {
+    "message": "Se completou a sua gravação e se encontra nesta página sem conseguir ver o seu vídeo, pode tentar descarregar os dados brutos do vídeo, se estiverem disponíveis. Também pode entrar em contacto e enviar um relatório de erro.",
+    "description": "Descrição do modal de problemas no editor"
+  },
+  "havingIssuesModalButton": {
+    "message": "Descarregar dados brutos do vídeo",
+    "description": "Botão do modal de problemas no editor"
+  },
+  "havingIssuesModalButton2": {
+    "message": "Reportar erro",
+    "description": "Segundo botão do modal de problemas no editor"
+  },
+  "noRecordingFound": {
+    "message": "Não foi encontrada nenhuma gravação, lamento :(",
+    "description": "Alerta de não foi encontrada nenhuma gravação no editor"
+  },
+  "memoryLimitTitle": {
+    "message": "Limite de memória atingido",
+    "description": "Título de limite de memória atingido"
+  },
+  "memoryLimitDescription": {
+    "message": "O seu dispositivo ficou sem memória para gravar, pelo que a gravação foi interrompida automaticamente. Se desejar gravar por mais tempo, pode tentar reduzir a qualidade do vídeo ou libertar espaço no dispositivo.",
+    "description": "Descrição de limite de memória atingido"
+  },
+  "understoodButton": {
+    "message": "Entendi",
+    "description": "Botão de entendi"
+  },
+  "notEnoughSpaceTitle": {
+    "message": "Espaço insuficiente",
+    "description": "Título de espaço insuficiente"
+  },
+  "notEnoughSpaceDescription": {
+    "message": "O Recordful precisa de pelo menos 1 GB de espaço livre para gravar. Por favor, liberte espaço e tente novamente.",
+    "description": "Descrição de espaço insuficiente"
+  },
+  "clearSpaceButton": {
+    "message": "Apagar gravações anteriores",
+    "description": "Botão de apagar gravações anteriores"
+  },
+  "sandboxAdvancedTitle": {
+    "message": "Avançado",
+    "description": "Secção avançada na página do editor no ambiente seguro"
+  },
+  "rawRecordingButtonTitle": {
+    "message": "Transferir ficheiro de vídeo bruto",
+    "description": "Botão de transferência de gravação em bruto"
+  },
+  "rawRecordingButtonDescription": {
+    "message": "Exportar os dados originais da gravação",
+    "description": "Etiqueta do botão de transferência de gravação em bruto"
+  },
+  "troubleshootButtonTitle": {
+    "message": "Obter ajuda com a tua gravação",
+    "description": "Botão de resolução de problemas"
+  },
+  "troubleShootButtonDescription": {
+    "message": "Recupera o teu vídeo e resolve outros problemas",
+    "description": "Etiqueta de resolução de problemas"
+  },
+  "rawRecordingModalTitle": {
+    "message": "Transferir ficheiro de vídeo bruto",
+    "description": "Título do modal de gravação em bruto"
+  },
+  "rawRecordingModalDescription": {
+    "message": "O ficheiro de vídeo bruto é o ficheiro original gravado pelo Recordful. Este vídeo não foi processado nem editado, pelo que pode ser muito grande e pode não ser reproduzível em todos os dispositivos. Se estiveres a ter problemas com o vídeo processado, podes usar este ficheiro para recuperar o teu vídeo.",
+    "description": "Descrição do modal de gravação em bruto"
+  },
+  "rawRecordingModalButton": {
+    "message": "Transferir",
+    "description": "Botão do modal de gravação em bruto"
+  },
+  "troubleshootModalTitle": {
+    "message": "Transferir informação do sistema e dados de vídeo para resolução de problemas",
+    "description": "Título do modal de resolução de problemas"
+  },
+  "troubleshootModalDescription": {
+    "message": "Após a transferência, envia o ficheiro para X.com/whyKislay or forg.to/@kislay com qualquer informação relevante. Utilizaremos estes dados para te ajudar a resolver quaisquer problemas que tenhas com a extensão e, se possível, recuperar o teu vídeo.",
+    "description": "Descrição do modal de resolução de problemas"
+  },
+  "troubleshootModalButton": {
+    "message": "Transferir",
+    "description": "Botão do modal de resolução de problemas"
+  },
+  "overLimitModalTitle": {
+    "message": "O vídeo é demasiado longo para ser processado no teu dispositivo",
+    "description": "Título do modal de limite superior a 5 minutos"
+  },
+  "overLimitModalDescription": {
+    "message": "Uma vez que o Recordful é completamente privado e funciona localmente, está limitado pelo hardware do teu dispositivo. Processar um vídeo com esta duração levaria demasiado tempo e seria muito intensivo em recursos. Não te preocupes, ainda podes descarregar o ficheiro WEBM ou a gravação em bruto, mas a edição e a exportação para MP4 não estão disponíveis. Dito isto, ainda podes tentar processar o vídeo mesmo assim, se compreenderes os riscos.",
+    "description": "Descrição do modal de limite superior a 5 minutos"
+  },
+  "overLimitModalDescriptionFastPath": {
+    "message": "Uma vez que o Recordful é completamente privado e funciona localmente, está limitado pelo hardware do teu dispositivo. Processar um vídeo com esta duração levaria demasiado tempo e seria muito intensivo em recursos. O teu MP4 já está pronto para descarregar, mas a edição no navegador não está disponível para clips com esta duração. Dito isto, ainda podes tentar processar o vídeo mesmo assim, se compreenderes os riscos.",
+    "description": "Over 5 minutes limit modal description when the recording is a native MP4 (fast recorder / WebCodecs)"
+  },
+  "overLimitModalButton": {
+    "message": "Compreendo o risco, tentar mesmo assim",
+    "description": "Botão do modal de limite superior a 5 minutos"
+  },
+  "overLimitModalLearnMore": {
+    "message": "Sabe mais sobre o processamento de vídeos longos.",
+    "description": "Link 'Sabe mais' do modal de limite superior a 5 minutos com um ponto"
+  },
+  "recoveryModeTitle": {
+    "message": "Modo de recuperação",
+    "description": "Título do modo de recuperação"
+  },
+  "downloadForTroubleshootingOption": {
+    "message": "Descarregar dados para solucionar problemas",
+    "description": "Opção de descarregamento para solucionar problemas"
+  },
+  "getHelpNav": {
+    "message": "Centro de Ajuda",
+    "description": "Item de Navegação para Obter Ajuda"
+  },
+  "audioWarningTitle": {
+    "message": "Gravar Áudio do Computador",
+    "description": "Título do Aviso de Áudio"
+  },
+  "audioWarningDescription": {
+    "message": "Para gravar áudio desta página, precisa alternar para '$tab$'.",
+    "description": "Descrição do Aviso de Áudio",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Área da Guia"
+      }
+    }
+  },
+  "extensionNotSupportedTitle": {
+    "message": "Extensão não suportada na guia",
+    "description": "Título de Extensão não Suportada na Guia"
+  },
+  "extensionNotSupportedDescription": {
+    "message": "O Recordful não foi suportado na sua guia anterior. Ainda pode iniciar a sua gravação aqui e alternar para a guia, mas a sua câmara e barra de ferramentas não serão visíveis.",
+    "description": "Descrição de Extensão não Suportada na Guia"
+  },
+  "backupsDescription1": {
+    "message": "Mantenha uma cópia de todas as gravações que efetuar. Se não configurar cópias de segurança, as suas gravações só serão guardadas quando optar por as descarregar.",
+    "description": "Descrição de Cópias de Segurança"
+  },
+  "backupsDescription2": {
+    "message": "Poderá ser necessário criar uma nova pasta primeiro se estiver a tentar guardar em 'Transferências' ou outras pastas do sistema.",
+    "description": "Descrição de Cópias de Segurança"
+  },
+  "recordAudioWarningMacTitle": {
+    "message": "Gravar Áudio do Computador",
+    "description": "Título do Aviso de Áudio para macOS"
+  },
+  "recordAudioWarningMacDescription": {
+    "message": "No macOS, só pode gravar áudio das guias. Selecione a opção 'Guia do Chrome' e certifique-se de que 'Também partilhar áudio da guia' está ativado.",
+    "description": "Descrição do Aviso de Áudio para macOS"
+  },
+  "recordAudioWarningOtherTitle": {
+    "message": "Gravar Áudio do Computador",
+    "description": "Título do Aviso de Áudio para Outros Sistemas"
+  },
+  "recordAudioWarningOtherDescription": {
+    "message": "Certifique-se de ativar a opção 'Partilhar áudio do sistema' se desejar gravar áudio do computador. Se não visualizar esta opção, tente atualizar o Chrome ou alternar para a gravação de guias.",
+    "description": "Descrição do Aviso de Áudio para Outros Sistemas"
+  },
+  "maxResolutionLabel": {
+    "message": "Resolução máxima",
+    "description": "Etiqueta de resolução máxima no menu de configurações"
+  },
+  "maxFPSLabel": {
+    "message": "Máximo de FPS",
+    "description": "Etiqueta de máximo de FPS no menu de configurações"
+  },
+  "notEnoughRAM": {
+    "message": "Memória RAM insuficiente",
+    "description": "Etiqueta de memória RAM insuficiente no menu de configurações"
+  },
+  "resizeWindowLabel": {
+    "message": "Redimensionar janela",
+    "description": "Rótulo de redimensionar janela no menu de configurações"
+  },
+  "screenTooSmallTooltip": {
+    "message": "O ecrã é demasiado pequeno para esta resolução",
+    "description": "Dica de ecrã muito pequeno no menu de configurações"
+  },
+  "maxResolutionTooltip": {
+    "message": "Não é possível gravar nesta resolução no seu dispositivo",
+    "description": "Dica de resolução máxima no menu de configurações"
+  },
+  "permissionsModalReview": {
+    "message": "Rever permissões",
+    "description": "Botão de rever permissões"
+  },
+  "recordButtonMultiLabel": {
+    "message": "Adicionar outra gravação",
+    "description": "Record button label (multi mode)"
+  },
+  "recorderSetupTitle": {
+    "message": "A preparar tudo...",
+    "description": "Title in recording page while setting up project before countdown starts"
+  },
+  "recorderSetupDescription": {
+    "message": "Espera um momento, estamos a preparar a tua gravação.",
+    "description": "Description in recording page before countdown starts"
+  },
+  "reopenToolbarToast": {
+    "message": "Barra de ferramentas oculta. Reativa-a nas opções.",
+    "description": "Toast message explaining to reopen the toolbar in the popup options"
+  },
+  "loginButtonLabel": {
+    "message": "Iniciar sessão ou registar",
+    "description": "Login button label in popup settings menu"
+  },
+  "logoutButtonLabel": {
+    "message": "Terminar sessão",
+    "description": "Logout button label in popup settings menu"
+  },
+  "loggedOutToastTitle": {
+    "message": "Sessão terminada",
+    "description": "Toast message shown when the user logs out"
+  },
+  "storageLimitReachedTitle": {
+    "message": "Atingiste o limite de armazenamento",
+    "description": "Modal message shown when the storage limit is reached"
+  },
+  "storageLimitReachedDescription": {
+    "message": "Usaste os 100 GB de armazenamento. Elimina vídeos ou cenas antigas para continuares a gravar.",
+    "description": "Modal description shown when the storage limit is reached"
+  },
+  "manageStorageButtonLabel": {
+    "message": "Gerir armazenamento",
+    "description": "Button label to manage storage in the popup settings menu"
+  },
+  "closeModalLabel": {
+    "message": "Fechar",
+    "description": "Agnostic close modal button label"
+  },
+  "storageCheckFailTitle": {
+    "message": "Não foi possível verificar o armazenamento",
+    "description": "Title shown when the storage check fails"
+  },
+  "storageCheckFailAuthDescription": {
+    "message": "Ocorreu um problema ao verificar o armazenamento. Inicia sessão novamente e tenta gravar outra vez.",
+    "description": "Description shown when the storage check fails due to authentication"
+  },
+  "storageCheckFailDescription": {
+    "message": "Não foi possível verificar a tua quota de armazenamento. Tenta novamente dentro de segundos ou atualiza a página.",
+    "description": "Description shown when the storage check fails"
+  },
+  "retryButtonLabel": {
+    "message": "Tentar novamente",
+    "description": "Agnostic button label to try again"
+  },
+  "addedToMultiToast": {
+    "message": "Cena adicionada à gravação Multi",
+    "description": "Toast message shown when a scene is added to multi-recording"
+  },
+  "readyRecordSceneToast": {
+    "message": "Pronta para gravar uma nova cena no teu vídeo",
+    "description": "Toast message shown when the user is in an existing project and ready to record a new scene"
+  },
+  "reachingRecordingLimitToast": {
+    "message": "A gravação está a aproximar-se do limite de 90 minutos, será interrompida em breve",
+    "description": "Toast message shown when the recording is reaching the 90 minute limit"
+  },
+  "recordingLimitReachedToast": {
+    "message": "Gravação interrompida ao atingir o limite de 90 minutos",
+    "description": "Toast message shown when the recording limit is reached"
+  },
+  "tabRecordingDisabledToast": {
+    "message": "A gravação do separador está desativada nesta página. A gravação de ecrã foi ativada por defeito.",
+    "description": "Toast message shown when tab recording is disabled on a page"
+  },
+  "projectRecordingCancelledToast": {
+    "message": "Gravação do vídeo cancelada",
+    "description": "Toast message shown when the user cancels project recording"
+  },
+  "copiedToClipboardToast": {
+    "message": "Ligação copiada para a área de transferência",
+    "description": "Toast message shown when link has been copied to clipboard"
+  },
+  "failedToCopyToClipboardToast": {
+    "message": "Não foi possível copiar a ligação",
+    "description": "Toast message shown when failed to copy link to clipboard"
+  },
+  "sortByHeading": {
+    "message": "Ordenar por",
+    "description": "Section heading in the videos sort dropdown for the field being sorted on"
+  },
+  "orderHeading": {
+    "message": "Ordem",
+    "description": "Section heading in the videos sort dropdown for the sort direction"
+  },
+  "sortFieldLastEdited": {
+    "message": "Última edição",
+    "description": "Sort field option: when the video was last edited"
+  },
+  "sortFieldDateCreated": {
+    "message": "Data de criação",
+    "description": "Sort field option: when the video was created"
+  },
+  "sortFieldName": {
+    "message": "Nome",
+    "description": "Sort field option: the video's title"
+  },
+  "sortFieldLength": {
+    "message": "Duração",
+    "description": "Sort field option: the video's duration"
+  },
+  "orderNewestFirst": {
+    "message": "Mais recentes primeiro",
+    "description": "Sort order option for date fields"
+  },
+  "orderOldestFirst": {
+    "message": "Mais antigos primeiro",
+    "description": "Sort order option for date fields"
+  },
+  "orderAToZ": {
+    "message": "De A a Z",
+    "description": "Sort order option for the name field"
+  },
+  "orderZToA": {
+    "message": "De Z a A",
+    "description": "Sort order option for the name field"
+  },
+  "orderLongestFirst": {
+    "message": "Mais longos primeiro",
+    "description": "Sort order option for the length field"
+  },
+  "orderShortestFirst": {
+    "message": "Mais curtos primeiro",
+    "description": "Sort order option for the length field"
+  },
+  "allVideosHeading": {
+    "message": "Todos os vídeos",
+    "description": "Heading for the all videos section in the popup"
+  },
+  "noVideosFound": {
+    "message": "Não foram encontrados vídeos",
+    "description": "Message shown when no videos are found in the popup"
+  },
+  "loadingVideosLabel": {
+    "message": "A carregar vídeos...",
+    "description": "Label shown when videos are loading in the popup"
+  },
+  "loadingMoreVideosLabel": {
+    "message": "A carregar mais...",
+    "description": "Label shown at the bottom of the videos list while loading additional pages"
+  },
+  "searchVideosPlaceholder": {
+    "message": "Pesquisar vídeos",
+    "description": "Placeholder text for the videos search input in the popup"
+  },
+  "noVideosMatchSearchTitle": {
+    "message": "Sem resultados para \"$SEARCHTERM$\"",
+    "description": "Heading shown when no videos match the current search query in the popup",
+    "placeholders": {
+      "searchterm": {
+        "content": "$1",
+        "example": "design review"
+      }
+    }
+  },
+  "noVideosMatchSearchHint": {
+    "message": "Tente ajustar o termo de pesquisa.",
+    "description": "Subtext shown under the no search results heading in the popup"
+  },
+  "privateVideoTooltip": {
+    "message": "Privado",
+    "description": "Tooltip shown on the lock badge over a private video's thumbnail"
+  },
+  "goToDashboardButtonLabel": {
+    "message": "Ir para o painel",
+    "description": "Button label to go to the dashboard in the popup"
+  },
+  "welcomePopupTitle": {
+    "message": "Bem-vinda ao Recordful",
+    "description": "Title for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionTop": {
+    "message": "Sem anúncios. Sem rastreamento. Sem limites.",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionBottom": {
+    "message": "Grava, simplesmente.",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupCTA": {
+    "message": "Usa gratuitamente — sem registo!",
+    "description": "Call to action button for the welcome popup shown to new users"
+  },
+  "welcomePopupCloudTitle": {
+    "message": "Queres fazer mais com os teus vídeos?",
+    "description": "Title for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupCloudFeature1": {
+    "message": "Armazenamento na cloud, partilha por ligação",
+    "description": "Feature 1 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature2": {
+    "message": "Combina vários clips como capítulos de uma história",
+    "description": "Feature 2 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature3": {
+    "message": "Zooms inteligentes com clique (ou adiciona os teus!)",
+    "description": "Feature 3 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature4": {
+    "message": "Adiciona modelos, legendas, mockups...",
+    "description": "Feature 4 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature5": {
+    "message": "Fundos e disposição da câmara personalizados",
+    "description": "Feature 5 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudCTA": {
+    "message": "🔓 Desbloqueia funcionalidades extra",
+    "description": "Call to action button for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupSupport": {
+    "message": "+ Apoia o desenvolvimento independente!",
+    "description": "Message for supporting the indie maker in the welcome popup"
+  },
+  "accountSettingsOption": {
+    "message": "Definições da conta",
+    "description": "Label for the account settings option in the popup"
+  },
+  "supportSettingsOption": {
+    "message": "Suporte",
+    "description": "Label for the support option in the popup"
+  },
+  "inactiveSubscriptionTitle": {
+    "message": "Subscrição Pro inativa",
+    "description": "Title shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionDescription": {
+    "message": "A tua subscrição do Recordful Pro está inativa.",
+    "description": "Description shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionReactivation": {
+    "message": "Reativa-a para voltares a ter acesso.",
+    "description": "Message prompting the user to reactivate their subscription"
+  },
+  "inactiveSubscriptionDeletionWarning": {
+    "message": "Os teus vídeos e dados serão eliminados permanentemente a ",
+    "description": "Warning message about the deletion of videos and data"
+  },
+  "manageSubscriptionButton": {
+    "message": "Gerir subscrição",
+    "description": "Button to manage the user's subscription"
+  },
+  "inactiveSubscriptionFreeVersion": {
+    "message": "Queres continuar a usar a versão gratuita?",
+    "description": "Message prompting the user to continue using the free version"
+  },
+  "downgradeToFreeButton": {
+    "message": "Terminar sessão e mudar para a versão gratuita",
+    "description": "Button to log out and downgrade to the free version"
+  },
+  "loggedOutTitle": {
+    "message": "Sessão terminada",
+    "description": "Title shown when the user is logged out"
+  },
+  "loggedOutDescription": {
+    "message": "Para manter as tuas gravações sincronizadas e aceder às funcionalidades Pro, inicia sessão novamente.",
+    "description": "Description shown when the user is logged out"
+  },
+  "logBackInButton": {
+    "message": "Iniciar sessão novamente",
+    "description": "Button to log back in after being logged out"
+  },
+  "loggedOutFreeVersion": {
+    "message": "Podes continuar a usar a extensão sem conta, mas as gravações não serão guardadas nem recuperáveis mais tarde.",
+    "description": "Message shown when the user is logged out and using the free version"
+  },
+  "continueWithoutLogin": {
+    "message": "Continuar sem iniciar sessão",
+    "description": "Button to continue using the extension without logging in"
+  },
+  "instantRecordingModeLabel": {
+    "message": "Modo de gravação instantânea",
+    "description": "Label for the instant recording mode"
+  },
+  "instantRecordingModeTooltip": {
+    "message": "Download imediato, mas não será possível editar a disposição da câmara depois de começar a gravação.",
+    "description": "Tooltip for the instant recording mode"
+  },
+  "instantRecordingModeTitle": {
+    "message": "Modo de gravação instantânea",
+    "description": "Title for the instant recording mode"
+  },
+  "instantRecordingModeDescription": {
+    "message": "Este modo grava tudo num único vídeo para descarregar e partilhar de imediato. Não podes alterar a disposição da câmara, mas podes fazer outras edições.",
+    "description": "Description for the instant recording mode"
+  },
+  "instantRecordingModeAction": {
+    "message": "Percebi",
+    "description": "Action button for the instant recording mode"
+  },
+  "tabRecordingDisabledTooltip": {
+    "message": "A gravação de separadores está desativada nesta página",
+    "description": "Tooltip shown when tab recording is disabled on a page"
+  },
+  "addingToLabel": {
+    "message": "A adicionar a: ",
+    "description": "Label shown when a scene is being recorded to a project"
+  },
+  "multiLabel": {
+    "message": "Multi",
+    "description": "Label for the multi-recording mode"
+  },
+  "finishLabelMulti": {
+    "message": "Terminar",
+    "description": "Label for the finish multi-recording button"
+  },
+  "welcomeProTitle": {
+    "message": "Queres fazer mais com as tuas gravações?",
+    "description": "Title for the welcome Pro popup"
+  },
+  "welcomeProDescription": {
+    "message": "Partilha gravações com um link limpo, guarda-as na nuvem e adiciona zooms, legendas e esquemas, se e quando precisares.",
+    "description": "Description for the welcome Pro popup"
+  },
+  "welcomeProButton": {
+    "message": "Desbloqueia o editor",
+    "description": "Button to sign in to Recordful Pro"
+  },
+  "welcomeProSupport": {
+    "message": "Apoia a criadora independente!",
+    "description": "Message for supporting the indie maker in the welcome Pro popup"
+  },
+  "unlockMoreFeatures": {
+    "message": "Desbloquear mais funcionalidades",
+    "description": "Button to unlock more features in the editor"
+  },
+  "shareUnlockButton": {
+    "message": "Inicia sessão para partilhar (pro)",
+    "description": "Button to sign in to share in the editor"
+  },
+  "proBannerTitle": {
+    "message": "Desbloqueia armazenamento na cloud, edição multi-cena, zooms automáticos, legendas e mais",
+    "description": "Pro banner title in the editor"
+  },
+  "proBannerDescription": {
+    "message": "O Recordful será sempre gratuito, open-source e sem anúncios. O Pro ajuda a suportar os custos da cloud e infraestrutura, e apoia uma criadora independente ❤️",
+    "description": "Pro banner description in the editor"
+  },
+  "proBannerAltButton": {
+    "message": "Não mostrar novamente",
+    "description": "Pro banner don't show again button in the editor"
+  },
+  "proBannerButton": {
+    "message": "Experimentar",
+    "description": "Pro banner button in the editor"
+  },
+  "multiRecordingModeTitle": {
+    "message": "Modo Multi",
+    "description": "Title for the multi-recording mode modal"
+  },
+  "multiRecordingModeDescription": {
+    "message": "Grava várias cenas, como o ecrã, a câmara ou ambos, uma a seguir à outra. É ótimo para fazer várias tentativas, mudar de perspetiva ou dividir a gravação em partes. Quando terminares, clica em Concluir para abrir o editor com todas as cenas combinadas num único vídeo.",
+    "description": "Description for the multi-recording mode modal"
+  },
+  "noSubscriptionYetTitle": {
+    "message": "Ativa o Pro para começar",
+    "description": "Title shown when the user has no active subscription"
+  },
+  "noSubscriptionYetDescription": {
+    "message": "Subscreve para aceder às funcionalidades Pro.",
+    "description": "Message prompting the user to subscribe to reactivate their Pro features"
+  },
+  "upgradeToProButton": {
+    "message": "Subscreve o Pro",
+    "description": "Button to upgrade to Pro"
+  },
+  "hostBannerTitle": {
+    "message": "A usar o Recordful localmente? Ajuda a apoiar o futuro do projeto!",
+    "description": "Título do banner de autoalojamento no editor"
+  },
+  "hostBannerDescription": {
+    "message": "O Recordful é desenvolvido por uma programadora indie. Autoalojar é gratuito, mas se achas útil, considera apoiar com o Pro ❤️",
+    "description": "Descrição do banner de autoalojamento no editor"
+  },
+  "welcomeBackPopupTitle": {
+    "message": "Bem-vindo de volta ao Recordful",
+    "description": "Título do popup de boas-vindas mostrado aos utilizadores que regressam"
+  },
+  "welcomeBackProTitle": {
+    "message": "✨ Novidade: Leva as tuas gravações para o próximo nível",
+    "description": "Título para a funcionalidade de armazenamento na cloud no popup de boas-vindas"
+  },
+  "welcomeBackProDescription": {
+    "message": "O Recordful Pro é uma nova plataforma opcional para guardar vídeos na cloud, partilhá-los com um link e desbloquear ferramentas avançadas de edição, se e quando precisares.",
+    "description": "Descrição da funcionalidade de armazenamento na cloud no popup de boas-vindas"
+  },
+  "welcomeBackProCTA": {
+    "message": "Sabe mais sobre o Recordful Pro",
+    "description": "Botão de chamada para ação da funcionalidade de armazenamento na cloud no popup de boas-vindas"
+  },
+  "welcomeToProTitleModal": {
+    "message": "Bem-vindo ao Recordful Pro",
+    "description": "Título do modal de boas-vindas ao Pro"
+  },
+  "welcomeToProDescriptionModal": {
+    "message": "Está tudo pronto para começares a gravar! Algumas coisas a ter em conta:\n\n- A bolha da câmara pode desaparecer durante a gravação – isto é normal. É capturada separadamente em segundo plano, para que possas posicioná-la como quiseres mais tarde.\n- Os zooms são criados automaticamente apenas em cliques dentro de separadores do Chrome, devido a uma limitação do navegador. Podes sempre adicionar mais zooms manualmente após a gravação.\n- Para gravações rápidas com download imediato, experimenta o Modo Instantâneo. Tem em atenção que as opções de edição são limitadas: sem fundos, layouts ou ajustes avançados.",
+    "description": "Descrição do modal de boas-vindas ao Pro"
+  },
+  "welcomeToProActionModal": {
+    "message": "Percebi",
+    "description": "Botão de ação do modal de boas-vindas ao Pro"
+  },
+  "webcodecsToggleLabel": {
+    "message": "Fast MP4",
+    "description": "WebCodecs recorder toggle label"
+  },
+  "webcodecsFailedOffToast": {
+    "message": "Fast MP4 falhou — off",
+    "description": "WebCodecs failure auto-disable toast"
+  },
+  "proOnboardingWelcomeTitle": {
+    "message": "Bem-vindo à extensão Recordful Pro",
+    "description": "Pro onboarding welcome step title"
+  },
+  "proOnboardingWelcomeDescription": {
+    "message": "Algumas dicas rápidas antes de gravar.<br/>Os zooms automáticos só funcionam com cliques em <strong>separadores do Chrome</strong>. Pode sempre adicionar mais zooms manualmente depois.",
+    "description": "Pro onboarding welcome step description"
+  },
+  "proOnboardingToolbarTitle": {
+    "message": "Barra de gravação e efeitos",
+    "description": "Pro onboarding toolbar step title"
+  },
+  "proOnboardingToolbarDescription": {
+    "message": "Use esta barra para desenhar, aplicar efeitos do cursor, desfocar e controlar a gravação.<br/><br/><strong>Esta barra aparece no vídeo</strong> se não a ocultar.",
+    "description": "Pro onboarding toolbar step description"
+  },
+  "proOnboardingCameraTitle": {
+    "message": "A câmara é captada em separado",
+    "description": "Pro onboarding camera step title"
+  },
+  "proOnboardingCameraDescription": {
+    "message": "Durante a gravação, a câmara pode <strong>esconder-se ou passar para PiP</strong>, é normal.<br/><br/>É captada em separado para a poder posicionar depois.",
+    "description": "Pro onboarding camera step description"
+  },
+  "proOnboardingInstantTitle": {
+    "message": "Modo instantâneo",
+    "description": "Pro onboarding instant mode step title"
+  },
+  "proOnboardingInstantDescription": {
+    "message": "Ideal para partilha rápida com <strong>transferências ilimitadas</strong>.<br/><br/>As opções avançadas de layout e edição não estão disponíveis neste modo.",
+    "description": "Pro onboarding instant mode step description"
+  },
+  "proOnboardingDone": {
+    "message": "Percebi",
+    "description": "Pro onboarding done button text"
+  },
+  "proOnboardingNext": {
+    "message": "Seguinte",
+    "description": "Pro onboarding next button text"
+  },
+  "proOnboardingBack": {
+    "message": "Voltar",
+    "description": "Pro onboarding back button text"
+  },
+  "proOnboardingToolbarLearnMore": {
+    "message": "Saber mais",
+    "description": "Pro onboarding toolbar learn more link label"
+  },
+  "resetOnboardingOption": {
+    "message": "Repor onboarding",
+    "description": "Reset pro onboarding option label in popup settings menu"
+  },
+  "recoverLastRecordingOption": {
+    "message": "Recover last recording",
+    "description": "Settings menu item to manually trigger cloud recording recovery"
+  },
+  "toastRecoveredSession": {
+    "message": "Recovered unsaved recording from the previous session.",
+    "description": "Toast shown when a crashed recording session is auto-recovered on startup"
+  },
+  "toastStorageCritical": {
+    "message": "Pouco espaço em disco. A guardar a gravação. Tudo o que foi capturado até agora está seguro.",
+    "description": "Toast shown when available storage drops below the critical threshold during recording; reassures that captured data is preserved"
+  },
+  "toastStorageLow": {
+    "message": "Storage is running low. Upload reliability may degrade for long recordings.",
+    "description": "Toast shown when available storage drops below the warning threshold during recording"
+  },
+  "toastAudioCaptureDegraded": {
+    "message": "Transcription capture paused due to memory pressure. Video upload continues.",
+    "description": "Toast shown when the audio recorder is stopped early because the audio buffer limit was reached"
+  },
+  "toastNetworkOffline": {
+    "message": "Network offline. Upload paused. Screen chunks are saved locally.",
+    "description": "Toast shown when the browser goes offline during a cloud recording upload"
+  },
+  "longRecordingTitle": {
+    "message": "Gravação longa",
+    "description": "Banner title shown when a recording exceeds the local processing limit but is otherwise successful"
+  },
+  "longRecordingDescription": {
+    "message": "A sua gravação está completa e segura. Transfira como WebM abaixo.",
+    "description": "Banner description for long recordings that can be downloaded but not edited locally"
+  },
+  "notAvailableLongRecording": {
+    "message": "Indisponível para gravações longas",
+    "description": "Disabled button label for features not available due to recording length"
+  },
+  "notAvailableRecoveryMode": {
+    "message": "Indisponível no modo de recuperação",
+    "description": "Disabled button label for features not available in recovery/fallback mode"
+  },
+  "editTooLongTitle": {
+    "message": "Edição de áudio demasiado longa",
+    "description": "Alert title when an audio mute/mix edit is rejected because the clip exceeds 15 minutes"
+  },
+  "editTooLongDescription": {
+    "message": "Esta edição de áudio não é suportada para clipes com mais de 15 minutos. O seu original não foi alterado. Tente cortar o clipe primeiro.",
+    "description": "Alert body explaining the 15-minute limit and suggesting trimming first"
+  },
+  "editTimeoutTitle": {
+    "message": "Tempo da edição esgotado",
+    "description": "Alert title when an edit operation does not complete within the 5-minute watchdog period"
+  },
+  "editTimeoutDescription": {
+    "message": "A edição não foi concluída a tempo. A sua gravação original não foi alterada. Tente novamente ou corte o clipe primeiro.",
+    "description": "Alert body for the timeout case, prompting retry or shorter clip"
+  },
+  "streamEndedWarningToast": {
+    "message": "A partilha de ecrã parou. A sua gravação está guardada. Pare quando estiver pronto.",
+    "description": "Toast shown when screen share track ends mid-recording. Recording continues; removes false urgency about data loss."
+  },
+  "recoveryModeDescription": {
+    "message": "Houve um problema no processamento, mas a sua gravação está segura. Pode transferi-la abaixo.",
+    "description": "Recovery mode banner description — reassures user their recording is accessible despite the processing failure"
+  },
+  "editProcessingSafeDescription": {
+    "message": "A processar a sua edição. A gravação original não foi alterada.",
+    "description": "Shown in the editor processing alert when a user-initiated edit is running, to reassure the original is safe"
+  },
+  "editFailedTitle": {
+    "message": "Não foi possível aplicar a edição",
+    "description": "Alert title when an edit operation fails due to an encoding or processing error"
+  },
+  "editFailedDescription": {
+    "message": "Algo correu mal durante o processamento. A sua gravação original está segura. Pode tentar novamente ou transferi-la como está.",
+    "description": "Alert body for edit failure; explicitly confirms the original recording is untouched"
+  },
+  "videoTrackEndedToast": {
+    "message": "A partilha de ecrã parou. A guardar a gravação. Tudo o que foi capturado até agora está seguro.",
+    "description": "Toast shown when the video track ends mid-recording (e.g. monitor disconnected, screen share revoked)"
+  },
+  "audioTrackEndedToast": {
+    "message": "Áudio desligado. A guardar a gravação. O vídeo capturado até agora está seguro.",
+    "description": "Toast shown when the audio track ends mid-recording (e.g. mic unplugged, permission revoked)"
+  },
+  "captureAudioUnavailableToast": {
+    "message": "Não foi possível capturar o áudio do computador, pelo que esta gravação tem apenas vídeo.",
+    "description": "Toast shown when the system/tab audio source fails to start and recording continues without it"
+  },
+  "captureAudioRepickToast": {
+    "message": "Não foi possível capturar o áudio do computador. Escolha o seu ecrã novamente para gravar apenas o vídeo.",
+    "description": "Toast shown before the screen picker reopens because system audio could not start and capture is retrying without it"
+  },
+  "editorRecoveryToast": {
+    "message": "A sua gravação foi guardada. O editor não abriu. Clique no ícone do Recordful para tentar novamente.",
+    "description": "Toast shown on the active tab when the post-recording editor tab fails to open"
+  },
+  "stopAckTimeoutToast": {
+    "message": "A gravação está a demorar mais do que o esperado. Os seus dados estão seguros. O editor abrirá em breve.",
+    "description": "Toast shown when the recorder does not acknowledge the stop request within a few seconds"
+  },
+  "copyDebugInfoButton": {
+    "message": "Copiar info de depuração",
+    "description": "Button to copy technical debug info to clipboard for support"
+  },
+  "debugInfoCopiedToast": {
+    "message": "Info de depuração copiada",
+    "description": "Toast shown after debug info is copied"
+  },
+  "getHelpButton": {
+    "message": "Obter ajuda",
+    "description": "Side button on error modals that opens a prefilled support form"
+  },
+  "recordingTooShortToast": {
+    "message": "A gravação foi curta demais para guardar",
+    "description": "Toast shown when a region recording is stopped by navigation but no chunks were saved"
+  },
+  "fastRecorderFailedTitle": {
+    "message": "Gravador rápido falhou",
+    "description": "Title for the modal shown when the fast MP4 recorder output could not be validated"
+  },
+  "fastRecorderFailedDescription": {
+    "message": "A saída do gravador rápido não pôde ser validada neste dispositivo.\nPode transferir o ficheiro na mesma.",
+    "description": "Body text for the fast recorder failure modal"
+  },
+  "downloadAnywayButton": {
+    "message": "Transferir na mesma",
+    "description": "Button to download the recording file despite validation failure"
+  },
+  "cancelButton": {
+    "message": "Cancelar",
+    "description": "Generic cancel button label"
+  },
+  "editorStuckTitle": {
+    "message": "Ainda a preparar a tua gravação…"
+  },
+  "editorStuckDescription": {
+    "message": "O Recordful está a demorar mais do que o habitual a carregar a tua gravação. Os teus dados podem ainda estar neste dispositivo. Tenta recuperá-la, ou contacta-nos se não voltar."
+  },
+  "editorStuckTryRecover": {
+    "message": "Tentar recuperar"
+  },
+  "editorStuckGetHelp": {
+    "message": "Obter ajuda"
+  },
+  "editorRecoveryFailedTitle": {
+    "message": "Não foi possível abrir a tua gravação"
+  },
+  "editorRecoveryFailedDescription": {
+    "message": "Algo correu mal ao carregar a tua gravação no editor. Pode ainda estar guardada no teu dispositivo. Podes tentar recuperá-la agora."
+  },
+  "downloadGIFTooLongToast": {
+    "message": "A exportação para GIF tem limite de 30 segundos. Corta o teu clipe e tenta novamente."
+  },
+  "audioSilentToast": {
+    "message": "Não foi detetado áudio. Verifica o microfone, o botão de silêncio ou o dispositivo de áudio."
+  },
+  "restartFailedToast": {
+    "message": "Não foi possível reiniciar a tua gravação. Pára e começa de novo."
+  },
+  "recordingFailedModalTitle": {
+    "message": "Não foi possível iniciar a gravação"
+  },
+  "recordingFailedModalDescription": {
+    "message": "Algo impediu o início da gravação. Tenta novamente. Se continuar a acontecer, fala connosco em X.com/whyKislay or forg.to/@kislay."
+  },
+  "editAudioTooLargeTitle": {
+    "message": "O ficheiro de áudio é demasiado grande"
+  },
+  "editAudioTooLargeDescription": {
+    "message": "Tenta um clipe de áudio mais curto. Ficheiros grandes não podem ser processados no navegador. A tua gravação original está segura."
+  },
+  "restoreEmptyToast": {
+    "message": "Nenhuma gravação recuperável encontrada. Os dados podem ter sido apagados."
+  },
+  "restoreTimeoutToast": {
+    "message": "A recuperação está a demorar demasiado. A tua gravação está segura. Clica em Recuperar novamente daqui a um momento."
+  },
+  "cameraUnavailableToast": {
+    "message": "Câmara desligada. A gravação do ecrã continua."
+  },
+  "downloadInterruptedLargeToast": {
+    "message": "Transferência interrompida. A gravação é demasiado grande para tentar novamente de forma automática. Guarda-a novamente a partir do editor."
+  },
+  "recordingCorruptToast": {
+    "message": "Esta gravação não pode ser reproduzida. O ficheiro pode estar incompleto ou corrompido. Transfere o ficheiro original a partir do menu Guardar."
+  },
+  "storageFullRecordingError": {
+    "message": "Não há espaço suficiente para gravar. Liberta espaço no disco e tenta novamente.",
+    "description": "Shown when the browser can't allocate enough local storage to start a recording"
+  },
+  "storageLowRecordingWarning": {
+    "message": "O armazenamento do teu navegador está quase cheio. Liberta espaço no disco para não perderes esta gravação.",
+    "description": "Shown when local storage is running low while a recording is in progress"
+  },
+  "screenStreamUnavailableError": {
+    "message": "Não foi possível aceder ao ecrã. Inicia a gravação novamente.",
+    "description": "Shown when the screen capture stream is missing after the user picked a source"
+  },
+  "tabStreamUnavailableError": {
+    "message": "Não foi possível aceder ao vídeo deste separador. Recarrega-o e tenta novamente.",
+    "description": "Shown when Chrome won't return a tab capture stream for the chosen tab"
+  },
+  "streamingDataTimeoutError": {
+    "message": "A gravação não começou a tempo. Tenta novamente.",
+    "description": "Shown when the recorder tab never received streaming-data from the background script"
+  },
+  "unsupportedVideoCodecError": {
+    "message": "O teu navegador não suporta os codecs de vídeo necessários. Atualiza o Chrome e tenta novamente.",
+    "description": "Shown when no supported MediaRecorder mimeType is available"
+  },
+  "cancelLabel": {
+    "message": "Cancelar",
+    "description": "Cancel button on the download-in-progress banner"
+  },
+  "webmSlowTitle": {
+    "message": "A conversão para WebM pode demorar algum tempo",
+    "description": "Title of the modal warning that MP4 to WebM conversion is slow"
+  },
+  "webmSlowDescription": {
+    "message": "Guardar como WebM recodifica todo o vídeo, pelo que pode demorar alguns minutos em gravações longas. O MP4 é guardado instantaneamente.",
+    "description": "Body of the slow-WebM warning modal"
+  },
+  "webmSlowMp4": {
+    "message": "Descarregar MP4 em alternativa",
+    "description": "Primary button: download MP4 instead of the slow WebM conversion"
+  },
+  "webmSlowContinue": {
+    "message": "Continuar para WebM",
+    "description": "Secondary button: proceed with the slow WebM conversion"
+  },
+  "downloadProcessingTitle": {
+    "message": "A preparar a sua transferência",
+    "description": "Title of the download-in-progress banner with the Cancel button"
+  },
+  "downloadProcessingDescription": {
+    "message": "Isto pode demorar algum tempo em gravações longas.",
+    "description": "Body of the download-in-progress banner"
+  },
+  "cameraMicBlockedTitle": {
+    "message": "Câmara e microfone não permitidos",
+    "description": "Toast title shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "cameraMicBlockedDescription": {
+    "message": "Este site bloqueia o acesso à tua câmara e microfone. Podes gravar aqui à mesma, mas a tua câmara não ficará visível.",
+    "description": "Toast description shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "downloadFailedModalTitle": {
+    "message": "A transferência não foi concluída",
+    "description": "Modal title when a download to disk times out or fails"
+  },
+  "downloadFailedModalDescription": {
+    "message": "Tente novamente.",
+    "description": "Toast->modal description: what to do after a failed download"
+  },
+  "driveGenericModalTitle": {
+    "message": "Não foi possível guardar no Google Drive",
+    "description": "Modal title for a generic Google Drive save failure"
+  },
+  "driveGenericModalDescription": {
+    "message": "Tente novamente.",
+    "description": "Modal description for a generic Google Drive save failure"
+  },
+  "driveQuotaModalTitle": {
+    "message": "O seu Google Drive está cheio",
+    "description": "Modal title when the Google Drive account is out of storage"
+  },
+  "driveQuotaModalDescription": {
+    "message": "Liberte espaço e tente novamente.",
+    "description": "Modal description when the Google Drive account is out of storage"
+  },
+  "driveTooLargeModalTitle": {
+    "message": "Gravação demasiado grande",
+    "description": "Modal title when a recording exceeds Google Drive limits"
+  },
+  "driveTooLargeModalDescription": {
+    "message": "Esta gravação é demasiado grande para ser guardada no Google Drive.",
+    "description": "Modal description when a recording exceeds Google Drive limits"
+  },
+  "driveAuthModalTitle": {
+    "message": "Não foi possível aceder ao Google Drive",
+    "description": "Modal title when Google Drive authentication expired or was revoked"
+  },
+  "driveAuthModalDescription": {
+    "message": "Inicie sessão novamente.",
+    "description": "Modal description when Google Drive authentication expired or was revoked"
+  },
+  "emptyRecordingTitle": {
+    "message": "Esta gravação está vazia",
+    "description": "Modal title when the recording file contains no video"
+  },
+  "emptyRecordingDescription": {
+    "message": "Não foi capturado nenhum vídeo. Tente gravar novamente.",
+    "description": "Modal description when the recording file contains no video"
+  },
+  "unsavedRecordingModalTitle": {
+    "message": "A sua última gravação não está guardada",
+    "description": "Title of the modal shown when starting a recording while the previous one is unsaved."
+  },
+  "unsavedRecordingModalDescription": {
+    "message": "Ainda está aberta noutro separador e será perdida quando o fechar. Transfira-a primeiro para a manter.",
+    "description": "Body of the unsaved-previous-recording modal."
+  },
+  "unsavedRecordingModalAction": {
+    "message": "Gravar mesmo assim",
+    "description": "Confirm button: start the new recording anyway."
+  },
+  "unsavedRecordingModalCancel": {
+    "message": "Abrir gravação",
+    "description": "Cancel button: bring the unsaved recording's tab forward instead."
+  },
+  "unsavedRecordingModalDismiss": {
+    "message": "Não mostrar novamente",
+    "description": "Side button: start the recording and stop prompting about unsaved recordings."
+  }
+}

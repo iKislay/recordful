@@ -1,0 +1,1908 @@
+{
+  "reviewAskTitle": {
+    "message": "Как вам Recordful?",
+    "description": "Review prompt step 1 question (sentiment check) in the editor"
+  },
+  "reviewAskGood": {
+    "message": "Всё отлично",
+    "description": "Review prompt positive sentiment button label / tooltip"
+  },
+  "reviewAskBad": {
+    "message": "Не очень",
+    "description": "Review prompt negative sentiment button label / tooltip"
+  },
+  "reviewThanksTitle": {
+    "message": "Вы сделали мой день!",
+    "description": "Review prompt happy-branch title in the editor"
+  },
+  "reviewThanksDescription": {
+    "message": "Hey, I'm Kislay. I built Recordful because I wanted a screen recorder that respects your privacy and doesn't hold your videos hostage. Free, open source, no watermarks, no limits. Before this I built forg.to, a home for indie hackers shipping in public, so this one is getting built the same way, out in the open. If Recordful earns its keep, Pro keeps the lights on.\n\nIf Recordful has helped you, leaving a quick review is one of the best ways to support it ❤️",
+    "description": "Review prompt happy-branch description (founder voice) in the editor. Paragraphs separated by a blank line."
+  },
+  "reviewThanksButton": {
+    "message": "Оставьте отзыв",
+    "description": "Review prompt button that opens the Chrome Web Store review page"
+  },
+  "reviewThanksLater": {
+    "message": "Может быть, позже",
+    "description": "Review prompt snooze button on the happy branch"
+  },
+  "reviewSorryTitle": {
+    "message": "Жаль это слышать",
+    "description": "Review prompt unhappy-branch title in the editor"
+  },
+  "reviewSorryDescription": {
+    "message": "Hey, I'm Kislay. I read every message myself, so tell me what went wrong and I'll do my best to fix it.",
+    "description": "Review prompt unhappy-branch description in the editor"
+  },
+  "reviewSorryButton": {
+    "message": "Отправить отзыв",
+    "description": "Review prompt button that opens the private feedback form"
+  },
+  "reviewSorryDismiss": {
+    "message": "Нет, спасибо",
+    "description": "Review prompt dismiss button on the unhappy branch"
+  },
+  "extName": {
+    "message": "Recordful - Запись экрана & Аннотации",
+    "description": "Название расширения"
+  },
+  "extDesc": {
+    "message": "Лучший бесплатный экран записи без ограничений. Захват, аннотация, масштабирование, размытие, редактирование видео и многое другое - без необходимости входа и с уважением к конфиденциальности.",
+    "description": "Описание расширения"
+  },
+  "recordTab": {
+    "message": "Запись",
+    "description": "Метка вкладки записи на всплывающем окне"
+  },
+  "videosTab": {
+    "message": "Ваши видео",
+    "description": "Метка вкладки видео на всплывающем окне"
+  },
+  "screenType": {
+    "message": "Экран",
+    "description": "Метка типа записи экрана на всплывающем окне"
+  },
+  "tabType": {
+    "message": "Область вкладки",
+    "description": "Метка типа записи области вкладки на всплывающем окне"
+  },
+  "cameraType": {
+    "message": "Камера",
+    "description": "Метка типа записи с камеры на всплывающем окне"
+  },
+  "mockupType": {
+    "message": "Макет",
+    "description": "Метка типа записи макета на всплывающем окне"
+  },
+  "customAreaRecordingDisabledTitle": {
+    "message": "Запись в произвольной области отключена",
+    "description": "Предупреждение о выключенной записи в произвольной области для версии Chrome старше 104"
+  },
+  "customAreaRecordingDisabledDescription": {
+    "message": "Обновите версию Chrome до 110+",
+    "description": "Описание предупреждения о выключенной записи в произвольной области для версии Chrome старше 104"
+  },
+  "customAreaRecordingDisabledAction": {
+    "message": "Обновить",
+    "description": "Действие предупреждения о выключенной записи в произвольной области для версии Chrome старше 104"
+  },
+  "permissionsModalTitle": {
+    "message": "Проверьте разрешения",
+    "description": "Заголовок модального окна предупреждения о разрешениях для камеры / микрофона"
+  },
+  "permissionsModalDescription": {
+    "message": "Похоже, Recordful не может получить доступ к вашей камере или микрофону. Убедитесь, что разрешаете доступ, нажав на значок камеры в строке адреса.",
+    "description": "Описание модального окна предупреждения о разрешениях для камеры / микрофона"
+  },
+  "permissionsModalDismiss": {
+    "message": "Отклонить",
+    "description": "Кнопка закрытия модального окна предупреждения о разрешениях для камеры / микрофона"
+  },
+  "sitePermissionsBlockedTitle": {
+    "message": "Этот сайт не разрешает доступ к камере или микрофону",
+    "description": "Modal title shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "sitePermissionsBlockedDescription": {
+    "message": "Похоже, настройки безопасности этого сайта не позволяют расширениям браузера использовать камеру или микрофон на этой странице. Чтобы записывать с их использованием, начните запись в другой вкладке и переключитесь сюда после её начала.",
+    "description": "Modal description shown when the current page's Permissions-Policy header blocks browser extensions from using camera or microphone"
+  },
+  "opfsLoadErrorTitle": {
+    "message": "Не удалось загрузить запись",
+    "description": "Modal title shown when the editor cannot read the recording file from the device's storage"
+  },
+  "opfsLoadErrorDescription": {
+    "message": "Похоже, Recordful не смог загрузить запись из хранилища вашего устройства. Возможно, она была удалена или перемещена. Если это продолжится, напишите нам на X.com/whyKislay or forg.to/@kislay.",
+    "description": "Modal description shown when the editor cannot read the recording file from the device's storage"
+  },
+  "recordingWriterFailedToast": {
+    "message": "Запись остановлена из-за проблемы с хранилищем. Ваша частичная запись сохранена.",
+    "description": "Toast shown when the recording chunk writer fails mid-recording and the partial file is preserved"
+  },
+  "allowCameraAccessButton": {
+    "message": "Разрешить доступ к камере",
+    "description": "Кнопка разрешения доступа к камере"
+  },
+  "allowMicrophoneAccessButton": {
+    "message": "Разрешить доступ к микрофону",
+    "description": "Кнопка разрешения доступа к микрофону"
+  },
+  "pushToTalkLabel": {
+    "message": "Нажмите, чтобы говорить",
+    "description": "Метка переключения 'Push to talk'"
+  },
+  "customAreaLabel": {
+    "message": "Установите область для записи",
+    "description": "Метка переключения 'Custom area'"
+  },
+  "flipCameraLabel": {
+    "message": "Повернуть камеру",
+    "description": "Метка переключения 'Flip camera'"
+  },
+  "backgroundEffectsLabel": {
+    "message": "Эффекты фона",
+    "description": "Метка переключения 'Background effects'"
+  },
+  "recordButtonLabel": {
+    "message": "Начать запись",
+    "description": "Метка кнопки записи"
+  },
+  "recordButtonInProgressLabel": {
+    "message": "Запуск записи...",
+    "description": "Метка кнопки записи в процессе"
+  },
+  "recordButtonNoCameraLabel": {
+    "message": "Выберите камеру для записи",
+    "description": "Метка кнопки записи в режиме камеры, когда не выбрана камера"
+  },
+  "showMoreOptionsLabel": {
+    "message": "Показать больше опций",
+    "description": "Метка для показа больше опций"
+  },
+  "systemAudioLabel": {
+    "message": "Включить системный звук",
+    "description": "Метка системного звука/вкладка"
+  },
+  "hideToolbarLabel": {
+    "message": "Скрыть панель инструментов",
+    "description": "Метка для скрытия панели инструментов"
+  },
+  "countdownLabel": {
+    "message": "Обратный отсчет",
+    "description": "Метка для обратного отсчета"
+  },
+  "alarmLabel": {
+    "message": "Установить временное ограничение",
+    "description": "Метка для установки временного ограничения"
+  },
+  "blurTypeLabel": {
+    "message": "Размыть",
+    "description": "Метка для размытия фона"
+  },
+  "noneDropdownLabel": {
+    "message": "Нет",
+    "description": "Не выбрано устройство"
+  },
+  "noCameraDropdownLabel": {
+    "message": "Нет камеры",
+    "description": "Не выбрана камера"
+  },
+  "noMicrophoneDropdownLabel": {
+    "message": "Нет микрофона",
+    "description": "Не выбран микрофон"
+  },
+  "selectSourceDropdownPlaceholder": {
+    "message": "Выберите источник",
+    "description": "Заглушка для выбора источника"
+  },
+  "offLabel": {
+    "message": "Выкл",
+    "description": "Метка для отключения в выпадающем списке"
+  },
+  "regionWidthLabel": {
+    "message": "Ширина",
+    "description": "Метка для ширины области"
+  },
+  "regionHeightLabel": {
+    "message": "Высота",
+    "description": "Метка для высоты области"
+  },
+  "addImageToastTitle": {
+    "message": "Щелкните, чтобы разместить изображение",
+    "description": "Всплывающее уведомление при добавлении нового изображения"
+  },
+  "finishRecordingTooltip": {
+    "message": "Завершить запись",
+    "description": "Подсказка для завершения записи"
+  },
+  "restartRecordingTooltip": {
+    "message": "Перезапустить запись",
+    "description": "Подсказка для перезапуска записи"
+  },
+  "pauseRecordingTooltip": {
+    "message": "Приостановить запись",
+    "description": "Подсказка для приостановки записи"
+  },
+  "resumeRecordingTooltip": {
+    "message": "Продолжить запись",
+    "description": "Подсказка для продолжения записи"
+  },
+  "cancelRecordingTooltip": {
+    "message": "Отменить запись",
+    "description": "Подсказка для отмены записи"
+  },
+  "toggleDrawingToolsTooltip": {
+    "message": "Переключить инструменты рисования",
+    "description": "Подсказка для переключения инструментов рисования"
+  },
+  "toggleBlurToolTooltip": {
+    "message": "Переключить инструмент размытия",
+    "description": "Подсказка для переключения инструментов размытия"
+  },
+  "toggleCursorOptionsTooltip": {
+    "message": "Переключить настройки курсора",
+    "description": "Подсказка для переключения настроек курсора"
+  },
+  "disableCameraTooltip": {
+    "message": "Отключить камеру",
+    "description": "Подсказка для отключения камеры"
+  },
+  "enableCameraTooltip": {
+    "message": "Включить камеру",
+    "description": "Подсказка для включения камеры"
+  },
+  "noCameraPermissionsTooltip": {
+    "message": "Нет разрешения на использование камеры",
+    "description": "Подсказка о отсутствии разрешения на использование камеры"
+  },
+  "disableMicrophoneTooltip": {
+    "message": "Отключить микрофон",
+    "description": "Подсказка для отключения микрофона"
+  },
+  "enableMicrophoneTooltip": {
+    "message": "Включить микрофон",
+    "description": "Подсказка для включения микрофона"
+  },
+  "noMicrophonePermissionsTooltip": {
+    "message": "Нет разрешения на использование микрофона",
+    "description": "Подсказка о отсутствии разрешения на использование микрофона"
+  },
+  "selectToolTooltip": {
+    "message": "Выбрать инструмент",
+    "description": "Подсказка для выбора инструмента"
+  },
+  "penToolTooltip": {
+    "message": "Инструмент ручки",
+    "description": "Подсказка для инструмента ручки"
+  },
+  "highlighterToolTooltip": {
+    "message": "Инструмент маркера",
+    "description": "Подсказка для инструмента маркера"
+  },
+  "eraserToolTooltip": {
+    "message": "Инструмент стирания",
+    "description": "Подсказка для инструмента стирания"
+  },
+  "textToolTooltip": {
+    "message": "Инструмент текста",
+    "description": "Подсказка для инструмента текста"
+  },
+  "shapeToolTooltip": {
+    "message": "Инструмент фигур",
+    "description": "Подсказка для инструмента фигур"
+  },
+  "arrowToolTooltip": {
+    "message": "Инструмент Стрелка",
+    "description": "Подсказка для инструмента Стрелка"
+  },
+  "imageToolTooltip": {
+    "message": "Инструмент Изображение",
+    "description": "Подсказка для инструмента Изображение"
+  },
+  "undoTooltip": {
+    "message": "Отменить",
+    "description": "Подсказка для отмены"
+  },
+  "redoTooltip": {
+    "message": "Повторить",
+    "description": "Подсказка для повтора"
+  },
+  "clearCanvasTooltip": {
+    "message": "Очистить холст",
+    "description": "Подсказка для очистки холста"
+  },
+  "moreColorsTooltip": {
+    "message": "Дополнительные цвета",
+    "description": "Подсказка для дополнительных цветов"
+  },
+  "thickStrokeTooltip": {
+    "message": "Толстая линия",
+    "description": "Подсказка для толстой линии"
+  },
+  "mediumStrokeTooltip": {
+    "message": "Средняя линия",
+    "description": "Подсказка для средней линии"
+  },
+  "thinStrokeTooltip": {
+    "message": "Тонкая линия",
+    "description": "Подсказка для тонкой линии"
+  },
+  "togglePictureinPictureModeTooltip": {
+    "message": "Переключить режим изображения в картине",
+    "description": "Подсказка для переключения режима изображения в картине"
+  },
+  "toggleFillTooltip": {
+    "message": "Включить заливку",
+    "description": "Подсказка для включения заливки"
+  },
+  "drawingModeToast": {
+    "message": "Режим рисования",
+    "description": "Уведомление о режиме рисования"
+  },
+  "blurModeToast": {
+    "message": "Режим размытия",
+    "description": "Уведомление о режиме размытия"
+  },
+  "clearBlurredElementsTooltip": {
+    "message": "Очистить все размытые элементы",
+    "description": "Подсказка для очистки всех размытых элементов"
+  },
+  "highlightClicksTooltip": {
+    "message": "Подсветить клики",
+    "description": "Подсказка для подсветки кликов"
+  },
+  "highlightCursorTooltip": {
+    "message": "Подсветить курсор",
+    "description": "Подсказка для подсветки курсора"
+  },
+  "spotlightCursorTooltip": {
+    "message": "Прожектор на курсор",
+    "description": "Подсказка для прожектора на курсор"
+  },
+  "permissionsModalNoShowAgain": {
+    "message": "Больше не показывать",
+    "description": "Кнопка отклонения в модальном окне разрешений"
+  },
+  "restartModalTitle": {
+    "message": "Вы уверены, что хотите перезапустить запись?",
+    "description": "Заголовок модального окна перезапуска записи"
+  },
+  "restartModalDescription": {
+    "message": "Ваш текущий прогресс видеозаписи будет потерян.",
+    "description": "Описание модального окна перезапуска записи"
+  },
+  "restartModalRestart": {
+    "message": "Перезапустить запись",
+    "description": "Кнопка перезапуска записи в модальном окне"
+  },
+  "restartModalResume": {
+    "message": "Продолжить запись",
+    "description": "Кнопка продолжения записи в модальном окне"
+  },
+  "discardModalTitle": {
+    "message": "Вы уверены, что хотите отменить запись?",
+    "description": "Заголовок модального окна отмены записи"
+  },
+  "discardModalDescription": {
+    "message": "Ваш текущий прогресс видеозаписи будет потерян.",
+    "description": "Описание модального окна отмены записи"
+  },
+  "discardModalDiscard": {
+    "message": "Отменить запись",
+    "description": "Кнопка отмены записи в модальном окне"
+  },
+  "discardModalResume": {
+    "message": "Продолжить запись",
+    "description": "Кнопка продолжения записи в модальном окне"
+  },
+  "recorderSelectTitle": {
+    "message": "Выберите, что вы хотите записать",
+    "description": "Заголовок на странице записи"
+  },
+  "recorderSelectProgressTitle": {
+    "message": "Идет запись...",
+    "description": "Заголовок на странице записи во время записи"
+  },
+  "recorderSelectDescription": {
+    "message": "Оставьте эту вкладку открытой. Она закроется, когда ваша запись будет сохранена.",
+    "description": "Описание на странице записи"
+  },
+  "sandboxProgressTitle": {
+    "message": "Подготовка записи...",
+    "description": "Заголовок на странице песочницы во время записи / сохранения"
+  },
+  "sandboxProgressDescription": {
+    "message": "Оставьте эту вкладку открытой. Она будет обновлена с вашей записью, как только она будет готова.",
+    "description": "Описание на странице песочницы во время записи / сохранения"
+  },
+  "sandboxFinalizingRecording": {
+    "message": "Завершение записи...",
+    "description": "Shown over the player when the editor is waiting for the recorder to finish flushing the recording to disk"
+  },
+  "sandboxToastReverted": {
+    "message": "Возвращено к оригиналу",
+    "description": "Toast confirmation shown when the user reverts edits to the original recording"
+  },
+  "sandboxToastSaved": {
+    "message": "Изменения сохранены",
+    "description": "Toast confirmation shown when the user saves an edit operation"
+  },
+  "sandboxEditorMainTitle": {
+    "message": "Редактор",
+    "description": "Заголовок в навигации страницы редактора песочницы"
+  },
+  "sandboxEditorCancelButton": {
+    "message": "Отмена",
+    "description": "Кнопка отмены на странице редактора песочницы"
+  },
+  "sandboxEditorRevertButton": {
+    "message": "Вернуть к оригиналу",
+    "description": "Кнопка отмены в редакторе песочницы"
+  },
+  "sandboxEditorResetButton": {
+    "message": "Сбросить",
+    "description": "Кнопка сброса в редакторе песочницы"
+  },
+  "sandboxEditorSaveButton": {
+    "message": "Сохранить изменения",
+    "description": "Кнопка сохранения в редакторе песочницы"
+  },
+  "sandboxEditorSaveProgressButton": {
+    "message": "Сохранение...",
+    "description": "Кнопка сохранения в процессе сохранения в редакторе песочницы"
+  },
+  "sandboxAudioDragAndDrop": {
+    "message": "Перетащите ваш аудиофайл",
+    "description": "Перетащите аудиофайл в редактор песочницы"
+  },
+  "sandboxAudioOrBrowse": {
+    "message": "Или нажмите, чтобы выбрать",
+    "description": "Или нажмите, чтобы выбрать аудиофайл в редакторе песочницы"
+  },
+  "sandboxAudioSettingsTitle": {
+    "message": "Настройки",
+    "description": "Заголовок настроек аудио в редакторе песочницы"
+  },
+  "sandboxAudioVolumeLabel": {
+    "message": "Громкость",
+    "description": "Метка громкости аудио в редакторе песочницы"
+  },
+  "sandboxAudioUpdateButton": {
+    "message": "Обновить",
+    "description": "Кнопка обновления аудио в редакторе песочницы"
+  },
+  "sandboxCropTitle": {
+    "message": "Обрезать",
+    "description": "Заголовок обрезки в редакторе песочницы"
+  },
+  "widthLabel": {
+    "message": "Ширина",
+    "description": "Метка ширины для свойств"
+  },
+  "heightLabel": {
+    "message": "Высота",
+    "description": "Метка высоты для свойств"
+  },
+  "leftLabel": {
+    "message": "Слева",
+    "description": "Метка слева для свойств"
+  },
+  "topLabel": {
+    "message": "Сверху",
+    "description": "Метка сверху для свойств"
+  },
+  "sandboxEditorTrimInfo": {
+    "message": "Перетащите ручки и используйте кнопки слева, чтобы редактировать выбранный участок.",
+    "description": "Информация о обрезке в редакторе песочницы"
+  },
+  "sandboxEditorTrimButton": {
+    "message": "Обрезать видео",
+    "description": "Кнопка обрезки в редакторе песочницы"
+  },
+  "sandboxEditorTrimProgressButton": {
+    "message": "Обрезка...",
+    "description": "Кнопка обрезки в редакторе песочницы во время обрезки"
+  },
+  "sandboxEditorCutButton": {
+    "message": "Вырезать участок",
+    "description": "Кнопка вырезки в редакторе песочницы"
+  },
+  "sandboxEditorCutProgressButton": {
+    "message": "Вырезка...",
+    "description": "Кнопка вырезки в редакторе песочницы во время вырезки"
+  },
+  "sandboxEditorMuteButton": {
+    "message": "Выключить звук",
+    "description": "Кнопка выключения звука в редакторе песочницы"
+  },
+  "sandboxEditorMuteProgressButton": {
+    "message": "Выключение звука...",
+    "description": "Кнопка выключения звука в редакторе песочницы во время выключения звука"
+  },
+  "learnMoreDot": {
+    "message": "Узнать больше.",
+    "description": "Узнать больше с точкой"
+  },
+  "undoLabel": {
+    "message": "Отменить",
+    "description": "Метка отмены"
+  },
+  "redoLabel": {
+    "message": "Повторить",
+    "description": "Метка повтора"
+  },
+  "leaveReview": {
+    "message": "Оставьте отзыв",
+    "description": "Кнопка оставления отзыва"
+  },
+  "followForUpdates": {
+    "message": "Подписаться на обновления",
+    "description": "Кнопка подписки на обновления"
+  },
+  "offlineLabelTitle": {
+    "message": "В данный момент вы офлайн",
+    "description": "Метка офлайн"
+  },
+  "offlineLabelDescription": {
+    "message": "Некоторые функции недоступны до восстановления подключения",
+    "description": "Описание метки офлайн"
+  },
+  "offlineLabelTryAgain": {
+    "message": "Попробуйте снова",
+    "description": "Кнопка повторной попытки при офлайне"
+  },
+  "serverIssueTitle": {
+    "message": "Recordful недоступен",
+    "description": "Title shown when the Recordful API is returning server errors"
+  },
+  "serverIssueDescription": {
+    "message": "Запись в облако сейчас недоступна. Попробуйте снова через несколько секунд.",
+    "description": "Description shown when the Recordful API is returning server errors"
+  },
+  "serverUnreachableTitle": {
+    "message": "Не удаётся связаться со Recordful",
+    "description": "Title shown when the Recordful API cannot be reached"
+  },
+  "serverUnreachableDescription": {
+    "message": "Проверьте подключение или повторите попытку через несколько секунд.",
+    "description": "Description shown when the Recordful API cannot be reached"
+  },
+  "updateChromeLabelTitle": {
+    "message": "Требуется обновление Chrome",
+    "description": "Метка обновления Chrome"
+  },
+  "updateChromeLabelDescription": {
+    "message": "Обновите для доступа к дополнительным функциям",
+    "description": "Описание метки обновления Chrome"
+  },
+  "learnMoreLabel": {
+    "message": "Узнать больше",
+    "description": "Кнопка узнать больше"
+  },
+  "overLimitLabelTitle": {
+    "message": "Видео слишком длинное для обработки локально",
+    "description": "Метка ограничения более 5 минут в редакторе"
+  },
+  "overLimitLabelDescription": {
+    "message": "Редактирование и экспорт в формате MP4 недоступны",
+    "description": "Описание ограничения более 5 минут в редакторе"
+  },
+  "overLimitLabelDescriptionFastPath": {
+    "message": "Функции редактирования недоступны",
+    "description": "Over limit description when the recording is a native MP4 (fast recorder / WebCodecs) so MP4 export still works"
+  },
+  "videoProcessingLabelTitle": {
+    "message": "Видео обрабатывается...",
+    "description": "Метка обработки видео в редакторе"
+  },
+  "videoProcessingLabelDescription": {
+    "message": "Обновите для более быстрого редактирования",
+    "description": "Описание обработки видео в редакторе"
+  },
+  "sandboxEditTitle": {
+    "message": "Редактирование",
+    "description": "Заголовок редактора в песочнице"
+  },
+  "noConnectionLabel": {
+    "message": "Нет соединения",
+    "description": "Метка отсутствия соединения"
+  },
+  "notAvailableLabel": {
+    "message": "Недоступно",
+    "description": "Метка недоступности"
+  },
+  "editButtonTitle": {
+    "message": "Редактировать видео",
+    "description": "Кнопка обрезки"
+  },
+  "editButtonDescription": {
+    "message": "Обрезать, удалять или отключать звук в видео",
+    "description": "Метка обрезки"
+  },
+  "preparingLabel": {
+    "message": "Подготовка...",
+    "description": "Метка подготовки"
+  },
+  "cropButtonTitle": {
+    "message": "Обрезать",
+    "description": "Кнопка обрезки"
+  },
+  "cropButtonDescription": {
+    "message": "Обрезать и изменять размер видео",
+    "description": "Метка обрезки"
+  },
+  "addAudioButtonTitle": {
+    "message": "Добавить аудио",
+    "description": "Кнопка добавления аудио"
+  },
+  "addAudioButtonDescription": {
+    "message": "Загрузите свой звук для добавления в видео",
+    "description": "Метка добавления аудио"
+  },
+  "sandboxSaveTitle": {
+    "message": "Сохранить",
+    "description": "Заголовок сохранения в песочнице"
+  },
+  "signOutDriveLabel": {
+    "message": "Выйти из Диска",
+    "description": "Метка выхода из Google Диска"
+  },
+  "savingDriveLabel": {
+    "message": "Сохранение...",
+    "description": "Метка сохранения в Google Диск"
+  },
+  "saveDriveButtonTitle": {
+    "message": "Сохранить на Диск",
+    "description": "Кнопка сохранения в Google Диск"
+  },
+  "saveDriveButtonDescription": {
+    "message": "Сохранить текущую версию на Google Диск",
+    "description": "Метка сохранения в Google Диск"
+  },
+  "signInDriveLabel": {
+    "message": "Войти и сохранить на Диск",
+    "description": "Метка входа в Google Диск"
+  },
+  "sandboxExportTitle": {
+    "message": "Экспорт",
+    "description": "Заголовок экспорта в песочнице"
+  },
+  "downloadingLabel": {
+    "message": "Загрузка...",
+    "description": "Метка загрузки"
+  },
+  "downloadWEBMButtonTitle": {
+    "message": "Скачать как .webm",
+    "description": "Кнопка скачивания WEBM"
+  },
+  "downloadWEBMButtonDescription": {
+    "message": "Экспортировать видео в формате .webm",
+    "description": "Метка скачивания WEBM"
+  },
+  "downloadMP4ButtonTitle": {
+    "message": "Скачать как .mp4",
+    "description": "Кнопка скачивания MP4"
+  },
+  "downloadMP4ButtonDescription": {
+    "message": "Экспортировать видео в формате .mp4 (рекомендуется)",
+    "description": "Метка скачивания MP4"
+  },
+  "downloadGIFButtonTitle": {
+    "message": "Скачать как .gif",
+    "description": "Кнопка скачивания GIF"
+  },
+  "downloadGIFButtonDescription": {
+    "message": "Экспортировать GIF (максимум 30 секунд)",
+    "description": "Метка скачивания GIF"
+  },
+  "shareModalSandboxTitle": {
+    "message": "Готов улучшить свои записи?",
+    "description": "Share modal title in sandbox editor page"
+  },
+  "shareModalSandboxDescription": {
+    "message": "Облачный доступ, зум, шаблоны... и поддержка инструмента от инди-разработчицы, уважающей твою приватность ❤️",
+    "description": "Share modal description in sandbox editor page"
+  },
+  "shareModalSandboxButton": {
+    "message": "Узнать больше о Pro",
+    "description": "Share modal email placeholder in sandbox editor page"
+  },
+  "shareModalSandboxLogin": {
+    "message": "Уже есть аккаунт? Войти",
+    "description": "Share modal login link in sandbox editor page"
+  },
+  "shareSandboxButton": {
+    "message": "Поделиться видео",
+    "description": "Кнопка обмена в редакторе песочницы"
+  },
+  "replaceAudioEditor": {
+    "message": "Заменить существующий аудиофайл",
+    "description": "Кнопка замены аудиофайла в редакторе"
+  },
+  "zoomToPointPopup": {
+    "message": "Увеличить к курсору",
+    "description": "Всплывающее окно для увеличения к курсору"
+  },
+  "stayInPagePopup": {
+    "message": "Оставаться на странице во время записи",
+    "description": "Всплывающее окно для оставания на странице"
+  },
+  "micReminderPopup": {
+    "message": "Предупреждение: микрофон выключен",
+    "description": "Всплывающее окно напоминания о микрофоне"
+  },
+  "helpPopup": {
+    "message": "Помощь",
+    "description": "Кнопка всплывающего окна справки"
+  },
+  "pausedRecordingToast": {
+    "message": "Запись приостановлена. Нажмите кнопку воспроизведения, чтобы продолжить.",
+    "description": "Заголовок всплывающего окна приостановленной записи"
+  },
+  "chromePermissionsModalTitle": {
+    "message": "Recordful не имеет разрешения на запись вашего экрана",
+    "description": "Заголовок модального окна разрешения"
+  },
+  "chromePermissionsModalDescription": {
+    "message": "Для включения записи экрана вы должны предоставить разрешение на запись экрана при запросе от Recordful.",
+    "description": "Описание модального окна разрешения"
+  },
+  "chromePermissionsModalAction": {
+    "message": "Включить запись экрана",
+    "description": "Действие модального окна разрешения"
+  },
+  "chromePermissionsModalCancel": {
+    "message": "Отмена",
+    "description": "Отмена модального окна разрешения"
+  },
+  "micMutedModalTitle": {
+    "message": "Ваш микрофон отключен",
+    "description": "Заголовок модального окна отключенного микрофона"
+  },
+  "micMutedModalDescription": {
+    "message": "Для включения звука в вашей записи вам нужно включить микрофон. Хотите продолжить без звука?",
+    "description": "Описание модального окна отключенного микрофона"
+  },
+  "micMutedModalAction": {
+    "message": "Да, продолжить",
+    "description": "Действие модального окна отключенного микрофона"
+  },
+  "micMutedModalCancel": {
+    "message": "Отмена",
+    "description": "Отмена модального окна отключенного микрофона"
+  },
+  "setupTitle": {
+    "message": "Начните работу с Recordful в трех простых шагах:",
+    "description": "Заголовок шагов настройки"
+  },
+  "setupStep1Before": {
+    "message": "1- Нажмите на ",
+    "description": "Шаг 1 настройки, перед значком. Требуется пробел в конце."
+  },
+  "setupStep1After": {
+    "message": " значок расширения",
+    "description": "Шаг 1 настройки, после значка. Требуется пробел в начале."
+  },
+  "setupStep2Before": {
+    "message": "2- Нажмите на ",
+    "description": "Шаг 2 настройки, перед значком. Требуется пробел в конце."
+  },
+  "setupStep2After": {
+    "message": " значок закрепления",
+    "description": "Шаг 2 настройки, после значка. Требуется пробел в начале."
+  },
+  "setupStep3Before": {
+    "message": "3- Нажмите на ",
+    "description": "Шаг 3 настройки, перед значком. Требуется пробел в конце."
+  },
+  "setupStep3After": {
+    "message": " значок Recordful для запуска",
+    "description": "Шаг 3 настройки, после значка. Требуется пробел в начале."
+  },
+  "setupCompleteTitle": {
+    "message": "Отлично! Вы готовы",
+    "description": "Заголовок завершения настройки"
+  },
+  "setupCompleteDescription": {
+    "message": "Теперь вы можете начать запись здесь или в любой другой вкладке.",
+    "description": "Описание завершения настройки"
+  },
+  "clickHereDrawOnboarding": {
+    "message": "Нажмите здесь, чтобы рисовать",
+    "description": "Сообщение об обучении: нажмите здесь"
+  },
+  "countdownMessage": {
+    "message": "Расслабьтесь. Нажмите в любом месте, чтобы остановить обратный отсчет.",
+    "description": "Сообщение обратного отсчета"
+  },
+  "sandboxEditorTooSmallInfo": {
+    "message": "Изменения могут быть неточными для коротких временных интервалов из-за интервалов между кадрами.",
+    "description": "Информация о слишком маленьком редакторе"
+  },
+  "processingBannerEditor": {
+    "message": "Видео обрабатывается, воспроизведение может быть неточным или прерываться.",
+    "description": "Баннер обработки в редакторе"
+  },
+  "croppingInfoTitle": {
+    "message": "Обрезка может занять некоторое время",
+    "description": "Заголовок информации об обрезке"
+  },
+  "croppingInfoDescription": {
+    "message": "Обновите для более быстрой обработки",
+    "description": "Описание информации об обрезке"
+  },
+  "micOnToast": {
+    "message": "Микрофон включен",
+    "description": "Заголовок всплывающего окна включенного микрофона"
+  },
+  "micOffToast": {
+    "message": "Микрофон отключен",
+    "description": "Заголовок всплывающего окна отключенного микрофона"
+  },
+  "hideUIAlerts": {
+    "message": "Скрыть уведомления интерфейса",
+    "description": "Кнопка скрытия уведомлений интерфейса"
+  },
+  "noShowAgain": {
+    "message": "Не показывать снова",
+    "description": "Кнопка 'Не показывать снова'"
+  },
+  "toolbarHoverOnly": {
+    "message": "Скрывать панель инструментов, когда она не используется",
+    "description": "Кнопка 'Показывать панель инструментов только при наведении'"
+  },
+  "stopRecording": {
+    "message": "Остановить запись",
+    "description": "Кнопка 'Остановить запись' на экране записи"
+  },
+  "updateAnnouncementTitle": {
+    "message": "Добро пожаловать в новый Recordful!",
+    "description": "Заголовок объявления об обновлении для существующих пользователей"
+  },
+  "updateAnnouncementDescription": {
+    "message": "Мы представляем новый дизайн и множество увлекательных функций, но не волнуйтесь, это все еще бесплатное, частное и открытое расширение, которое вы знаете и любите.",
+    "description": "Описание объявления об обновлении для существующих пользователей"
+  },
+  "updateAnnouncementLearnMore": {
+    "message": "Узнать больше об обновлении.",
+    "description": "Ссылка 'Узнать больше' в объявлении об обновлении для существующих пользователей"
+  },
+  "updateAnnouncementButton": {
+    "message": "Начать",
+    "description": "Кнопка 'Начать' в объявлении об обновлении для существующих пользователей"
+  },
+  "streamErrorModalTitle": {
+    "message": "Ошибка при запуске записи",
+    "description": "Заголовок модального окна ошибки потока"
+  },
+  "streamErrorModalDescription": {
+    "message": "Похоже, произошла ошибка при запуске записи. Перезапустите браузер и попробуйте снова. Если проблема сохраняется, пожалуйста, свяжитесь с нами по адресу X.com/whyKislay or forg.to/@kislay.",
+    "description": "Описание модального окна ошибки потока"
+  },
+  "accountErrorModalTitle": {
+    "message": "Нужна подписка",
+    "description": "Title of the modal shown when a cloud recording is refused because the account has no active subscription"
+  },
+  "accountErrorModalDescription": {
+    "message": "Recordful не смог начать облачную запись: у этого аккаунта нет активной подписки. Ваши записи и настройки сохранены.",
+    "description": "Body shown when the account has never had an active subscription (server: upgrade_required)"
+  },
+  "accountErrorModalDescriptionLapsed": {
+    "message": "Recordful не смог начать облачную запись: доступ Pro для этого аккаунта закончился. Ваши записи и настройки сохранены.",
+    "description": "Body shown when the account's subscription has ended (server: reactivate_required)"
+  },
+  "accountErrorModalAction": {
+    "message": "Открыть подписку",
+    "description": "Button that opens the subscription page"
+  },
+  "authErrorModalTitle": {
+    "message": "Войдите снова",
+    "description": "Title of the modal shown when a cloud recording is refused because the session expired, not the subscription"
+  },
+  "authErrorModalDescription": {
+    "message": "Recordful не смог начать облачную запись: сессия истекла. Подписка, записи и настройки сохранены.",
+    "description": "Body shown when the session/token failed; the account may well be a paying subscriber"
+  },
+  "authErrorModalAction": {
+    "message": "Войти",
+    "description": "Button that reopens the login flow"
+  },
+  "highestQuality": {
+    "message": "Наивысшее качество",
+    "description": "Метка переключения наивысшего качества во всплывающем окне"
+  },
+  "restoreRecording": {
+    "message": "Восстановить последнюю запись",
+    "description": "Кнопка восстановления последней записи во всплывающем окне"
+  },
+  "havingIssuesButton": {
+    "message": "Возникли проблемы?",
+    "description": "Кнопка проблем в редакторе"
+  },
+  "havingIssuesModalTitle": {
+    "message": "Не видите свою запись?",
+    "description": "Заголовок модального окна проблем в редакторе"
+  },
+  "havingIssuesModalDescription": {
+    "message": "Если вы завершили запись и оказались на этой странице, не видя свое видео, вы можете попробовать скачать необработанные видеоданные, если они доступны. Вы также можете связаться с нами и отправить отчет об ошибке.",
+    "description": "Описание модального окна проблем в редакторе"
+  },
+  "havingIssuesModalButton": {
+    "message": "Скачать необработанные видеоданные",
+    "description": "Кнопка в модальном окне проблем в редакторе"
+  },
+  "havingIssuesModalButton2": {
+    "message": "Сообщить о проблеме",
+    "description": "Вторая кнопка в модальном окне проблем в редакторе"
+  },
+  "noRecordingFound": {
+    "message": "Запись не найдена, извините :(",
+    "description": "Предупреждение о отсутствии записи в редакторе"
+  },
+  "memoryLimitTitle": {
+    "message": "Достигнут лимит памяти",
+    "description": "Заголовок сообщения о достижении лимита памяти"
+  },
+  "memoryLimitDescription": {
+    "message": "Ваше устройство исчерпало доступную память для записи, что привело к автоматической остановке записи. Если вы хотите записывать дольше, вы можете попробовать уменьшить качество видео или освободить место на вашем устройстве.",
+    "description": "Описание сообщения о достижении лимита памяти"
+  },
+  "understoodButton": {
+    "message": "Понятно",
+    "description": "Кнопка 'Понятно'"
+  },
+  "notEnoughSpaceTitle": {
+    "message": "Недостаточно места",
+    "description": "Заголовок сообщения о нехватке места"
+  },
+  "notEnoughSpaceDescription": {
+    "message": "Для работы Recordful требуется как минимум 1 ГБ свободного места. Пожалуйста, освободите место на вашем устройстве и попробуйте снова.",
+    "description": "Описание сообщения о нехватке места"
+  },
+  "clearSpaceButton": {
+    "message": "Удалить предыдущие записи",
+    "description": "Кнопка 'Удалить предыдущие записи'"
+  },
+  "sandboxAdvancedTitle": {
+    "message": "Дополнительно",
+    "description": "Раздел 'Дополнительно' на странице редактора в режиме песочницы"
+  },
+  "rawRecordingButtonTitle": {
+    "message": "Скачать необработанный видеофайл",
+    "description": "Кнопка скачивания необработанной записи"
+  },
+  "rawRecordingButtonDescription": {
+    "message": "Экспорт исходных данных записи",
+    "description": "Метка скачивания необработанной записи"
+  },
+  "troubleshootButtonTitle": {
+    "message": "Получить помощь по вашей записи",
+    "description": "Кнопка Устранения неполадок"
+  },
+  "troubleShootButtonDescription": {
+    "message": "Восстановите свое видео и решите другие проблемы",
+    "description": "Метка Устранения неполадок"
+  },
+  "rawRecordingModalTitle": {
+    "message": "Скачать необработанный видеофайл",
+    "description": "Заголовок модального окна необработанной записи"
+  },
+  "rawRecordingModalDescription": {
+    "message": "Необработанный видеофайл - это оригинальный видеофайл, записанный Recordful. Этот видеофайл не обработан и не редактирован, поэтому он может быть очень большим и не всегда можно воспроизвести на всех устройствах. Если у вас возникли проблемы с обработанным видео, вы можете использовать этот файл для восстановления своего видео.",
+    "description": "Описание модального окна необработанной записи"
+  },
+  "rawRecordingModalButton": {
+    "message": "Скачать",
+    "description": "Кнопка модального окна необработанной записи"
+  },
+  "troubleshootModalTitle": {
+    "message": "Скачать информацию о системе и видеоданные для устранения неполадок",
+    "description": "Заголовок модального окна Устранения неполадок"
+  },
+  "troubleshootModalDescription": {
+    "message": "После скачивания отправьте этот файл на X.com/whyKislay or forg.to/@kislay вместе с любой актуальной информацией. Мы используем эти данные, чтобы помочь вам устранить любые проблемы с расширением и, при возможности, восстановить ваше видео.",
+    "description": "Описание модального окна Устранения неполадок"
+  },
+  "troubleshootModalButton": {
+    "message": "Скачать",
+    "description": "Кнопка модального окна Устранения неполадок"
+  },
+  "overLimitModalTitle": {
+    "message": "Видео слишком длинное для обработки на вашем устройстве",
+    "description": "Заголовок модального окна ограничения более 5 минут"
+  },
+  "overLimitModalDescription": {
+    "message": "Поскольку Recordful полностью конфиденциален и работает локально, его возможности ограничены аппаратными ресурсами вашего устройства. Обработка видео такой длины займет слишком много времени и ресурсов. Но не волнуйтесь, вы всё равно можете скачать файл WEBM или оригинальную запись, но редактирование и экспорт в MP4 недоступны. Тем не менее, вы можете попробовать обработать видео, если осознаете риски.",
+    "description": "Описание модального окна ограничения более 5 минут"
+  },
+  "overLimitModalDescriptionFastPath": {
+    "message": "Поскольку Recordful полностью конфиденциален и работает локально, его возможности ограничены аппаратными ресурсами вашего устройства. Обработка видео такой длины займет слишком много времени и ресурсов. Ваш файл MP4 готов к скачиванию, но редактирование в браузере недоступно для записей такой длины. Тем не менее, вы можете попробовать обработать видео, если осознаете риски.",
+    "description": "Over 5 minutes limit modal description when the recording is a native MP4 (fast recorder / WebCodecs)"
+  },
+  "overLimitModalButton": {
+    "message": "Я понимаю риск, попробовать в любом случае",
+    "description": "Кнопка модального окна ограничения более 5 минут"
+  },
+  "overLimitModalLearnMore": {
+    "message": "Узнать больше о обработке длинных видео.",
+    "description": "Ссылка «Узнать больше» в модальном окне ограничения более 5 минут с точкой"
+  },
+  "recoveryModeTitle": {
+    "message": "Режим восстановления",
+    "description": "Заголовок режима восстановления"
+  },
+  "downloadForTroubleshootingOption": {
+    "message": "Скачать данные для устранения проблем",
+    "description": "Опция скачивания для устранения проблем"
+  },
+  "getHelpNav": {
+    "message": "Центр помощи",
+    "description": "Элемент навигации помощи"
+  },
+  "audioWarningTitle": {
+    "message": "Запись аудио с страницы",
+    "description": "Заголовок предупреждения о звуке"
+  },
+  "audioWarningDescription": {
+    "message": "Для записи аудио с этой страницы вы должны использовать опцию '$tab$'.",
+    "description": "Описание предупреждения о звуке",
+    "placeholders": {
+      "tab": {
+        "content": "$1",
+        "example": "Область вкладки"
+      }
+    }
+  },
+  "extensionNotSupportedTitle": {
+    "message": "Расширение не поддерживается на странице",
+    "description": "Заголовок предупреждения о не поддерживаемом расширении на вкладке"
+  },
+  "extensionNotSupportedDescription": {
+    "message": "Recordful не поддерживался на вашей предыдущей вкладке. Тем не менее, вы все равно можете начать запись здесь, а затем перейти на другую вкладку, но камера и панель инструментов не будут видны.",
+    "description": "Описание предупреждения о не поддерживаемом расширении на вкладке"
+  },
+  "backupsDescription1": {
+    "message": "Сохраняйте копии всех ваших записей. Если вы не настроите резервные копии, ваши записи будут сохранены только при скачивании.",
+    "description": "Описание резервных копий"
+  },
+  "backupsDescription2": {
+    "message": "Вам может потребоваться создать новую папку сначала, если вы пытаетесь сохранить записи в папках, таких как 'Загрузки' или других системных папках.",
+    "description": "Описание резервных копий"
+  },
+  "recordAudioWarningMacTitle": {
+    "message": "Запись аудио с компьютера",
+    "description": "Заголовок предупреждения о звуке для macOS"
+  },
+  "recordAudioWarningMacDescription": {
+    "message": "В macOS вы можете записывать звук только с вкладок. Выберите опцию 'Вкладка Chrome' и убедитесь, что включена опция 'Также делиться аудио с вкладки'.",
+    "description": "Описание предупреждения о звуке для macOS"
+  },
+  "recordAudioWarningOtherTitle": {
+    "message": "Запись аудио с компьютера",
+    "description": "Заголовок предупреждения о звуке для других систем"
+  },
+  "recordAudioWarningOtherDescription": {
+    "message": "Для записи звука с компьютера убедитесь, что включена опция 'Делиться аудио системы'. Если вы не видите эту опцию, попробуйте обновить Chrome или перейти на опцию записи вкладок.",
+    "description": "Описание предупреждения о звуке для других систем"
+  },
+  "maxResolutionLabel": {
+    "message": "Максимальное разрешение",
+    "description": "Метка максимального разрешения в меню настроек"
+  },
+  "maxFPSLabel": {
+    "message": "Максимальное количество кадров в секунду",
+    "description": "Метка максимального количества кадров в секунду в меню настроек"
+  },
+  "notEnoughRAM": {
+    "message": "Недостаточно оперативной памяти",
+    "description": "Метка 'Недостаточно оперативной памяти' в меню настроек"
+  },
+  "resizeWindowLabel": {
+    "message": "Изменить размер окна",
+    "description": "Метка изменения размера окна в меню настроек"
+  },
+  "screenTooSmallTooltip": {
+    "message": "Экран слишком мал для этого разрешения",
+    "description": "Подсказка о слишком маленьком экране в меню настроек"
+  },
+  "maxResolutionTooltip": {
+    "message": "Невозможно записать в этом разрешении на вашем устройстве",
+    "description": "Подсказка о максимальном разрешении в меню настроек"
+  },
+  "permissionsModalReview": {
+    "message": "Просмотреть разрешения",
+    "description": "Кнопка просмотра разрешений"
+  },
+  "recordButtonMultiLabel": {
+    "message": "Добавить ещё одну запись",
+    "description": "Record button label (multi mode)"
+  },
+  "recorderSetupTitle": {
+    "message": "Готовим всё...",
+    "description": "Title in recording page while setting up project before countdown starts"
+  },
+  "recorderSetupDescription": {
+    "message": "Подождите немного! Ваша запись готовится.",
+    "description": "Description in recording page before countdown starts"
+  },
+  "reopenToolbarToast": {
+    "message": "Панель инструментов скрыта. Включите её снова в настройках расширения.",
+    "description": "Toast message explaining to reopen the toolbar in the popup options"
+  },
+  "loginButtonLabel": {
+    "message": "Войти или зарегистрироваться",
+    "description": "Login button label in popup settings menu"
+  },
+  "logoutButtonLabel": {
+    "message": "Выйти",
+    "description": "Logout button label in popup settings menu"
+  },
+  "loggedOutToastTitle": {
+    "message": "Вы вышли из аккаунта",
+    "description": "Toast message shown when the user logs out"
+  },
+  "storageLimitReachedTitle": {
+    "message": "Достигнут лимит хранилища",
+    "description": "Modal message shown when the storage limit is reached"
+  },
+  "storageLimitReachedDescription": {
+    "message": "Вы использовали все 50 ГБ хранилища. Удалите старые видео или сцены, чтобы продолжить запись.",
+    "description": "Modal description shown when the storage limit is reached"
+  },
+  "manageStorageButtonLabel": {
+    "message": "Управление хранилищем",
+    "description": "Button label to manage storage in the popup settings menu"
+  },
+  "closeModalLabel": {
+    "message": "Закрыть",
+    "description": "Agnostic close modal button label"
+  },
+  "storageCheckFailTitle": {
+    "message": "Не удалось проверить хранилище",
+    "description": "Title shown when the storage check fails"
+  },
+  "storageCheckFailAuthDescription": {
+    "message": "Произошла ошибка при проверке хранилища. Пожалуйста, войдите заново и попробуйте снова.",
+    "description": "Description shown when the storage check fails due to authentication"
+  },
+  "storageCheckFailDescription": {
+    "message": "Не удалось проверить ваш лимит хранилища. Попробуйте снова через несколько секунд или обновите страницу.",
+    "description": "Description shown when the storage check fails"
+  },
+  "retryButtonLabel": {
+    "message": "Попробовать снова",
+    "description": "Agnostic button label to try again"
+  },
+  "addedToMultiToast": {
+    "message": "Сцена добавлена в Multi-запись",
+    "description": "Toast message shown when a scene is added to multi-recording"
+  },
+  "readyRecordSceneToast": {
+    "message": "Готовы записать новую сцену в видео",
+    "description": "Toast message shown when the user is in an existing project and ready to record a new scene"
+  },
+  "reachingRecordingLimitToast": {
+    "message": "Запись приближается к лимиту 90 минут, скоро завершится",
+    "description": "Toast message shown when the recording is reaching the 90 minute limit"
+  },
+  "recordingLimitReachedToast": {
+    "message": "Запись остановлена из-за лимита 90 минут",
+    "description": "Toast message shown when the recording limit is reached"
+  },
+  "tabRecordingDisabledToast": {
+    "message": "Запись вкладки отключена на этой странице. Переключено на запись экрана.",
+    "description": "Toast message shown when tab recording is disabled on a page"
+  },
+  "projectRecordingCancelledToast": {
+    "message": "Запись видео отменена",
+    "description": "Toast message shown when the user cancels project recording"
+  },
+  "copiedToClipboardToast": {
+    "message": "Ссылка скопирована в буфер",
+    "description": "Toast message shown when link has been copied to clipboard"
+  },
+  "failedToCopyToClipboardToast": {
+    "message": "Не удалось скопировать ссылку",
+    "description": "Toast message shown when failed to copy link to clipboard"
+  },
+  "sortByHeading": {
+    "message": "Сортировать по",
+    "description": "Section heading in the videos sort dropdown for the field being sorted on"
+  },
+  "orderHeading": {
+    "message": "Порядок",
+    "description": "Section heading in the videos sort dropdown for the sort direction"
+  },
+  "sortFieldLastEdited": {
+    "message": "Последнее изменение",
+    "description": "Sort field option: when the video was last edited"
+  },
+  "sortFieldDateCreated": {
+    "message": "Дата создания",
+    "description": "Sort field option: when the video was created"
+  },
+  "sortFieldName": {
+    "message": "Название",
+    "description": "Sort field option: the video's title"
+  },
+  "sortFieldLength": {
+    "message": "Длительность",
+    "description": "Sort field option: the video's duration"
+  },
+  "orderNewestFirst": {
+    "message": "Сначала новые",
+    "description": "Sort order option for date fields"
+  },
+  "orderOldestFirst": {
+    "message": "Сначала старые",
+    "description": "Sort order option for date fields"
+  },
+  "orderAToZ": {
+    "message": "От А до Я",
+    "description": "Sort order option for the name field"
+  },
+  "orderZToA": {
+    "message": "От Я до А",
+    "description": "Sort order option for the name field"
+  },
+  "orderLongestFirst": {
+    "message": "Сначала длинные",
+    "description": "Sort order option for the length field"
+  },
+  "orderShortestFirst": {
+    "message": "Сначала короткие",
+    "description": "Sort order option for the length field"
+  },
+  "allVideosHeading": {
+    "message": "Все видео",
+    "description": "Heading for the all videos section in the popup"
+  },
+  "noVideosFound": {
+    "message": "Видео не найдены",
+    "description": "Message shown when no videos are found in the popup"
+  },
+  "loadingVideosLabel": {
+    "message": "Загрузка видео...",
+    "description": "Label shown when videos are loading in the popup"
+  },
+  "loadingMoreVideosLabel": {
+    "message": "Загрузка ещё...",
+    "description": "Label shown at the bottom of the videos list while loading additional pages"
+  },
+  "searchVideosPlaceholder": {
+    "message": "Поиск видео",
+    "description": "Placeholder text for the videos search input in the popup"
+  },
+  "noVideosMatchSearchTitle": {
+    "message": "Ничего не найдено по запросу «$SEARCHTERM$»",
+    "description": "Heading shown when no videos match the current search query in the popup",
+    "placeholders": {
+      "searchterm": {
+        "content": "$1",
+        "example": "design review"
+      }
+    }
+  },
+  "noVideosMatchSearchHint": {
+    "message": "Попробуйте изменить запрос.",
+    "description": "Subtext shown under the no search results heading in the popup"
+  },
+  "privateVideoTooltip": {
+    "message": "Приватное",
+    "description": "Tooltip shown on the lock badge over a private video's thumbnail"
+  },
+  "goToDashboardButtonLabel": {
+    "message": "Перейти в панель",
+    "description": "Button label to go to the dashboard in the popup"
+  },
+  "welcomePopupTitle": {
+    "message": "Добро пожаловать в Recordful",
+    "description": "Title for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionTop": {
+    "message": "Без рекламы. Без слежки. Без ограничений.",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupDescriptionBottom": {
+    "message": "Просто нажмите «Запись».",
+    "description": "Description for the welcome popup shown to new users"
+  },
+  "welcomePopupCTA": {
+    "message": "Бесплатно — без регистрации!",
+    "description": "Call to action button for the welcome popup shown to new users"
+  },
+  "welcomePopupCloudTitle": {
+    "message": "Хотите больше возможностей для видео?",
+    "description": "Title for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupCloudFeature1": {
+    "message": "Облачное хранилище, делитесь ссылкой на видео",
+    "description": "Feature 1 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature2": {
+    "message": "Объединяйте клипы в единую историю",
+    "description": "Feature 2 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature3": {
+    "message": "Умные увеличения при клике (или добавьте свои!)",
+    "description": "Feature 3 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature4": {
+    "message": "Добавляйте шаблоны, подписи, макеты...",
+    "description": "Feature 4 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudFeature5": {
+    "message": "Пользовательские фоны и мокапы",
+    "description": "Feature 5 for the cloud storage in the welcome popup"
+  },
+  "welcomePopupCloudCTA": {
+    "message": "🔓 Открыть дополнительные функции",
+    "description": "Call to action button for the cloud storage feature in the welcome popup"
+  },
+  "welcomePopupSupport": {
+    "message": "+ Поддержите разработку от инди-разработчицы!",
+    "description": "Message for supporting the indie maker in the welcome popup"
+  },
+  "accountSettingsOption": {
+    "message": "Настройки аккаунта",
+    "description": "Label for the account settings option in the popup"
+  },
+  "supportSettingsOption": {
+    "message": "Поддержка",
+    "description": "Label for the support option in the popup"
+  },
+  "inactiveSubscriptionTitle": {
+    "message": "Ваша подписка Pro неактивна",
+    "description": "Title shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionDescription": {
+    "message": "Ваша подписка Recordful Pro неактивна.",
+    "description": "Description shown when the user's subscription is inactive"
+  },
+  "inactiveSubscriptionReactivation": {
+    "message": "Пожалуйста, активируйте снова, чтобы продолжить использование.",
+    "description": "Message prompting the user to reactivate their subscription"
+  },
+  "inactiveSubscriptionDeletionWarning": {
+    "message": "Ваши видео и данные будут безвозвратно удалены ",
+    "description": "Warning message about the deletion of videos and data"
+  },
+  "manageSubscriptionButton": {
+    "message": "Управление подпиской",
+    "description": "Button to manage the user's subscription"
+  },
+  "inactiveSubscriptionFreeVersion": {
+    "message": "Хотите продолжить использовать бесплатную версию?",
+    "description": "Message prompting the user to continue using the free version"
+  },
+  "downgradeToFreeButton": {
+    "message": "Выйти и перейти на бесплатную версию",
+    "description": "Button to log out and downgrade to the free version"
+  },
+  "loggedOutTitle": {
+    "message": "Вы вышли из аккаунта",
+    "description": "Title shown when the user is logged out"
+  },
+  "loggedOutDescription": {
+    "message": "Чтобы сохранить записи в аккаунте и получить доступ к функциям Pro, войдите снова.",
+    "description": "Description shown when the user is logged out"
+  },
+  "logBackInButton": {
+    "message": "Войти снова",
+    "description": "Button to log back in after being logged out"
+  },
+  "loggedOutFreeVersion": {
+    "message": "Вы можете продолжать использовать расширение без аккаунта — но ваши записи не будут сохранены и не смогут быть восстановлены позже.",
+    "description": "Message shown when the user is logged out and using the free version"
+  },
+  "continueWithoutLogin": {
+    "message": "Продолжить без входа",
+    "description": "Button to continue using the extension without logging in"
+  },
+  "instantRecordingModeLabel": {
+    "message": "Мгновенный режим записи",
+    "description": "Label for the instant recording mode"
+  },
+  "instantRecordingModeTooltip": {
+    "message": "Мгновенное скачивание, но камеру и макет потом нельзя будет изменить.",
+    "description": "Tooltip for the instant recording mode"
+  },
+  "instantRecordingModeTitle": {
+    "message": "Мгновенный режим записи",
+    "description": "Title for the instant recording mode"
+  },
+  "instantRecordingModeDescription": {
+    "message": "Всё записывается в одно видео для мгновенной загрузки и публикации. Расположение камеры изменить будет нельзя, но другие правки возможны.",
+    "description": "Description for the instant recording mode"
+  },
+  "instantRecordingModeAction": {
+    "message": "Поняла",
+    "description": "Action button for the instant recording mode"
+  },
+  "tabRecordingDisabledTooltip": {
+    "message": "Запись вкладки отключена на этой странице",
+    "description": "Tooltip shown when tab recording is disabled on a page"
+  },
+  "addingToLabel": {
+    "message": "Добавление в: ",
+    "description": "Label shown when a scene is being recorded to a project"
+  },
+  "multiLabel": {
+    "message": "Multi",
+    "description": "Label for the multi-recording mode"
+  },
+  "finishLabelMulti": {
+    "message": "Завершить",
+    "description": "Label for the finish multi-recording button"
+  },
+  "welcomeProTitle": {
+    "message": "Хотите больше от своих записей?",
+    "description": "Title for the welcome Pro popup"
+  },
+  "welcomeProDescription": {
+    "message": "Делитесь записями по аккуратной ссылке, сохраняйте их в облаке и добавляйте зумы, субтитры и макеты, если и когда понадобится.",
+    "description": "Description for the welcome Pro popup"
+  },
+  "welcomeProButton": {
+    "message": "Разблокировать редактор",
+    "description": "Button to sign in to Recordful Pro"
+  },
+  "welcomeProSupport": {
+    "message": "Поддержите разработку от инди-разработчицы",
+    "description": "Message for supporting the indie maker in the welcome Pro popup"
+  },
+  "unlockMoreFeatures": {
+    "message": "Открыть больше функций",
+    "description": "Button to unlock more features in the editor"
+  },
+  "shareUnlockButton": {
+    "message": "Войти, чтобы поделиться (pro)",
+    "description": "Button to sign in to share in the editor"
+  },
+  "proBannerTitle": {
+    "message": "Доступ к облачному обмену, редактированию сцен, автоувеличению, подписям и другим функциям",
+    "description": "Pro banner title in the editor"
+  },
+  "proBannerDescription": {
+    "message": "Recordful всегда будет бесплатным, с открытым кодом и без рекламы. Pro покрывает облачные и серверные расходы и поддерживает инди-разработку! ❤️",
+    "description": "Pro banner description in the editor"
+  },
+  "proBannerAltButton": {
+    "message": "Больше не показывать",
+    "description": "Pro banner don't show again button in the editor"
+  },
+  "proBannerButton": {
+    "message": "Попробовать",
+    "description": "Pro banner button in the editor"
+  },
+  "multiRecordingModeTitle": {
+    "message": "Режим Multi",
+    "description": "Title for the multi-recording mode modal"
+  },
+  "multiRecordingModeDescription": {
+    "message": "Записывайте несколько сцен — экран, камеру или оба варианта — одну за другой. Отлично подходит для нескольких дублей, смены ракурса или разбивки записи на части. Когда закончите, нажмите «Готово», чтобы открыть редактор со всеми сценами, объединёнными в одно видео.",
+    "description": "Description for the multi-recording mode modal"
+  },
+  "noSubscriptionYetTitle": {
+    "message": "Активируйте Pro, чтобы начать",
+    "description": "Title shown when the user has no active subscription"
+  },
+  "noSubscriptionYetDescription": {
+    "message": "Оформите подписку, чтобы получить доступ к функциям Pro.",
+    "description": "Message prompting the user to subscribe to reactivate their Pro features"
+  },
+  "upgradeToProButton": {
+    "message": "Оформить подписку на Pro",
+    "description": "Button to upgrade to Pro"
+  },
+  "hostBannerTitle": {
+    "message": "Нравится пользоваться Recordful локально? Поддержите дальнейшую разработку!",
+    "description": "Заголовок баннера о самостоятельном хостинге в редакторе"
+  },
+  "hostBannerDescription": {
+    "message": "Recordful разработана независимой разработчицей. Самостоятельный хостинг бесплатен, но если вам полезен этот инструмент, подумайте о поддержке через Pro ❤️",
+    "description": "Описание баннера о самостоятельном хостинге в редакторе"
+  },
+  "welcomeBackPopupTitle": {
+    "message": "С возвращением в Recordful",
+    "description": "Заголовок приветственного окна для возвращающихся пользователей"
+  },
+  "welcomeBackProTitle": {
+    "message": "✨ Новое: Хотите больше, чем просто запись?",
+    "description": "Заголовок для функции облачного хранилища в приветственном окне"
+  },
+  "welcomeBackProDescription": {
+    "message": "Recordful Pro — это новая дополнительная платформа для сохранения видео в облаке, обмена по ссылке и использования расширенных инструментов редактирования — если и когда они вам понадобятся.",
+    "description": "Описание функции облачного хранилища в приветственном окне"
+  },
+  "welcomeBackProCTA": {
+    "message": "Узнать больше о Recordful Pro",
+    "description": "Кнопка призыва к действию для функции облачного хранилища в приветственном окне"
+  },
+  "welcomeToProTitleModal": {
+    "message": "Добро пожаловать в Recordful Pro",
+    "description": "Заголовок приветственного окна Pro"
+  },
+  "welcomeToProDescriptionModal": {
+    "message": "Вы готовы начать запись! Вот несколько моментов, которые стоит учитывать:\n\n- Пузырёк с камерой может исчезнуть во время записи — это нормально. Он записывается отдельно в фоновом режиме, чтобы вы могли позже разместить его где угодно.\n- Увеличения автоматически создаются только при кликах внутри вкладок Chrome — это ограничение браузера. Вы всегда можете добавить дополнительные увеличения вручную после записи.\n- Для быстрых записей с мгновенным скачиванием используйте Мгновенный режим. Учтите, что возможности редактирования в нём ограничены: нет фонов, макетов и продвинутых настроек.",
+    "description": "Описание приветственного окна Pro"
+  },
+  "welcomeToProActionModal": {
+    "message": "Понятно",
+    "description": "Кнопка действия в приветственном окне Pro"
+  },
+  "webcodecsToggleLabel": {
+    "message": "Fast MP4",
+    "description": "WebCodecs recorder toggle label"
+  },
+  "webcodecsFailedOffToast": {
+    "message": "Fast MP4 ошибка — выкл",
+    "description": "WebCodecs failure auto-disable toast"
+  },
+  "proOnboardingWelcomeTitle": {
+    "message": "Добро пожаловать в расширение Recordful Pro",
+    "description": "Pro onboarding welcome step title"
+  },
+  "proOnboardingWelcomeDescription": {
+    "message": "Пара быстрых советов перед записью.<br/>Автозум работает только по кликам внутри <strong>вкладок Chrome</strong>. Дополнительные зумы всегда можно добавить вручную позже.",
+    "description": "Pro onboarding welcome step description"
+  },
+  "proOnboardingToolbarTitle": {
+    "message": "Панель записи и эффекты",
+    "description": "Pro onboarding toolbar step title"
+  },
+  "proOnboardingToolbarDescription": {
+    "message": "Используйте эту панель для рисования, эффектов курсора, размытия и управления записью.<br/><br/><strong>Эта панель попадет в видео</strong>, если её не скрыть.",
+    "description": "Pro onboarding toolbar step description"
+  },
+  "proOnboardingCameraTitle": {
+    "message": "Камера записывается отдельно",
+    "description": "Pro onboarding camera step title"
+  },
+  "proOnboardingCameraDescription": {
+    "message": "Во время записи камера может <strong>скрываться или переходить в PiP</strong> - это нормально.<br/><br/>Она записывается отдельно, чтобы вы могли настроить её положение позже.",
+    "description": "Pro onboarding camera step description"
+  },
+  "proOnboardingInstantTitle": {
+    "message": "Мгновенный режим",
+    "description": "Pro onboarding instant mode step title"
+  },
+  "proOnboardingInstantDescription": {
+    "message": "Лучший вариант для быстрого обмена с <strong>безлимитными загрузками</strong>.<br/><br/>В этом режиме недоступны расширенные макеты и функции редактора.",
+    "description": "Pro onboarding instant mode step description"
+  },
+  "proOnboardingDone": {
+    "message": "Понятно",
+    "description": "Pro onboarding done button text"
+  },
+  "proOnboardingNext": {
+    "message": "Далее",
+    "description": "Pro onboarding next button text"
+  },
+  "proOnboardingBack": {
+    "message": "Назад",
+    "description": "Pro onboarding back button text"
+  },
+  "proOnboardingToolbarLearnMore": {
+    "message": "Подробнее",
+    "description": "Pro onboarding toolbar learn more link label"
+  },
+  "resetOnboardingOption": {
+    "message": "Сбросить онбординг",
+    "description": "Reset pro onboarding option label in popup settings menu"
+  },
+  "recoverLastRecordingOption": {
+    "message": "Recover last recording",
+    "description": "Settings menu item to manually trigger cloud recording recovery"
+  },
+  "toastRecoveredSession": {
+    "message": "Recovered unsaved recording from the previous session.",
+    "description": "Toast shown when a crashed recording session is auto-recovered on startup"
+  },
+  "toastStorageCritical": {
+    "message": "Мало места на диске. Сохраняем запись. Всё, что было записано, в безопасности.",
+    "description": "Toast shown when available storage drops below the critical threshold during recording; reassures that captured data is preserved"
+  },
+  "toastStorageLow": {
+    "message": "Storage is running low. Upload reliability may degrade for long recordings.",
+    "description": "Toast shown when available storage drops below the warning threshold during recording"
+  },
+  "toastAudioCaptureDegraded": {
+    "message": "Transcription capture paused due to memory pressure. Video upload continues.",
+    "description": "Toast shown when the audio recorder is stopped early because the audio buffer limit was reached"
+  },
+  "toastNetworkOffline": {
+    "message": "Network offline. Upload paused. Screen chunks are saved locally.",
+    "description": "Toast shown when the browser goes offline during a cloud recording upload"
+  },
+  "longRecordingTitle": {
+    "message": "Длинная запись",
+    "description": "Banner title shown when a recording exceeds the local processing limit but is otherwise successful"
+  },
+  "longRecordingDescription": {
+    "message": "Запись завершена и в безопасности. Скачайте в формате WebM ниже.",
+    "description": "Banner description for long recordings that can be downloaded but not edited locally"
+  },
+  "notAvailableLongRecording": {
+    "message": "Недоступно для длинных записей",
+    "description": "Disabled button label for features not available due to recording length"
+  },
+  "notAvailableRecoveryMode": {
+    "message": "Недоступно в режиме восстановления",
+    "description": "Disabled button label for features not available in recovery/fallback mode"
+  },
+  "editTooLongTitle": {
+    "message": "Редактирование аудио слишком длинное",
+    "description": "Alert title when an audio mute/mix edit is rejected because the clip exceeds 15 minutes"
+  },
+  "editTooLongDescription": {
+    "message": "Это редактирование аудио не поддерживается для клипов длиннее 15 минут. Оригинал не изменён. Попробуйте сначала обрезать клип.",
+    "description": "Alert body explaining the 15-minute limit and suggesting trimming first"
+  },
+  "editTimeoutTitle": {
+    "message": "Время редактирования истекло",
+    "description": "Alert title when an edit operation does not complete within the 5-minute watchdog period"
+  },
+  "editTimeoutDescription": {
+    "message": "Редактирование не завершилось вовремя. Исходная запись не изменена. Повторите попытку или сначала обрежьте клип.",
+    "description": "Alert body for the timeout case, prompting retry or shorter clip"
+  },
+  "streamEndedWarningToast": {
+    "message": "Демонстрация экрана прекращена. Ваша запись сохранена. Остановите, когда будете готовы.",
+    "description": "Toast shown when screen share track ends mid-recording. Recording continues; removes false urgency about data loss."
+  },
+  "recoveryModeDescription": {
+    "message": "Произошла ошибка обработки, но ваша запись в безопасности. Вы можете скачать её ниже.",
+    "description": "Recovery mode banner description — reassures user their recording is accessible despite the processing failure"
+  },
+  "editProcessingSafeDescription": {
+    "message": "Обработка редактирования. Исходная запись не изменена.",
+    "description": "Shown in the editor processing alert when a user-initiated edit is running, to reassure the original is safe"
+  },
+  "editFailedTitle": {
+    "message": "Не удалось применить редактирование",
+    "description": "Alert title when an edit operation fails due to an encoding or processing error"
+  },
+  "editFailedDescription": {
+    "message": "Что-то пошло не так при обработке. Исходная запись в безопасности. Вы можете попробовать снова или скачать как есть.",
+    "description": "Alert body for edit failure; explicitly confirms the original recording is untouched"
+  },
+  "videoTrackEndedToast": {
+    "message": "Демонстрация экрана прекращена. Сохраняем запись. Всё, что было записано, в безопасности.",
+    "description": "Toast shown when the video track ends mid-recording (e.g. monitor disconnected, screen share revoked)"
+  },
+  "audioTrackEndedToast": {
+    "message": "Аудио отключено. Сохраняем запись. Записанное видео в безопасности.",
+    "description": "Toast shown when the audio track ends mid-recording (e.g. mic unplugged, permission revoked)"
+  },
+  "captureAudioUnavailableToast": {
+    "message": "Не удалось записать звук компьютера, поэтому в этой записи только видео.",
+    "description": "Toast shown when the system/tab audio source fails to start and recording continues without it"
+  },
+  "captureAudioRepickToast": {
+    "message": "Не удалось записать звук компьютера. Выберите экран ещё раз, чтобы записать только видео.",
+    "description": "Toast shown before the screen picker reopens because system audio could not start and capture is retrying without it"
+  },
+  "editorRecoveryToast": {
+    "message": "Запись сохранена. Редактор не открылся. Нажмите на значок Recordful, чтобы попробовать снова.",
+    "description": "Toast shown on the active tab when the post-recording editor tab fails to open"
+  },
+  "stopAckTimeoutToast": {
+    "message": "Сохранение занимает больше времени, чем ожидалось. Ваши данные в безопасности. Редактор скоро откроется.",
+    "description": "Toast shown when the recorder does not acknowledge the stop request within a few seconds"
+  },
+  "copyDebugInfoButton": {
+    "message": "Скопировать данные отладки",
+    "description": "Button to copy technical debug info to clipboard for support"
+  },
+  "debugInfoCopiedToast": {
+    "message": "Данные отладки скопированы",
+    "description": "Toast shown after debug info is copied"
+  },
+  "getHelpButton": {
+    "message": "Получить помощь",
+    "description": "Side button on error modals that opens a prefilled support form"
+  },
+  "recordingTooShortToast": {
+    "message": "Запись слишком короткая для сохранения",
+    "description": "Toast shown when a region recording is stopped by navigation but no chunks were saved"
+  },
+  "fastRecorderFailedTitle": {
+    "message": "Быстрая запись не удалась",
+    "description": "Title for the modal shown when the fast MP4 recorder output could not be validated"
+  },
+  "fastRecorderFailedDescription": {
+    "message": "Результат быстрой записи не удалось проверить на этом устройстве.\nВы все равно можете скачать файл.",
+    "description": "Body text for the fast recorder failure modal"
+  },
+  "downloadAnywayButton": {
+    "message": "Скачать все равно",
+    "description": "Button to download the recording file despite validation failure"
+  },
+  "cancelButton": {
+    "message": "Отмена",
+    "description": "Generic cancel button label"
+  },
+  "editorStuckTitle": {
+    "message": "Запись ещё готовится…"
+  },
+  "editorStuckDescription": {
+    "message": "Recordful загружает вашу запись дольше обычного. Возможно, данные всё ещё хранятся на этом устройстве. Попробуйте восстановить её или свяжитесь с нами, если она не вернётся."
+  },
+  "editorStuckTryRecover": {
+    "message": "Восстановить"
+  },
+  "editorStuckGetHelp": {
+    "message": "Получить помощь"
+  },
+  "editorRecoveryFailedTitle": {
+    "message": "Не удалось открыть запись"
+  },
+  "editorRecoveryFailedDescription": {
+    "message": "При загрузке записи в редактор что-то пошло не так. Возможно, ваша запись всё ещё сохранена на устройстве. Вы можете попробовать восстановить её сейчас."
+  },
+  "downloadGIFTooLongToast": {
+    "message": "Экспорт в GIF ограничен 30 секундами. Обрежьте клип и попробуйте снова."
+  },
+  "audioSilentToast": {
+    "message": "Звук не обнаружен. Проверьте микрофон, переключатель отключения звука или аудиоустройство."
+  },
+  "restartFailedToast": {
+    "message": "Не удалось перезапустить запись. Остановите её и начните заново."
+  },
+  "recordingFailedModalTitle": {
+    "message": "Не удалось начать запись"
+  },
+  "recordingFailedModalDescription": {
+    "message": "Что-то помешало запустить запись. Пожалуйста, попробуйте снова. Если это повторяется, напишите нам на X.com/whyKislay or forg.to/@kislay."
+  },
+  "editAudioTooLargeTitle": {
+    "message": "Аудиофайл слишком большой"
+  },
+  "editAudioTooLargeDescription": {
+    "message": "Попробуйте более короткий аудиоклип. Большие файлы нельзя обработать в браузере. Ваша оригинальная запись в сохранности."
+  },
+  "restoreEmptyToast": {
+    "message": "Записей для восстановления не найдено. Возможно, данные были удалены."
+  },
+  "restoreTimeoutToast": {
+    "message": "Восстановление занимает слишком много времени. Ваша запись в сохранности. Через мгновение нажмите Восстановить снова."
+  },
+  "cameraUnavailableToast": {
+    "message": "Камера отключена. Запись экрана продолжается."
+  },
+  "downloadInterruptedLargeToast": {
+    "message": "Загрузка прервана. Запись слишком большая для автоматического повтора. Попробуйте сохранить её снова из редактора."
+  },
+  "recordingCorruptToast": {
+    "message": "Эту запись невозможно воспроизвести. Возможно, файл повреждён или неполный. Попробуйте скачать исходный файл через меню Сохранить."
+  },
+  "storageFullRecordingError": {
+    "message": "Недостаточно места для записи. Освободите место на диске и попробуйте снова.",
+    "description": "Shown when the browser can't allocate enough local storage to start a recording"
+  },
+  "storageLowRecordingWarning": {
+    "message": "Хранилище браузера почти заполнено. Освободите место на диске, чтобы не потерять эту запись.",
+    "description": "Shown when local storage is running low while a recording is in progress"
+  },
+  "screenStreamUnavailableError": {
+    "message": "Не удалось получить доступ к экрану. Запустите запись снова.",
+    "description": "Shown when the screen capture stream is missing after the user picked a source"
+  },
+  "tabStreamUnavailableError": {
+    "message": "Не удалось получить доступ к видео этой вкладки. Перезагрузите вкладку и попробуйте снова.",
+    "description": "Shown when Chrome won't return a tab capture stream for the chosen tab"
+  },
+  "streamingDataTimeoutError": {
+    "message": "Запись не началась вовремя. Попробуйте снова.",
+    "description": "Shown when the recorder tab never received streaming-data from the background script"
+  },
+  "unsupportedVideoCodecError": {
+    "message": "Ваш браузер не поддерживает необходимые видеокодеки. Обновите Chrome и попробуйте снова.",
+    "description": "Shown when no supported MediaRecorder mimeType is available"
+  },
+  "cancelLabel": {
+    "message": "Отмена",
+    "description": "Cancel button on the download-in-progress banner"
+  },
+  "webmSlowTitle": {
+    "message": "Преобразование в WebM может занять некоторое время",
+    "description": "Title of the modal warning that MP4 to WebM conversion is slow"
+  },
+  "webmSlowDescription": {
+    "message": "При сохранении в WebM всё видео кодируется заново, поэтому для длинных записей это может занять несколько минут. MP4 сохраняется мгновенно.",
+    "description": "Body of the slow-WebM warning modal"
+  },
+  "webmSlowMp4": {
+    "message": "Скачать MP4 вместо этого",
+    "description": "Primary button: download MP4 instead of the slow WebM conversion"
+  },
+  "webmSlowContinue": {
+    "message": "Продолжить с WebM",
+    "description": "Secondary button: proceed with the slow WebM conversion"
+  },
+  "downloadProcessingTitle": {
+    "message": "Подготовка загрузки",
+    "description": "Title of the download-in-progress banner with the Cancel button"
+  },
+  "downloadProcessingDescription": {
+    "message": "Для длинных записей это может занять некоторое время.",
+    "description": "Body of the download-in-progress banner"
+  },
+  "cameraMicBlockedTitle": {
+    "message": "Камера и микрофон недоступны",
+    "description": "Toast title shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "cameraMicBlockedDescription": {
+    "message": "Этот сайт блокирует доступ к камере и микрофону. Вы всё равно можете записывать здесь, но ваша камера не будет видна.",
+    "description": "Toast description shown when the current page's Permissions-Policy blocks the extension's camera and microphone"
+  },
+  "downloadFailedModalTitle": {
+    "message": "Загрузка не завершилась",
+    "description": "Modal title when a download to disk times out or fails"
+  },
+  "downloadFailedModalDescription": {
+    "message": "Попробуйте снова.",
+    "description": "Toast->modal description: what to do after a failed download"
+  },
+  "driveGenericModalTitle": {
+    "message": "Не удалось сохранить на Google Диск",
+    "description": "Modal title for a generic Google Drive save failure"
+  },
+  "driveGenericModalDescription": {
+    "message": "Попробуйте снова.",
+    "description": "Modal description for a generic Google Drive save failure"
+  },
+  "driveQuotaModalTitle": {
+    "message": "На вашем Google Диске закончилось место",
+    "description": "Modal title when the Google Drive account is out of storage"
+  },
+  "driveQuotaModalDescription": {
+    "message": "Освободите место и попробуйте снова.",
+    "description": "Modal description when the Google Drive account is out of storage"
+  },
+  "driveTooLargeModalTitle": {
+    "message": "Запись слишком большая",
+    "description": "Modal title when a recording exceeds Google Drive limits"
+  },
+  "driveTooLargeModalDescription": {
+    "message": "Эта запись слишком большая, чтобы сохранить её на Google Диск.",
+    "description": "Modal description when a recording exceeds Google Drive limits"
+  },
+  "driveAuthModalTitle": {
+    "message": "Не удалось получить доступ к Google Диску",
+    "description": "Modal title when Google Drive authentication expired or was revoked"
+  },
+  "driveAuthModalDescription": {
+    "message": "Войдите снова.",
+    "description": "Modal description when Google Drive authentication expired or was revoked"
+  },
+  "emptyRecordingTitle": {
+    "message": "Эта запись пуста",
+    "description": "Modal title when the recording file contains no video"
+  },
+  "emptyRecordingDescription": {
+    "message": "Видео не записано. Попробуйте записать снова.",
+    "description": "Modal description when the recording file contains no video"
+  },
+  "unsavedRecordingModalTitle": {
+    "message": "Последняя запись не сохранена",
+    "description": "Title of the modal shown when starting a recording while the previous one is unsaved."
+  },
+  "unsavedRecordingModalDescription": {
+    "message": "Она всё ещё открыта в другой вкладке и пропадёт, когда вы её закроете. Сначала скачайте её, чтобы сохранить.",
+    "description": "Body of the unsaved-previous-recording modal."
+  },
+  "unsavedRecordingModalAction": {
+    "message": "Всё равно записать",
+    "description": "Confirm button: start the new recording anyway."
+  },
+  "unsavedRecordingModalCancel": {
+    "message": "Открыть запись",
+    "description": "Cancel button: bring the unsaved recording's tab forward instead."
+  },
+  "unsavedRecordingModalDismiss": {
+    "message": "Больше не показывать",
+    "description": "Side button: start the recording and stop prompting about unsaved recordings."
+  }
+}

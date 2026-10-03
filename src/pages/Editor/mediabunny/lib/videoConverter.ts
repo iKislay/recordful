@@ -1,0 +1,209 @@
+// @ts-nocheck
+import {
+  Input,
+  Output,
+  BlobSource,
+  BufferTarget,
+  Mp4OutputFormat,
+  WebMOutputFormat,
+  ALL_FORMATS,
+  Conversion,
+  type VideoCodec,
+  type AudioCodec,
+} from "mediabunny";
+
+export type SupportedFormat = "mp4" | "webm";
+
+export interface ConversionOptions {
+  videoBitrate?: number;
+  audioBitrate?: number;
+  preferredVideoCodec?: VideoCodec;
+  audioCodec?: AudioCodec;
+  onProgress?: (progress: number) => void;
+  // Fires when the source had audio the output can't hold, so the caller can
+  // fall back instead of shipping a silent file.
+  onAudioDropped?: (reason: string, codec: string) => void;
+  verbose?: boolean;
+  // When provided (e.g. a StreamTarget writing to OPFS), output streams to it
+  // and convert() resolves to null; the caller owns the written file. Used by
+  // the offscreen worker to re-encode large files with bounded memory.
+  target?: any;
+}
+
+export interface CodecInfo {
+  codec: VideoCodec;
+  displayName: string;
+  isPreferred: boolean;
+}
+
+const CODEC_DISPLAY_NAMES: Record<VideoCodec, string> = {
+  avc: "H.264",
+  hevc: "H.265 (HEVC)",
+  vp9: "VP9",
+  av1: "AV1",
+  vp8: "VP8",
+};
+
+export class VideoConverter {
+  private cachedMP4Codec: VideoCodec | null = null;
+  private cachedWebMCodec: VideoCodec | null = null;
+
+  async convertToMP4(sourceBlob: Blob, options: ConversionOptions = {}): Promise<Blob> {
+    return this.convert(sourceBlob, "mp4", options);
+  }
+
+  async convertToWebM(sourceBlob: Blob, options: ConversionOptions = {}): Promise<Blob> {
+    return this.convert(sourceBlob, "webm", options);
+  }
+
+  async detectBestCodec(format: SupportedFormat): Promise<CodecInfo | null> {
+    const outputFormat =
+      format === "mp4"
+        ? new Mp4OutputFormat({ fastStart: false })
+        : new WebMOutputFormat();
+    const supportedCodecs = outputFormat.getSupportedVideoCodecs();
+
+    for (const codec of supportedCodecs) {
+      if (await this.canEncodeCodec(codec)) {
+        return {
+          codec,
+          displayName:
+            CODEC_DISPLAY_NAMES[codec as keyof typeof CODEC_DISPLAY_NAMES] ||
+            codec.toUpperCase(),
+          isPreferred: codec === "avc" || codec === "vp9",
+        };
+      }
+    }
+    return null;
+  }
+
+  async canEncodeCodec(codec: VideoCodec): Promise<boolean> {
+    if (typeof VideoEncoder === "undefined") return false;
+    for (const testConfig of this.getEncoderConfigs(codec)) {
+      try {
+        const support = await VideoEncoder.isConfigSupported(testConfig);
+        if (support.supported) return true;
+      } catch {}
+    }
+    return false;
+  }
+
+  clearCache(): void {
+    this.cachedMP4Codec = null;
+    this.cachedWebMCodec = null;
+  }
+
+  private async convert(
+    sourceBlob: Blob,
+    targetFormat: SupportedFormat,
+    options: ConversionOptions
+  ): Promise<Blob> {
+    const {
+      videoBitrate = 5_000_000,
+      audioBitrate = 128_000,
+      preferredVideoCodec,
+      audioCodec,
+      onProgress,
+      onAudioDropped,
+    } = options;
+
+    const cache = targetFormat === "mp4" ? this.cachedMP4Codec : this.cachedWebMCodec;
+    let videoCodec: VideoCodec | null = cache;
+
+    if (!videoCodec) {
+      if (preferredVideoCodec && (await this.canEncodeCodec(preferredVideoCodec))) {
+        videoCodec = preferredVideoCodec;
+      } else {
+        const codecInfo = await this.detectBestCodec(targetFormat);
+        if (!codecInfo) {
+          throw new Error(
+            `Cannot convert to ${targetFormat.toUpperCase()}: no supported video codec.`
+          );
+        }
+        videoCodec = codecInfo.codec;
+      }
+      if (targetFormat === "mp4") this.cachedMP4Codec = videoCodec;
+      else this.cachedWebMCodec = videoCodec;
+    }
+
+    const finalAudioCodec = audioCodec || (targetFormat === "mp4" ? "aac" : "opus");
+
+    const input = new Input({
+      formats: ALL_FORMATS,
+      source: new BlobSource(sourceBlob),
+    });
+
+    const outputFormat =
+      targetFormat === "mp4"
+        ? new Mp4OutputFormat({ fastStart: false })
+        : new WebMOutputFormat();
+
+    const target = options.target || new BufferTarget();
+    const output = new Output({ format: outputFormat, target });
+
+    const conversion = await Conversion.init({
+      input,
+      output,
+      video: { codec: videoCodec, bitrate: videoBitrate },
+      audio: { codec: finalAudioCodec, bitrate: audioBitrate },
+    });
+
+    // mediabunny reports a conversion valid while silently discarding audio.
+    // Its own warning prints "[object Object]", so serialize the real reason.
+    if (onAudioDropped) {
+      const dropped = conversion.discardedTracks.find(
+        (t) => t.track.type === "audio"
+      );
+      if (dropped) {
+        onAudioDropped(String(dropped.reason), String(dropped.track.codec));
+      }
+    }
+
+    if (!conversion.isValid) {
+      const reasons = conversion.discardedTracks
+        .map((t) => `${t.track.type}: ${t.reason}`)
+        .join(", ");
+      throw new Error(`Conversion failed - ${reasons}`);
+    }
+
+    if (onProgress) conversion.onProgress = onProgress;
+
+    await conversion.execute();
+
+    // Streamed to a caller-provided target (e.g. OPFS): the caller owns the
+    // output file, so there's no in-memory buffer to wrap.
+    if (options.target) return null;
+
+    if (!target.buffer) throw new Error("Conversion failed - no output buffer");
+
+    return new Blob([target.buffer], {
+      type: targetFormat === "mp4" ? "video/mp4" : "video/webm",
+    });
+  }
+
+  private getEncoderConfigs(codec: VideoCodec): VideoEncoderConfig[] {
+    const baseConfig = { width: 1920, height: 1080, bitrate: 5_000_000 };
+    switch (codec) {
+      // Trailing byte is the H.264 level. Level 3.0 (1E) tops out near 720x576,
+      // so probing at 1080p always failed into HEVC on macOS, VP9 on Linux.
+      case "avc":
+        return ["avc1.64002A", "avc1.4D401F", "avc1.42E01E", "avc1.42001F"].map(
+          (c) => ({ ...baseConfig, codec: c })
+        );
+      case "hevc":
+        return [{ ...baseConfig, codec: "hev1.1.6.L93.B0" }];
+      default:
+        return [{ ...baseConfig, codec }];
+    }
+  }
+}
+
+export const videoConverter = new VideoConverter();
+
+export async function convertToMP4(blob: Blob, options?: ConversionOptions): Promise<Blob> {
+  return videoConverter.convertToMP4(blob, options);
+}
+
+export async function convertToWebM(blob: Blob, options?: ConversionOptions): Promise<Blob> {
+  return videoConverter.convertToWebM(blob, options);
+}
