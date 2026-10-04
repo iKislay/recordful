@@ -12,8 +12,8 @@
   display: flex;
 }
 
-// The sidebar: a rail of tools on its left edge, the selected tool's
-// settings beside it.
+// The sidebar: the selected tool's settings, with a rail of tools on its
+// right edge (the rail is the sidebar, the panel hangs off it).
 .sidebar {
   flex: none;
   width: 400px;
@@ -28,15 +28,17 @@
   flex-direction: column;
   gap: 4px;
   padding: 12px 8px;
-  border-right: 1px solid $color-border;
+  border-left: 1px solid $color-border;
 }
 .tool {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
+  gap: 4px;
+  width: 56px;
+  min-height: 52px;
+  padding: 8px 4px;
   border: none;
   border-radius: 10px;
   background: none;
@@ -58,6 +60,16 @@
     outline: none;
     box-shadow: $focus-border;
   }
+}
+.toolLabel {
+  font-family: $font-medium;
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .toolPanel {
   flex: 1;

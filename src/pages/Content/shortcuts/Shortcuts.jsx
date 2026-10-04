@@ -147,6 +147,73 @@ const Shortcuts = ({ shortcuts }) => {
       });
     };
 
+    // Mode toggles while recording: D drawing, B blur, H hide UI, C cursor
+    // options. Work even outside a mode (to enter one), but never in a
+    // field, with modifiers, or outside a recording.
+    const toggleDrawing = () => {
+      const state = contentStateRef.current;
+      if (state?.recordingType === "camera") return;
+      const next = !state?.drawingMode;
+      setContentState((prev) => ({
+        ...prev,
+        drawingMode: next,
+        blurMode: next ? false : prev.blurMode,
+      }));
+      chrome.storage.local.set({
+        drawingMode: next,
+        ...(next ? { blurMode: false } : {}),
+      });
+    };
+    const toggleBlur = () => {
+      const state = contentStateRef.current;
+      if (state?.recordingType === "camera") return;
+      const next = !state?.blurMode;
+      setContentState((prev) => ({
+        ...prev,
+        blurMode: next,
+        drawingMode: next ? false : prev.drawingMode,
+      }));
+      chrome.storage.local.set({
+        blurMode: next,
+        drawingMode: next ? false : contentStateRef.current.drawingMode,
+      });
+    };
+    const toggleHideUI = () => {
+      const state = contentStateRef.current;
+      const next = !state?.hideUI;
+      setContentState((prev) => ({
+        ...prev,
+        hideUI: next,
+        hideToolbar: next ? true : prev.hideToolbar,
+        hideUIAlerts: next ? true : prev.hideUIAlerts,
+      }));
+      chrome.storage.local.set({
+        hideUI: next,
+        ...(next ? { hideToolbar: true, hideUIAlerts: true } : {}),
+      });
+    };
+    const toggleCursorMode = () => {
+      const state = contentStateRef.current;
+      if (state?.recordingType === "camera") return;
+      const next = contentStateRef.current.cursorMode === "none" ? "cursor" : "";
+      if (state?.setToolbarMode) state.setToolbarMode(next);
+      else setContentState((prev) => ({ ...prev, toolbarMode: next }));
+    };
+    const exitMode = () => {
+      const state = contentStateRef.current;
+      if (state?.drawingMode) {
+        setContentState((prev) => ({ ...prev, drawingMode: false }));
+        chrome.storage.local.set({ drawingMode: false });
+        return true;
+      }
+      if (state?.blurMode) {
+        setContentState((prev) => ({ ...prev, blurMode: false }));
+        chrome.storage.local.set({ blurMode: false });
+        return true;
+      }
+      return false;
+    };
+
     const handleKeyDown = (event) => {
       const state = contentStateRef.current;
       if (state?.drawingMode && (event.ctrlKey || event.metaKey)) {
@@ -164,6 +231,52 @@ const Shortcuts = ({ shortcuts }) => {
           event.stopImmediatePropagation();
           redoCanvas(state, setContentState);
           return;
+        }
+      }
+
+      // Esc leaves the annotation mode. Checked before the digit guard so
+      // it also works while dragging is not the focus.
+      if (
+        event.key === "Escape" &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
+        state?.recording
+      ) {
+        const active = getDeepActiveElement();
+        if (!isEditableElement(active) && !isTextEditingActive()) {
+          if (exitMode()) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+          }
+          return;
+        }
+      }
+
+      // Single-letter mode toggles. Outside the digit tools on purpose: they
+      // must also fire when no mode is on yet (to enter one).
+      if (
+        state?.recording &&
+        !event.altKey &&
+        !event.ctrlKey &&
+        !event.metaKey
+      ) {
+        const active = getDeepActiveElement();
+        if (!isEditableElement(active) && !isTextEditingActive()) {
+          const key = event.key.toLowerCase();
+          let toggled = true;
+          if (key === "d") toggleDrawing();
+          else if (key === "b") toggleBlur();
+          else if (key === "h") toggleHideUI();
+          else if (key === "c") toggleCursorMode();
+          else toggled = false;
+          if (toggled) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            return;
+          }
         }
       }
 

@@ -86,19 +86,22 @@
       "description": "Pause/Resume recording"
     },
     "stop-recording": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
       "description": "Stop recording"
     },
     "toggle-drawing-mode": {
-      "description": "Toggle drawing mode"
+      "description": "Toggle drawing mode (set a shortcut for Alt+Shift+D)"
     },
     "toggle-blur-mode": {
-      "description": "Toggle blur mode"
+      "description": "Toggle blur mode (set a shortcut for Alt+Shift+B)"
     },
     "toggle-hide-ui": {
-      "description": "Toggle hide UI"
+      "description": "Toggle hide UI (set a shortcut for Alt+Shift+H)"
     },
     "toggle-cursor-mode": {
-      "description": "Toggle cursor options"
+      "description": "Toggle cursor options (set a shortcut for Alt+Shift+C)"
     }
   },
   "permissions": [

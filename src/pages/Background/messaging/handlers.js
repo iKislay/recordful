@@ -72,6 +72,7 @@ import {
 import { clearAllRecordings } from "../recording/chunkHandler";
 import {
   markRetainedSaved,
+  markRetainedHanded,
   unsavedRetained,
 } from "../recording/recordingRetention";
 import { setMicActiveTab } from "../tabManagement/tabHelpers";
@@ -1649,6 +1650,14 @@ export const setupHandlers = () => {
       message?.recordingId || null,
       sender?.tab?.id ?? null,
     );
+  });
+  // The site's dashboard kept a take handed over by the bridge, so the
+  // extension's copy is no longer the only one. Only the bridge page sends
+  // this, naming the file it handed over.
+  registerMessage("recording-handed", async (message) => {
+    const fileName =
+      typeof message?.fileName === "string" ? message.fileName : null;
+    await markRetainedHanded({ fileName });
   });
   // prefix allowlist so a compromised context can't spoof lifecycle events
   registerMessage("diag-forward", (message) => {
