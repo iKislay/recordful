@@ -28,7 +28,8 @@ const readLatestRecording = async () => {
   const reader = chooseReader(lastRecordingBackendRef);
   await reader.open(lastRecordingBackendRef);
   const { blob } = await reader.readBlob();
-  return blob;
+  // The file's name is how the site tells one recording from the next.
+  return { blob, id: lastRecordingBackendRef?.fileName ?? null };
 };
 
 if (APP_ORIGIN && window.parent !== window) {
@@ -36,8 +37,8 @@ if (APP_ORIGIN && window.parent !== window) {
     if (event.origin !== APP_ORIGIN || event.source !== window.parent) return;
     if (event.data?.source !== REQUEST) return;
     // No blob in the answer means there is nothing to hand over.
-    const blob = await readLatestRecording().catch(() => null);
-    post({ source: RESULT, blob: blob?.size ? blob : null });
+    const { blob, id } = await readLatestRecording().catch(() => ({}));
+    post({ source: RESULT, blob: blob?.size ? blob : null, id });
   });
   post({ source: READY });
 }
