@@ -8,7 +8,6 @@ const VideoPlayer = (props) => {
   const playerRef = useRef(null);
   const [url, setUrl] = useState(null);
   const [source, setSource] = useState(null);
-  const [isSet, setIsSet] = useState(false);
   // Probed from the blob's intrinsic dimensions; a fixed "16:9" would
   // pillarbox recordings of square-ish tabs.
   const [videoRatio, setVideoRatio] = useState("16:9");
@@ -76,83 +75,39 @@ const VideoPlayer = (props) => {
       });
       setUrl(objectURL);
 
-      // if (playerRef.current && playerRef.current.plyr) {
-      //   // Check when the video is playing, update the time in real time
-      //   playerRef.current.plyr.on("timeupdate", () => {
-      //     setContentState((prevContentState) => ({
-      //       ...prevContentState,
-      //       time: playerRef.current.plyr.currentTime,
-      //       updatePlayerTime: false,
-      //     }));
-      //   });
-      // }
-
       return () => {
         URL.revokeObjectURL(objectURL);
-
-        // if (playerRef.current && playerRef.current.plyr) {
-        //   playerRef.current.plyr.off("timeupdate");
-        // }
       };
     }
   }, [contentState.blob, playerRef]);
 
+  // Media events don't bubble but they are captured, so one listener on the
+  // wrapper outlives Plyr swapping its <video> when the source changes.
+  const wrapRef = useRef(null);
   useEffect(() => {
-    if (playerRef.current && playerRef.current.plyr) {
-      // Check when the video is playing, update the time in real time
-      playerRef.current.plyr.on("timeupdate", () => {
-        setContentState((prevContentState) => ({
-          ...prevContentState,
-          time: playerRef.current.plyr.currentTime,
-          updatePlayerTime: false,
-        }));
-      });
-    }
-
-    return () => {
-      if (playerRef.current && playerRef.current.plyr) {
-        playerRef.current.plyr.off("timeupdate");
-      }
+    const wrap = wrapRef.current;
+    const onTimeUpdate = (event) => {
+      // Plyr re-sends each one from its own container; take the video's.
+      if (!(event.target instanceof HTMLMediaElement)) return;
+      setContentState((prevContentState) => ({
+        ...prevContentState,
+        time: event.target.currentTime,
+        updatePlayerTime: false,
+      }));
     };
-  }, [playerRef]);
+    wrap.addEventListener("timeupdate", onTimeUpdate, true);
+    return () => wrap.removeEventListener("timeupdate", onTimeUpdate, true);
+  }, []);
 
-  const handleClick = () => {
-    if (isSet) return;
-    if (playerRef.current && playerRef.current.plyr) {
-      setIsSet(true);
-      playerRef.current.plyr.on("timeupdate", () => {
-        setContentState((prevContentState) => ({
-          ...prevContentState,
-          time: playerRef.current.plyr.currentTime,
-          updatePlayerTime: false,
-        }));
-      });
-    }
-  };
-
+  // Stays mounted, hidden, while cropping.
+  const cropping = contentState.mode === "crop";
   useEffect(() => {
-    if (isSet) return;
-    const handleKeyPress = (event) => {
-      if (playerRef.current && playerRef.current.plyr) {
-        setIsSet(true);
-        playerRef.current.plyr.on("timeupdate", () => {
-          setContentState((prevContentState) => ({
-            ...prevContentState,
-            time: playerRef.current.plyr.currentTime,
-            updatePlayerTime: false,
-          }));
-        });
-      }
-    };
-    window.addEventListener("keydown", handleKeyPress);
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [isSet]);
+    if (cropping) playerRef.current?.plyr?.pause();
+  }, [cropping]);
 
   return (
-    <div className="videoPlayer">
-      <div className="playerWrap" onClick={handleClick}>
+    <div className="videoPlayer" hidden={cropping}>
+      <div className="playerWrap" ref={wrapRef}>
         {url && (
           <Plyr
             ref={playerRef}

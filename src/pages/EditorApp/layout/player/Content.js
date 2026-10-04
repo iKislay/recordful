@@ -35,19 +35,25 @@ const Content = ({ alertsRef }) => {
     <div className={styles.content}>
       <div ref={alertsRef} className={styles.alerts} />
       <div className={styles.stage}>
-        {cropping ? (
+        {cropping && (
           <Suspense fallback={null}>
             <CropperWrap />
           </Suspense>
-        ) : editable ? (
-          // Follows the timeline: dragging a handle moves the video.
+        )}
+        {editable ? (
+          // Stays mounted while cropping: remounting reloads the recording
+          // and decodes its audio again. Follows the timeline otherwise.
           <EditVideoPlayer onSeek={seek} />
         ) : (
-          <VideoPlayer />
+          !cropping && <VideoPlayer />
         )}
       </div>
       {!cropping && <Title />}
-      {editable && !cropping && <TrimUI blob={contentState.blob} onSeek={seek} />}
+      {editable && (
+        <div hidden={cropping}>
+          <TrimUI blob={contentState.blob} onSeek={seek} />
+        </div>
+      )}
       {cropping && <HelpButton />}
       {contentState.reviewPrompt ? (
         <ReviewBanner />

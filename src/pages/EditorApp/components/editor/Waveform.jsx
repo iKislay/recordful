@@ -12,21 +12,6 @@ const WaveformGenerator = (props) => {
   const [showGhost, setShowGhost] = useState(false);
   const mouseDown = useRef(false);
 
-  async function blobToArrayBuffer(blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (reader.result instanceof ArrayBuffer) {
-          resolve(reader.result);
-        } else {
-          reject(new Error("Failed to convert Blob to ArrayBuffer"));
-        }
-      };
-      reader.onerror = reject;
-      reader.readAsArrayBuffer(blob);
-    });
-  }
-
   const loadWaveform = async (blob) => {
     try {
       wavesurferRef.current = WaveSurfer.create({
@@ -37,11 +22,7 @@ const WaveformGenerator = (props) => {
         height: "auto",
         cursorWidth: 0,
       });
-      const audioArrayBuffer = await blobToArrayBuffer(blob);
-
-      wavesurferRef.current.loadBlob(
-        new Blob([audioArrayBuffer], { type: "audio/wav" })
-      );
+      wavesurferRef.current.loadBlob(blob);
 
       wavesurferRef.current.on("seeking", (currentTime) => {
         const containerRect =
@@ -127,25 +108,13 @@ const WaveformGenerator = (props) => {
     };
   }, [contentState.blob]);
 
+  // Follows playback. A percentage, so it needs no layout read per tick.
   useEffect(() => {
-    if (!contentState.blob) return;
-    if (contentState.updatePlayerTime) return;
-    if (waveformContainerRef.current === null) return;
-
-    const video = document.createElement("video");
-    video.preload = "metadata";
-    video.onloadedmetadata = async () => {
-      const containerRect =
-        waveformContainerRef.current.getBoundingClientRect();
-      const cursorX =
-        containerRect.width * (contentState.time / video.duration);
-      customCursorRef.current.style.left = `${cursorX}px`;
-
-      URL.revokeObjectURL(video.src);
-      video.remove();
-    };
-    video.src = URL.createObjectURL(contentState.blob);
-  }, [contentState.time, contentState.blob, waveformContainerRef.current]);
+    if (contentState.updatePlayerTime || !contentState.duration) return;
+    customCursorRef.current.style.left = `${
+      (contentState.time / contentState.duration) * 100
+    }%`;
+  }, [contentState.time, contentState.duration]);
 
   return (
     <div style={{ height: "100%" }}>
