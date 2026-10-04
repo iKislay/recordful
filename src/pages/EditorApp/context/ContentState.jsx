@@ -951,16 +951,22 @@ const ContentState = (props) => {
       // The recorder streams a WebM out without a length in its header. Left
       // like that, the player shows 0:00 and the duration reads as Infinity,
       // which is longer than any edit limit, so the recording could never be
-      // edited. Write the real length in. Recordings past the edit limit are
-      // left alone: they are not editable anyway and can be many GB.
-      // ponytail: the fix rewrites the file in memory, so an hour-long
-      // recording costs its own size in RAM once; patch the header in place
-      // in OPFS if that shows up as a problem.
+      // edited. Copy it into a file that has one. Recordings past the edit
+      // limit are left alone: they are not editable anyway and can be many GB.
+      // ponytail: the copy is built in memory, so an hour-long recording
+      // costs its own size in RAM once; write it to OPFS instead if that
+      // shows up as a problem.
       const seconds = await measureHeaderlessDuration(blob);
       if (seconds && seconds <= MAX_EDIT_LIMIT_S) {
-        blob = await new Promise((resolve) =>
-          requestParentFixWebmDuration(blob, seconds * 1000, resolve),
-        );
+        try {
+          const { default: remuxWebm } = await import(
+            "../../Editor/utils/remuxWebm"
+          );
+          blob = await remuxWebm(blob);
+        } catch (error) {
+          // The recording still plays as it is; it just stays uneditable.
+          console.warn("[Recordful][Editor] could not rewrite the WebM", error);
+        }
       }
     }
     if (blob.type === "video/mp4" || isFastWebm) {
