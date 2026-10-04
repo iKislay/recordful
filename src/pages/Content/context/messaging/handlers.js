@@ -911,6 +911,20 @@ export const setupHandlers = () => {
     }
   });
 
+  // The recorder lost its microphone. Pause, so nothing goes on being recorded
+  // without it unnoticed, and say why; switching the mic back on acquires it
+  // again, and resuming carries on without it.
+  registerMessage("mic-disconnected", () => {
+    const state = getState();
+    if (!state.recording) return;
+    if (!state.paused) state.pauseRecording(true);
+    state.openToast(
+      chrome.i18n.getMessage("micDisconnectedToast"),
+      () => {},
+      12000,
+    );
+  });
+
   registerMessage("set-surface", (message) => {
     setContentState((prev) => ({
       ...prev,

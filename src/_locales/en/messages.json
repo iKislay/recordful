@@ -1791,6 +1791,10 @@
     "message": "Screen sharing stopped. Saving your recording now. Everything captured so far is safe.",
     "description": "Toast shown when the video track ends mid-recording (e.g. monitor disconnected, screen share revoked)"
   },
+  "micDisconnectedToast": {
+    "message": "Microphone disconnected, so recording is paused. Turn the mic back on, or resume to carry on without it.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
   "audioTrackEndedToast": {
     "message": "Audio disconnected. Saving your recording now. The video captured so far is safe.",
     "description": "Toast shown when the audio track ends mid-recording (e.g. mic unplugged, permission revoked)"

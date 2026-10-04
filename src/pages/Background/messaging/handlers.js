@@ -1710,6 +1710,23 @@ export const setupHandlers = () => {
       }
     } catch { }
   });
+  // The recorder lost its microphone mid-recording. The page pauses and says
+  // so; with no page to do it (closed, unscriptable) the recording carries on.
+  registerMessage("mic-disconnected", async (message) => {
+    const { tabRecordedID, recordingUiTabId } = await chrome.storage.local.get([
+      "tabRecordedID",
+      "recordingUiTabId",
+    ]);
+    const target = tabRecordedID || recordingUiTabId;
+    diagEvent("warning", {
+      note: "mic-disconnected",
+      paused: Boolean(target),
+      trackLabel: message?.trackLabel || null,
+    });
+    if (target) {
+      sendMessageTab(target, { type: "mic-disconnected" }).catch(() => {});
+    }
+  });
   registerMessage("on-get-permissions", (message) =>
     handleOnGetPermissions(message),
   );
