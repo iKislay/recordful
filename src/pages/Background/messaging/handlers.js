@@ -2206,10 +2206,56 @@ export const setupHandlers = () => {
     return (Date.now() - recordingStartTime - (totalPausedMs || 0)) / 1000;
   };
 
-  registerMessage("click-event", async ({ payload }, sender) => {
-    const { x, y, surface, region, isTab, width, height, outerWidth, outerHeight } =
+  // How a point of the sender's page falls on the recorded picture: a
+  // function from the page's x and y to the point there (x, y) and as
+  // fractions of the picture (fx, fy), or null when that cannot be told.
+  const pictureOf = async (payload, sender) => {
+    const { surface, region, isTab, width, height, outerWidth, outerHeight } =
       payload;
-    const senderWindowId = sender.tab?.windowId;
+    const onPage = (x, y) => ({ x, y, fx: x / width, fy: y / height });
+    const windowId = sender.tab?.windowId;
+    if (
+      region ||
+      isTab ||
+      typeof windowId !== "number" ||
+      !["monitor", "window"].includes(surface)
+    ) {
+      return onPage;
+    }
+    const win = await chrome.windows.get(windowId).catch(() => null);
+    if (!win) return null;
+    // A recorded window includes the browser's own bars above the page, and
+    // its borders beside it.
+    if (surface === "window") {
+      return (x, y) => ({
+        x: win.left + x,
+        y: win.top + y,
+        fx: (x + (outerWidth - width) / 2) / outerWidth,
+        fy: (y + outerHeight - height) / outerHeight,
+      });
+    }
+    const monitor = (await chrome.system.display.getInfo()).find(
+      (d) =>
+        win.left >= d.bounds.left &&
+        win.left < d.bounds.left + d.bounds.width &&
+        win.top >= d.bounds.top &&
+        win.top < d.bounds.top + d.bounds.height,
+    );
+    if (!monitor) return null;
+    return (x, y) => {
+      const adjX = win.left + x - monitor.bounds.left;
+      const adjY = win.top + y - monitor.bounds.top;
+      return {
+        x: adjX,
+        y: adjY,
+        fx: adjX / monitor.bounds.width,
+        fy: adjY / monitor.bounds.height,
+      };
+    };
+  };
+
+  registerMessage("click-event", async ({ payload }, sender) => {
+    const { x, y, surface, region } = payload;
     const clockTime = await clickTimeFromClock();
 
     // Only the cloud recorder answers; the clock stands in for the local one.
@@ -2218,87 +2264,46 @@ export const setupHandlers = () => {
         resolve(response?.videoTime ?? clockTime),
       ).catch(() => resolve(clockTime)),
     );
-    {
-
-      // fx and fy place the click as fractions of the recorded picture.
-      const baseClick = {
-        x,
-        y,
-        surface,
-        region,
-        timestamp: videoTime,
-        fx: x / width,
-        fy: y / height,
-      };
-
-      if (region || isTab) {
-        storeClick(baseClick);
-        return;
-      }
-
-      if (surface === "monitor" && typeof senderWindowId === "number") {
-        chrome.windows.get(senderWindowId, (win) => {
-          if (!win || chrome.runtime.lastError) {
-            console.warn("Failed to get window for click");
-            return;
-          }
-
-          chrome.system.display.getInfo((displays) => {
-            const monitor = displays.find(
-              (d) =>
-                win.left >= d.bounds.left &&
-                win.left < d.bounds.left + d.bounds.width &&
-                win.top >= d.bounds.top &&
-                win.top < d.bounds.top + d.bounds.height,
-            );
-
-            if (!monitor) {
-              console.warn("[click-event] No matching monitor found");
-              return;
-            }
-
-            const screenX = win.left + x;
-            const screenY = win.top + y;
-            const adjX = screenX - monitor.bounds.left;
-            const adjY = screenY - monitor.bounds.top;
-
-            storeClick({
-              ...baseClick,
-              x: adjX,
-              y: adjY,
-              fx: adjX / monitor.bounds.width,
-              fy: adjY / monitor.bounds.height,
-            });
-          });
-        });
-        return;
-      }
-
-      if (surface === "window" && typeof senderWindowId === "number") {
-        chrome.windows.get(senderWindowId, (win) => {
-          if (!win || chrome.runtime.lastError) {
-            console.warn("Failed to get window for window click");
-            return;
-          }
-
-          const screenX = win.left + x;
-          const screenY = win.top + y;
-
-          // A recorded window includes the browser's own bars above the
-          // page, and its borders beside it.
-          storeClick({
-            ...baseClick,
-            x: screenX,
-            y: screenY,
-            fx: (x + (outerWidth - width) / 2) / outerWidth,
-            fy: (y + outerHeight - height) / outerHeight,
-          });
-        });
-        return;
-      }
-
-      storeClick(baseClick);
+    const place = await pictureOf(payload, sender);
+    if (!place) {
+      console.warn("[click-event] Could not place the click");
+      return;
     }
+    storeClick({ surface, region, timestamp: videoTime, ...place(x, y) });
+  });
+
+  // The pointer's path, for the editor's zooms that follow it: [seconds into
+  // the recording, x, y], the place as fractions of the picture. Kept for
+  // the session and away from storage.local, whose every write is broadcast
+  // to every content script.
+  // ponytail: one array, rewritten with each batch and capped; write it in
+  // chunks if recordings longer than the cap (about 80 minutes of constant
+  // movement) need their whole path.
+  const POINTER_MOVES_MAX = 20000;
+  let _moveWriteQueue = Promise.resolve();
+  registerMessage("pointer-moves", async ({ payload }, sender) => {
+    const place = await pictureOf(payload, sender);
+    if (!place) return;
+    const videoTime = await clickTimeFromClock();
+    const now = Date.now();
+    if (videoTime === null) return;
+    const batch = payload.moves.map(([at, x, y]) => {
+      const { fx, fy } = place(x, y);
+      return [
+        Math.round((videoTime - (now - at) / 1000) * 100) / 100,
+        Math.round(fx * 1000) / 1000,
+        Math.round(fy * 1000) / 1000,
+      ];
+    });
+    _moveWriteQueue = _moveWriteQueue
+      .then(async () => {
+        const { pointerMoves = [] } =
+          await chrome.storage.session.get("pointerMoves");
+        await chrome.storage.session.set({
+          pointerMoves: pointerMoves.concat(batch).slice(-POINTER_MOVES_MAX),
+        });
+      })
+      .catch(() => {});
   });
 
   // serialize to avoid read-modify-write race losing clicks; cap array for long recordings
@@ -2357,7 +2362,13 @@ export const setupHandlers = () => {
   // creation, and no click from this recording leaks into the next one's array.
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "local" || !changes.recording) return;
-    if (changes.recording.newValue) return;
+    // A new recording starts with no pointer path.
+    if (changes.recording.newValue) {
+      _moveWriteQueue = _moveWriteQueue.then(() =>
+        chrome.storage.session.remove("pointerMoves").catch(() => {}),
+      );
+      return;
+    }
     flushClicks();
   });
 

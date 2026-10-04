@@ -28,6 +28,7 @@ const readLatestRecording = async () => {
       "clickEvents",
       "zoomEnabled",
     ]);
+  const { pointerMoves } = await chrome.storage.session.get("pointerMoves");
   const reader = chooseReader(lastRecordingBackendRef);
   await reader.open(lastRecordingBackendRef);
   const { blob } = await reader.readBlob();
@@ -42,6 +43,10 @@ const readLatestRecording = async () => {
         [click.timestamp, click.fx, click.fy].every(Number.isFinite),
       )
       .map((click) => ({ time: click.timestamp, x: click.fx, y: click.fy })),
+    // The path it took, for the zooms that follow it.
+    moves: (pointerMoves || [])
+      .filter((move) => move.every(Number.isFinite))
+      .map(([time, x, y]) => ({ time, x, y })),
     autoZoom: zoomEnabled === true,
   };
 };

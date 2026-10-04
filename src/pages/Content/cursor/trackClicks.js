@@ -1,3 +1,8 @@
+// How often the pointer's place is noted while it moves, in milliseconds, and
+// how many places are sent to the background at once.
+const MOVE_SAMPLE_MS = 250;
+const MOVES_PER_BATCH = 8;
+
 export function startClickTracking(
   isRegion = false,
   regionWidth = 0,
@@ -32,6 +37,38 @@ export function startClickTracking(
     chrome.storage.onChanged.addListener(onStorageChanged);
   } catch {}
 
+  // The pointer's place on what is recorded, as the background expects it;
+  // null when it is outside the recorded region.
+  const placed = (e) => {
+    let x = e.clientX;
+    let y = e.clientY;
+    if (isRegion) {
+      const inRegion =
+        x >= regionX &&
+        x <= regionX + regionWidth &&
+        y >= regionY &&
+        y <= regionY + regionHeight;
+      if (!inRegion) return null;
+      x -= regionX;
+      y -= regionY;
+    }
+    return {
+      x,
+      y,
+      relativeToRegion: isRegion,
+      // What x and y are measured against, so the point can be placed on
+      // the recording whatever size it is played at.
+      width: isRegion ? regionWidth : window.innerWidth,
+      height: isRegion ? regionHeight : window.innerHeight,
+      outerWidth: window.outerWidth,
+      outerHeight: window.outerHeight,
+      surface: cachedSurface,
+      recordingWindowId: cachedRecordingWindowId,
+      region: isRegion,
+      isTab: cachedRecordingType === "region",
+    };
+  };
+
   const handleClick = (e) => {
     if (contentStateRef?.current?.blurMode) return;
 
@@ -55,48 +92,47 @@ export function startClickTracking(
       return;
     }
 
-    let clickX = e.clientX;
-    let clickY = e.clientY;
-
-    if (isRegion) {
-      const inRegion =
-        clickX >= regionX &&
-        clickX <= regionX + regionWidth &&
-        clickY >= regionY &&
-        clickY <= regionY + regionHeight;
-
-      if (!inRegion) {
-        return;
-      }
-
-      clickX = clickX - regionX;
-      clickY = clickY - regionY;
-    }
-
+    const payload = placed(e);
+    if (!payload) return;
     chrome.runtime.sendMessage({
       type: "click-event",
-      payload: {
-        x: clickX,
-        y: clickY,
-        relativeToRegion: isRegion,
-        // What x and y are measured against, so the click can be placed on
-        // the recording whatever size it is played at.
-        width: isRegion ? regionWidth : window.innerWidth,
-        height: isRegion ? regionHeight : window.innerHeight,
-        outerWidth: window.outerWidth,
-        outerHeight: window.outerHeight,
-        surface: cachedSurface,
-        recordingWindowId: cachedRecordingWindowId,
-        timestamp: Date.now(),
-        region: isRegion,
-        isTab: cachedRecordingType === "region",
-      },
+      payload: { ...payload, timestamp: Date.now() },
     });
   };
 
+  // The pointer's path, for zooms that follow it: where it is a few times a
+  // second while it moves, sent in batches so the page is barely touched.
+  let moved = null;
+  let frame = null;
+  let moves = [];
+  const noteMove = (e) => {
+    moved = e;
+  };
+  const sendMoves = () => {
+    if (!moves.length) return;
+    chrome.runtime
+      .sendMessage({ type: "pointer-moves", payload: { ...frame, moves } })
+      .catch(() => {});
+    moves = [];
+  };
+  const sampler = setInterval(() => {
+    const payload =
+      moved && cachedRecordingType !== "camera" ? placed(moved) : null;
+    moved = null;
+    // Nothing moved since the last look: what is waiting can go.
+    if (!payload) return sendMoves();
+    frame = payload;
+    moves.push([Date.now(), payload.x, payload.y]);
+    if (moves.length >= MOVES_PER_BATCH) sendMoves();
+  }, MOVE_SAMPLE_MS);
+
   window.addEventListener("mousedown", handleClick, true);
+  window.addEventListener("mousemove", noteMove, { capture: true, passive: true });
   return () => {
     window.removeEventListener("mousedown", handleClick, true);
+    window.removeEventListener("mousemove", noteMove, true);
+    clearInterval(sampler);
+    sendMoves();
     try {
       chrome.storage.onChanged.removeListener(onStorageChanged);
     } catch {}
