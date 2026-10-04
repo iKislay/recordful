@@ -2517,6 +2517,7 @@ const Recorder = () => {
               const probeConfig =
                 fastRecorderProbe?.details?.selectedVideoConfig || null;
               void startEncoderPrewarm({
+                hardwareAcceleration: probeConfig?.hardwareAcceleration,
                 width: warmW,
                 height: warmH,
                 codec: probeConfig?.codec || "avc1.64002A",

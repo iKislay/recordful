@@ -74,6 +74,7 @@ const queueSizeOf = (encoder) => {
  * @param {string} cfg.codec  e.g. "avc1.64002A"
  * @param {number} [cfg.bitrate]
  * @param {number} [cfg.framerate]
+ * @param {string} [cfg.hardwareAcceleration]  the probe's; "prefer-software" skips
  * @returns {Promise<{close: () => Promise<void>, chunks: number, ok: boolean, warm: boolean}|null>}
  */
 export const startEncoderPrewarm = async (cfg) => {
@@ -84,6 +85,13 @@ export const startEncoderPrewarm = async (cfg) => {
   }
   if (!cfg || !cfg.width || !cfg.height || !cfg.codec) {
     perfMark("Recorder.encoderPrewarm.skipped", { reason: "no-config" });
+    return null;
+  }
+  // The warmer opens a hardware encoder. Where the probe settled on software
+  // there is no OS encode service to warm, and the attempt only fails on the
+  // start path ("Encoder creation error").
+  if (cfg.hardwareAcceleration === "prefer-software") {
+    perfMark("Recorder.encoderPrewarm.skipped", { reason: "software-encoder" });
     return null;
   }
 

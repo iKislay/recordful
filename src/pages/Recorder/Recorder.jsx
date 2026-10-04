@@ -2814,48 +2814,7 @@ const Recorder = () => {
             });
           } catch {}
         };
-        track.onended = () => {
-          if (isFinishing.current || !isRecording.current) return;
-          const recordingDuration = recordingStartTime.current
-            ? Date.now() - recordingStartTime.current
-            : null;
-          // Below 30s the salvage prompt would over-promise (Continuity Mic
-          // often drops 10-20s in); reuse the generic stream-error copy.
-          const SALVAGE_THRESHOLD_MS = 30000;
-          const isShort =
-            !recordingDuration || recordingDuration < SALVAGE_THRESHOLD_MS;
-          const trackLabel = String(track?.label || "");
-          const isLikelyContinuityMic = /\biphone\b/i.test(trackLabel);
-          const diagnosticInfo = {
-            reason: "audio-track-ended",
-            ts: Date.now(),
-            savedChunks: savedCount.current,
-            lastTimecode: lastTimecode.current,
-            recordingDuration,
-            trackLabel: track?.label || null,
-            trackReadyState: track?.readyState || null,
-            isLikelyContinuityMic,
-            salvageOffered: !isShort,
-          };
-          console.warn(
-            "[Recorder] Audio track ended unexpectedly",
-            diagnosticInfo,
-          );
-          chrome.runtime.sendMessage({
-            type: "recording-error",
-            error: "stream-ended",
-            why: chrome.i18n.getMessage(
-              isShort
-                ? "streamErrorModalDescription"
-                : "audioTrackEndedToast",
-            ),
-          }).catch(() => {});
-          chrome.storage.local.set({
-            recording: false,
-            lastTrackEndEvent: diagnosticInfo,
-          });
-          requestStop("audio-track-ended");
-        };
+        track.onended = () => onMicEnded(track);
       }
     }
 
@@ -3537,6 +3496,26 @@ const Recorder = () => {
     audioOutputGain.current.gain.value = volume;
   }
 
+  // The microphone went away mid-recording (unplugged, permission revoked,
+  // the OS audio service restarting). The picture is still good, so the take
+  // is paused, not ended: the page says why, and the person turns the mic
+  // back on, which acquires it afresh, or resumes without it.
+  const onMicEnded = (track) => {
+    if (isFinishing.current || !isRecording.current) return;
+    // Already replaced by a newer acquire: not the mic in use any more.
+    if (helperAudioStream.current?.getAudioTracks?.()[0] !== track) return;
+    console.warn("[Recorder] mic track ended; pausing", track.label);
+    // Cleared so that switching the mic on takes the acquire path below.
+    helperAudioStream.current = null;
+    chrome.storage.local.set({ micActive: false });
+    chrome.runtime
+      .sendMessage({
+        type: "mic-disconnected",
+        trackLabel: String(track.label || "").slice(0, 80),
+      })
+      .catch(() => {});
+  };
+
   const setMic = async (result) => {
     debug("setMic()", result);
     // Record intent before any early-return so the lazy path can honor a
@@ -3583,8 +3562,10 @@ const Recorder = () => {
         return;
       }
       helperAudioStream.current = acquired;
+      const micTrack = acquired.getAudioTracks()[0];
+      micTrack.onended = () => onMicEnded(micTrack);
       const micSource = aCtx.current.createMediaStreamSource(
-        new MediaStream([acquired.getAudioTracks()[0]]),
+        new MediaStream([micTrack]),
       );
       audioInputGain.current = aCtx.current.createGain();
       micSource.connect(audioInputGain.current).connect(destination.current);
@@ -4355,6 +4336,7 @@ const Recorder = () => {
           Number(probeConfig?.framerate) ||
           30;
         void startEncoderPrewarm({
+          hardwareAcceleration: probeConfig?.hardwareAcceleration,
           width: w,
           height: h,
           codec,
