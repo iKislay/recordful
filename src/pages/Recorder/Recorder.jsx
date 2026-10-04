@@ -1547,8 +1547,19 @@ const Recorder = () => {
       // The camera goes to a file of its own beside the take, when one is on.
       await stopCameraTrack();
       if (backendRefAtOpen.backend === "opfs" && backendRefAtOpen.fileName) {
-        cameraTrack.current = startCameraTrack(backendRefAtOpen.fileName).catch(
-          () => null,
+        cameraTrack.current = startCameraTrack(backendRefAtOpen.fileName).then(
+          (track) => {
+            slLog("camera-track", { recording: Boolean(track) });
+            return track;
+          },
+          (err) => {
+            // Never silent: a take without its camera has to say why.
+            slLog("camera-track-failed", {
+              name: err?.name || null,
+              message: String(err?.message || err),
+            });
+            return null;
+          },
         );
       }
       const endBackendRefSet = perfSpan("Recorder.preflight set backendRef");

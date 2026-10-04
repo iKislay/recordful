@@ -122,18 +122,10 @@ const CameraWrap = (props) => {
     };
   }, []);
 
-  const idle = !contentState.recording && !contentState.pendingRecording;
-  // Keyed off the real PiP window, not `surface`, which arrives only after an
-  // auth round-trip. pipActive false until "pip-started" keeps the bubble.
-  const hidden =
-    !idle &&
-    (contentState.pipActive ||
-      // The camera records to a file of its own, for the editor to lay out:
-      // shown here it would be in the screen's picture as well.
-      contentState.recordingType !== "camera" ||
-      (contentState.isSubscribed &&
-        (!contentState.instantMode || contentState.multiMode)) ||
-      contentState.onboarding);
+  // Never shown: the camera records to a file of its own and the editor
+  // lays it out, so on the page it would only end up in the screen's picture.
+  // The frame stays mounted because it keeps the saved camera's id current.
+  const hidden = true;
 
   return (
     <div

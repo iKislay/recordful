@@ -3,6 +3,8 @@
 // the screen's picture. The file is <take>.camera in the extension's private
 // file system: kept and swept with its take, and handed over by the bridge.
 
+import { getUserMediaWithFallback } from "../utils/mediaDeviceFallback";
+
 export const CAMERA_SUFFIX = ".camera";
 // Where each take's camera file starts, in seconds after the screen's.
 export const CAMERA_OFFSETS = "cameraOffsets";
@@ -14,12 +16,17 @@ const OFFSETS_KEPT = 20;
  * null when there is no camera to record: it is off, or it is the take.
  */
 export async function startCameraTrack(takeFileName) {
-  const { cameraActive, defaultVideoInput, recordingType } =
-    await chrome.storage.local.get([
-      "cameraActive",
-      "defaultVideoInput",
-      "recordingType",
-    ]);
+  const {
+    cameraActive,
+    defaultVideoInput,
+    defaultVideoInputLabel,
+    recordingType,
+  } = await chrome.storage.local.get([
+    "cameraActive",
+    "defaultVideoInput",
+    "defaultVideoInputLabel",
+    "recordingType",
+  ]);
   if (
     !cameraActive ||
     !defaultVideoInput ||
@@ -28,13 +35,20 @@ export async function startCameraTrack(takeFileName) {
   ) {
     return null;
   }
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video: {
-      deviceId: { exact: defaultVideoInput },
-      width: { ideal: 1280 },
-      height: { ideal: 720 },
-    },
-  });
+  const size = { width: { ideal: 1280 }, height: { ideal: 720 } };
+  // A saved device id goes stale (Brave hands out new ones), so the camera
+  // is found again by its label, as the camera page does; and when even
+  // that fails, whichever camera there is beats recording none.
+  const stream = await getUserMediaWithFallback({
+    constraints: { video: { deviceId: { exact: defaultVideoInput }, ...size } },
+    fallbacks: [
+      {
+        kind: "videoinput",
+        desiredDeviceId: defaultVideoInput,
+        desiredLabel: defaultVideoInputLabel,
+      },
+    ],
+  }).catch(() => navigator.mediaDevices.getUserMedia({ video: size }));
   const dir = await navigator.storage.getDirectory();
   const handle = await dir.getFileHandle(takeFileName + CAMERA_SUFFIX, {
     create: true,
