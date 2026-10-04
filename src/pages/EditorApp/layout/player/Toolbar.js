@@ -4,7 +4,7 @@ import styles from "../../styles/player/_Player.module.scss";
 import { ContentStateContext } from "../../context/ContentState";
 import { canEdit, enterCrop, leaveCrop } from "./tools";
 
-// The rail of tools on the sidebar's left edge. One is always selected.
+// The rail of tools on the sidebar's right edge. One is always selected.
 const Toolbar = () => {
   const [contentState, setContentState] = useContext(ContentStateContext);
   const cropping = contentState.mode === "crop";
@@ -44,6 +44,7 @@ const Toolbar = () => {
           onClick={select}
         >
           <Icon size={18} />
+          <span className={styles.toolLabel}>{label}</span>
         </button>
       ))}
     </div>

@@ -69,6 +69,7 @@ export const registerRetainable = async (entry) => {
     entry.recordingId || entry.fileName || `tab:${entry.tabId}`;
   if (await isLoggedIn()) return;
   const list = await read();
+  const prev = list.find((e) => e.recordingId === id);
   const next = list.filter((e) => e.recordingId !== id && e.tabId !== entry.tabId);
   next.push({
     recordingId: id,
@@ -79,7 +80,10 @@ export const registerRetainable = async (entry) => {
     slot: entry.backend === "opfs" ? null : entry.slot || null,
     tabId: entry.tabId,
     durationMs: Number(entry.durationMs) || 0,
-    saved: false,
+    saved: prev?.saved === true,
+    // A re-register (recover, reopen) must not un-hand a take the site
+    // already kept: that would pin its bytes forever.
+    handed: prev?.handed === true,
     at: Date.now(),
   });
   await write(next);
@@ -95,7 +99,7 @@ export const markRetainedSaved = async (recordingId, tabId = null) => {
   const target =
     (recordingId && list.find((e) => e.recordingId === recordingId)) ||
     (typeof tabId === "number" &&
-      list.find((e) => e.tabId === tabId && !e.saved)) ||
+      list.find((e) => e.tabId === tabId && !e.saved && !e.handed)) ||
     null;
   if (!target || target.saved) return;
   await write(
@@ -103,6 +107,104 @@ export const markRetainedSaved = async (recordingId, tabId = null) => {
       e.recordingId === target.recordingId ? { ...e, saved: true } : e,
     ),
   );
+};
+
+// The site's dashboard kept this take, so the extension's copy is no longer
+// the only one. Protection drops exactly like a save; its bytes release on
+// the next recording's cleanup.
+export const markRetainedHanded = async ({ recordingId = null, fileName = null } = {}) => {
+  if (!recordingId && !fileName) return;
+  const list = await read();
+  const target =
+    (recordingId && list.find((e) => e.recordingId === recordingId)) ||
+    (fileName && list.find((e) => e.fileName === fileName)) ||
+    null;
+  if (!target || target.handed) return;
+  await write(
+    list.map((e) =>
+      e.recordingId === target.recordingId ? { ...e, handed: true } : e,
+    ),
+  );
+  if (target.fileName) await removeTakeMeta(target.fileName).catch(() => {});
+};
+
+// The pointer trail behind a take: where it clicked and moved, for the web
+// editor's zooms. Live arrays are global and the next recording clears them,
+// so the finished take's copy is snapshotted beside its file before that.
+// Stored raw; the bridge normalizes, the same code it uses for a live take.
+const META_SUFFIX = ".meta.json";
+const MOVES_MAX = 20000;
+const CLICKS_MAX = 5000;
+
+const takeMetaName = (fileName) => `${fileName}${META_SUFFIX}`;
+
+const opfsDir = async () => {
+  if (
+    typeof navigator === "undefined" ||
+    !navigator.storage ||
+    typeof navigator.storage.getDirectory !== "function"
+  ) {
+    return null;
+  }
+  try {
+    return await navigator.storage.getDirectory();
+  } catch {
+    return null;
+  }
+};
+
+// Snapshots the finished take's pointer trail before the next recording
+// clears the live arrays. No previous take, or an IDB one with no file to
+// key by, is a no-op.
+export const archiveTakeMeta = async () => {
+  let ref = null;
+  let clickEvents = [];
+  let autoZoom = true;
+  try {
+    ({ lastRecordingBackendRef: ref, clickEvents = [], autoZoom = true } =
+      await chrome.storage.local.get({
+        lastRecordingBackendRef: null,
+        clickEvents: [],
+        autoZoom: true,
+      }));
+  } catch {
+    return;
+  }
+  const fileName = ref?.backend === "opfs" ? ref?.fileName : null;
+  if (!fileName || typeof fileName !== "string") return;
+  let pointerMoves = [];
+  try {
+    ({ pointerMoves = [] } = await chrome.storage.session.get("pointerMoves"));
+  } catch {}
+  const dir = await opfsDir();
+  if (!dir) return;
+  try {
+    const handle = await dir.getFileHandle(takeMetaName(fileName), {
+      create: true,
+    });
+    const writable = await handle.createWritable();
+    await writable.write(
+      JSON.stringify({
+        v: 1,
+        clicks: Array.isArray(clickEvents)
+          ? clickEvents.slice(-CLICKS_MAX)
+          : [],
+        moves: Array.isArray(pointerMoves)
+          ? pointerMoves.slice(-MOVES_MAX)
+          : [],
+        autoZoom: autoZoom !== false,
+        at: Date.now(),
+      }),
+    );
+    await writable.close();
+  } catch {}
+};
+
+export const removeTakeMeta = async (fileName) => {
+  if (!fileName) return;
+  const dir = await opfsDir();
+  if (!dir) return;
+  await dir.removeEntry(takeMetaName(fileName)).catch(() => {});
 };
 
 
@@ -128,8 +230,9 @@ export const unsavedRetained = async () => {
   } catch {}
   const alive = await pruneRetained();
   // Not gated on whether they played or scrubbed it. Still open and never saved
-  // is enough, better asked once too often than lost.
-  return alive.find((e) => !e.saved) || null;
+  // is enough, better asked once too often than lost. A take the site already
+  // kept needs no warning: recording over it loses nothing.
+  return alive.find((e) => !e.saved && !e.handed) || null;
 };
 
 // Drop entries whose editor tab is gone. Does not delete any bytes.
@@ -145,26 +248,27 @@ export const pruneRetained = async () => {
 
 // What the next recording may keep. `keepNames` are OPFS files to skip,
 // `retainSlot` is the IDB slot to leave alone so the new one takes the other.
+// Keyed on handoff, not on open tabs: a take whose editor closed before the
+// site kept it is still the user's only copy.
 export const computeRetentionPlan = async () => {
   const empty = { keepNames: [], retainSlot: null, activeSlot: CHUNK_SLOT_A };
   // The common case, and this sits on the start path. One storage read before
   // the estimate and the tab lookups.
-  if (!(await read()).length) return empty;
+  const list = await read();
+  if (!list.length) return empty;
   if (await isLoggedIn()) return empty;
   if (!(await hasHeadroom())) return empty;
 
-  const alive = await pruneRetained();
-  if (!alive.length) return empty;
-
-  // Saved means they already have the file, so its editor closes and its bytes
-  // release exactly as before retention existed.
-  const unsaved = alive.filter((e) => !e.saved);
-  const opfs = unsaved.filter((e) => e.backend === "opfs" && e.fileName);
+  // Saved means they already have the file, handed means the site's dashboard
+  // kept it, so both release exactly as before retention existed.
+  const pending = list.filter((e) => !e.saved && !e.handed);
+  if (!pending.length) return empty;
+  const opfs = pending.filter((e) => e.backend === "opfs" && e.fileName);
   const keepNames = opfs.map((e) => e.fileName);
 
   // Only one IDB recording survives: two slots, and the new recording needs
   // one. Newest wins. A null backend predates the ref and can only be IDB.
-  const idb = unsaved
+  const idb = pending
     .filter((e) => (e.backend === "idb" || !e.backend) && e.slot)
     .sort((a, b) => b.at - a.at)[0];
   const retainSlot = idb ? idb.slot : null;
@@ -193,11 +297,21 @@ export const retainedEntryForTab = async (tabId) => {
   return list.find((e) => e.tabId === tabId) || null;
 };
 
-// Only drops the registry entry. Bytes stay until the next cleanup.
+// Only drops the registry entry. Bytes stay until the next cleanup. A take
+// the site has not kept yet keeps its entry with no tab: its bytes stay
+// protected, and the next recording still sweeps nothing of it.
 export const forgetRetained = async (tabId) => {
   const list = await read();
-  const next = list.filter((e) => e.tabId !== tabId);
-  if (next.length !== list.length) await write(next);
+  let changed = false;
+  const next = list
+    .map((e) => {
+      if (e.tabId !== tabId) return e;
+      changed = true;
+      if (!e.saved && !e.handed) return { ...e, tabId: null };
+      return null;
+    })
+    .filter(Boolean);
+  if (changed) await write(next);
 };
 
 // Runs at session start, before the recorder page exists. It prewarms by
@@ -253,7 +367,7 @@ export const retainedTabIdsFor = async (plan) => {
   const alive = await pruneRetained();
   return new Set(
     alive
-      .filter((e) => !e.saved && typeof e.tabId === "number")
+      .filter((e) => !e.saved && !e.handed && typeof e.tabId === "number")
       .filter(
         (e) =>
           (e.backend === "opfs" && e.fileName && keep.has(e.fileName)) ||

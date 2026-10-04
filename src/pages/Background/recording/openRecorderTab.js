@@ -8,7 +8,7 @@ import { traceStep } from "../../utils/startFlowTrace.js";
 import { handleGetStreamingData } from "./recordingHelpers.js";
 import { perfMark, perfSpan } from "../../utils/perfMarks";
 import { sweepRecorderTabs } from "./sweepRecorderTabs";
-import { applyRetentionPlan } from "./recordingRetention";
+import { applyRetentionPlan, archiveTakeMeta } from "./recordingRetention";
 import {
   holdForPreviousRecorder,
   readPreviousRecorderState,
@@ -118,6 +118,10 @@ const openRecorderTab = async (
     // the loaded push. tab/region need a tabCapture streamId, but offscreen can't
     // call chrome.tabCapture so it requests one from the SW via the tabID below.
     const isTabCapture = recordingType === "tab" || isRegion;
+    // Snapshot the finished take's pointer trail before its arrays are
+    // cleared below; the next take would otherwise inherit nothing and the
+    // finished one would lose its zooms.
+    await archiveTakeMeta().catch(() => {});
     await chrome.storage.local.set({
       recordingTab: null,
       offscreen: true,
@@ -208,6 +212,7 @@ const openRecorderTab = async (
 
   // Set recordingTab before the autoDiscardable retry loop (up to ~1.25s
   // of awaits) so listeners that fire during it don't see a stale tab id.
+  await archiveTakeMeta().catch(() => {});
   chrome.storage.local.set({
     recordingTab: tab.id,
     offscreen: false,

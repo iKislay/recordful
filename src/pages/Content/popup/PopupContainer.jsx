@@ -14,7 +14,6 @@ import { Rnd } from "react-rnd";
 import { CloseIconPopup, HelpIconPopup } from "../toolbar/components/SVG";
 
 import RecordingTab from "./layout/RecordingTab";
-import VideosTab from "./layout/VideosTab";
 import TooltipWrap from "./components/TooltipWrap";
 import InactiveSubscription from "./layout/InactiveSubscription";
 import LoggedOut from "./layout/LoggedOut";
@@ -38,7 +37,6 @@ const PopupContainer = (props) => {
   const [dragging, setDragging] = React.useState("");
   const [onboarding, setOnboarding] = useState(false);
   const [showProSplash, setShowProSplash] = useState(false);
-  const homeTabRef = useRef(null);
   const recordTabRef = useRef(null);
   const pillRef = useRef(null);
   const [URL, setURL] = useState("https://help.recordful.app/");
@@ -101,7 +99,9 @@ const PopupContainer = (props) => {
     }));
   };
   useEffect(() => {
-    setTab(contentState.bigTab);
+    // Only "record" lives in the popup now; home opens the web dashboard.
+    // A stored "dashboard" from an older build would otherwise blank the tabs.
+    setTab("record");
   }, []);
 
   const previewWelcome = (() => {
@@ -133,11 +133,9 @@ const PopupContainer = (props) => {
   );
 
   useLayoutEffect(() => {
-    if (!homeTabRef.current || !recordTabRef.current || !pillRef.current)
-      return;
+    if (!recordTabRef.current || !pillRef.current) return;
 
-    const tabRef =
-      tab === "record" ? recordTabRef.current : homeTabRef.current;
+    const tabRef = recordTabRef.current;
 
     pillRef.current.style.left = `${tabRef.offsetLeft}px`;
     pillRef.current.style.width = `${tabRef.getBoundingClientRect().width}px`;
@@ -308,10 +306,7 @@ const PopupContainer = (props) => {
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      const tabRef =
-        contentState.bigTab === "record"
-          ? recordTabRef.current
-          : homeTabRef.current;
+      const tabRef = recordTabRef.current;
 
       if (tabRef && pillRef.current) {
         pillRef.current.style.left = `${tabRef.offsetLeft}px`;
@@ -555,15 +550,20 @@ const PopupContainer = (props) => {
                     content={chrome.i18n.getMessage("videosTab")}
                     side="bottom"
                   >
-                    <Tabs.Trigger
+                    <button
+                      type="button"
                       className="TabsTrigger tl icon-tab"
-                      value="dashboard"
-                      ref={homeTabRef}
+                      onClick={() => {
+                        window.open(
+                          `${process.env.RECORDFUL_APP_BASE}/dashboard`,
+                          "_blank"
+                        );
+                      }}
                       tabIndex={0}
                       aria-label={chrome.i18n.getMessage("videosTab")}
                     >
                       <House size={18} />
-                    </Tabs.Trigger>
+                    </button>
                   </TooltipWrap>
                   <TooltipWrap
                     name="icon-tab-wrap"
@@ -606,9 +606,6 @@ const PopupContainer = (props) => {
                 </Tabs.List>
                 <Tabs.Content className="TabsContent tl" value="record">
                   <RecordingTab shadowRef={props.shadowRef} />
-                </Tabs.Content>
-                <Tabs.Content className="TabsContent tl" value="dashboard">
-                  <VideosTab shadowRef={props.shadowRef} />
                 </Tabs.Content>
               </Tabs.Root>
             )}

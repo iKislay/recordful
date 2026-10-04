@@ -15,7 +15,6 @@ const Sidebar = () => {
 
   return (
     <aside className={styles.sidebar}>
-      <Toolbar />
       <div className={styles.toolPanel}>
         {reason ? (
           <p className={styles.toolNote}>{reason}</p>
@@ -25,6 +24,7 @@ const Sidebar = () => {
           <AudioUI />
         )}
       </div>
+      <Toolbar />
     </aside>
   );
 };
