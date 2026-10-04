@@ -6,8 +6,90 @@
   margin-top: $spacing-03;
 }
 
+/* More: blooms out of the More button over the card instead of stretching
+   it. Sits on the bottom bar's footprint and grows upward. */
+.more-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.6);
+}
+
 .more-panel {
-  margin-bottom: $spacing-02;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+  z-index: 4;
+  box-sizing: border-box;
+  padding: 0 12px 6px;
+  background: #fff;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  // The More button is the right-hand third of the bar.
+  transform-origin: 83% 100%;
+  animation: more-bloom 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+
+  // Compact enough to open fully inside the panel.
+  .labelDropdownContent {
+    border-radius: 10px;
+    padding: 4px;
+
+    .labelDropdownContentItem {
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+  }
+}
+
+.more-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  margin: 0 -12px 4px;
+  padding: 0 6px 0 12px;
+  border-bottom: 1px solid $color-border;
+  color: $color-text-secondary;
+  font-family: $font-medium;
+  font-size: 13px;
+
+  .IconButton {
+    width: 24px;
+    height: 24px;
+    margin-top: 0;
+    border-radius: 6px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.more-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+@keyframes more-bloom {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+    clip-path: inset(70% 4% 0 66% round 12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 round 12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .more-panel {
+    animation: none;
+  }
 }
 
 .bottom-bar {

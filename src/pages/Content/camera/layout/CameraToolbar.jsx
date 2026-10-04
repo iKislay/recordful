@@ -5,6 +5,7 @@ import * as Toolbar from "@radix-ui/react-toolbar";
 import TooltipWrap from "../../toolbar/components/TooltipWrap";
 
 import { CameraCloseIcon, Pip } from "../../toolbar/components/SVG";
+import { FlipHorizontal } from "@phosphor-icons/react";
 
 import { contentStateContext } from "../../context/ContentState";
 
@@ -27,6 +28,28 @@ const CameraToolbar = () => {
       >
         <CameraCloseIcon />
       </Toolbar.Button>
+      <TooltipWrap
+        content={
+          chrome.i18n.getMessage("flipCameraLabel") || "Flip camera"
+        }
+      >
+        <Toolbar.Button
+          className="CameraToolbarButton"
+          data-state={contentState.cameraFlipped ? "on" : "off"}
+          aria-pressed={!!contentState.cameraFlipped}
+          aria-label={chrome.i18n.getMessage("flipCameraLabel") || "Flip camera"}
+          onClick={() => {
+            const flipped = !contentState.cameraFlipped;
+            setContentState((prevContentState) => ({
+              ...prevContentState,
+              cameraFlipped: flipped,
+            }));
+            chrome.storage.local.set({ cameraFlipped: flipped });
+          }}
+        >
+          <FlipHorizontal size={16} />
+        </Toolbar.Button>
+      </TooltipWrap>
       {/* Manual toggle, deliberately not gated on surface or recordingType.
           Auto-PiP is decided in surfaceHandler; this is the way back into PiP
           after closing it, and `surface` is not reliably set on every flow. */}

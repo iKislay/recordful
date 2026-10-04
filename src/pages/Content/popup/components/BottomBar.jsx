@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { DotsThree, Palette } from "@phosphor-icons/react";
+import { createPortal } from "react-dom";
+import { DotsThree, Palette, X } from "@phosphor-icons/react";
 
 import Switch from "./Switch";
 import TimeSetter from "./TimeSetter";
@@ -39,6 +40,8 @@ const writeFlag = (setContentState, key, checked) => {
 // Dark bottom bar: Effects (background effects toggle), Push to talk, and
 // More (the former "Show more options" rows). Replaces the Settings
 // collapsible; same contentState/storage writes as the old Switch rows.
+// More opens as a panel over the card (portaled into .popup-content so no
+// scroll container in between can clip it); the card never changes height.
 const BottomBar = (props) => {
   const [contentState, setContentState] = useContext(contentStateContext);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -53,6 +56,19 @@ const BottomBar = (props) => {
       settingsOpen: moreOpen,
     }));
   }, [moreOpen]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    // Capture phase, so this reads menuOpen before the settings dropdown
+    // reacts to the same press: one Escape closes one layer.
+    const onKey = (e) => {
+      if (e.key === "Escape" && !menuOpen) setMoreOpen(false);
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  }, [moreOpen, menuOpen]);
+
+  const moreLabel = chrome.i18n.getMessage("moreLabel") || "More";
 
   const effectsAvailable =
     contentState.cameraPermission &&
@@ -87,51 +103,69 @@ const BottomBar = (props) => {
       {contentState.backgroundEffectsActive && effectsAvailable && (
         <BackgroundEffects />
       )}
-      {moreOpen && (
-        <div className="more-panel">
-          <SettingsMenu
-            shadowRef={props.shadowRef}
-            open={menuOpen}
-            setOpen={setMenuOpen}
-          />
-          <Switch
-            label={chrome.i18n.getMessage("hideToolbarLabel")}
-            name="hideUI"
-            value="hideUI"
-            anchorId="pro-onboarding-toolbar-toggle"
-          />
-          <Switch
-            label={chrome.i18n.getMessage("countdownLabel")}
-            name="countdown"
-            value="countdown"
-          />
-          <Switch
-            label={chrome.i18n.getMessage("alarmLabel")}
-            name="alarm"
-            value="alarm"
-          />
-          {contentState.alarm && <TimeSetter />}
-          <Switch
-            label={chrome.i18n.getMessage("micReminderPopup")}
-            name="askMicrophone"
-            value="askMicrophone"
-          />
-          {contentState.recordingType != "camera" &&
-            !contentState.isSubscribed && (
+      {moreOpen &&
+        createPortal(
+          <>
+            <div className="more-backdrop" onClick={() => setMoreOpen(false)} />
+            <div className="more-panel" role="dialog" aria-label={moreLabel}>
+              <div className="more-panel-head">
+                <span>{moreLabel}</span>
+                <div className="more-panel-actions">
+                  <SettingsMenu
+                    shadowRef={props.shadowRef}
+                    open={menuOpen}
+                    setOpen={setMenuOpen}
+                  />
+                  <button
+                    type="button"
+                    className="IconButton"
+                    aria-label={chrome.i18n.getMessage("closeModalLabel")}
+                    onClick={() => setMoreOpen(false)}
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              </div>
               <Switch
-                label={
-                  chrome.i18n.getMessage("zoomToPointPopup") +
-                  " (" +
-                  shortcut +
-                  ")"
-                }
-                name="zoomEnabled"
-                value="zoomEnabled"
-                experimental={true}
+                label={chrome.i18n.getMessage("hideToolbarLabel")}
+                name="hideUI"
+                value="hideUI"
+                anchorId="pro-onboarding-toolbar-toggle"
               />
-            )}
-        </div>
-      )}
+              <Switch
+                label={chrome.i18n.getMessage("countdownLabel")}
+                name="countdown"
+                value="countdown"
+              />
+              <Switch
+                label={chrome.i18n.getMessage("alarmLabel")}
+                name="alarm"
+                value="alarm"
+              />
+              {contentState.alarm && <TimeSetter />}
+              <Switch
+                label={chrome.i18n.getMessage("micReminderPopup")}
+                name="askMicrophone"
+                value="askMicrophone"
+              />
+              {contentState.recordingType != "camera" &&
+                !contentState.isSubscribed && (
+                  <Switch
+                    label={
+                      chrome.i18n.getMessage("zoomToPointPopup") +
+                      " (" +
+                      shortcut +
+                      ")"
+                    }
+                    name="zoomEnabled"
+                    value="zoomEnabled"
+                    experimental={true}
+                  />
+                )}
+            </div>
+          </>,
+          props.shadowRef.current.shadowRoot.querySelector(".popup-content")
+        )}
       <div className="bottom-bar">
         <button
           type="button"
@@ -171,11 +205,11 @@ const BottomBar = (props) => {
           type="button"
           className={"bottom-bar-item" + (moreOpen ? " active" : "")}
           onClick={() => setMoreOpen((prev) => !prev)}
-          aria-pressed={moreOpen}
-          aria-label={chrome.i18n.getMessage("moreLabel") || "More"}
+          aria-expanded={moreOpen}
+          aria-label={moreLabel}
         >
           <DotsThree size={20} weight="bold" />
-          <span>{chrome.i18n.getMessage("moreLabel") || "More"}</span>
+          <span>{moreLabel}</span>
         </button>
       </div>
     </div>

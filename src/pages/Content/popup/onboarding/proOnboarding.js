@@ -338,7 +338,7 @@ const ensureDriverStyles = () => {
     }
     .driver-popover.RecordfulOnboardingPopover .driver-popover-description a,
     .RecordfulOnboardingPopover .driver-popover-description a {
-      color: #3b82f6 !important;
+      color: #111111 !important;
       text-decoration: none !important;
       cursor: pointer !important;
     }
@@ -364,7 +364,7 @@ const ensureDriverStyles = () => {
     }
     .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn,
     .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn {
-      background-color: var(--color-primary, #3b82f6) !important;
+      background-color: var(--color-primary, #111111) !important;
       color: white !important;
       border: none !important;
     }

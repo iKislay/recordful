@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 
-import { Camera, House, VideoCamera } from "@phosphor-icons/react";
+import { Camera, DotsSixVertical, House, VideoCamera } from "@phosphor-icons/react";
 
 import { Rnd } from "react-rnd";
 
@@ -427,8 +427,15 @@ const PopupContainer = (props) => {
           id="pro-onboarding-popup-container"
           ref={PopupRef}
         >
-          <div className="popup-drag-head drag-area"></div>
-          <div className="popup-controls drag-area">
+          <div
+            className="popup-drag-handle drag-area"
+            title={
+              chrome.i18n.getMessage("dragToMoveLabel") || "Drag to move"
+            }
+          >
+            <DotsSixVertical size={14} weight="bold" />
+          </div>
+          <div className="popup-controls">
             <div
               className="popup-control popup-close"
               onClick={() => {

@@ -104,7 +104,7 @@ iframe.recordful-iframe {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  border: 10px solid #3080f8;
+  border: 10px solid #111111;
   pointer-events: none;
   transform: scale(1.2);
   opacity: 0;
@@ -258,9 +258,11 @@ iframe.recordful-iframe {
   opacity: 0 !important;
 }
 
-/* Vertical light toolbar: same controls stacked top-to-bottom. The mode
-   popouts (draw/blur/cursor) open to the right of the bar instead of above
-   it, with the notch flipped to the bar-facing edge. */
+/* Vertical light toolbar: same controls stacked top-to-bottom. Only the
+   bar's own direct children are re-stacked (child combinators) so the
+   popouts (draw/blur/cursor) keep their horizontal inner layout. Those
+   popouts open to the right of the bar instead of above it, with the
+   notch flipped to the bar-facing edge. */
 .ToolbarRoot.ToolbarVertical {
   flex-direction: column;
   align-items: center;
@@ -270,35 +272,87 @@ iframe.recordful-iframe {
   padding: 10px 8px;
 }
 
-.ToolbarRoot.ToolbarVertical .ToolbarRecordingControls {
+.ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls {
   flex-direction: column;
   width: auto;
   height: auto;
   padding: 4px 2px;
 }
 
-.ToolbarRoot.ToolbarVertical .ToolbarRecordingTime {
+/* Stop (recording) button stays red; everything else is black/white. */
+.ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls > div:first-child svg {
+  color: #d2234d;
+}
+
+.ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls > .ToolbarRecordingTime {
   width: auto !important;
   margin: 2px 0 4px;
   text-align: center;
   white-space: nowrap;
 }
 
-.ToolbarRoot.ToolbarVertical .ToolbarToggleGroup {
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup {
   flex-direction: column;
 }
 
-.ToolbarRoot.ToolbarVertical .ToolbarSeparator {
+.ToolbarRoot.ToolbarVertical > .ToolbarSeparator {
   width: 18px;
   height: 1px;
   margin: 8px 0;
+}
+
+/* Separator living inside the main toggle group (cursor/mic divider). */
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup > .ToolbarSeparator {
+  width: 18px;
+  height: 1px;
+  margin: 8px 0;
+}
+
+/* Pre-recording close badge hangs below the pill in vertical mode instead
+   of crowding the grab handle on top. */
+.ToolbarRoot.ToolbarVertical .toolbar-controls {
+  top: auto;
+  right: auto;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .ToolbarRoot.ToolbarVertical .ToolbarModeItem::before {
   display: none;
 }
 
+/* Drag handle pops out of the pill's top edge instead of sitting inside it.
+   It keeps the Rnd `grab` handle class, so dragging still starts only here. */
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 22px;
+  padding: 2px 8px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+  z-index: 6;
+}
+
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab:hover {
+  background: #fff;
+}
+
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab:active {
+  cursor: grabbing;
+}
+
 .ToolbarRoot.ToolbarVertical .DrawingToolbar {
+  flex-direction: column;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
   left: calc(100% + 10px) !important;
   top: 50% !important;
   bottom: auto !important;
@@ -310,10 +364,36 @@ iframe.recordful-iframe {
   transform: translateY(-50%) scale(1) !important;
 }
 
+/* Popout internals stack vertically too (scoped to popouts only). */
+.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarToggleGroup {
+  flex-direction: column;
+}
+
+.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarSeparator {
+  width: 18px;
+  height: 1px;
+  margin: 8px 0;
+}
+
 .ToolbarRoot.ToolbarVertical .DrawingToolbar::before {
   -webkit-mask-image: radial-gradient(circle at -14px 50%, transparent 20px, #000 20px) !important;
   mask-image: radial-gradient(circle at -14px 50%, transparent 20px, #000 20px) !important;
   background-position: left center !important;
+}
+
+/* Shape picker submenu nests inside the drawing popout; flip it to the
+   popout's right edge instead of above it. */
+.ToolbarRoot.ToolbarVertical .shapeToolbar {
+  left: calc(100% + 10px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) scale(0.5) !important;
+  transform-origin: 0 50% !important;
+}
+
+.ToolbarRoot.ToolbarVertical .shapeToolbar.show-toolbar {
+  transform: translateY(-50%) scale(1) !important;
 }
 
 .ToolbarRecordingControls {
@@ -429,7 +509,7 @@ iframe.recordful-iframe {
 .ToolbarLink:focus-visible,
 .ToolbarButton:focus-visible {
   position: relative;
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .ToolbarModeItemSingle {
@@ -483,10 +563,10 @@ iframe.recordful-iframe {
   opacity: 0;
 }
 .ToolbarModeItem[data-state=on] {
-  background: rgba(56, 126, 247, 0.1);
+  background: rgba(0, 0, 0, 0.06);
 }
 .ToolbarModeItem[data-state=on] svg {
-  color: #3080f8;
+  color: #111111;
 }
 .ToolbarModeItem[data-state=on]::before {
   transform: translateY(0px) scale(1) !important;
@@ -516,7 +596,7 @@ iframe.recordful-iframe {
   margin-left: 0;
 }
 .ToolbarToggleItem[data-state=on] {
-  background: radial-gradient(117.41% 117.78% at 35.44% 0%, #2baef8 23.13%, #3582f6 46.35%, #486def 74.48%, #7b9aea 100%);
+  background: #111111;
   color: #fff;
 }
 .ToolbarToggleItem[data-state=on] svg {
@@ -619,7 +699,7 @@ body.driver-active .OnboardingArrow {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description a,
 .RecordfulOnboardingPopover .driver-popover-description a,
 .onboarding-popover .driver-popover-description a {
-  color: #3080f8 !important;
+  color: #111111 !important;
   font-family: "Satoshi-Bold", sans-serif !important;
   text-decoration: none !important;
   cursor: pointer !important;
@@ -721,7 +801,7 @@ body.driver-active .OnboardingArrow {
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
-  background-color: #3080f8 !important;
+  background-color: #111111 !important;
   color: white !important;
   border: none !important;
   padding: 10px 14px !important;
@@ -735,7 +815,7 @@ body.driver-active .OnboardingArrow {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover {
-  background: rgb(23.3341121495, 112.8668224299, 247.1658878505) !important;
+  background: rgb(4.25, 4.25, 4.25) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
@@ -1056,7 +1136,7 @@ body.driver-active .OnboardingArrow {
 }
 
 .eye-active {
-  background-color: #3080f8 !important;
+  background-color: #111111 !important;
 }
 .eye-active svg {
   color: #FFF !important;
@@ -1128,7 +1208,7 @@ body.driver-active .OnboardingArrow {
 }
 .radial-menu-item-child:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .radial-menu[data-state=open] .radial-menu-item-child {
@@ -1468,7 +1548,7 @@ body.driver-active .OnboardingArrow {
   display: block;
 }
 .stroke-width-item div[data-state=on] {
-  background: #3080f8 !important;
+  background: #111111 !important;
 }
 .stroke-width-item div[data-state=on] svg {
   color: #FFF !important;
@@ -1603,15 +1683,26 @@ body.driver-active .OnboardingArrow {
   opacity: 1 !important;
 }
 
-.popup-drag-head {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100px;
-  z-index: 1;
-  border-radius: 30px 30px 0px 0px;
-  opacity: 0;
+.popup-drag-handle {
+  position: absolute;
+  top: 50%;
+  left: -13px;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 26px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 999px;
+  color: #6e7684;
+  cursor: grab;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+.popup-drag-handle:active {
+  cursor: grabbing;
 }
 
 .popup-controls {
@@ -1645,9 +1736,6 @@ body.driver-active .OnboardingArrow {
 .popup-controls .popup-control svg {
   color: #6e7684;
   margin-bottom: -2px;
-}
-.popup-controls .popup-grab {
-  cursor: grab;
 }
 .popup-controls .popup-close {
   cursor: pointer;
@@ -1689,7 +1777,6 @@ body.driver-active .OnboardingArrow {
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 30px;
-  overflow: hidden;
   transition: transform 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), filter 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96);
 }
 
@@ -1705,7 +1792,7 @@ body.driver-active .OnboardingArrow {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 12px;
+  border-radius: inherit;
   overflow: hidden;
   background: #fff;
   padding: 12px 12px 14px;
@@ -1739,7 +1826,7 @@ body.driver-active .OnboardingArrow {
   margin-bottom: 8px;
 }
 .popup-warning .popup-warning-right {
-  color: #3080f8;
+  color: #111111;
   font-family: "Satoshi-Medium", sans-serif;
   width: 90px;
 }
@@ -1755,7 +1842,7 @@ body.driver-active .OnboardingArrow {
 }
 .popup-warning-left svg,
 .popup-warning-right svg {
-  color: #3080f8;
+  color: #111111;
 }
 
 .popup-warning-right {
@@ -1801,7 +1888,7 @@ body.driver-active .OnboardingArrow {
   cursor: pointer;
 }
 .permission-button svg {
-  color: #3080f8;
+  color: #111111;
 }
 
 .HelpSection {
@@ -1948,7 +2035,7 @@ body.driver-active .OnboardingArrow {
   color: #fff;
   text-align: center;
   border-radius: 30px;
-  background: radial-gradient(117.41% 117.78% at 35.44% 0%, #2baef8 23.13%, #3582f6 46.35%, #486def 74.48%, #7b9aea 100%);
+  background: #111111;
   padding: 8px 16px;
 }
 .ModalSoonButton:hover {
@@ -2072,7 +2159,7 @@ body.driver-active .OnboardingArrow {
 }
 .announcement-description a {
   text-decoration: none !important;
-  color: #3080f8 !important;
+  color: #111111 !important;
   cursor: pointer !important;
 }
 
@@ -2084,7 +2171,7 @@ body.driver-active .OnboardingArrow {
   width: 100%;
   height: 44px;
   border-radius: 30px;
-  background: radial-gradient(117.41% 117.78% at 35.44% 0%, #2baef8 23.13%, #3582f6 46.35%, #486def 74.48%, #7b9aea 100%);
+  background: #111111;
   color: #fff;
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 14px;
@@ -2092,7 +2179,7 @@ body.driver-active .OnboardingArrow {
   transition: all 0.2s ease-in-out;
   animation: background-size 6s ease-in-out infinite;
   animation-play-state: paused;
-  filter: drop-shadow(0px 4px 20px rgba(86, 123, 218, 0.5));
+  filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.35));
 }
 .announcement-cta:hover {
   animation-play-state: running !important;
@@ -2133,7 +2220,7 @@ body.driver-active .OnboardingArrow {
 }
 .welcome-description a {
   text-decoration: none !important;
-  color: #3080f8 !important;
+  color: #111111 !important;
   cursor: pointer !important;
 }
 
@@ -2197,7 +2284,7 @@ body.driver-active .OnboardingArrow {
 .welcome-feature-icon {
   width: 20px;
   height: 20px;
-  background: rgba(48, 128, 248, 0.1);
+  background: rgba(0, 0, 0, 0.06);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2279,7 +2366,7 @@ body.driver-active .OnboardingArrow {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #3080f8;
+  background: #111111;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -2639,7 +2726,6 @@ input {
   width: fit-content;
   align-items: center;
   position: relative;
-  z-index: 2;
 }
 
 .hiddenTabs {
@@ -2704,7 +2790,7 @@ input {
 }
 
 .TabsContent:focus-visible {
-  box-shadow: inset 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: inset 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .TabsContent[data-state=inactive] {
@@ -2809,7 +2895,7 @@ input {
   display: block;
 }
 .TabsList.tl.icon-tabs .TabsTrigger.tl.icon-tab[data-state=active] {
-  color: #3080f8;
+  color: #111111;
 }
 .TabsList.tl.icon-tabs .TabsTrigger.tl.icon-tab:disabled {
   opacity: 0.35;
@@ -3009,7 +3095,7 @@ input {
   margin-left: 8px;
 }
 .video-ui .TabsSort:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
   outline: none !important;
 }
 .video-ui .TabsIconButton {
@@ -3026,7 +3112,7 @@ input {
   background: #f6f7fb;
 }
 .video-ui .TabsIconButton:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
   outline: none !important;
 }
 .video-ui .TabsSearchInline {
@@ -3168,10 +3254,84 @@ input {
   margin-top: 8px;
 }
 
-.more-panel {
-  margin-bottom: 4px;
+/* More: blooms out of the More button over the card instead of stretching
+   it. Sits on the bottom bar's footprint and grows upward. */
+.more-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.6);
 }
 
+.more-panel {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 14px;
+  z-index: 4;
+  box-sizing: border-box;
+  padding: 0 12px 6px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform-origin: 83% 100%;
+  animation: more-bloom 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.more-panel .labelDropdownContent {
+  border-radius: 10px;
+  padding: 4px;
+}
+.more-panel .labelDropdownContent .labelDropdownContentItem {
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.more-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  margin: 0 -12px 4px;
+  padding: 0 6px 0 12px;
+  border-bottom: 1px solid #e8e8e8;
+  color: #6e7684;
+  font-family: "Satoshi-Medium", sans-serif;
+  font-size: 13px;
+}
+.more-panel-head .IconButton {
+  width: 24px;
+  height: 24px;
+  margin-top: 0;
+  border-radius: 6px;
+}
+.more-panel-head .IconButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.more-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+@keyframes more-bloom {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+    clip-path: inset(70% 4% 0 66% round 12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 round 12px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .more-panel {
+    animation: none;
+  }
+}
 .bottom-bar {
   display: flex;
   background: #f7f7f5;
@@ -3423,13 +3583,13 @@ input {
   transform-origin: center;
   transform: scale(0.7);
   border-radius: 6px;
-  background-color: #3080f8;
+  background-color: #111111;
   opacity: 0;
   pointer-events: none;
   transition: transform 100ms linear, opacity 200ms linear, background-color 200ms ease-out;
 }
 .checkbox__content:focus-within .checkbox__control {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 .checkbox__content:hover .checkbox__control {
   border-color: #9797a4;
@@ -3443,7 +3603,7 @@ input {
   opacity: 1;
 }
 .checkbox[data-indeterminate=true] .checkbox__control {
-  background-color: #3080f8;
+  background-color: #111111;
 }
 .checkbox[data-invalid=true]:not([data-selected=true]):not([data-indeterminate=true]) .checkbox__control {
   border-color: #d2234d;
@@ -3557,7 +3717,7 @@ input {
 }
 
 .video-item-root:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
   outline: none !important;
 }
 
@@ -3582,7 +3742,7 @@ input {
   z-index: 999999;
 }
 .video-item-right .copy-link:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
   outline: none !important;
 }
 .video-item-right .more-actions {
@@ -3596,7 +3756,7 @@ input {
   justify-content: center;
 }
 .video-item-right .more-actions:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
   outline: none !important;
 }
 
@@ -3730,7 +3890,7 @@ input {
   width: 46px;
   height: 46px;
   position: absolute;
-  border: 2px solid #3080f8;
+  border: 2px solid #111111;
   box-sizing: border-box;
 }
 .background-effect img {
@@ -3751,12 +3911,12 @@ input {
   width: 46px;
   height: 46px;
   position: absolute;
-  border: 2px solid #3080f8;
+  border: 2px solid #111111;
   opacity: 0.5;
   box-sizing: border-box;
 }
 .background-effect:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .region-dimensions {
@@ -3785,7 +3945,7 @@ input {
 }
 .region-input input:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 .region-input span {
   color: #6e7684;
@@ -3824,7 +3984,7 @@ input {
 }
 .time-set-input input:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 .time-set-input span {
   color: #6e7684;
@@ -4052,7 +4212,7 @@ input {
 
 .CameraToggleItem:focus-visible, .CameraToggleButton:focus-visible {
   position: relative;
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .CameraToggleGroup {
@@ -4171,7 +4331,7 @@ input {
   bottom: 0px;
   margin: auto;
   border-radius: 50%;
-  background: radial-gradient(118.3% 119.01% at 35.44% 0%, #2baef8 23.13%, #3582f6 46.35%, #486def 74.48%, #7b9aea 100%);
+  background: radial-gradient(118.3% 119.01% at 35.44% 0%, #3a3a3f 0%, #111114 100%);
   width: 200px;
   height: 200px;
   transition: all 1.5s ease-in-out;
@@ -4302,7 +4462,7 @@ button {
   line-height: 1.5;
 }
 .AlertDialogDescription a {
-  color: #3080f8 !important;
+  color: #111111 !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   display: inline-block;
@@ -4322,15 +4482,15 @@ button {
 }
 
 .Button.blue {
-  background-color: rgba(48, 128, 248, 0.1);
-  color: #3080f8;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #111111;
 }
 .Button.blue:hover {
-  background-color: rgba(48, 128, 248, 0.15);
+  background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 .Button.blue:focus {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .Button.red {
@@ -4344,7 +4504,7 @@ button {
 }
 
 .Button.red:focus {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 .Button.grey {
@@ -4358,7 +4518,7 @@ button {
 }
 
 .Button.grey:focus {
-  box-shadow: 0px 0px 0px 2px rgba(48, 128, 248, 0.5);
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
 }
 
 @keyframes overlayShow {
@@ -4722,7 +4882,7 @@ button {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #3080f8;
+  background: #111111;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -4788,7 +4948,7 @@ button {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description a,
 .RecordfulOnboardingPopover .driver-popover-description a,
 .onboarding-popover .driver-popover-description a {
-  color: #3b82f6 !important;
+  color: #111111 !important;
   font-family: "Satoshi-Bold", sans-serif !important;
   text-decoration: none !important;
 }
@@ -4888,7 +5048,7 @@ button {
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
-  background-color: #3080f8 !important;
+  background-color: #111111 !important;
   color: white !important;
   border: none !important;
   padding: 10px 14px !important;
@@ -4902,7 +5062,7 @@ button {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover {
-  background: rgb(23.3341121495, 112.8668224299, 247.1658878505) !important;
+  background: rgb(4.25, 4.25, 4.25) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,

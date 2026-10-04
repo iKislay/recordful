@@ -21,10 +21,7 @@ input {
   display: flex;
   width: fit-content;
   align-items: center;
-  // Above the invisible .popup-drag-head layer (z-index 1) that covers the
-  // top of the popup, otherwise tab clicks start a drag instead.
   position: relative;
-  z-index: 2;
 }
 .hiddenTabs {
   display: none !important;

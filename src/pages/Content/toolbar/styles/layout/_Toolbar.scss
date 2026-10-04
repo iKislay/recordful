@@ -231,9 +231,11 @@ iframe.recordful-iframe {
   opacity: 0 !important;
 }
 
-/* Vertical light toolbar: same controls stacked top-to-bottom. The mode
-   popouts (draw/blur/cursor) open to the right of the bar instead of above
-   it, with the notch flipped to the bar-facing edge. */
+/* Vertical light toolbar: same controls stacked top-to-bottom. Only the
+   bar's own direct children are re-stacked (child combinators) so the
+   popouts (draw/blur/cursor) keep their horizontal inner layout. Those
+   popouts open to the right of the bar instead of above it, with the
+   notch flipped to the bar-facing edge. */
 .ToolbarRoot.ToolbarVertical {
   flex-direction: column;
   align-items: center;
@@ -242,30 +244,81 @@ iframe.recordful-iframe {
   height: auto;
   padding: 10px 8px;
 }
-.ToolbarRoot.ToolbarVertical .ToolbarRecordingControls {
+.ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls {
   flex-direction: column;
   width: auto;
   height: auto;
   padding: 4px 2px;
 }
-.ToolbarRoot.ToolbarVertical .ToolbarRecordingTime {
+/* Stop (recording) button stays red; everything else is black/white. */
+.ToolbarRoot.ToolbarVertical
+  > .ToolbarRecordingControls
+  > div:first-child
+  svg {
+  color: $color-red;
+}
+.ToolbarRoot.ToolbarVertical
+  > .ToolbarRecordingControls
+  > .ToolbarRecordingTime {
   width: auto !important;
   margin: 2px 0 4px;
   text-align: center;
   white-space: nowrap;
 }
-.ToolbarRoot.ToolbarVertical .ToolbarToggleGroup {
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup {
   flex-direction: column;
 }
-.ToolbarRoot.ToolbarVertical .ToolbarSeparator {
+.ToolbarRoot.ToolbarVertical > .ToolbarSeparator {
   width: 18px;
   height: 1px;
   margin: 8px 0;
 }
+/* Separator living inside the main toggle group (cursor/mic divider). */
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup > .ToolbarSeparator {
+  width: 18px;
+  height: 1px;
+  margin: 8px 0;
+}
+/* Pre-recording close badge hangs below the pill in vertical mode instead
+   of crowding the grab handle on top. */
+.ToolbarRoot.ToolbarVertical .toolbar-controls {
+  top: auto;
+  right: auto;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .ToolbarRoot.ToolbarVertical .ToolbarModeItem::before {
   display: none;
 }
+/* Drag handle pops out of the pill's top edge instead of sitting inside it.
+   It keeps the Rnd `grab` handle class, so dragging still starts only here. */
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 22px;
+  padding: 2px 8px;
+  background: #fff;
+  border: 1px solid $color-border;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+  z-index: 6;
+}
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab:hover {
+  background: #fff;
+}
+.ToolbarRoot.ToolbarVertical .ToolbarButton.grab:active {
+  cursor: grabbing;
+}
 .ToolbarRoot.ToolbarVertical .DrawingToolbar {
+  flex-direction: column;
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
   left: calc(100% + 10px) !important;
   top: 50% !important;
   bottom: auto !important;
@@ -274,6 +327,15 @@ iframe.recordful-iframe {
 }
 .ToolbarRoot.ToolbarVertical .DrawingToolbar.show-toolbar {
   transform: translateY(-50%) scale(1) !important;
+}
+/* Popout internals stack vertically too (scoped to popouts only). */
+.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarToggleGroup {
+  flex-direction: column;
+}
+.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarSeparator {
+  width: 18px;
+  height: 1px;
+  margin: 8px 0;
 }
 .ToolbarRoot.ToolbarVertical .DrawingToolbar::before {
   -webkit-mask-image: radial-gradient(
@@ -287,6 +349,19 @@ iframe.recordful-iframe {
     #000 20px
   ) !important;
   background-position: left center !important;
+}
+/* Shape picker submenu nests inside the drawing popout; flip it to the
+   popout's right edge instead of above it. */
+.ToolbarRoot.ToolbarVertical .shapeToolbar {
+  left: calc(100% + 10px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) scale(0.5) !important;
+  transform-origin: 0 50% !important;
+}
+.ToolbarRoot.ToolbarVertical .shapeToolbar.show-toolbar {
+  transform: translateY(-50%) scale(1) !important;
 }
 .ToolbarRecordingControls {
   display: flex;
@@ -445,7 +520,7 @@ iframe.recordful-iframe {
     opacity: 0;
   }
   &[data-state="on"] {
-    background: rgba(56, 126, 247, 0.1);
+    background: rgba(0, 0, 0, 0.06);
 
     svg {
       color: $color-primary;

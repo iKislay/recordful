@@ -3,12 +3,11 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-import { MoreIconPopup } from "../../toolbar/components/SVG";
 
 import TooltipWrap from "../components/TooltipWrap";
 import { MenuCheckboxItem } from "../components/Checkbox";
 
-import { CaretRight, Check } from "@phosphor-icons/react";
+import { CaretRight, Check, GearSix } from "@phosphor-icons/react";
 
 import { buildDiagnosticZip } from "../../../utils/buildDiagnosticZip";
 
@@ -299,7 +298,7 @@ const SettingsMenu = (props) => {
     >
       <DropdownMenu.Trigger asChild>
         <button className="IconButton" aria-label="Customise options">
-          <MoreIconPopup />
+          <GearSix size={16} />
         </button>
       </DropdownMenu.Trigger>
 

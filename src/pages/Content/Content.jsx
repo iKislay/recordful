@@ -24,7 +24,7 @@ const Content = () => {
 			.recordful-outline {
 				position: absolute;
 				z-index: 99999999999;
-				border: 2px solid #3080F8;
+				border: 2px solid #111111;
 				outline-offset: -2px;
 				pointer-events: none;
 				border-radius: 5px!important;
@@ -155,7 +155,7 @@ const Content = () => {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #3080F8;
+  background: #111111;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;

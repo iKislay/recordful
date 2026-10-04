@@ -153,11 +153,11 @@ const ToolbarWrap = () => {
       const height = rect.height;
 
       // Keep toolbar proportional to bottom-right.
-      if (xpos + width + 30 > window.innerWidth) {
-        xpos = window.innerWidth - width - 30;
+      if (xpos + width > window.innerWidth) {
+        xpos = window.innerWidth - width;
       }
-      if (ypos + height - 60 > window.innerHeight) {
-        ypos = window.innerHeight - height + 60;
+      if (ypos + height > window.innerHeight) {
+        ypos = window.innerHeight - height;
       }
 
       DragRef.current.updatePosition({ x: xpos, y: ypos });
@@ -188,10 +188,10 @@ const ToolbarWrap = () => {
     }
 
     if (
-      d.x < -25 ||
+      d.x < 0 ||
       d.x + width > window.innerWidth ||
-      d.y < 60 ||
-      d.y + height - 80 > window.innerHeight
+      d.y < 0 ||
+      d.y + height > window.innerHeight
     ) {
       setShake("ToolbarShake");
     } else {
@@ -209,12 +209,12 @@ const ToolbarWrap = () => {
     const width = rect.width;
     const height = rect.height;
 
-    if (d.x < -10) {
+    if (d.x < 0) {
       setElastic("ToolbarElastic");
-      xpos = -10;
-    } else if (d.x + width + 30 > window.innerWidth) {
+      xpos = 0;
+    } else if (d.x + width > window.innerWidth) {
       setElastic("ToolbarElastic");
-      xpos = window.innerWidth - width - 30;
+      xpos = window.innerWidth - width;
     }
 
     if (d.y < 130) {
@@ -223,12 +223,12 @@ const ToolbarWrap = () => {
       setSide("ToolbarTop");
     }
 
-    if (d.y < 80) {
+    if (d.y < 0) {
       setElastic("ToolbarElastic");
-      ypos = 80;
-    } else if (d.y + height - 60 > window.innerHeight) {
+      ypos = 0;
+    } else if (d.y + height > window.innerHeight) {
       setElastic("ToolbarElastic");
-      ypos = window.innerHeight - height + 60;
+      ypos = window.innerHeight - height;
     }
     DragRef.current.updatePosition({ x: xpos, y: ypos });
 

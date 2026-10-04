@@ -213,17 +213,6 @@ const RecordingType = (props) => {
       {contentState.cameraPermission && (
         <Dropdown type="camera" shadowRef={props.shadowRef} />
       )}
-      {contentState.cameraPermission &&
-        contentState.defaultVideoInput != "none" &&
-        contentState.cameraActive && (
-          <div>
-            <Switch
-              label={chrome.i18n.getMessage("flipCameraLabel")}
-              name="flip-camera"
-              value="cameraFlipped"
-            />
-          </div>
-        )}
 
       {!contentState.microphonePermission && (
         <button

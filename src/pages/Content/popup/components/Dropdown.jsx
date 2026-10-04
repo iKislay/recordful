@@ -259,7 +259,7 @@ const Dropdown = (props) => {
     >
       <Select.Trigger
         className="SelectTrigger"
-        aria-label="Food"
+        aria-label={props.type === "camera" ? "Camera" : "Microphone"}
         id={cameraAnchorId}
       >
         <Select.Icon

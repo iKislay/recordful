@@ -70,11 +70,11 @@ button {
   height: 35px;
 }
 .Button.blue {
-  background-color: rgba(48, 128, 248, 0.1);
+  background-color: rgba(0, 0, 0, 0.06);
   color: $color-primary;
 
   &:hover {
-    background-color: rgba(48, 128, 248, 0.15);
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
   &:focus {
