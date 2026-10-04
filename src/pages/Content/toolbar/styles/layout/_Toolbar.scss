@@ -99,10 +99,20 @@ iframe.recordful-iframe {
 }
 .ToolbarDragging .ToolbarRoot {
   transform: scale(1.02);
+  cursor: grabbing;
 
   &::after {
-    filter: drop-shadow(0px 20px 50px rgba(0, 0, 0, 0.5));
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
   }
+
+  // Disabled buttons swallow mouseup, which would leave the drag stuck.
+  * {
+    pointer-events: none;
+  }
+}
+// Own compositor layer while dragging, so moving it doesn't repaint.
+.react-draggable.ToolbarDragging {
+  will-change: transform;
 }
 
 // Shake animation for the toolbar
@@ -222,8 +232,8 @@ iframe.recordful-iframe {
     left: 0px;
     top: 0px;
     border-radius: $container-border-radius;
-    filter: drop-shadow(0px 4px 50px rgba(0, 0, 0, 0.3));
-    transition: filter 0.2s ease-in-out;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.2s ease-in-out;
   }
 }
 
@@ -242,7 +252,14 @@ iframe.recordful-iframe {
   width: max-content;
   min-width: 56px;
   height: auto;
-  padding: 10px 8px;
+  padding: 10px 8px 12px;
+  /* In flow, so the Rnd drag box is exactly the pill and drag coordinates
+     are its top-left corner (the base style hangs it off a 0x0 box). */
+  position: relative;
+  bottom: auto;
+  left: auto;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls {
   flex-direction: column;
@@ -279,14 +296,25 @@ iframe.recordful-iframe {
   height: 1px;
   margin: 8px 0;
 }
-/* Pre-recording close badge hangs below the pill in vertical mode instead
-   of crowding the grab handle on top. */
-.ToolbarRoot.ToolbarVertical .toolbar-controls {
-  top: auto;
-  right: auto;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
+/* Pre-recording close button is the pill's last item in vertical mode
+   instead of crowding the grab handle on top. */
+.ToolbarRoot.ToolbarVertical > .toolbar-controls {
+  position: static;
+  order: 1;
+  width: 32px;
+  height: 32px;
+  margin-top: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  opacity: 1;
+  pointer-events: auto;
+  transition: background-color 0.25s ease-in-out;
+
+  &:hover {
+    background-color: rgba(124, 139, 165, 0.1);
+  }
 }
 .ToolbarRoot.ToolbarVertical .ToolbarModeItem::before {
   display: none;

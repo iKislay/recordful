@@ -143,24 +143,25 @@ const ToolbarWrap = () => {
     }
   }, [t]);
 
+  // The grab handle pops 12px out of the pill's top edge; keep it reachable.
+  const HANDLE_OVERHANG = 12;
+
+  // offsetWidth/Height ignore the drag scale + shake transforms.
+  const clampToViewport = (x, y) => {
+    const { offsetWidth, offsetHeight } = ToolbarRef.current;
+    return {
+      x: Math.max(0, Math.min(x, window.innerWidth - offsetWidth)),
+      y: Math.max(
+        HANDLE_OVERHANG,
+        Math.min(y, window.innerHeight - offsetHeight),
+      ),
+    };
+  };
+
   useLayoutEffect(() => {
-    function setToolbarPosition(e) {
-      let xpos = DragRef.current.getDraggablePosition().x;
-      let ypos = DragRef.current.getDraggablePosition().y;
-
-      const rect = ToolbarRef.current.getBoundingClientRect();
-      const width = rect.width;
-      const height = rect.height;
-
-      // Keep toolbar proportional to bottom-right.
-      if (xpos + width > window.innerWidth) {
-        xpos = window.innerWidth - width;
-      }
-      if (ypos + height > window.innerHeight) {
-        ypos = window.innerHeight - height;
-      }
-
-      DragRef.current.updatePosition({ x: xpos, y: ypos });
+    function setToolbarPosition() {
+      const { x, y } = DragRef.current.getDraggablePosition();
+      DragRef.current.updatePosition(clampToViewport(x, y));
     }
     window.addEventListener("resize", setToolbarPosition);
     setToolbarPosition();
@@ -171,15 +172,42 @@ const ToolbarWrap = () => {
     setMode(value);
   };
 
+  // Position at drag start; Escape drops the toolbar back here.
+  const dragStartRef = useRef(null);
+  const dragCancelledRef = useRef(false);
+
+  // react-draggable only ends a drag on a document mouseup, so hand it one.
+  const endDrag = (e) => {
+    document.dispatchEvent(
+      new MouseEvent("mouseup", { clientX: e.clientX, clientY: e.clientY }),
+    );
+  };
+
+  useEffect(() => {
+    if (!dragging) return;
+    const onKeyDown = (e) => {
+      if (e.key !== "Escape") return;
+      e.stopPropagation();
+      dragCancelledRef.current = true;
+      endDrag(e);
+    };
+    document.addEventListener("keydown", onKeyDown, true);
+    return () => document.removeEventListener("keydown", onKeyDown, true);
+  }, [dragging]);
+
   const handleDragStart = (e, d) => {
+    dragStartRef.current = { x: d.x, y: d.y };
     setDragging("ToolbarDragging");
   };
 
   const handleDrag = (e, d) => {
-    // Drag fires ~60Hz; cache rect.
-    const rect = ToolbarRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+    // The mouseup was swallowed (released over a disabled button, outside
+    // the window, ...): the button is no longer held, so drop instead of
+    // leaving the toolbar glued to the cursor.
+    if (e.buttons === 0) {
+      endDrag(e);
+      return;
+    }
 
     if (d.y < 130) {
       setSide("ToolbarBottom");
@@ -187,48 +215,25 @@ const ToolbarWrap = () => {
       setSide("ToolbarTop");
     }
 
-    if (
-      d.x < 0 ||
-      d.x + width > window.innerWidth ||
-      d.y < 0 ||
-      d.y + height > window.innerHeight
-    ) {
-      setShake("ToolbarShake");
-    } else {
-      setShake("");
-    }
+    const clamped = clampToViewport(d.x, d.y);
+    setShake(clamped.x !== d.x || clamped.y !== d.y ? "ToolbarShake" : "");
   };
 
   const handleDrop = (e, d) => {
     setShake("");
     setDragging("");
-    let xpos = d.x;
-    let ypos = d.y;
-
-    const rect = ToolbarRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    if (d.x < 0) {
-      setElastic("ToolbarElastic");
-      xpos = 0;
-    } else if (d.x + width > window.innerWidth) {
-      setElastic("ToolbarElastic");
-      xpos = window.innerWidth - width;
+    if (dragCancelledRef.current) {
+      dragCancelledRef.current = false;
+      d = dragStartRef.current;
     }
 
-    if (d.y < 130) {
+    const { x: xpos, y: ypos } = clampToViewport(d.x, d.y);
+    if (xpos !== d.x || ypos !== d.y) setElastic("ToolbarElastic");
+
+    if (ypos < 130) {
       setSide("ToolbarBottom");
     } else {
       setSide("ToolbarTop");
-    }
-
-    if (d.y < 0) {
-      setElastic("ToolbarElastic");
-      ypos = 0;
-    } else if (d.y + height > window.innerHeight) {
-      setElastic("ToolbarElastic");
-      ypos = window.innerHeight - height;
     }
     DragRef.current.updatePosition({ x: xpos, y: ypos });
 
@@ -300,18 +305,9 @@ const ToolbarWrap = () => {
       x = window.innerWidth - contentState.toolbarPosition.offsetX;
     }
 
-    // Clamp into viewport: saved positions from a larger display can land
-    // off-screen (external monitor saved, restored on built-in).
-    const rect = ToolbarRef.current?.getBoundingClientRect();
-    const tbWidth = rect?.width || 0;
-    const tbHeight = rect?.height || 0;
-    if (x + tbWidth > window.innerWidth) x = window.innerWidth - tbWidth;
-    if (y + tbHeight > window.innerHeight) y = window.innerHeight - tbHeight;
-    if (x < 0) x = 0;
-    if (y < 0) y = 0;
-
-    DragRef.current.updatePosition({ x: x, y: y });
-
+    // handleDrop clamps into the viewport: saved positions from a larger
+    // display can land off-screen (external monitor saved, restored on
+    // built-in).
     handleDrop(null, { x: x, y: y });
   }, []);
 
