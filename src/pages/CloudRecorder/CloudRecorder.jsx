@@ -8270,6 +8270,7 @@ const CloudRecorder = () => {
                   30,
               });
               void startEncoderPrewarm({
+                hardwareAcceleration: probeConfig?.hardwareAcceleration,
                 width: w,
                 height: h,
                 codec: probeConfig?.codec || "avc1.64002A",

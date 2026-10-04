@@ -4330,6 +4330,7 @@ const Recorder = () => {
           Number(probeConfig?.framerate) ||
           30;
         void startEncoderPrewarm({
+          hardwareAcceleration: probeConfig?.hardwareAcceleration,
           width: w,
           height: h,
           codec,
