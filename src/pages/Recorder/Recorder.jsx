@@ -3,6 +3,7 @@ import { createDebugLogger } from "../utils/recorderDebug";
 import { selectMimeType, getCodecLabel, buildTrackSnapshot } from "../utils/recorderCodec";
 import localforage from "localforage";
 import RecorderUI from "./RecorderUI";
+import { startCameraTrack } from "./cameraTrack";
 import {
   createMediaRecorder,
   selectRecorderMime,
@@ -385,6 +386,18 @@ const Recorder = () => {
   const keepAliveMediaSessionActive = useRef(false);
 
   const recordingStartTime = useRef(null);
+  // The camera's own recorder, as a promise of it (null without a camera),
+  // and when the screen's recorder started, for the gap between the two.
+  const cameraTrack = useRef(null);
+  const screenStartedAt = useRef(null);
+  const withCameraTrack = (act) =>
+    Promise.resolve(cameraTrack.current).then((track) => track && act(track));
+  const stopCameraTrack = async () => {
+    const starting = cameraTrack.current;
+    cameraTrack.current = null;
+    const track = await starting;
+    await track?.stop(screenStartedAt.current).catch(() => {});
+  };
   const sessionHeartbeat = useRef(null);
   const recordingTick = useRef(null);
 
@@ -1531,6 +1544,13 @@ const Recorder = () => {
         backend: selection.backend,
       };
       chunkBackendRef.current = backendRefAtOpen;
+      // The camera goes to a file of its own beside the take, when one is on.
+      await stopCameraTrack();
+      if (backendRefAtOpen.backend === "opfs" && backendRefAtOpen.fileName) {
+        cameraTrack.current = startCameraTrack(backendRefAtOpen.fileName).catch(
+          () => null,
+        );
+      }
       const endBackendRefSet = perfSpan("Recorder.preflight set backendRef");
       try {
         await chrome.storage.local.set({
@@ -2382,6 +2402,7 @@ const Recorder = () => {
         } catch {}
         markStartProgress("webcodecs-start");
         const ok = await recorder.current.start();
+        screenStartedAt.current = Date.now();
 
         debug("WebCodecsRecorder.start() result", ok);
 
@@ -2602,6 +2623,7 @@ const Recorder = () => {
           };
           markStartProgress("mediarecorder-start");
           recorder.current.start(5000);
+          screenStartedAt.current = Date.now();
           debug("MediaRecorder.start(5000) called");
 
           // First-chunk watchdog (8s, chrome.alarms-backed).
@@ -3284,6 +3306,7 @@ const Recorder = () => {
       stopFinalizeHeartbeat();
     }
 
+    await stopCameraTrack();
     await waitForDrain();
     if (!useWebCodecs.current) {
       await updateFreeFinalizeStatus("chunks_ready", 100);
@@ -3343,6 +3366,7 @@ const Recorder = () => {
 
   const dismissRecording = async () => {
     debug("dismissRecording()");
+    void stopCameraTrack();
     localStopInitiated.current = true;
     resetGateState();
     uiClosing.current = true;
@@ -3448,6 +3472,7 @@ const Recorder = () => {
       return false;
     }
 
+    await stopCameraTrack();
     dimensionLock.current?.stop().catch(() => {});
 
     dimensionLock.current = null;
@@ -4995,6 +5020,7 @@ const Recorder = () => {
         debug("Pausing MediaRecorder");
         recorder.current.pause();
       }
+      void withCameraTrack((track) => track.pause());
       const now = Date.now();
       pausedStateRef.current = true;
       // Local pausedAt so rapid resume avoids storage round-trip.
@@ -5016,6 +5042,7 @@ const Recorder = () => {
         debug("Resuming MediaRecorder");
         recorder.current.resume();
       }
+      void withCameraTrack((track) => track.resume());
       const now = Date.now();
       pausedStateRef.current = false;
       // Local pausedAt: storage may not have propagated yet.

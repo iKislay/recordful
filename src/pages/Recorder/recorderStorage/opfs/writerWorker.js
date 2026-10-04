@@ -20,15 +20,31 @@ let closed = false;
 
 // One recoverable recording, like chunksStore.clear() on IDB, kept until a new
 // one starts. keepNames (open editors) comes from the caller, never forces a delete.
+// Each take's pointer trail rides beside its file as <name>.meta.json; it is
+// kept exactly while its take is, and an orphaned one is swept with the rest.
+const META_SUFFIX = ".meta.json";
+// And its camera, recorded apart, as <name>.camera (see cameraTrack.js).
+const CAMERA_SUFFIX = ".camera";
 const clearPreviousRecordings = async (exceptName = null, keepNames = []) => {
   try {
     const keep = new Set(Array.isArray(keepNames) ? keepNames : []);
+    if (exceptName) keep.add(exceptName);
     const dir = await navigator.storage.getDirectory();
     for await (const [name] of dir.entries()) {
       if (!name.startsWith(FILE_PREFIX)) continue;
-      if (exceptName && name === exceptName) continue;
+      const beside = [META_SUFFIX, CAMERA_SUFFIX].find((suffix) =>
+        name.endsWith(suffix),
+      );
+      if (beside) {
+        if (!keep.has(name.slice(0, -beside.length))) {
+          await dir.removeEntry(name).catch(() => {});
+        }
+        continue;
+      }
       if (keep.has(name)) continue;
       await dir.removeEntry(name).catch(() => {});
+      await dir.removeEntry(name + META_SUFFIX).catch(() => {});
+      await dir.removeEntry(name + CAMERA_SUFFIX).catch(() => {});
     }
   } catch {}
 };

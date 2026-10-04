@@ -128,6 +128,9 @@ const CameraWrap = (props) => {
   const hidden =
     !idle &&
     (contentState.pipActive ||
+      // The camera records to a file of its own, for the editor to lay out:
+      // shown here it would be in the screen's picture as well.
+      contentState.recordingType !== "camera" ||
       (contentState.isSubscribed &&
         (!contentState.instantMode || contentState.multiMode)) ||
       contentState.onboarding);
