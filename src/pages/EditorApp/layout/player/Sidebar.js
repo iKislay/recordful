@@ -1,29 +1,30 @@
 import React, { useContext } from "react";
-import { X } from "@phosphor-icons/react";
 import styles from "../../styles/player/_Player.module.scss";
 import { ContentStateContext } from "../../context/ContentState";
 import CropUI from "../editor/CropUI";
 import AudioUI from "../editor/AudioUI";
-import { closeTool } from "./tools";
+import Toolbar from "./Toolbar";
+import { unavailableReason } from "./tools";
 
-// The settings of the open tool. Hidden when no tool is open, so the video
-// has the whole width.
+// The tool rail and the selected tool's settings. Always on screen; when the
+// recording cannot be edited the panel says why instead of showing settings
+// that would do nothing.
 const Sidebar = () => {
-  const [contentState, setContentState] = useContext(ContentStateContext);
-  const { mode } = contentState;
-  if (mode !== "crop" && mode !== "audio") return null;
+  const [contentState] = useContext(ContentStateContext);
+  const reason = unavailableReason(contentState);
 
   return (
     <aside className={styles.sidebar}>
-      <button
-        className={styles.sidebarClose}
-        aria-label={chrome.i18n.getMessage("closeModalLabel")}
-        disabled={contentState.isFfmpegRunning}
-        onClick={() => closeTool(contentState, setContentState)}
-      >
-        <X size={16} />
-      </button>
-      {mode === "crop" ? <CropUI /> : <AudioUI />}
+      <Toolbar />
+      <div className={styles.toolPanel}>
+        {reason ? (
+          <p className={styles.toolNote}>{reason}</p>
+        ) : contentState.mode === "crop" ? (
+          <CropUI />
+        ) : (
+          <AudioUI />
+        )}
+      </div>
     </aside>
   );
 };

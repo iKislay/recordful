@@ -8,7 +8,6 @@ import HelpButton from "../../components/player/HelpButton";
 import ProBanner from "../../components/global/ProBanner";
 import ReviewBanner from "../../components/global/ReviewBanner";
 import TrimUI from "../editor/TrimUI";
-import Toolbar from "./Toolbar";
 import { canEdit } from "./tools";
 // Cropper drags in react-advanced-cropper (~218KB) and is only rendered
 // when the user opens the crop tool. Lazy-load so it doesn't eat the
@@ -17,8 +16,7 @@ const CropperWrap = lazy(() => import("../../components/editor/CropperWrap"));
 
 import { ContentStateContext } from "../../context/ContentState";
 
-// The main column: status alerts, the video with the toolbar floating over
-// its top, its title, and the timeline. `alertsRef` is the slot the Share menu draws its alerts into.
+// The main column: status alerts, the video, its title, and the timeline. `alertsRef` is the slot the Share menu draws its alerts into.
 const Content = ({ alertsRef }) => {
   const [contentState, setContentState] = useContext(ContentStateContext);
   const editable = canEdit(contentState);
@@ -37,7 +35,6 @@ const Content = ({ alertsRef }) => {
     <div className={styles.content}>
       <div ref={alertsRef} className={styles.alerts} />
       <div className={styles.stage}>
-        <Toolbar />
         {cropping ? (
           <Suspense fallback={null}>
             <CropperWrap />

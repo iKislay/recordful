@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 
 import { ContentStateContext } from "../../context/ContentState";
+import { addAudio } from "../player/tools";
 
 const AudioUI = (props) => {
   const [contentState, setContentState] = useContext(ContentStateContext);
@@ -37,14 +38,8 @@ const AudioUI = (props) => {
       return;
     }
 
-    // Fall back to rawBlob (webm from recovery) if mp4 blob isn't ready.
-    const videoBlob =
-      contentState.blob || contentState.rawBlob || contentState.webm;
     setAudio(file);
-    setContentState((prev) => ({
-      ...prev,
-      pendingAudio: file,
-    }));
+    addAudio(contentState, setContentState, file);
   };
 
   const handleVolume = (e) => {

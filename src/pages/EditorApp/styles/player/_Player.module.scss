@@ -12,37 +12,43 @@
   display: flex;
 }
 
-// Floating bar of tools over the top of the stage, clear of the video.
-.toolbar {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
+// The sidebar: a rail of tools on its left edge, the selected tool's
+// settings beside it.
+.sidebar {
+  flex: none;
+  width: 400px;
   display: flex;
-  gap: 2px;
-  padding: 4px;
   background-color: #fff;
-  border: 1px solid $color-border;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-left: 1px solid $color-border;
+  box-sizing: border-box;
+}
+.toolbar {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 8px;
+  border-right: 1px solid $color-border;
 }
 .tool {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: none;
   color: $color-text-primary;
   cursor: pointer;
 
-  &:hover:not(:disabled),
-  &[aria-pressed="true"] {
+  &:hover:not(:disabled) {
     background-color: $color-primary-transparent;
+  }
+  &[aria-pressed="true"] {
+    background-color: $color-primary;
+    color: $color-text-contrast;
   }
   &:disabled {
     opacity: 0.35;
@@ -53,37 +59,16 @@
     box-shadow: $focus-border;
   }
 }
-
-// Settings of the open tool.
-.sidebar {
-  position: relative;
-  flex: none;
-  width: 360px;
+.toolPanel {
+  flex: 1;
+  min-width: 0;
   overflow-y: auto;
-  background-color: #fff;
-  border-left: 1px solid $color-border;
-  box-sizing: border-box;
 }
-.sidebarClose {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 1;
-  display: flex;
-  padding: 6px;
-  border: none;
-  border-radius: 8px;
-  background: none;
+.toolNote {
+  margin: 0;
+  padding: 24px 16px;
+  font-family: $font-medium;
   color: $color-text-secondary;
-  cursor: pointer;
-
-  &:hover:not(:disabled) {
-    background-color: $color-primary-transparent;
-  }
-  &:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
 }
 
 // Narrow windows: the sidebar drops under the video and the page scrolls

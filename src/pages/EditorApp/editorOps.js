@@ -145,6 +145,8 @@ export async function runEditorOp(message, reply, { viewer = false } = {}) {
         reply({
           type: "updated-blob",
           base64,
+          // The only way back from this edit is Undo.
+          addToHistory: true,
           topLevel: true,
           fromAudio: true,
           skipReencode: true,
@@ -220,6 +222,8 @@ export async function runEditorOp(message, reply, { viewer = false } = {}) {
         reply({
           type: "updated-blob",
           base64,
+          // The only way back from this edit is Undo.
+          addToHistory: true,
           topLevel: true,
           _opId: message._opId,
         });

@@ -12,13 +12,12 @@
 .alerts {
   flex: none;
 }
-// Room for the floating toolbar above the video.
 .stage {
   position: relative;
   flex: 1;
   min-height: 280px;
   display: flex;
-  padding-top: 64px;
+  padding: 24px 0 8px;
   box-sizing: border-box;
 }
 

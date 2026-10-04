@@ -2,51 +2,50 @@ import React, { useContext } from "react";
 import { Crop, SelectionBackground, SpeakerHigh } from "@phosphor-icons/react";
 import styles from "../../styles/player/_Player.module.scss";
 import { ContentStateContext } from "../../context/ContentState";
-import { canEdit, closeTool, openTool } from "./tools";
+import { canEdit, enterCrop, leaveCrop } from "./tools";
 
-const TOOLS = [
-  { mode: "crop", Icon: Crop, label: "cropButtonTitle" },
-  { mode: "audio", Icon: SpeakerHigh, label: "addAudioButtonTitle" },
-];
-
-// The floating bar above the video. A tool opens its settings in the
-// sidebar; pressing it again closes the tool and applies the change.
+// The rail of tools on the sidebar's left edge. One is always selected.
 const Toolbar = () => {
   const [contentState, setContentState] = useContext(ContentStateContext);
+  const cropping = contentState.mode === "crop";
   const unavailable = !canEdit(contentState) || contentState.isFfmpegRunning;
 
+  const tools = [
+    {
+      Icon: Crop,
+      label: chrome.i18n.getMessage("cropButtonTitle"),
+      active: cropping,
+      select: () => !cropping && enterCrop(contentState, setContentState),
+    },
+    {
+      Icon: SpeakerHigh,
+      label: chrome.i18n.getMessage("addAudioButtonTitle"),
+      active: !cropping,
+      select: () => cropping && leaveCrop(contentState, setContentState),
+    },
+    // Not built yet; shown so the rail's shape is settled.
+    {
+      Icon: SelectionBackground,
+      label: chrome.i18n.getMessage("backgroundToolLabel"),
+      disabled: true,
+    },
+  ];
+
   return (
-    <div className={styles.toolbar} role="toolbar">
-      {TOOLS.map(({ mode, Icon, label }) => {
-        const active = contentState.mode === mode;
-        const name = chrome.i18n.getMessage(label);
-        return (
-          <button
-            key={mode}
-            className={styles.tool}
-            aria-label={name}
-            aria-pressed={active}
-            title={name}
-            disabled={unavailable}
-            onClick={() =>
-              active
-                ? closeTool(contentState, setContentState)
-                : openTool(contentState, setContentState, mode)
-            }
-          >
-            <Icon size={18} />
-          </button>
-        );
-      })}
-      {/* Not built yet; shown so the toolbar's shape is settled. */}
-      <button
-        className={styles.tool}
-        aria-label={chrome.i18n.getMessage("backgroundToolLabel")}
-        title={chrome.i18n.getMessage("backgroundToolLabel")}
-        disabled
-      >
-        <SelectionBackground size={18} />
-      </button>
+    <div className={styles.toolbar} role="toolbar" aria-orientation="vertical">
+      {tools.map(({ Icon, label, active, select, disabled }) => (
+        <button
+          key={label}
+          className={styles.tool}
+          aria-label={label}
+          aria-pressed={Boolean(active)}
+          title={label}
+          disabled={disabled || unavailable}
+          onClick={select}
+        >
+          <Icon size={18} />
+        </button>
+      ))}
     </div>
   );
 };

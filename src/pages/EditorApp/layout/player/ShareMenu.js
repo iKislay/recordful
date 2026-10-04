@@ -20,6 +20,7 @@ import {
 } from "@phosphor-icons/react";
 
 import { ContentStateContext } from "../../context/ContentState";
+import { notAvailableLabel, preparingLabel } from "./tools";
 
 // The Share button in the nav, with saving and exporting behind it. It also
 // owns the status alerts (offline, still processing, an edit that failed),
@@ -45,25 +46,6 @@ const ShareMenu = ({ alertsNode }) => {
   useEffect(() => {
     if (!contentState.saveDrive) saveDriveInFlight.current = false;
   }, [contentState.saveDrive]);
-
-  const getNotAvailableLabel = () => {
-    if (contentState.fallback && contentState.noffmpeg && contentState.editLimit === 0) {
-      return chrome.i18n.getMessage("notAvailableLongRecording");
-    }
-    if (contentState.fallback && contentState.noffmpeg) {
-      return chrome.i18n.getMessage("notAvailableRecoveryMode");
-    }
-    return chrome.i18n.getMessage("notAvailableLabel");
-  };
-
-  const getPreparingLabel = () => {
-    const base = chrome.i18n.getMessage("preparingLabel");
-    const pct = Math.round(contentState.processingProgress || 0);
-    if (!contentState.mp4ready && pct > 0) {
-      return `${base} (${pct}%)`;
-    }
-    return base;
-  };
 
   // sendMessage rejects past ~64 MB, and base64 inflates ~1.33x, so a base64
   // Drive upload is unsafe above ~48 MB. The OPFS path has no such limit; this
@@ -827,10 +809,10 @@ const ShareMenu = ({ alertsNode }) => {
                     !isNativeMp4
                       ? chrome.i18n.getMessage("noConnectionLabel")
                       : mp4ShowNotAvailable
-                      ? getNotAvailableLabel()
+                      ? notAvailableLabel(contentState)
                       : contentState.mp4ready && !contentState.isFfmpegRunning
                       ? chrome.i18n.getMessage("downloadMP4ButtonDescription")
-                      : getPreparingLabel()}
+                      : preparingLabel(contentState)}
                   </div>
                 </div>
                 <div className={styles.buttonRight}>
@@ -863,7 +845,7 @@ const ShareMenu = ({ alertsNode }) => {
                         ? chrome.i18n.getMessage(
                             "downloadWEBMButtonDescription"
                           )
-                        : getPreparingLabel()}
+                        : preparingLabel(contentState)}
                     </div>
                   </div>
                   <div className={styles.buttonRight}>
@@ -912,10 +894,10 @@ const ShareMenu = ({ alertsNode }) => {
                         contentState.noffmpeg ||
                         (contentState.duration > contentState.editLimit &&
                           !contentState.override)
-                      ? getNotAvailableLabel()
+                      ? notAvailableLabel(contentState)
                       : contentState.mp4ready
                       ? chrome.i18n.getMessage("downloadGIFButtonDescription")
-                      : getPreparingLabel()}
+                      : preparingLabel(contentState)}
                   </div>
                 </div>
                 <div className={styles.buttonRight}>
