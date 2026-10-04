@@ -3010,7 +3010,7 @@ export const setupHandlers = () => {
       return;
     }
 
-    const url = `${process.env.RECORDFUL_APP_BASE}/?settings=open`;
+    const url = `${process.env.RECORDFUL_APP_BASE}/settings`;
     createTab(url, true);
   });
   // URL built here, never passed in: a content script must not be able to
