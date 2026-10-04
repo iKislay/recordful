@@ -34,6 +34,9 @@ const ShareMenu = ({ alertsNode }) => {
   // in-flight lock in its own ref and clear it when saveDrive goes false
   // (failWith, or the "saved-to-drive" message on success).
   const saveDriveInFlight = useRef(false);
+  // The menu closes as soon as an option is chosen; the download or dialog it
+  // started carries on behind it. A popover does not do that by itself.
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     contentStateRef.current = contentState;
@@ -689,7 +692,7 @@ const ShareMenu = ({ alertsNode }) => {
           </>,
           alertsNode,
         )}
-      <Popover.Root>
+      <Popover.Root open={menuOpen} onOpenChange={setMenuOpen}>
         <Popover.Trigger asChild>
           <button className="button primaryButton">
             {chrome.i18n.getMessage("shareLabel")}
@@ -701,10 +704,16 @@ const ShareMenu = ({ alertsNode }) => {
             align="end"
             sideOffset={8}
             collisionPadding={8}
+            onClick={(event) => {
+              if (event.target.closest('[role="button"]:not([disabled])')) {
+                setMenuOpen(false);
+              }
+            }}
           >
           <div className={styles.section}>
             {contentState.driveEnabled && (
               <div
+                role="button"
                 className={styles.buttonLogout}
                 onClick={() => {
                   signOutDrive();
@@ -752,7 +761,10 @@ const ShareMenu = ({ alertsNode }) => {
                 <div
                   role="button"
                   className={styles.button}
-                  onClick={() => contentState.downloadWEBM()}
+                  onClick={() => {
+                    if (contentState.isFfmpegRunning) return;
+                    contentState.downloadWEBM();
+                  }}
                   disabled={contentState.isFfmpegRunning}
                 >
                   <div className={styles.buttonLeft}>
@@ -831,7 +843,10 @@ const ShareMenu = ({ alertsNode }) => {
                 <div
                   role="button"
                   className={styles.button}
-                  onClick={() => contentState.downloadWEBM()}
+                  onClick={() => {
+                    if (contentState.isFfmpegRunning) return;
+                    contentState.downloadWEBM();
+                  }}
                   disabled={contentState.isFfmpegRunning}
                 >
                   <div className={styles.buttonLeft}>

@@ -12,7 +12,7 @@
   display: flex;
 }
 
-// Floating bar of tools above the video.
+// Floating bar of tools over the top of the stage, clear of the video.
 .toolbar {
   position: absolute;
   top: 12px;
@@ -86,12 +86,12 @@
   }
 }
 
+// Narrow windows: the sidebar drops under the video and the page scrolls
+// as one.
 @media (max-width: 900px) {
-  .layout {
-    position: relative;
-  }
   .body {
     display: block;
+    overflow-y: auto;
   }
   .sidebar {
     width: 100%;
