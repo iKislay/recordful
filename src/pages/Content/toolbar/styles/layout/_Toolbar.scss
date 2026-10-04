@@ -252,7 +252,7 @@ iframe.recordful-iframe {
   width: max-content;
   min-width: 56px;
   height: auto;
-  padding: 10px 8px 12px;
+  padding: 22px 8px 12px;
   /* In flow, so the Rnd drag box is exactly the pill and drag coordinates
      are its top-left corner (the base style hangs it off a 0x0 box). */
   position: relative;
@@ -282,19 +282,25 @@ iframe.recordful-iframe {
   text-align: center;
   white-space: nowrap;
 }
-.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup {
+/* Everything stacks in vertical mode: the bar, the popouts and the shape
+   picker nested in the drawing popout, so every divider is horizontal. */
+.ToolbarRoot.ToolbarVertical .ToolbarToggleGroup,
+.ToolbarRoot.ToolbarVertical .shapeToolbar {
   flex-direction: column;
 }
-.ToolbarRoot.ToolbarVertical > .ToolbarSeparator {
+.ToolbarRoot.ToolbarVertical .ToolbarSeparator {
   width: 18px;
   height: 1px;
   margin: 8px 0;
 }
-/* Separator living inside the main toggle group (cursor/mic divider). */
-.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup > .ToolbarSeparator {
-  width: 18px;
-  height: 1px;
-  margin: 8px 0;
+/* Mode buttons span the pill's inner width, so their popouts can be
+   placed against the pill's edge rather than the 32px button. */
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup {
+  align-self: stretch;
+}
+.ToolbarRoot.ToolbarVertical > .ToolbarToggleGroup > .ToolbarToggleWrap {
+  align-self: stretch;
+  width: auto;
 }
 /* Pre-recording close button is the pill's last item in vertical mode
    instead of crowding the grab handle on top. */
@@ -342,12 +348,14 @@ iframe.recordful-iframe {
 .ToolbarRoot.ToolbarVertical .ToolbarButton.grab:active {
   cursor: grabbing;
 }
+/* 8px is the pill's side padding, 6px the gap: the popout sits right
+   beside the pill instead of on top of it. */
 .ToolbarRoot.ToolbarVertical .DrawingToolbar {
   flex-direction: column;
   height: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  left: calc(100% + 10px) !important;
+  left: calc(100% + 8px + 6px) !important;
   top: 50% !important;
   bottom: auto !important;
   transform: translateY(-50%) scale(0.5) !important;
@@ -356,27 +364,38 @@ iframe.recordful-iframe {
 .ToolbarRoot.ToolbarVertical .DrawingToolbar.show-toolbar {
   transform: translateY(-50%) scale(1) !important;
 }
-/* Popout internals stack vertically too (scoped to popouts only). */
-.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarToggleGroup {
-  flex-direction: column;
-}
-.ToolbarRoot.ToolbarVertical .DrawingToolbar > .ToolbarSeparator {
-  width: 18px;
-  height: 1px;
-  margin: 8px 0;
-}
+/* No notch: the popout no longer wraps around the mode button. */
 .ToolbarRoot.ToolbarVertical .DrawingToolbar::before {
-  -webkit-mask-image: radial-gradient(
-    circle at -14px 50%,
-    transparent 20px,
-    #000 20px
-  ) !important;
-  mask-image: radial-gradient(
-    circle at -14px 50%,
-    transparent 20px,
-    #000 20px
-  ) !important;
-  background-position: left center !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+/* Items fade in one after another when a popout opens. `backwards` only,
+   so nothing is left animated (and stacking) once they have appeared. */
+@keyframes toolbar-item-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+}
+.DrawingToolbar.show-toolbar > .ToolbarToggleGroup > :not(.shapeToolbar),
+.DrawingToolbar.show-toolbar > :not(.ToolbarToggleGroup) {
+  animation: toolbar-item-in 0.22s ease-out backwards;
+}
+@for $i from 1 through 11 {
+  .DrawingToolbar.show-toolbar > .ToolbarToggleGroup > :nth-child(#{$i}) {
+    animation-delay: #{$i * 30}ms;
+  }
+}
+/* Undo/redo/clear follow the drawing popout's group. */
+@for $i from 2 through 5 {
+  .DrawingToolbar.show-toolbar > :nth-child(#{$i}) {
+    animation-delay: #{($i + 10) * 30}ms;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .DrawingToolbar.show-toolbar * {
+    animation: none !important;
+  }
 }
 /* Shape picker submenu nests inside the drawing popout; flip it to the
    popout's right edge instead of above it. */
