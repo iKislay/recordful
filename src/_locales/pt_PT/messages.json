@@ -719,6 +719,10 @@
     "message": "Substituir áudio existente",
     "description": "Botão de substituição de áudio no editor"
   },
+  "zoomToPointPopup": {
+    "message": "Zoom para o cursor",
+    "description": "Popup de zoom para o ponto"
+  },
   "stayInPagePopup": {
     "message": "Permanece na página durante a gravação",
     "description": "Popup de permanência na página"

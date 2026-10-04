@@ -51,6 +51,7 @@ export const updateFromStorage = (check = true, id = null) => {
       "askMicrophone",
       "offscreenRecording",
       "useOffscreenCloud",
+      "zoomEnabled",
       "autoZoom",
       "setDevices",
       "popupPosition",
@@ -221,6 +222,10 @@ export const updateFromStorage = (check = true, id = null) => {
           result.pushToTalk !== undefined && result.pushToTalk !== null
             ? result.pushToTalk
             : prevContentState.pushToTalk,
+        zoomEnabled:
+          result.zoomEnabled !== undefined && result.zoomEnabled !== null
+            ? result.zoomEnabled
+            : prevContentState.zoomEnabled,
         autoZoom:
           result.autoZoom !== undefined && result.autoZoom !== null
             ? result.autoZoom

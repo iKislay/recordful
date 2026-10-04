@@ -719,6 +719,10 @@
     "message": "Ganti audio yang ada",
     "description": "Tombol Ganti audio di editor"
   },
+  "zoomToPointPopup": {
+    "message": "Perbesar ke kursor",
+    "description": "Popup Perbesar ke titik"
+  },
   "stayInPagePopup": {
     "message": "Tetap di halaman saat merekam",
     "description": "Popup Tetap di halaman"

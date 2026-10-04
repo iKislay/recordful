@@ -719,6 +719,10 @@
     "message": "தற்போதைய ஒலியை மாற்றுக",
     "description": "தொகுப்பாளி இல் ஒலி பெயர்"
   },
+  "zoomToPointPopup": {
+    "message": "கோர்சரை முடக்கு",
+    "description": "புள்ளி புள்ளி பெயர் பொத்தான்"
+  },
   "stayInPagePopup": {
     "message": "பதிவு செய்யும் பேஜில் உள்ளே இரு",
     "description": "பக்க படுகின்றது பப்ப்"

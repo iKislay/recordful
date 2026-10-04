@@ -719,6 +719,10 @@
     "message": "मौजूदा ऑडियो को बदलें",
     "description": "संपादक में ऑडियो बदलें बटन"
   },
+  "zoomToPointPopup": {
+    "message": "कर्सर पर ज़ूम करें",
+    "description": "बिंदु पॉपअप पर ज़ूम करें"
+  },
   "stayInPagePopup": {
     "message": "रिकॉर्डिंग के समय पेज में रहें",
     "description": "पेज में रहें पॉपअप"

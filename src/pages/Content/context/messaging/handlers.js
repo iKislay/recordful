@@ -1121,6 +1121,7 @@ export const setupHandlers = () => {
         microphonePermission: state.microphonePermission,
         askMicrophone: state.askMicrophone,
         cursorMode: state.cursorMode,
+        zoomEnabled: state.zoomEnabled,
         autoZoom: state.autoZoom,
         offscreenRecording: state.offscreenRecording,
         updateChrome: state.updateChrome,
@@ -1410,13 +1411,18 @@ export const setupHandlers = () => {
     }));
 
     if (result.authenticated) {
+      // Client-side zoom is unavailable for authenticated users.
       setContentState((prev) => ({
         ...prev,
         onboarding: false,
         showProSplash: false,
+        zoomEnabled: false,
       }));
 
-      chrome.storage.local.set({ wasLoggedIn: false });
+      chrome.storage.local.set({
+        zoomEnabled: false,
+        wasLoggedIn: false,
+      });
     }
   });
   registerMessage("update-project-loading", (message, sender) => {

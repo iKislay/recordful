@@ -719,6 +719,10 @@
     "message": "Remplacer l'audio existant",
     "description": "Bouton de remplacement audio dans l'éditeur"
   },
+  "zoomToPointPopup": {
+    "message": "Zoom sur le curseur",
+    "description": "Fenêtre contextuelle de zoom sur le point"
+  },
   "stayInPagePopup": {
     "message": "Restez sur la page lors de l'enregistrement",
     "description": "Fenêtre contextuelle de rester sur la page"

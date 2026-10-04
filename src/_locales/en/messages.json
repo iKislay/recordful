@@ -723,6 +723,10 @@
     "message": "Auto zoom on clicks",
     "description": "Popup option: the editor opens with a zoom on each click"
   },
+  "zoomToPointPopup": {
+    "message": "Zoom to cursor",
+    "description": "Zoom to point popup"
+  },
   "stayInPagePopup": {
     "message": "Stay in the page when recording",
     "description": "Stay in page popup"

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { DotsThree, Palette, X } from "@phosphor-icons/react";
+  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+  const shortcut = isMac ? "⌥⇧E" : "Alt⇧E";
 
 import Switch from "./Switch";
 import TimeSetter from "./TimeSetter";
@@ -146,6 +148,20 @@ const BottomBar = (props) => {
                 name="askMicrophone"
                 value="askMicrophone"
               />
+              {contentState.recordingType != "camera" &&
+                !contentState.isSubscribed && (
+                  <Switch
+                    label={
+                      chrome.i18n.getMessage("zoomToPointPopup") +
+                      " (" +
+                      shortcut +
+                      ")"
+                    }
+                    name="zoomEnabled"
+                    value="zoomEnabled"
+                    experimental={true}
+                  />
+                )}
               {contentState.recordingType != "camera" && (
                 <Switch
                   label={chrome.i18n.getMessage("autoZoomPopup")}
