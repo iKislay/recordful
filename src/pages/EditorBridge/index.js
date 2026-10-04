@@ -42,7 +42,13 @@ const readLatestRecording = async () => {
       .filter((click) =>
         [click.timestamp, click.fx, click.fy].every(Number.isFinite),
       )
-      .map((click) => ({ time: click.timestamp, x: click.fx, y: click.fy })),
+      .map((click) => ({
+        time: click.timestamp,
+        x: click.fx,
+        y: click.fy,
+        // The clicked control: left, top, right, bottom, as fractions too.
+        ...(click.box?.every(Number.isFinite) && { box: click.box }),
+      })),
     // The path it took, for the zooms that follow it.
     moves: (pointerMoves || [])
       .filter((move) => move.every(Number.isFinite))

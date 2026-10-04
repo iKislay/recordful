@@ -2242,9 +2242,11 @@ export const setupHandlers = () => {
         win.top < d.bounds.top + d.bounds.height,
     );
     if (!monitor) return null;
+    // The page sits below the browser's own bars here too.
     return (x, y) => {
-      const adjX = win.left + x - monitor.bounds.left;
-      const adjY = win.top + y - monitor.bounds.top;
+      const adjX =
+        win.left + (outerWidth - width) / 2 + x - monitor.bounds.left;
+      const adjY = win.top + outerHeight - height + y - monitor.bounds.top;
       return {
         x: adjX,
         y: adjY,
@@ -2269,7 +2271,24 @@ export const setupHandlers = () => {
       console.warn("[click-event] Could not place the click");
       return;
     }
-    storeClick({ surface, region, timestamp: videoTime, ...place(x, y) });
+    // The clicked control's box as fractions of the picture: left, top,
+    // right, bottom. Rounded, since the whole list is rewritten on each flush.
+    const { box } = payload;
+    const corners = Array.isArray(box) && [
+      place(box[0], box[1]),
+      place(box[0] + box[2], box[1] + box[3]),
+    ];
+    storeClick({
+      surface,
+      region,
+      timestamp: videoTime,
+      ...place(x, y),
+      ...(corners && {
+        box: corners
+          .flatMap(({ fx, fy }) => [fx, fy])
+          .map((n) => Math.round(n * 1000) / 1000),
+      }),
+    });
   });
 
   // The pointer's path, for the editor's zooms that follow it: [seconds into

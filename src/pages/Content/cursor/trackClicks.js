@@ -2,6 +2,9 @@
 // how many places are sent to the background at once.
 const MOVE_SAMPLE_MS = 250;
 const MOVES_PER_BATCH = 8;
+// What counts as the thing clicked, when the click lands on a part of it.
+const CONTROLS =
+  "button, a, input, select, textarea, label, summary, [role], [onclick], [tabindex]";
 
 export function startClickTracking(
   isRegion = false,
@@ -94,9 +97,20 @@ export function startClickTracking(
 
     const payload = placed(e);
     if (!payload) return;
+    // The control that was clicked, not just the point: the editor frames
+    // its zoom around this. Measured like x and y; the real target inside a
+    // shadow root, and the button rather than the icon inside it.
+    const target = e.composedPath()[0];
+    const rect = (target.closest?.(CONTROLS) ?? target).getBoundingClientRect?.();
+    const box = rect && [
+      payload.x - e.clientX + rect.left,
+      payload.y - e.clientY + rect.top,
+      rect.width,
+      rect.height,
+    ];
     chrome.runtime.sendMessage({
       type: "click-event",
-      payload: { ...payload, timestamp: Date.now() },
+      payload: { ...payload, box, timestamp: Date.now() },
     });
   };
 
