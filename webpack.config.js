@@ -184,7 +184,7 @@ const htmlPlugins = Object.keys(entryPoints)
       ...(needsKeepalive ? { chunksSortMode: "manual" } : {}),
     };
 
-    options.favicon = path.join(__dirname, "src", "assets", "favicon.png");
+    options.favicon = path.join(__dirname, "src", "assets", "favicon.ico");
 
     return new HtmlWebpackPlugin(options);
   })
