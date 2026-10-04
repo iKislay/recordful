@@ -298,10 +298,12 @@ const config = {
       "process.env.RECORDFUL_ENABLE_CLOUD_FEATURES": JSON.stringify(
         process.env.RECORDFUL_ENABLE_CLOUD_FEATURES
       ),
-      // "web" opens the app's editor after a recording; anything else keeps
-      // the editor built into the extension.
+      // The web editor, unless RECORDFUL_EDITOR says otherwise (see
+      // `build:builtin`): after a recording the app's editor opens, falling
+      // back to the one built into the extension when the site cannot be
+      // reached. Anything but "web" keeps the built-in editor.
       "process.env.RECORDFUL_EDITOR": JSON.stringify(
-        process.env.RECORDFUL_EDITOR
+        process.env.RECORDFUL_EDITOR || "web",
       ),
       "process.env.MAX_RECORDING_DURATION": JSON.stringify(
         process.env.MAX_RECORDING_DURATION || 3600 // Default to 1 hour
