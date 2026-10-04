@@ -719,10 +719,6 @@
     "message": "Sostituisci l'audio esistente",
     "description": "Pulsante di sostituzione dell'audio nell'editor"
   },
-  "zoomToPointPopup": {
-    "message": "Zoom sul cursore",
-    "description": "Popup di zoom sul punto"
-  },
   "stayInPagePopup": {
     "message": "Rimani nella pagina durante la registrazione",
     "description": "Popup di permanenza nella pagina"

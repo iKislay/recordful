@@ -22,11 +22,11 @@ const RESULT = "recordful-editor-bridge-result";
 const post = (message) => window.parent.postMessage(message, APP_ORIGIN);
 
 const readLatestRecording = async () => {
-  const { lastRecordingBackendRef, clickEvents, zoomEnabled } =
+  const { lastRecordingBackendRef, clickEvents, autoZoom } =
     await chrome.storage.local.get([
       "lastRecordingBackendRef",
       "clickEvents",
-      "zoomEnabled",
+      "autoZoom",
     ]);
   const { pointerMoves } = await chrome.storage.session.get("pointerMoves");
   const reader = chooseReader(lastRecordingBackendRef);
@@ -47,7 +47,8 @@ const readLatestRecording = async () => {
     moves: (pointerMoves || [])
       .filter((move) => move.every(Number.isFinite))
       .map(([time, x, y]) => ({ time, x, y })),
-    autoZoom: zoomEnabled === true,
+    // On unless switched off in the popup's options.
+    autoZoom: autoZoom !== false,
   };
 };
 

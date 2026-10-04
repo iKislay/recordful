@@ -719,10 +719,6 @@
     "message": "Замінити існуюче аудіо",
     "description": "Replace audio button in editor"
   },
-  "zoomToPointPopup": {
-    "message": "Збільшити до курсору",
-    "description": "Zoom to point popup"
-  },
   "stayInPagePopup": {
     "message": "Залишайтеся на сторінці під час запису",
     "description": "Stay in page popup"

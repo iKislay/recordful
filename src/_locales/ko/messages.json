@@ -719,10 +719,6 @@
     "message": "기존 오디오 교체",
     "description": "Replace audio button in editor"
   },
-  "zoomToPointPopup": {
-    "message": "커서로 확대",
-    "description": "Zoom to point popup"
-  },
   "stayInPagePopup": {
     "message": "녹화할 때 페이지에 머무르기",
     "description": "Stay in page popup"

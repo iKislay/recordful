@@ -184,16 +184,7 @@ const ContentState = (props) => {
     }));
 
     if (result.authenticated) {
-      // Client-side zoom is unavailable for authenticated users.
-      setContentState((prev) => ({
-        ...prev,
-        zoomEnabled: false,
-      }));
-
-      chrome.storage.local.set({
-        zoomEnabled: false,
-        wasLoggedIn: false,
-      });
+      chrome.storage.local.set({ wasLoggedIn: false });
     }
   }, [CLOUD_FEATURES_ENABLED]);
   useEffect(() => {
@@ -1335,7 +1326,7 @@ const ContentState = (props) => {
     shape: "rectangle",
     shapeFill: false,
     pushToTalk: false,
-    zoomEnabled: false,
+    autoZoom: true,
     offscreenRecording: false,
     // kill-switch for the offscreen recorder host (default ON); only false
     // falls back to the legacy pinned recorder tab

@@ -719,9 +719,9 @@
     "message": "Replace existing audio",
     "description": "Replace audio button in editor"
   },
-  "zoomToPointPopup": {
-    "message": "Zoom to cursor",
-    "description": "Zoom to point popup"
+  "autoZoomPopup": {
+    "message": "Auto zoom on clicks",
+    "description": "Popup option: the editor opens with a zoom on each click"
   },
   "stayInPagePopup": {
     "message": "Stay in the page when recording",

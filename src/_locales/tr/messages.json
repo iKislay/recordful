@@ -719,10 +719,6 @@
     "message": "Mevcut sesi değiştir",
     "description": "Editörde sesi değiştirme düğmesi"
   },
-  "zoomToPointPopup": {
-    "message": "İşarete Yakınlaştır",
-    "description": "Noktaya yakınlaşma açılır penceresi"
-  },
   "stayInPagePopup": {
     "message": "Kayıt yaparken sayfada kal",
     "description": "Sayfa içinde kalma açılır penceresi"

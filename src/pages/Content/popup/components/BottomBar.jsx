@@ -46,8 +46,6 @@ const BottomBar = (props) => {
   const [contentState, setContentState] = useContext(contentStateContext);
   const [moreOpen, setMoreOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-  const shortcut = isMac ? "⌥⇧E" : "Alt⇧E";
 
   // The help section visibility was driven by the old Settings open state.
   useEffect(() => {
@@ -148,20 +146,13 @@ const BottomBar = (props) => {
                 name="askMicrophone"
                 value="askMicrophone"
               />
-              {contentState.recordingType != "camera" &&
-                !contentState.isSubscribed && (
-                  <Switch
-                    label={
-                      chrome.i18n.getMessage("zoomToPointPopup") +
-                      " (" +
-                      shortcut +
-                      ")"
-                    }
-                    name="zoomEnabled"
-                    value="zoomEnabled"
-                    experimental={true}
-                  />
-                )}
+              {contentState.recordingType != "camera" && (
+                <Switch
+                  label={chrome.i18n.getMessage("autoZoomPopup")}
+                  name="autoZoom"
+                  value="autoZoom"
+                />
+              )}
             </div>
           </>,
           props.shadowRef.current.shadowRoot.querySelector(".popup-content")

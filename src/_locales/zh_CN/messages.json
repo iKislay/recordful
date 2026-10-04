@@ -719,10 +719,6 @@
     "message": "替换现有音频",
     "description": "Replace audio button in editor"
   },
-  "zoomToPointPopup": {
-    "message": "缩放到光标位置",
-    "description": "Zoom to point popup"
-  },
   "stayInPagePopup": {
     "message": "录制时保持在页面中",
     "description": "Stay in page popup"

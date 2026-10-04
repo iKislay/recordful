@@ -719,10 +719,6 @@
     "message": "Reemplazar audio existente",
     "description": "Botón de reemplazo de audio en el editor"
   },
-  "zoomToPointPopup": {
-    "message": "Zoom al cursor",
-    "description": "Ventana emergente de zoom al punto"
-  },
   "stayInPagePopup": {
     "message": "Mantenente en la página al grabar",
     "description": "Ventana emergente de permanecer en la página"

@@ -719,10 +719,6 @@
     "message": "Zamień istniejący dźwięk",
     "description": "Przycisk zamiany dźwięku w edytorze"
   },
-  "zoomToPointPopup": {
-    "message": "Powiększ do kursora",
-    "description": "Okno modalne powiększenia do punktu"
-  },
   "stayInPagePopup": {
     "message": "Zostań na stronie podczas nagrywania",
     "description": "Okno modalne pozostawania na stronie"

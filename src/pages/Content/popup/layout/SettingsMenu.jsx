@@ -73,7 +73,7 @@ const SettingsMenu = (props) => {
                 microphonePermission: contentState.microphonePermission,
                 askMicrophone: contentState.askMicrophone,
                 cursorMode: contentState.cursorMode,
-                zoomEnabled: contentState.zoomEnabled,
+                autoZoom: contentState.autoZoom,
                 offscreenRecording: contentState.offscreenRecording,
                 updateChrome: contentState.updateChrome,
                 permissionsChecked: contentState.permissionsChecked,
