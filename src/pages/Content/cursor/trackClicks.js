@@ -79,6 +79,12 @@ export function startClickTracking(
         x: clickX,
         y: clickY,
         relativeToRegion: isRegion,
+        // What x and y are measured against, so the click can be placed on
+        // the recording whatever size it is played at.
+        width: isRegion ? regionWidth : window.innerWidth,
+        height: isRegion ? regionHeight : window.innerHeight,
+        outerWidth: window.outerWidth,
+        outerHeight: window.outerHeight,
         surface: cachedSurface,
         recordingWindowId: cachedRecordingWindowId,
         timestamp: Date.now(),

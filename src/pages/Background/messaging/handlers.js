@@ -2193,15 +2193,43 @@ export const setupHandlers = () => {
     return true;
   });
 
+  // Where a click fell in the recording, from the clock: the local recorder
+  // does not answer "get-video-time", only the cloud one does.
+  const clickTimeFromClock = async () => {
+    const { recordingStartTime, totalPausedMs, paused } =
+      await chrome.storage.local.get([
+        "recordingStartTime",
+        "totalPausedMs",
+        "paused",
+      ]);
+    if (!recordingStartTime || paused) return null;
+    return (Date.now() - recordingStartTime - (totalPausedMs || 0)) / 1000;
+  };
+
   registerMessage("click-event", async ({ payload }, sender) => {
-    if (!CLOUD_FEATURES_ENABLED) return;
-    const { x, y, surface, region, isTab } = payload;
+    const { x, y, surface, region, isTab, width, height, outerWidth, outerHeight } =
+      payload;
     const senderWindowId = sender.tab?.windowId;
+    const clockTime = await clickTimeFromClock();
 
-    sendMessageRecord({ type: "get-video-time" }, (response) => {
-      const videoTime = response?.videoTime ?? null;
+    // Only the cloud recorder answers; the clock stands in for the local one.
+    const videoTime = await new Promise((resolve) =>
+      sendMessageRecord({ type: "get-video-time" }, (response) =>
+        resolve(response?.videoTime ?? clockTime),
+      ).catch(() => resolve(clockTime)),
+    );
+    {
 
-      const baseClick = { x, y, surface, region, timestamp: videoTime };
+      // fx and fy place the click as fractions of the recorded picture.
+      const baseClick = {
+        x,
+        y,
+        surface,
+        region,
+        timestamp: videoTime,
+        fx: x / width,
+        fy: y / height,
+      };
 
       if (region || isTab) {
         storeClick(baseClick);
@@ -2234,7 +2262,13 @@ export const setupHandlers = () => {
             const adjX = screenX - monitor.bounds.left;
             const adjY = screenY - monitor.bounds.top;
 
-            storeClick({ ...baseClick, x: adjX, y: adjY });
+            storeClick({
+              ...baseClick,
+              x: adjX,
+              y: adjY,
+              fx: adjX / monitor.bounds.width,
+              fy: adjY / monitor.bounds.height,
+            });
           });
         });
         return;
@@ -2250,13 +2284,21 @@ export const setupHandlers = () => {
           const screenX = win.left + x;
           const screenY = win.top + y;
 
-          storeClick({ ...baseClick, x: screenX, y: screenY });
+          // A recorded window includes the browser's own bars above the
+          // page, and its borders beside it.
+          storeClick({
+            ...baseClick,
+            x: screenX,
+            y: screenY,
+            fx: (x + (outerWidth - width) / 2) / outerWidth,
+            fy: (y + outerHeight - height) / outerHeight,
+          });
         });
         return;
       }
 
       storeClick(baseClick);
-    });
+    }
   });
 
   // serialize to avoid read-modify-write race losing clicks; cap array for long recordings
