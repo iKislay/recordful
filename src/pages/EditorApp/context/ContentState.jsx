@@ -947,6 +947,22 @@ const ContentState = (props) => {
           /\.webm$/i.test(lastRecordingBackendRef?.fileName || "");
       } catch {}
     }
+    if (isFastWebm) {
+      // The recorder streams a WebM out without a length in its header. Left
+      // like that, the player shows 0:00 and the duration reads as Infinity,
+      // which is longer than any edit limit, so the recording could never be
+      // edited. Write the real length in. Recordings past the edit limit are
+      // left alone: they are not editable anyway and can be many GB.
+      // ponytail: the fix rewrites the file in memory, so an hour-long
+      // recording costs its own size in RAM once; patch the header in place
+      // in OPFS if that shows up as a problem.
+      const seconds = await measureHeaderlessDuration(blob);
+      if (seconds && seconds <= MAX_EDIT_LIMIT_S) {
+        blob = await new Promise((resolve) =>
+          requestParentFixWebmDuration(blob, seconds * 1000, resolve),
+        );
+      }
+    }
     if (blob.type === "video/mp4" || isFastWebm) {
       if (DEBUG_RECORDER)
         console.log("[Recordful][Sandbox] reconstructVideo: fast path taken", {
@@ -2481,6 +2497,30 @@ const ContentState = (props) => {
       runEditorOp(message, reply, { viewer: isViewer }),
     );
   };
+
+  // The length of a video whose header does not state one, in seconds; null
+  // if the header has it, or if it cannot be found. The browser only learns
+  // such a file's length by reading to its end, which seeking past it forces.
+  const measureHeaderlessDuration = (blob) =>
+    new Promise((resolve) => {
+      const video = document.createElement("video");
+      const url = URL.createObjectURL(blob);
+      const finish = (seconds) => {
+        clearTimeout(timer);
+        URL.revokeObjectURL(url);
+        resolve(seconds);
+      };
+      const timer = setTimeout(() => finish(null), 15000);
+      video.preload = "metadata";
+      video.onerror = () => finish(null);
+      video.onloadedmetadata = () => {
+        if (Number.isFinite(video.duration)) return finish(null);
+        video.ondurationchange = () =>
+          Number.isFinite(video.duration) && finish(video.duration);
+        video.currentTime = Number.MAX_SAFE_INTEGER;
+      };
+      video.src = url;
+    });
 
   // off-thread the WebM duration fix via editor.html (CSP allows blob workers);
   // same shape as fix-webm-duration, sync fallback
