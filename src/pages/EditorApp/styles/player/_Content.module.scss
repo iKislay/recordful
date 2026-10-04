@@ -21,3 +21,9 @@
   padding-top: 64px;
   box-sizing: border-box;
 }
+
+@media (max-width: 900px) {
+  .content {
+    overflow-y: visible;
+  }
+}

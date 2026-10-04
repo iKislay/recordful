@@ -17,8 +17,8 @@ const CropperWrap = lazy(() => import("../../components/editor/CropperWrap"));
 
 import { ContentStateContext } from "../../context/ContentState";
 
-// The main column: toolbar, status alerts, the video, its title, and the
-// timeline. `alertsRef` is the slot the Share menu draws its alerts into.
+// The main column: status alerts, the video with the toolbar floating over
+// its top, its title, and the timeline. `alertsRef` is the slot the Share menu draws its alerts into.
 const Content = ({ alertsRef }) => {
   const [contentState, setContentState] = useContext(ContentStateContext);
   const editable = canEdit(contentState);
@@ -35,9 +35,9 @@ const Content = ({ alertsRef }) => {
 
   return (
     <div className={styles.content}>
-      <Toolbar />
       <div ref={alertsRef} className={styles.alerts} />
       <div className={styles.stage}>
+        <Toolbar />
         {cropping ? (
           <Suspense fallback={null}>
             <CropperWrap />

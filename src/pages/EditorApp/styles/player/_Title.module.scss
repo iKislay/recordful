@@ -13,8 +13,10 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items at the top of the flex container */
-  height: auto; /* Allow the container to expand with multiple lines of text */
+  justify-content: center;
+  // The heading and the input that replaces it while renaming are the same
+  // height, so nothing below moves when one swaps for the other.
+  height: 32px;
 
   &:hover {
     cursor: text;
@@ -25,8 +27,6 @@
     padding: 0;
     font-size: 20px;
     font-family: $font-medium;
-    position: absolute;
-    top: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -34,8 +34,6 @@
   }
 
   input {
-    position: absolute;
-    top: 100%;
     font-family: $font-medium;
     font-size: 20px;
     border-radius: $container-border-radius;
