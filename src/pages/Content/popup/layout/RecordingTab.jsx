@@ -17,6 +17,13 @@ const RecordingTab = (props) => {
   const [tabRecordingDisabled, setTabRecordingDisabled] = useState(false);
   const [showModalSoon, setShowModalSoon] = useState(false); // 👈 NEW
 
+  // Camera-only is no longer a mode: whoever had it chosen records the screen.
+  useEffect(() => {
+    if (contentState.recordingType !== "camera") return;
+    setContentState((prev) => ({ ...prev, recordingType: "screen" }));
+    chrome.storage.local.set({ recordingType: "screen" });
+  }, [contentState.recordingType]);
+
   // On pages that can't do tab/region capture (chrome://, app pages),
   // swap the visible selection to "screen" but don't persist; the
   // user's stored preference rehydrates on the next mount elsewhere.

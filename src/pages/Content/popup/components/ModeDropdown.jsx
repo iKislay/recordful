@@ -6,11 +6,11 @@ import {
   Check,
   Crop,
   Monitor,
-  VideoCamera,
 } from "@phosphor-icons/react";
 
 // Recording-mode picker styled like the camera/mic device dropdowns.
-// Replaces the old Screen / Tab area / Camera tab row.
+// There is no camera-only mode: the camera records beside the screen as a
+// file of its own, and the editor can size it to fill the picture.
 const MODES = [
   {
     value: "screen",
@@ -21,11 +21,6 @@ const MODES = [
     value: "region",
     label: () => chrome.i18n.getMessage("tabType"),
     Icon: Crop,
-  },
-  {
-    value: "camera",
-    label: () => chrome.i18n.getMessage("cameraType"),
-    Icon: VideoCamera,
   },
 ];
 
