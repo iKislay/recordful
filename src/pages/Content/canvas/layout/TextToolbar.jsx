@@ -1,7 +1,6 @@
 import React, { useRef, useContext, useEffect, useState } from "react";
 
 import * as Toolbar from "@radix-ui/react-toolbar";
-import * as Select from "@radix-ui/react-select";
 
 // Context
 import { contentStateContext } from "../../context/ContentState";

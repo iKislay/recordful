@@ -1,12 +1,13 @@
 import React from "react";
 
-import * as Select from "@radix-ui/react-select";
+import { Crop, Monitor } from "@phosphor-icons/react";
 import {
-  CaretDown,
-  Check,
-  Crop,
-  Monitor,
-} from "@phosphor-icons/react";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../Components/Select";
 
 // Recording-mode picker styled like the camera/mic device dropdowns.
 // There is no camera-only mode: the camera records beside the screen as a
@@ -24,66 +25,38 @@ const MODES = [
   },
 ];
 
-const ModeSelectItem = React.forwardRef(
-  ({ children, ...props }, forwardedRef) => {
-    return (
-      <Select.Item className="SelectItem" {...props} ref={forwardedRef}>
-        <Select.ItemText>{children}</Select.ItemText>
-        <Select.ItemIndicator className="SelectItemIndicator">
-          <Check size={16} weight="bold" />
-        </Select.ItemIndicator>
-      </Select.Item>
-    );
-  }
-);
-
 const ModeDropdown = (props) => {
   const current = MODES.find((mode) => mode.value === props.value) || MODES[0];
   const CurrentIcon = current.Icon;
 
   return (
-    <Select.Root value={props.value} onValueChange={props.onChange}>
-      <Select.Trigger className="SelectTrigger" aria-label="Recording mode">
-        <Select.Icon className="SelectIconType">
+    <Select value={props.value} onValueChange={props.onChange}>
+      <SelectTrigger>
+        <span className="rf-select-leading">
           <CurrentIcon size={16} />
-        </Select.Icon>
-        <div className="SelectValue">
-          <Select.Value placeholder={current.label()}>
-            {current.label()}
-          </Select.Value>
-        </div>
-        <Select.Icon className="SelectIconDrop">
-          <CaretDown size={16} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal
-        container={props.shadowRef.current.shadowRoot.querySelector(
-          ".container"
-        )}
-      >
-        <Select.Content position="popper" className="SelectContent">
-          <Select.Viewport className="SelectViewport">
-            {MODES.map((mode) => {
-              const ModeIcon = mode.Icon;
-              const disabled =
-                mode.value === "region" && props.regionDisabled;
-              return (
-                <ModeSelectItem
-                  value={mode.value}
-                  key={mode.value}
-                  disabled={disabled}
-                >
-                  <span className="SelectItemWithIcon">
-                    <ModeIcon size={16} />
-                    {mode.label()}
-                  </span>
-                </ModeSelectItem>
-              );
-            })}
-          </Select.Viewport>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+        </span>
+        <SelectValue placeholder={current.label()} />
+      </SelectTrigger>
+      <SelectContent>
+        {MODES.map((mode) => {
+          const ModeIcon = mode.Icon;
+          const disabled = mode.value === "region" && props.regionDisabled;
+          return (
+            <SelectItem
+              value={mode.value}
+              key={mode.value}
+              disabled={disabled}
+              label={mode.label()}
+            >
+              <span className="rf-select-item-icon">
+                <ModeIcon size={16} />
+                {mode.label()}
+              </span>
+            </SelectItem>
+          );
+        })}
+      </SelectContent>
+    </Select>
   );
 };
 

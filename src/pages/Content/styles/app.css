@@ -2710,187 +2710,189 @@ body.driver-active .OnboardingArrow {
     transform: translateX(0);
   }
 }
-/* reset */
+.rf-select {
+  position: relative;
+}
+
+.rf-select-trigger {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--rf-border, #e8e8e8);
+  border-radius: 12px;
+  background: var(--rf-bg, #fff);
+  color: var(--rf-text, #29292f);
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.rf-select-trigger:hover {
+  border-color: var(--rf-border-strong, #d4d3d0);
+}
+
+.rf-select-trigger:focus-visible {
+  box-shadow: 0 0 0 2px var(--rf-focus-ring, rgba(17, 17, 17, 0.2));
+}
+
+.rf-select-trigger:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.rf-select-chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--rf-text-secondary, #6e7684);
+}
+
+.rf-select-leading {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--rf-icon, #9797a4);
+}
+
+.rf-select-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rf-select-value-set {
+  color: var(--rf-text, #29292f);
+}
+
+.rf-select-value-empty {
+  color: var(--rf-text-secondary, #6e7684);
+}
+
+.rf-select-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  border: 1px solid var(--rf-border, #e8e8e8);
+  border-radius: 12px;
+  background: var(--rf-bg, #fff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.rf-select-content-bottom {
+  top: 100%;
+}
+
+.rf-select-content-top {
+  bottom: 100%;
+}
+
+.rf-select-list {
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+
+.rf-select-item {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--rf-text-secondary, #6e7684);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.rf-select-item:hover,
+.rf-select-item:focus-visible {
+  background: var(--rf-bg-hover, #f6f7fb);
+  color: var(--rf-text, #29292f);
+}
+
+.rf-select-item-selected {
+  background: var(--rf-muted-soft-bg, rgba(28, 28, 28, 0.05));
+  color: var(--rf-text, #29292f);
+}
+
+.rf-select-item:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.rf-select-item-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* reset: every popup button builds on this, not just selects */
 button {
   all: unset;
 }
 
-.SelectTrigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 8px;
-  border: 1px solid var(--rf-border);
-  line-height: 1;
-  height: 36px;
-  gap: 5px;
-  background-color: var(--rf-bg);
-  color: var(--rf-text);
-  font-size: 13px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding-left: 4px;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.SelectTrigger:hover {
-  border-color: var(--rf-border-strong);
-  background: var(--rf-bg-hover);
-  cursor: pointer;
-}
-
-.SelectTrigger:focus {
-  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring) !important;
-}
-
-.SelectTrigger[data-placeholder] {
-  color: var(--rf-text-secondary);
-}
-
-.SelectTrigger[data-state=open] {
-  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
-}
-
-.SelectValue {
-  text-align: left;
-  flex: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
-}
-.SelectValue span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 100%;
-  line-height: 34px;
-}
-
-.SelectIconDrop,
-.SelectIconType {
-  text-align: center;
-}
-
-.SelectIconType {
-  padding-left: 6px;
-  padding-right: 0px;
-}
-
-.SelectIconDrop {
-  padding-right: 8px;
-}
-
-.SelectTrigger[data-state=open] .SelectIconDrop img {
-  transform: rotate(180deg);
-}
-
-.SelectContent {
-  overflow: hidden;
-  z-index: 99999999999;
-  width: var(--radix-select-trigger-width);
-  max-height: var(--radix-select-content-available-height);
-  font-family: "Satoshi-Medium", sans-serif;
-  background-color: var(--rf-bg);
-  border-radius: 10px;
-  border: 1px solid var(--rf-border);
-  margin-top: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  padding: 4px;
-}
-
-.SelectItem {
-  font-size: 13px;
-  line-height: 1;
+.device-select-row {
   display: flex;
-  align-items: center;
-  height: 34px;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 6px;
-  color: var(--rf-text);
-  position: relative;
-  user-select: none;
-}
-
-.SelectItem[data-disabled] {
-  color: var(--rf-text-secondary);
-  pointer-events: none;
-}
-
-.SelectItem[data-highlighted] {
-  background: var(--rf-bg-hover);
-  outline: none !important;
-}
-
-.SelectItem:hover {
-  background: var(--rf-bg-hover);
-  cursor: pointer;
-}
-
-.SelectSeparator {
-  height: 1px;
-  background-color: var(--rf-border);
-  width: calc(100% - 24px);
-  margin: auto;
-  border-radius: 30px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-
-.SelectItemIndicator {
-  position: absolute;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  background: var(--rf-strong);
-  color: var(--rf-text-contrast);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.SelectScrollButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 25px;
-  background-color: var(--rf-bg);
-  color: var(--rf-icon);
-  cursor: default;
-}
-
-.SelectOff {
-  background: var(--rf-wash-hover);
-  color: var(--rf-text-secondary);
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  margin-right: 4px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.SelectIconButton {
-  border-radius: 6px;
-  position: relative;
-  padding: 6px;
-}
-.SelectIconButton:hover {
-  background-color: var(--rf-wash-hover);
-}
-
-.SelectItemWithIcon {
-  display: inline-flex;
   align-items: center;
   gap: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.device-select-row .rf-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.device-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  color: var(--rf-text);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.device-toggle:hover {
+  background: var(--rf-bg-hover);
+}
+
+.device-off {
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--rf-muted-soft-bg);
+  color: var(--rf-text-secondary);
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 8px;
 }
 
 /* Radix tabs navigation */

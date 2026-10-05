@@ -1,173 +1,49 @@
 @use "../../../styles/_variables" as *;
+@use "../../../../Components/Select";
 
-/* reset */
+/* reset: every popup button builds on this, not just selects */
 button {
   all: unset;
 }
 
-.SelectTrigger {
-  display: inline-flex;
+// Device picker row: the camera/mic on-off toggle beside the shared select.
+.device-select-row {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 8px;
-  border: 1px solid $color-border;
-  line-height: 1;
-  height: 36px;
-  gap: 5px;
-  background-color: var(--rf-bg);
-  color: $color-text-primary;
-  font-size: 13px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 4px;
   margin-top: $spacing-02;
   margin-bottom: $spacing-02;
-  padding-left: 4px;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.SelectTrigger:hover {
-  border-color: var(--rf-border-strong);
-  background: var(--rf-bg-hover);
-  cursor: pointer;
-}
-.SelectTrigger:focus {
-  box-shadow: $focus-border !important;
-}
-.SelectTrigger[data-placeholder] {
-  color: var(--rf-text-secondary);
-}
-.SelectTrigger[data-state="open"] {
-  box-shadow: $focus-border;
 }
 
-.SelectValue {
-  text-align: left;
+.device-select-row .rf-select {
   flex: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
-
-  span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 100%;
-    line-height: 34px;
-  }
+  min-width: 0;
 }
 
-.SelectIconDrop,
-.SelectIconType {
-  text-align: center;
-}
-.SelectIconType {
-  padding-left: 6px;
-  padding-right: 0px;
-}
-.SelectIconDrop {
-  padding-right: $spacing-03;
-}
-.SelectTrigger[data-state="open"] .SelectIconDrop img {
-  transform: rotate(180deg);
-}
-
-.SelectContent {
-  overflow: hidden;
-  z-index: $z-index-max;
-  width: var(--radix-select-trigger-width);
-  max-height: var(--radix-select-content-available-height);
-  font-family: $font-medium;
-  background-color: var(--rf-bg);
-  border-radius: 10px;
-  border: 1px solid $color-border;
-  margin-top: $spacing-02;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  padding: 4px;
-}
-.SelectItem {
-  font-size: 13px;
-  line-height: 1;
-  display: flex;
+.device-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
-  height: 34px;
-  padding-left: $spacing-03;
-  padding-right: $spacing-03;
-  border-radius: 6px;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   color: $color-text-primary;
-  position: relative;
-  user-select: none;
-}
-.SelectItem[data-disabled] {
-  color: $color-text-secondary;
-  pointer-events: none;
-}
-.SelectItem[data-highlighted] {
-  background: $color-light-grey;
-  outline: none !important;
-}
-.SelectItem:hover {
-  background: $color-light-grey;
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 
-.SelectSeparator {
-  height: 1px;
-  background-color: $color-border;
-  width: calc(100% - $spacing-04 * 2);
-  margin: auto;
-  border-radius: $container-border-radius;
-  margin-top: $spacing-02;
-  margin-bottom: $spacing-02;
+.device-toggle:hover {
+  background: var(--rf-bg-hover);
 }
 
-.SelectItemIndicator {
-  position: absolute;
-  right: $spacing-04;
-  width: 24px;
-  height: 24px;
-  background: var(--rf-strong);
-  color: var(--rf-text-contrast);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.SelectScrollButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 25px;
-  background-color: var(--rf-bg);
-  color: var(--rf-icon);
-  cursor: default;
-}
-
-.SelectOff {
-  background: var(--rf-wash-hover);
-  color: $color-text-secondary;
-  padding-left: $spacing-03;
-  padding-right: $spacing-03;
-  padding-top: $spacing-02;
-  padding-bottom: $spacing-02;
-  margin-right: $spacing-02;
-  border-radius: 6px;
-  font-size: $font-size-small;
-  font-weight: $font-weight-bold;
-}
-.SelectIconButton {
-  border-radius: 6px;
-  position: relative;
-  padding: 6px;
-  &:hover {
-    background-color: var(--rf-wash-hover);
-  }
-}
-
-.SelectItemWithIcon {
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-02;
+// "Off" badge shown in the trigger when the device is off.
+.device-off {
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--rf-muted-soft-bg);
+  color: var(--rf-text-secondary);
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 8px;
 }

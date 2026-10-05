@@ -1,6 +1,6 @@
 # Recordful
 
-**From screen recording to motion video.**
+**Beautiful screen recordings, in minutes.**
 
 Record your product in the browser, then turn it into a polished video
 with smart zooms, cinematic camera movement, 3D effects, transitions, and

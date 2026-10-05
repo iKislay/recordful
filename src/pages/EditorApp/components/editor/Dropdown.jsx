@@ -1,17 +1,20 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
-import * as Select from "@radix-ui/react-select";
-import { CaretDown, Check } from "@phosphor-icons/react";
-
-import styles from "../../styles/edit/_Dropdown.module.scss";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../Components/Select";
+import "../../../Components/Select.scss";
 
 // Context
 import { ContentStateContext } from "../../context/ContentState"; // Import the ContentState context
 
-const Dropdown = (props) => {
+const Dropdown = () => {
   const [contentState, setContentState] = useContext(ContentStateContext); // Access the ContentState context
 
-  const [label, setLabel] = useState("None");
   const [value, setValue] = useState("none");
 
   // Video presets for Youtube, Instagram, TikTok, etc.
@@ -72,9 +75,6 @@ const Dropdown = (props) => {
   useEffect(() => {
     // Update the value when the contentState changes
     setValue(contentState.cropPreset);
-    setLabel(
-      presets.find((preset) => preset.name === contentState.cropPreset).label
-    );
 
     if (contentState.cropPreset === "none") return;
     const preset = presets.find(
@@ -118,73 +118,42 @@ const Dropdown = (props) => {
       left: left,
       top: top,
     }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentState.cropPreset]);
 
   return (
-    <Select.Root
+    <Select
       value={value}
       onValueChange={(newValue) => {
         setValue(newValue);
-        setLabel(presets.find((preset) => preset.name === newValue).label);
         setContentState((prevContentState) => ({
           ...prevContentState,
           cropPreset: newValue,
         }));
       }}
     >
-      <Select.Trigger className={styles.SelectTrigger} aria-label="Food">
-        {props.icon && (
-          <Select.Icon className={styles.SelectIconType}></Select.Icon>
+      <SelectTrigger>
+        <SelectValue placeholder="Select a source" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="none" label="None">
+          None
+        </SelectItem>
+        {presets.map(
+          (preset) =>
+            preset.name !== "none" && (
+              <SelectItem
+                value={preset.name}
+                key={preset.name}
+                label={preset.label}
+              >
+                {preset.label}
+              </SelectItem>
+            )
         )}
-        <div className={styles.SelectValue}>
-          <Select.Value placeholder="Select a source">{label}</Select.Value>
-        </div>
-        <Select.Icon className={styles.SelectIconDrop}>
-          <CaretDown size={16} />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal className={styles.Portal}>
-        <Select.Content position="popper" className={styles.SelectContent}>
-          <Select.ScrollUpButton
-            className={styles.SelectScrollButton}
-          ></Select.ScrollUpButton>
-          <Select.Viewport className={styles.SelectViewport}>
-            <Select.Group>
-              <SelectItem value="none">None</SelectItem>
-            </Select.Group>
-
-            <Select.Separator className={styles.SelectSeparator} />
-            <Select.Group>
-              {presets.map(
-                (preset, index) =>
-                  preset.name !== "none" && (
-                    <SelectItem value={preset.name} key={index}>
-                      {preset.label}
-                    </SelectItem>
-                  )
-              )}
-            </Select.Group>
-          </Select.Viewport>
-          <Select.ScrollDownButton
-            className={styles.SelectScrollButton}
-          ></Select.ScrollDownButton>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
+      </SelectContent>
+    </Select>
   );
 };
-
-const SelectItem = React.forwardRef(
-  ({ children, className, ...props }, forwardedRef) => {
-    return (
-      <Select.Item className={styles.SelectItem} {...props} ref={forwardedRef}>
-        <Select.ItemText>{children}</Select.ItemText>
-        <Select.ItemIndicator className={styles.SelectItemIndicator}>
-          <Check size={16} />
-        </Select.ItemIndicator>
-      </Select.Item>
-    );
-  }
-);
 
 export default Dropdown;
