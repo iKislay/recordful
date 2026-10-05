@@ -51,7 +51,7 @@
   letter-spacing: normal !important;
   text-transform: none !important;
   word-spacing: normal !important;
-  color: $color-text-contrast;
+  color: var(--rf-fixed-white);
   text-align: center;
   display: block;
   transition: all 0.6s ease-in-out;
@@ -156,7 +156,7 @@
   line-height: 1.4;
   letter-spacing: normal;
   text-transform: none;
-  color: $color-text-contrast;
+  color: var(--rf-fixed-white);
   z-index: $z-index-max;
   width: fit-content;
 }

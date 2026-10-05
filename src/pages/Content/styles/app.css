@@ -2540,8 +2540,7 @@ body.driver-active .OnboardingArrow {
   animation-name: slideRightAndFade;
 }
 
-.ItemIndicator,
-.ItemIndicatorArrow {
+.ItemIndicator {
   position: absolute;
   right: 12px;
   width: 18px;
@@ -2552,6 +2551,16 @@ body.driver-active .OnboardingArrow {
   align-items: center;
   justify-content: center;
   color: var(--rf-text-contrast);
+}
+
+.ItemIndicatorArrow {
+  position: absolute;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ItemIndicatorArrow {
@@ -4485,7 +4494,7 @@ input {
   letter-spacing: normal !important;
   text-transform: none !important;
   word-spacing: normal !important;
-  color: var(--rf-text-contrast);
+  color: var(--rf-fixed-white);
   text-align: center;
   display: block;
   transition: all 0.6s ease-in-out;
@@ -4588,7 +4597,7 @@ input {
   line-height: 1.4;
   letter-spacing: normal;
   text-transform: none;
-  color: var(--rf-text-contrast);
+  color: var(--rf-fixed-white);
   z-index: 99999999999;
   width: fit-content;
 }
@@ -4982,15 +4991,16 @@ button {
 }
 
 /* Recordful theme tokens: the single source of truth for every UI color.
-   Light values live on `.root-container`; dark overrides under
-   `.root-container.recordful-dark` (toggled from PopupContainer, persisted in
-   chrome.storage). All component styles reference these via var(--rf-*)
-   (directly, or through the $color-* aliases in _variables.scss), so flipping
-   the theme re-skins the popup, toolbar, dropdowns, menus, modal, toasts and
-   every other component with no per-component logic.
+   Defined on `:host` (the shadow host matches no in-shadow selector by
+   class, so `:host` is the only selector that reaches it) with dark
+   overrides under `:host(.recordful-dark)` (toggled from PopupContainer,
+   persisted in chrome.storage). All component styles reference these via
+   var(--rf-*) (directly, or through the $color-* aliases in _variables.scss),
+   so flipping the theme re-skins the popup, toolbar, dropdowns, menus,
+   modal, toasts and every other component with no per-component logic.
    Tokens prefixed `fixed-` are intentionally identical in both themes:
    scrims, floating dark chrome and semantic status colors. */
-.root-container {
+:host {
   --rf-bg: #fff;
   --rf-bg-soft: #f7f7f5;
   --rf-bg-hover: #f6f7fb;
@@ -5059,7 +5069,7 @@ button {
   --rf-fixed-outline: #d9d9d9;
 }
 
-.root-container.recordful-dark {
+:host(.recordful-dark) {
   --rf-bg: #1e1e24;
   --rf-bg-soft: #26262d;
   --rf-bg-hover: #2e2e37;

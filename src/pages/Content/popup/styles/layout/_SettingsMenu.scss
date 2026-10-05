@@ -34,8 +34,7 @@
 .DropdownMenuSubContent[data-side="left"] {
   animation-name: slideRightAndFade;
 }
-.ItemIndicator,
-.ItemIndicatorArrow {
+.ItemIndicator {
   position: absolute;
   right: $spacing-04;
   width: 18px;
@@ -46,6 +45,15 @@
   align-items: center;
   justify-content: center;
   color: var(--rf-text-contrast);
+}
+.ItemIndicatorArrow {
+  position: absolute;
+  right: $spacing-04;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .ItemIndicatorArrow {
   background: transparent !important;
