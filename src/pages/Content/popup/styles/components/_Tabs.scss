@@ -44,7 +44,7 @@ input {
 }
 .TabsTrigger:focus-visible {
   position: relative;
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2) !important;
+  box-shadow: $focus-border !important;
 }
 .TabsTriggerSpacer {
   height: 30px;
@@ -75,7 +75,7 @@ input {
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(255, 255, 255, 0.5) 100%
+      var(--rf-fade) 100%
     );
     pointer-events: none; /* Allow content behind the gradient to be clickable */
   }
@@ -99,7 +99,7 @@ input {
   margin-top: auto;
   margin-bottom: auto;
   border-radius: 6px;
-  background: #fff;
+  background: var(--rf-bg-active);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -110,7 +110,7 @@ input {
 }
 .TabsList.tl {
   border-radius: 8px;
-  background: #f7f7f5;
+  background: var(--rf-bg-soft);
   border: 1px solid $color-border;
   padding: 3px;
   font-family: $font-medium;
@@ -137,7 +137,7 @@ input {
   height: 100%;
   width: calc(100% - 8px);
   margin-left: 4px;
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--rf-wash-soft);
   z-index: -2;
   left: 0px;
   border-radius: 6px;
@@ -156,13 +156,13 @@ input {
 /* Icon-only top tabs: light segmented control (home / record /
    screenshot-disabled). The sliding .pill-anim marks the active tab. */
 .TabsList.tl.icon-tabs {
-  background: #f7f7f5;
+  background: var(--rf-bg-soft);
   border: 1px solid $color-border;
   padding: 4px;
   gap: 2px;
 
   .pill-anim {
-    background: #fff;
+    background: var(--rf-bg-active);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     height: 32px;
   }
@@ -246,7 +246,7 @@ input {
     margin: auto;
     height: 2px;
     border-radius: 30px;
-    background: #111111;
+    background: var(--rf-strong);
   }
   .TabsTrigger[data-state="active"] > .TabsTriggerLabel {
     color: $color-text-primary !important;
@@ -267,7 +267,7 @@ input {
     border-radius: 6px;
   }
   .TabsContent {
-    background: #fff;
+    background: var(--rf-bg);
     padding: $spacing-04 $spacing-02 $spacing-02;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -339,7 +339,7 @@ input {
     margin: auto;
     height: 2px;
     border-radius: 30px;
-    background: #111111;
+    background: var(--rf-strong);
   }
   .TabsTrigger[data-state="active"] > .TabsTriggerLabel {
     color: $color-text-primary !important;
@@ -442,7 +442,7 @@ input {
       height: 24px;
     }
     .TabsIconButton:hover {
-      background: rgba(41, 41, 47, 0.08);
+      background: var(--rf-wash-strong);
     }
     .TabsIconButton img {
       width: 12px;
@@ -474,8 +474,8 @@ input {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #29292f; /* dark background */
-  color: white;
+  background-color: var(--rf-fixed-float-bg); /* dark background */
+  color: var(--rf-fixed-float-text);
   border-radius: 100px; /* pill shape */
   padding: 10px 16px;
   font-weight: 600;
@@ -509,7 +509,7 @@ input {
 .projectActiveBannerDivider {
   width: 1px;
   height: 24px;
-  background-color: #44444d; /* subtle divider color */
+  background-color: var(--rf-fixed-float-divider); /* subtle divider color */
 }
 
 .projectActiveBannerClose {
@@ -536,7 +536,7 @@ input {
   align-items: center;
   border-radius: 8px;
   border: 1px solid $color-border;
-  background-color: #fff;
+  background-color: var(--rf-bg);
   color: $color-text-primary;
   font-size: 13px;
   box-sizing: border-box;

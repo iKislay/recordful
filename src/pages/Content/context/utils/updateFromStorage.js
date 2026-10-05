@@ -78,6 +78,7 @@ export const updateFromStorage = (check = true, id = null) => {
       "instantMode",
       "hasSeenInstantModeModal",
       "hasSubscribedBefore",
+      "theme",
     ],
     (result) => {
       const storedEffects = normalizeCursorEffects(result.cursorEffects);
@@ -321,6 +322,10 @@ export const updateFromStorage = (check = true, id = null) => {
             : prevContentState.useWebCodecsRecorder,
         multiMode: result.multiMode || false,
         multiSceneCount: result.multiSceneCount || 0,
+        theme:
+          result.theme === "dark" || result.theme === "light"
+            ? result.theme
+            : prevContentState.theme || "light",
         wasLoggedIn: result.wasLoggedIn || false,
         sortBy: result.sortBy || "newest",
         instantMode: result.instantMode || false,

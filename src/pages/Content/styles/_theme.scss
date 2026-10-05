@@ -1,0 +1,121 @@
+/* Recordful theme tokens: the single source of truth for every UI color.
+   Light values live on `.root-container`; dark overrides under
+   `.root-container.recordful-dark` (toggled from PopupContainer, persisted in
+   chrome.storage). All component styles reference these via var(--rf-*)
+   (directly, or through the $color-* aliases in _variables.scss), so flipping
+   the theme re-skins the popup, toolbar, dropdowns, menus, modal, toasts and
+   every other component with no per-component logic.
+   Tokens prefixed `fixed-` are intentionally identical in both themes:
+   scrims, floating dark chrome and semantic status colors. */
+
+.root-container {
+  --rf-bg: #fff;
+  --rf-bg-soft: #f7f7f5;
+  --rf-bg-hover: #f6f7fb;
+  --rf-bg-active: #fff;
+  --rf-popover: #f2f1f2;
+  --rf-border: #e8e8e8;
+  --rf-border-strong: #d4d3d0;
+  --rf-text: #29292f;
+  --rf-text-strong: #111111;
+  --rf-text-secondary: #6e7684;
+  --rf-text-contrast: #fff;
+  --rf-strong: #111111;
+  --rf-strong-hover: #2a2a2a;
+  --rf-strong-active: #000000;
+  --rf-icon: #9797a4;
+  --rf-track-off: #e5e5e0;
+  --rf-focus-ring: rgba(17, 17, 17, 0.2);
+  --rf-danger: #d2234d;
+  --rf-danger-soft: #faf0f4;
+  --rf-danger-text: #f7385a;
+  --rf-pink-soft: #fff8fa;
+  --rf-pink-text: #f0175b;
+  --rf-danger-soft-bg: rgba(247, 56, 90, 0.1);
+  --rf-danger-soft-bg-hover: rgba(247, 56, 90, 0.15);
+  --rf-muted-soft-bg: rgba(110, 118, 132, 0.1);
+  --rf-muted-soft-bg-hover: rgba(110, 118, 132, 0.15);
+  --rf-muted-faint-bg: rgba(110, 118, 132, 0.05);
+  --rf-neutral-soft-bg: rgba(0, 0, 0, 0.06);
+  --rf-neutral-soft-bg-hover: rgba(0, 0, 0, 0.1);
+  --rf-wash-hover: rgba(0, 0, 0, 0.05);
+  --rf-wash-soft: rgba(0, 0, 0, 0.04);
+  --rf-wash-strong: rgba(0, 0, 0, 0.06);
+  --rf-fade: rgba(255, 255, 255, 0.5);
+  --rf-fade-strong: rgba(246, 247, 251, 0);
+  --rf-backdrop: rgba(255, 255, 255, 0.6);
+  --rf-scroll: rgba(41, 41, 47, 0.18);
+  --rf-scroll-hover: rgba(41, 41, 47, 0.3);
+  --rf-spinner-track: rgba(0, 0, 0, 0.1);
+  --rf-separator: #dddcdc;
+  --rf-eyehov: #e6e7ea;
+  --rf-fixed-float-bg: #29292f;
+  --rf-fixed-float-text: #fff;
+  --rf-fixed-float-divider: #44444d;
+  --rf-fixed-float-action: #51515f;
+  --rf-fixed-glass: rgba(30, 30, 30, 0.8);
+  --rf-fixed-overlay: rgba(0, 0, 0, 0.5);
+  --rf-fixed-dim: rgba(0, 0, 0, 0.2);
+  --rf-fixed-success: #78c072;
+  --rf-fixed-success-soft: rgba(120, 192, 114, 0.1);
+  --rf-fixed-record: #f7387d;
+  --rf-fixed-timer-warning: #ff4c4c;
+  --rf-fixed-black: #000;
+  --rf-fixed-white: #fff;
+  --rf-fixed-ring-dark: rgba(0, 0, 0, 0.2);
+  --rf-fixed-ring-dark-strong: rgba(0, 0, 0, 0.5);
+  --rf-fixed-ring-light: rgba(255, 255, 255, 0.2);
+  --rf-fixed-ring-light-strong: rgba(255, 255, 255, 0.3);
+  --rf-fixed-icon: #9797a4;
+  --rf-fixed-hover-cool: rgba(124, 139, 165, 0.2);
+  --rf-fixed-select: #0d99ff;
+  --rf-fixed-glass-card: rgba(255, 255, 255, 0.15);
+  --rf-fixed-glass-border: rgba(255, 255, 255, 0.2);
+  --rf-fixed-spinner-track: rgba(255, 255, 255, 0.2);
+  --rf-fixed-spinner-top: rgba(255, 255, 255, 0.8);
+  --rf-fixed-dim-strong: rgba(0, 0, 0, 0.15);
+  --rf-fixed-outline: #d9d9d9;
+}
+
+.root-container.recordful-dark {
+  --rf-bg: #1e1e24;
+  --rf-bg-soft: #26262d;
+  --rf-bg-hover: #2e2e37;
+  --rf-bg-active: #3a3a44;
+  --rf-popover: #2b2b33;
+  --rf-border: #38383f;
+  --rf-border-strong: #4c4c57;
+  --rf-text: #ececf1;
+  --rf-text-strong: #ffffff;
+  --rf-text-secondary: #a3a3b2;
+  --rf-text-contrast: #141416;
+  --rf-strong: #f2f2f4;
+  --rf-strong-hover: #ffffff;
+  --rf-strong-active: #c9c9d1;
+  --rf-icon: #8e8e9a;
+  --rf-track-off: #45454f;
+  --rf-focus-ring: rgba(255, 255, 255, 0.32);
+  --rf-danger: #ff5c7a;
+  --rf-danger-soft: #332228;
+  --rf-danger-text: #ff7a93;
+  --rf-pink-soft: #2c2126;
+  --rf-pink-text: #ff7a9e;
+  --rf-danger-soft-bg: rgba(255, 92, 122, 0.16);
+  --rf-danger-soft-bg-hover: rgba(255, 92, 122, 0.24);
+  --rf-muted-soft-bg: rgba(148, 163, 184, 0.14);
+  --rf-muted-soft-bg-hover: rgba(148, 163, 184, 0.2);
+  --rf-muted-faint-bg: rgba(148, 163, 184, 0.08);
+  --rf-neutral-soft-bg: rgba(255, 255, 255, 0.08);
+  --rf-neutral-soft-bg-hover: rgba(255, 255, 255, 0.14);
+  --rf-wash-hover: rgba(255, 255, 255, 0.08);
+  --rf-wash-soft: rgba(255, 255, 255, 0.06);
+  --rf-wash-strong: rgba(255, 255, 255, 0.1);
+  --rf-fade: rgba(30, 30, 36, 0.6);
+  --rf-fade-strong: rgba(30, 30, 36, 0);
+  --rf-backdrop: rgba(10, 10, 14, 0.6);
+  --rf-scroll: rgba(255, 255, 255, 0.18);
+  --rf-scroll-hover: rgba(255, 255, 255, 0.3);
+  --rf-spinner-track: rgba(255, 255, 255, 0.14);
+  --rf-separator: #45454f;
+  --rf-eyehov: #33333c;
+}

@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 
-import { Camera, DotsSixVertical, House, VideoCamera } from "@phosphor-icons/react";
+import { Camera, DotsSixVertical, House, Moon, Sun, VideoCamera } from "@phosphor-icons/react";
 
 import { Rnd } from "react-rnd";
 
@@ -429,6 +429,39 @@ const PopupContainer = (props) => {
             }
           >
             <DotsSixVertical size={14} weight="bold" />
+          </div>
+          <div className="popup-theme-toggle">
+            <button
+              type="button"
+              className="popup-control popup-theme"
+              onClick={() => {
+                const next =
+                  contentState.theme === "dark" ? "light" : "dark";
+                setContentState((prevContentState) => ({
+                  ...prevContentState,
+                  theme: next,
+                }));
+                try {
+                  chrome.storage.local.set({ theme: next });
+                } catch {}
+              }}
+              title={
+                contentState.theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+              aria-label={
+                contentState.theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+            >
+              {contentState.theme === "dark" ? (
+                <Sun size={16} />
+              ) : (
+                <Moon size={16} />
+              )}
+            </button>
           </div>
           <div className="popup-controls">
             <div

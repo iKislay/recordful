@@ -11,13 +11,13 @@
 			background: $color-primary!important;
 
 		svg {
-			color: #FFF!important;
-			fill: #FFF!important;
+			color: var(--rf-text-contrast) !important;
+			fill: var(--rf-text-contrast) !important;
 		}
 	}
 	div[data-state='off'] {
 		svg {
-			fill: #201F1D;
+			fill: var(--rf-text-strong);
 		}
 	}
 }

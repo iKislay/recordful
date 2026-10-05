@@ -1360,6 +1360,7 @@ const ContentState = (props) => {
     toolbarHover: false,
     hideUI: false,
     bigTab: "record",
+    theme: "light",
     askDismiss: true,
     quality: "max",
     systemAudio: true,
@@ -2432,8 +2433,31 @@ const ContentState = (props) => {
     sendCropTargetToRecorder();
   }, [contentState.cropTarget, sendCropTargetToRecorder]);
 
+  // Page-level theming: tooltips, body-portaled menus and the driver.js
+  // onboarding popover render outside the shadow tree, so they read tokens
+  // from <html>. Mirror the popup theme there too.
+  useEffect(() => {
+    try {
+      document.documentElement.classList.toggle(
+        "recordful-dark",
+        contentState.theme === "dark",
+      );
+    } catch {}
+  }, [contentState.theme]);
+
   useEffect(() => {
     updateFromStorage();
+    // Theme lives outside updateFromStorage's legacy key list; seed it here
+    // so the saved choice applies on every page load.
+    try {
+      chrome.storage.local.get(["theme"], (res) => {
+        if (res && (res.theme === "dark" || res.theme === "light")) {
+          setContentState((prev) =>
+            prev.theme === res.theme ? prev : { ...prev, theme: res.theme },
+          );
+        }
+      });
+    } catch {}
   }, []);
 
   // Memoize: a fresh array literal would re-render every consumer per parent update.

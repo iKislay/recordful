@@ -7,7 +7,7 @@
 	padding-right: 4px;
 	transition: opacity .25s cubic-bezier(.61,.11,.08,.96);
 	min-width: max-content;
-	background-color: rgba(30, 30, 30, .8);
+	background-color: var(--rf-fixed-glass);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
 	height: 28px;
 	position: absolute;
@@ -17,7 +17,7 @@
 	backdrop-filter: blur(10px);
 	z-index: $z-index-max;
 	opacity: 0;
-	border: 3px solid rgba(255, 255, 255, .2);
+	border: 3px solid var(--rf-fixed-ring-light);
 }
 .camera-draggable:hover {
 	.camera-toolbar, .camera-resize {
@@ -31,14 +31,14 @@
 .CameraToolbarSeparator {
   width: 1px;
 	height: 18px;
-  background-color: rgba(255, 255, 255, .3);
+  background-color: var(--rf-fixed-ring-light-strong);
   margin: 0 4px;
 }
 .CameraToggleItem, .CameraToolbarButton {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #000;
+	color: var(--rf-fixed-float-text);
   height: 22px;
 	width: 22px;
 	text-align: center;
@@ -46,14 +46,14 @@
   line-height: 1;
 	border-radius: 50%;
 	transition: background-color .25s ease-in-out;
-	background-color: rgba(124, 139, 165, 0);
+	background-color: transparent;
 
 	svg {
 		color: $color-icon;
 	}
 
 	&:hover {
-		background-color: rgba(124, 139, 165, 0.2)!important;
+		background-color: var(--rf-fixed-hover-cool) !important;
 		cursor: pointer;
 	}
 
@@ -63,10 +63,10 @@
 	}
 
 	&[data-state='on'] {
-		color: #FFF;
+		color: var(--rf-fixed-float-text);
 
 		svg {
-			color: #FFF;
+			color: var(--rf-fixed-float-text);
 		}
 
 	}

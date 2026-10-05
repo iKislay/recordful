@@ -30,14 +30,14 @@ const CSS = `
   border-radius: ${RADIUS}px;
   position: relative;
   flex: none;
-  background-color: #e5e5e0;
+  background-color: var(--rf-track-off, #e5e5e0);
   transition: background-color 160ms ease;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   box-sizing: border-box;
 }
 .rf-toggle[data-on="true"] {
-  background-color: #111111;
+  background-color: var(--rf-strong, #111111);
 }
 .rf-toggle[data-disabled="true"] {
   opacity: 0.5;
@@ -45,7 +45,7 @@ const CSS = `
 }
 .rf-toggle:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(17, 17, 17, 0.2);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring, rgba(17, 17, 17, 0.2));
 }
 .rf-toggle-thumb {
   display: block;
@@ -60,6 +60,12 @@ const CSS = `
   transform-origin: center;
   will-change: transform;
   pointer-events: none;
+}
+/* Dark theme: light track-on needs a dark droplet to stay visible. The
+   .recordful-dark ancestor exists in the content-script shadow tree; other
+   pages (editor, setup) keep the light look via the fallbacks above. */
+.recordful-dark .rf-toggle[data-on="true"] .rf-toggle-thumb {
+  background-color: #141416;
 }
 `;
 

@@ -202,7 +202,8 @@ const RecordingTab = (props) => {
                         cursor: "pointer",
                         width: "28px",
                         height: "28px",
-                        background: "#111111",
+                        background: "var(--rf-strong)",
+                        color: "var(--rf-text-contrast)",
                         borderRadius: "50%",
                         display: "flex",
                         alignItems: "center",
@@ -220,8 +221,8 @@ const RecordingTab = (props) => {
                           position: "absolute",
                           top: "-7px",
                           left: "-7px",
-                          background: "#78C072",
-                          color: "white",
+                          background: "var(--rf-fixed-success)",
+                          color: "var(--rf-fixed-white)",
                           fontSize: "12px",
                           fontWeight: "bold",
                           borderRadius: "50%",
@@ -314,8 +315,8 @@ const RecordingTab = (props) => {
                 width: 32,
                 height: 32,
                 borderRadius: "50%",
-                background: "rgb(252 252 252)",
-                border: "1px solid #E2E8F0",
+                background: "var(--rf-bg-active)",
+                border: "1px solid var(--rf-border)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -323,7 +324,7 @@ const RecordingTab = (props) => {
                 cursor: "pointer",
               }}
             >
-              <X size={14} style={{ color: "#64748B" }} />
+              <X size={14} style={{ color: "var(--rf-text-secondary)" }} />
             </button>
             {/* 👇 Embed the video here */}
             <video
@@ -365,7 +366,7 @@ const RecordingTab = (props) => {
                 width: "100%",
                 background: "transparent",
                 border: "none",
-                color: "#6B7280",
+                color: "var(--rf-text-secondary)",
                 fontSize: 13,
                 textAlign: "center",
                 cursor: "pointer",

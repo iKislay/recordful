@@ -23,7 +23,9 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Colors */
+/* Colors: aliases over the var(--rf-*) theme tokens in _theme.scss, so every
+   existing usage re-skins itself when the theme flips. Never put a raw color
+   here; add a token in _theme.scss instead. */
 /* Font */
 /* Spacing */
 /*
@@ -74,13 +76,13 @@ iframe.recordful-iframe {
   right: -10px;
   box-sizing: border-box;
   border-radius: 30px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--rf-border);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   z-index: 99999999999999;
-  background: rgb(240, 238, 238);
+  background: var(--rf-bg-soft);
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 6px;
@@ -93,7 +95,7 @@ iframe.recordful-iframe {
   pointer-events: auto;
 }
 .toolbar-controls .popup-control svg {
-  color: #9797a4;
+  color: var(--rf-icon);
   margin-bottom: -2px;
 }
 
@@ -132,7 +134,7 @@ iframe.recordful-iframe {
 .ToolbarShake .ToolbarRoot {
   animation: subtleshake 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   animation-iteration-count: infinite !important;
-  background-color: white !important;
+  background-color: var(--rf-bg) !important;
 }
 
 .ToolbarDragging .ToolbarRoot {
@@ -238,7 +240,7 @@ iframe.recordful-iframe {
   padding-left: 10px;
   transition: opacity 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), transform 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96);
   min-width: max-content;
-  background-color: white;
+  background-color: var(--rf-bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   padding-right: 10px;
   height: 48px;
@@ -252,7 +254,7 @@ iframe.recordful-iframe {
   display: block;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: var(--rf-bg);
   z-index: -9999999;
   position: absolute;
   left: 0px;
@@ -296,7 +298,7 @@ iframe.recordful-iframe {
 
 /* Stop (recording) button stays red; everything else is black/white. */
 .ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls > div:first-child svg {
-  color: #d2234d;
+  color: var(--rf-danger);
 }
 
 .ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls > .ToolbarRecordingTime {
@@ -347,7 +349,7 @@ iframe.recordful-iframe {
   transition: background-color 0.25s ease-in-out;
 }
 .ToolbarRoot.ToolbarVertical > .toolbar-controls:hover {
-  background-color: rgba(124, 139, 165, 0.1);
+  background-color: var(--rf-wash-strong);
 }
 
 .ToolbarRoot.ToolbarVertical .ToolbarModeItem::before {
@@ -364,8 +366,8 @@ iframe.recordful-iframe {
   width: auto;
   height: 22px;
   padding: 2px 8px;
-  background: #fff;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border);
   border-radius: 999px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
   cursor: grab;
@@ -373,7 +375,7 @@ iframe.recordful-iframe {
 }
 
 .ToolbarRoot.ToolbarVertical .ToolbarButton.grab:hover {
-  background: #fff;
+  background: var(--rf-bg);
 }
 
 .ToolbarRoot.ToolbarVertical .ToolbarButton.grab:active {
@@ -502,7 +504,7 @@ iframe.recordful-iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   border-radius: 30px;
   font-family: "Satoshi-Medium", sans-serif;
   height: calc(100% - 12px);
@@ -513,7 +515,7 @@ iframe.recordful-iframe {
 .ToolbarRecordingTime {
   margin-right: 4px;
   width: 42px;
-  color: #29292f;
+  color: var(--rf-text);
   font-size: 13px;
   line-height: 1;
   user-select: none;
@@ -522,7 +524,7 @@ iframe.recordful-iframe {
 }
 
 .TimerWarning {
-  color: #ff4c4c; /* or add a pulsing effect */
+  color: var(--rf-fixed-timer-warning); /* or add a pulsing effect */
   font-weight: bold;
   animation: pulse 1s infinite alternate;
 }
@@ -562,7 +564,7 @@ iframe.recordful-iframe {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
+  color: var(--rf-text-strong);
   height: 32px;
   width: 32px;
   text-align: center;
@@ -577,7 +579,7 @@ iframe.recordful-iframe {
 .ToolbarModeItemSingle svg,
 .ToolbarLink svg,
 .ToolbarButton svg {
-  color: #9797a4;
+  color: var(--rf-icon);
 }
 .ToolbarToggleItem:disabled,
 .ToolbarModeItem:disabled,
@@ -593,7 +595,7 @@ iframe.recordful-iframe {
 .ToolbarModeItemSingle.resume svg,
 .ToolbarLink.resume svg,
 .ToolbarButton.resume svg {
-  color: #f7387d !important;
+  color: var(--rf-fixed-record) !important;
 }
 
 .ToolbarToggleItem:hover,
@@ -602,7 +604,7 @@ iframe.recordful-iframe {
 .ToolbarLink:hover,
 .ToolbarButton:hover {
   cursor: pointer;
-  background-color: rgba(124, 139, 165, 0.1) !important;
+  background-color: var(--rf-wash-strong) !important;
 }
 
 .ToolbarToggleItem:focus-visible,
@@ -611,7 +613,7 @@ iframe.recordful-iframe {
 .ToolbarLink:focus-visible,
 .ToolbarButton:focus-visible {
   position: relative;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .ToolbarModeItemSingle {
@@ -625,10 +627,10 @@ iframe.recordful-iframe {
   margin-left: 0;
 }
 .ToolbarModeItemSingle[data-state=on] {
-  background: rgba(120, 192, 114, 0.1);
+  background: var(--rf-fixed-success-soft);
 }
 .ToolbarModeItemSingle[data-state=on] svg {
-  color: #78c072;
+  color: var(--rf-fixed-success);
 }
 .ToolbarModeItemSingle[data-state=on]::before {
   transform: translateY(0px) scale(1) !important;
@@ -658,17 +660,17 @@ iframe.recordful-iframe {
   z-index: -999999;
   transition: transform 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), opacity 0.25s ease-in-out;
   transform: translateY(5px) scale(0) !important;
-  border-right: 3px solid white;
-  border-top: 9px solid white;
-  border-left: 3px solid white;
+  border-right: 3px solid var(--rf-bg);
+  border-top: 9px solid var(--rf-bg);
+  border-left: 3px solid var(--rf-bg);
   background-color: transparent;
   opacity: 0;
 }
 .ToolbarModeItem[data-state=on] {
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--rf-wash-strong);
 }
 .ToolbarModeItem[data-state=on] svg {
-  color: #111111;
+  color: var(--rf-strong);
 }
 .ToolbarModeItem[data-state=on]::before {
   transform: translateY(0px) scale(1) !important;
@@ -679,7 +681,7 @@ iframe.recordful-iframe {
   transform: translateY(-5px) scale(0.5) !important;
   bottom: -16px;
   top: unset !important;
-  border-bottom: 9px solid white !important;
+  border-bottom: 9px solid var(--rf-bg) !important;
   border-radius: 0% 0% 80px 80px !important;
   border-top: none !important;
 }
@@ -698,23 +700,23 @@ iframe.recordful-iframe {
   margin-left: 0;
 }
 .ToolbarToggleItem[data-state=on] {
-  background: #111111;
-  color: #fff;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
 }
 .ToolbarToggleItem[data-state=on] svg {
-  color: #fff;
+  color: var(--rf-text-contrast);
 }
 
 .ToolbarSeparator {
   width: 1px;
   height: 19px;
-  background-color: #e8e8e8;
+  background-color: var(--rf-border);
   margin: 0 8px;
 }
 
 .ToolbarLink {
   background-color: transparent;
-  color: var(--mauve11);
+  color: var(--rf-text-secondary);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -803,7 +805,7 @@ body.driver-active .OnboardingArrow {
 
 .OnboardingText {
   font-size: 32px;
-  color: #9797a4;
+  color: var(--rf-icon);
   font-family: "Gloria-Hallelujah", sans-serif !important;
 }
 
@@ -815,8 +817,8 @@ body.driver-active .OnboardingArrow {
 .RecordfulOnboardingPopover,
 .onboarding-popover {
   border-radius: 30px !important;
-  background: #fff !important;
-  color: #29292f !important;
+  background: var(--rf-bg) !important;
+  color: var(--rf-text) !important;
   font-family: "Satoshi-Regular", sans-serif !important;
   box-shadow: 0 4px 20px rgba(38, 38, 52, 0.08) !important;
   padding: 20px !important;
@@ -830,21 +832,21 @@ body.driver-active .OnboardingArrow {
   font-size: 1rem !important;
   font-family: "Satoshi-Bold", sans-serif !important;
   margin-bottom: 12px !important;
-  color: #29292f !important;
+  color: var(--rf-text) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description,
 .RecordfulOnboardingPopover .driver-popover-description,
 .onboarding-popover .driver-popover-description {
   font-size: 14px !important;
   font-family: "Satoshi-Medium", sans-serif !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   line-height: 1.5 !important;
   margin-bottom: 18px !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description a,
 .RecordfulOnboardingPopover .driver-popover-description a,
 .onboarding-popover .driver-popover-description a {
-  color: #111111 !important;
+  color: var(--rf-strong) !important;
   font-family: "Satoshi-Bold", sans-serif !important;
   text-decoration: none !important;
   cursor: pointer !important;
@@ -855,7 +857,7 @@ body.driver-active .OnboardingArrow {
   display: none !important;
   top: 14px;
   right: 12px;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   font-size: 1.5rem !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow,
@@ -872,28 +874,28 @@ body.driver-active .OnboardingArrow {
 .onboarding-popover .driver-popover-arrow-side-top {
   border-left: 8px solid transparent !important;
   border-right: 8px solid transparent !important;
-  border-top: 8px solid #fff !important;
+  border-top: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-bottom,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-bottom,
 .onboarding-popover .driver-popover-arrow-side-bottom {
   border-left: 8px solid transparent !important;
   border-right: 8px solid transparent !important;
-  border-bottom: 8px solid #fff !important;
+  border-bottom: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-left,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-left,
 .onboarding-popover .driver-popover-arrow-side-left {
   border-top: 8px solid transparent !important;
   border-bottom: 8px solid transparent !important;
-  border-left: 8px solid #fff !important;
+  border-left: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-right,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-right,
 .onboarding-popover .driver-popover-arrow-side-right {
   border-top: 8px solid transparent !important;
   border-bottom: 8px solid transparent !important;
-  border-right: 8px solid #fff !important;
+  border-right: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-align-start,
 .RecordfulOnboardingPopover .driver-popover-arrow-align-start,
@@ -920,7 +922,7 @@ body.driver-active .OnboardingArrow {
 .onboarding-popover .driver-popover-progress-text {
   font-size: 0.8rem !important;
   font-family: "Satoshi-Medium", sans-serif !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   opacity: 0.7 !important;
   margin-top: 2px !important;
 }
@@ -946,8 +948,8 @@ body.driver-active .OnboardingArrow {
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
-  background-color: #111111 !important;
-  color: white !important;
+  background-color: var(--rf-strong) !important;
+  color: var(--rf-text-contrast) !important;
   border: none !important;
   padding: 10px 14px !important;
   border-radius: 30px !important;
@@ -960,25 +962,25 @@ body.driver-active .OnboardingArrow {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover {
-  background: rgb(4.25, 4.25, 4.25) !important;
+  background: var(--rf-strong-hover) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn {
   background-color: transparent !important;
-  color: #29292f !important;
-  border: 1px solid #e8e8e8 !important;
+  color: var(--rf-text) !important;
+  border: 1px solid var(--rf-border) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover {
-  background: #f6f7fb !important;
+  background: var(--rf-bg-hover) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
   background-color: transparent !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
 }
 
 .DrawingToolbar.show-toolbar {
@@ -1029,7 +1031,7 @@ body.driver-active .OnboardingArrow {
   display: block;
   width: 100%;
   height: 100%;
-  background: rgb(242, 241, 242);
+  background: var(--rf-popover);
   background-clip: content-box;
   -webkit-mask-image: radial-gradient(circle at 50% 59px, transparent 20px, #000 20px);
   mask-image: radial-gradient(circle at 50% 59px, transparent 20px, #000 20px);
@@ -1041,7 +1043,7 @@ body.driver-active .OnboardingArrow {
   z-index: -2;
 }
 .DrawingToolbar .ToolbarSeparator {
-  background-color: #dddcdc;
+  background-color: var(--rf-separator);
 }
 
 .ToolbarTop .DrawingToolbar {
@@ -1061,7 +1063,7 @@ body.driver-active .OnboardingArrow {
   width: 14px;
   height: 14px;
   background: #ED6C3A;
-  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border: 1.5px solid var(--rf-fixed-ring-dark);
   border-radius: 50%;
 }
 
@@ -1088,7 +1090,7 @@ body.driver-active .OnboardingArrow {
   display: block;
   width: 100%;
   height: 100%;
-  background: #FFF;
+  background: var(--rf-bg);
   z-index: -9999999;
   position: absolute;
   left: 0px;
@@ -1106,7 +1108,7 @@ body.driver-active .OnboardingArrow {
 
 .TooltipContent {
   border-radius: 30px;
-  background-color: #29292f;
+  background-color: var(--rf-text);
   padding: 10px 15px;
   font-size: 12px;
   margin-bottom: 10px;
@@ -1114,7 +1116,7 @@ body.driver-active .OnboardingArrow {
   line-height: 1;
   font-family: "Satoshi-Medium", sans-serif;
   z-index: 99999999 !important;
-  color: #fff;
+  color: var(--rf-text-contrast);
   box-shadow: hsla(206, 22%, 7%, 0.35) 0px 10px 38px -10px, hsla(206, 22%, 7%, 0.2) 0px 10px 20px -15px;
   user-select: none;
   transition: opacity 0.3 ease-in-out !important;
@@ -1222,7 +1224,7 @@ body.driver-active .OnboardingArrow {
   width: 100%;
   height: 100%;
   z-index: -1;
-  border: 28px solid #FFF;
+  border: 28px solid var(--rf-bg);
   box-sizing: border-box;
   border-radius: 50%;
   backdrop-filter: blur(40px);
@@ -1239,7 +1241,7 @@ body.driver-active .OnboardingArrow {
 }
 .radial-menu[data-state=open]::after {
   transform: scale(1);
-  border: 28px solid #FFF;
+  border: 28px solid var(--rf-bg);
   opacity: 1;
 }
 
@@ -1258,7 +1260,7 @@ body.driver-active .OnboardingArrow {
   height: 16px;
   padding: 8px;
   z-index: 999999999;
-  background-color: #FFF;
+  background-color: var(--rf-bg);
   border-radius: 50%;
   opacity: 0;
   text-align: center;
@@ -1268,23 +1270,23 @@ body.driver-active .OnboardingArrow {
   transform-style: preserve-3d;
 }
 .eyedropper svg {
-  color: #9797a4;
+  color: var(--rf-icon);
 }
 .eyedropper:focus-visible {
   outline: none;
-  background-color: #E6E7EA !important;
+  background-color: var(--rf-eyehov) !important;
 }
 .eyedropper:hover {
   cursor: pointer;
-  background-color: #E6E7EA;
+  background-color: var(--rf-eyehov);
 }
 
 .eye-active {
-  background-color: #111111 !important;
+  background-color: var(--rf-strong) !important;
 }
 .eye-active svg {
-  color: #FFF !important;
-  fill: #FFF !important;
+  color: var(--rf-text-contrast) !important;
+  fill: var(--rf-text-contrast) !important;
 }
 
 .color-wheel .eyedropper {
@@ -1324,7 +1326,7 @@ body.driver-active .OnboardingArrow {
   box-sizing: border-box;
   line-height: 50px;
   color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--rf-fixed-ring-dark);
   transition: transform 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), opacity 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96);
   opacity: 0;
 }
@@ -1352,7 +1354,7 @@ body.driver-active .OnboardingArrow {
 }
 .radial-menu-item-child:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .radial-menu[data-state=open] .radial-menu-item-child {
@@ -1450,8 +1452,8 @@ body.driver-active .OnboardingArrow {
 }
 
 .color-active {
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 0px 0px 2px #0D99FF;
+  border: 1px solid var(--rf-fixed-white);
+  box-shadow: 0px 0px 0px 2px var(--rf-fixed-select);
 }
 
 .color-wheel .color-active {
@@ -1493,7 +1495,7 @@ body.driver-active .OnboardingArrow {
   z-index: 9999999;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--rf-fixed-ring-dark);
 }
 
 .color-wheel .wheel-trigger {
@@ -1512,7 +1514,7 @@ body.driver-active .OnboardingArrow {
   top: 20px;
   opacity: 0;
   background-color: #F17FD7;
-  border: 2px solid white;
+  border: 2px solid var(--rf-fixed-white);
   z-index: 999999999999;
   display: none;
   transition: width 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), height 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), margin-left 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), margin-top 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96);
@@ -1546,7 +1548,7 @@ body.driver-active .OnboardingArrow {
   height: 100%;
   position: absolute;
   z-index: 9999999;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--rf-fixed-ring-dark);
   box-sizing: border-box;
   border-radius: 50%;
 }
@@ -1557,7 +1559,7 @@ body.driver-active .OnboardingArrow {
 
 .w-color-wheel-fill {
   box-shadow: none !important;
-  border: 2px solid white !important;
+  border: 2px solid var(--rf-fixed-white) !important;
   width: 14px !important;
   height: 14px !important;
   transition: width 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96), height 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96), margin 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96) !important;
@@ -1599,10 +1601,10 @@ body.driver-active .OnboardingArrow {
 }
 
 .color-wheel-input {
-  background: #000;
+  background: var(--rf-fixed-black);
   border-radius: 30px;
   height: 29px;
-  color: #FFF;
+  color: var(--rf-fixed-white);
   text-align: center;
   line-height: 29px;
   padding-left: 8px;
@@ -1656,7 +1658,7 @@ body.driver-active .OnboardingArrow {
   opacity: 0;
   animation: none;
   pointer-events: none;
-  border: 1px solid #FFF;
+  border: 1px solid var(--rf-fixed-white);
   box-sizing: border-box;
 }
 
@@ -1679,7 +1681,7 @@ body.driver-active .OnboardingArrow {
   transform: scale(1) !important;
 }
 .color-wheel .w-color-wheel::after {
-  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid var(--rf-fixed-ring-dark) !important;
 }
 
 .radial-menu[data-state=closed] .w-color-wheel {
@@ -1692,14 +1694,14 @@ body.driver-active .OnboardingArrow {
   display: block;
 }
 .stroke-width-item div[data-state=on] {
-  background: #111111 !important;
+  background: var(--rf-strong) !important;
 }
 .stroke-width-item div[data-state=on] svg {
-  color: #FFF !important;
-  fill: #FFF !important;
+  color: var(--rf-text-contrast) !important;
+  fill: var(--rf-text-contrast) !important;
 }
 .stroke-width-item div[data-state=off] svg {
-  fill: #201F1D;
+  fill: var(--rf-text-strong);
 }
 
 .stroke-icon svg {
@@ -1730,8 +1732,8 @@ body.driver-active .OnboardingArrow {
 }
 
 .ToastRoot {
-  background-color: #29292f;
-  color: #fff;
+  background-color: var(--rf-text);
+  color: var(--rf-text-contrast);
   border-radius: 30px;
   box-shadow: hsla(206, 22%, 7%, 0.35) 0px 10px 38px -10px, hsla(206, 22%, 7%, 0.2) 0px 10px 20px -15px;
   padding: 10px 14px;
@@ -1794,20 +1796,20 @@ body.driver-active .OnboardingArrow {
   }
 }
 .ToastTitle {
-  color: #fff;
+  color: var(--rf-text-contrast);
   font-family: "Satoshi-Medium", sans-serif;
 }
 
 .ToastDescription {
-  color: var(--slate-11);
+  color: inherit;
   font-family: "Satoshi-Medium", sans-serif;
 }
 
 .ToastAction {
-  color: #fff;
+  color: var(--rf-text-contrast);
   font-family: "Satoshi-Medium", sans-serif;
   text-align: right;
-  background-color: #51515F;
+  background-color: var(--rf-fixed-float-action);
   padding: 0px 12px !important;
   height: 24px !important;
   cursor: pointer;
@@ -1819,7 +1821,8 @@ body.driver-active .OnboardingArrow {
   pointer-events: none !important;
 }
 
-.popup-container:hover .popup-controls {
+.popup-container:hover .popup-controls,
+.popup-container:hover .popup-theme-toggle {
   opacity: 1;
 }
 
@@ -1838,10 +1841,10 @@ body.driver-active .OnboardingArrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border);
   border-radius: 999px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   cursor: grab;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
@@ -1875,14 +1878,47 @@ body.driver-active .OnboardingArrow {
   border-radius: 6px;
 }
 .popup-controls .popup-control:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--rf-wash-hover);
 }
 .popup-controls .popup-control svg {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   margin-bottom: -2px;
 }
 .popup-controls .popup-close {
   cursor: pointer;
+}
+
+.popup-theme-toggle {
+  opacity: 0.55;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999999;
+  background: transparent;
+  padding: 2px;
+  transition: opacity 0.15s ease;
+}
+.popup-theme-toggle .popup-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.popup-theme-toggle .popup-control:hover {
+  background: var(--rf-wash-hover);
+}
+.popup-theme-toggle .popup-control svg {
+  color: var(--rf-text-secondary);
+  margin-bottom: -2px;
 }
 
 .tempimg {
@@ -1918,8 +1954,8 @@ body.driver-active .OnboardingArrow {
   z-index: 99999999999;
   filter: drop-shadow(0px 4px 100px rgba(0, 0, 0, 0.35));
   pointer-events: all;
-  background: #fff;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border);
   border-radius: 30px;
   transition: transform 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96), filter 0.2s cubic-bezier(0.61, 0.11, 0.08, 0.96);
 }
@@ -1938,7 +1974,7 @@ body.driver-active .OnboardingArrow {
   box-sizing: border-box;
   border-radius: inherit;
   overflow: hidden;
-  background: #fff;
+  background: var(--rf-bg);
   padding: 12px 12px 14px;
 }
 
@@ -1951,7 +1987,7 @@ body.driver-active .OnboardingArrow {
 .popup-content-divider {
   width: 100%;
   height: 1px;
-  background: #e8e8e8;
+  background: var(--rf-border);
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -1964,13 +2000,13 @@ body.driver-active .OnboardingArrow {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: #f7f7f5;
+  background-color: var(--rf-bg-soft);
   margin-left: -12px;
   margin-top: -12px;
   margin-bottom: 8px;
 }
 .popup-warning .popup-warning-right {
-  color: #111111;
+  color: var(--rf-strong);
   font-family: "Satoshi-Medium", sans-serif;
   width: 90px;
 }
@@ -1986,7 +2022,7 @@ body.driver-active .OnboardingArrow {
 }
 .popup-warning-left svg,
 .popup-warning-right svg {
-  color: #111111;
+  color: var(--rf-strong);
 }
 
 .popup-warning-right {
@@ -1998,19 +2034,19 @@ body.driver-active .OnboardingArrow {
 }
 .popup-warning-middle .popup-warning-title {
   font-family: "Satoshi-Bold", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
 }
 .popup-warning-middle .popup-warning-description {
   font-family: "Satoshi-Medium", sans-serif;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   margin-top: 4px;
 }
 
 .permission-button {
-  background: #f7f7f5;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg-soft);
+  border: 1px solid var(--rf-border);
   border-radius: 10px;
-  color: #29292f;
+  color: var(--rf-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2028,11 +2064,11 @@ body.driver-active .OnboardingArrow {
   margin-bottom: 4px !important;
 }
 .permission-button:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--rf-wash-soft);
   cursor: pointer;
 }
 .permission-button svg {
-  color: #111111;
+  color: var(--rf-strong);
 }
 
 .HelpSection {
@@ -2041,12 +2077,12 @@ body.driver-active .OnboardingArrow {
   right: 0px;
   margin: auto;
   bottom: -40px;
-  background: #edeef2;
+  background: var(--rf-bg-soft);
   border-radius: 30px;
   padding: 4px 12px;
   text-align: center;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2058,7 +2094,7 @@ body.driver-active .OnboardingArrow {
 }
 .HelpSection:hover {
   cursor: pointer;
-  background: #fefeff;
+  background: var(--rf-bg-hover);
 }
 
 .video-ui {
@@ -2077,7 +2113,7 @@ body.driver-active .OnboardingArrow {
   left: 0px;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--rf-backdrop);
   z-index: 999;
 }
 
@@ -2098,12 +2134,12 @@ body.driver-active .OnboardingArrow {
   box-shadow: none;
 }
 .videos-list::-webkit-scrollbar-thumb {
-  background: rgba(41, 41, 47, 0.18);
+  background: var(--rf-scroll);
   border: none;
   border-radius: 10px;
 }
 .videos-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(41, 41, 47, 0.3);
+  background: var(--rf-scroll-hover);
 }
 .videos-list::-webkit-scrollbar-corner {
   background: transparent;
@@ -2127,7 +2163,7 @@ body.driver-active .OnboardingArrow {
   right: 0;
   bottom: 100%;
   height: 36px;
-  background: linear-gradient(to bottom, rgba(246, 247, 251, 0), #f6f7fb);
+  background: linear-gradient(to bottom, var(--rf-fade-strong), var(--rf-bg-hover));
   pointer-events: none;
 }
 
@@ -2146,7 +2182,7 @@ body.driver-active .OnboardingArrow {
   bottom: 0px;
   margin: auto;
   border-radius: 30px;
-  background: white;
+  background: var(--rf-bg);
   box-shadow: 0px 4px 100px 0px rgba(0, 0, 0, 0.15);
   z-index: 9999999;
 }
@@ -2162,24 +2198,24 @@ body.driver-active .OnboardingArrow {
 
 .ModalSoonTitle {
   font-weight: 700;
-  color: #29292f;
+  color: var(--rf-text);
   margin-bottom: 8px;
   text-align: center;
 }
 
 .ModalSoonDescription {
   text-align: center;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   text-align: center;
   margin-bottom: 8px;
 }
 
 .ModalSoonButton {
   margin-top: 8px;
-  color: #fff;
+  color: var(--rf-text-contrast);
   text-align: center;
   border-radius: 30px;
-  background: #111111;
+  background: var(--rf-strong);
   padding: 8px 16px;
 }
 .ModalSoonButton:hover {
@@ -2193,7 +2229,7 @@ body.driver-active .OnboardingArrow {
   align-items: center;
   justify-content: center;
   padding: 60px 0;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 14px;
 }
 
@@ -2212,7 +2248,7 @@ body.driver-active .OnboardingArrow {
 .empty-state-title {
   max-width: 100%;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2220,15 +2256,15 @@ body.driver-active .OnboardingArrow {
 
 .empty-state-description {
   margin-top: 4px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 12px;
 }
 
 .spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  border-top-color: #6e7684;
+  border: 3px solid var(--rf-spinner-track);
+  border-top-color: var(--rf-text-secondary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 10px;
@@ -2241,7 +2277,7 @@ body.driver-active .OnboardingArrow {
   justify-content: center;
   gap: 8px;
   padding: 12px 0;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 12px;
 }
 
@@ -2286,7 +2322,7 @@ body.driver-active .OnboardingArrow {
 .announcement-title {
   font-family: "Satoshi-Bold", sans-serif;
   font-size: 16px;
-  color: #29292f;
+  color: var(--rf-text);
   letter-spacing: -0.8px;
   margin-bottom: 12px;
   text-align: center;
@@ -2295,7 +2331,7 @@ body.driver-active .OnboardingArrow {
 .announcement-description {
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 14px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   text-align: center;
   margin-bottom: 24px;
   line-height: 1.6;
@@ -2303,7 +2339,7 @@ body.driver-active .OnboardingArrow {
 }
 .announcement-description a {
   text-decoration: none !important;
-  color: #111111 !important;
+  color: var(--rf-strong) !important;
   cursor: pointer !important;
 }
 
@@ -2315,8 +2351,8 @@ body.driver-active .OnboardingArrow {
   width: 100%;
   height: 44px;
   border-radius: 30px;
-  background: #111111;
-  color: #fff;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 14px;
   cursor: pointer;
@@ -2347,7 +2383,7 @@ body.driver-active .OnboardingArrow {
 .welcome-title {
   font-family: "Satoshi-Bold", sans-serif;
   font-size: 18px;
-  color: #29292f;
+  color: var(--rf-text);
   letter-spacing: -0.8px;
   margin-bottom: 12px;
   text-align: center;
@@ -2356,7 +2392,7 @@ body.driver-active .OnboardingArrow {
 .welcome-description {
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 16px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   text-align: center;
   margin-bottom: 20px;
   line-height: 1.6;
@@ -2364,7 +2400,7 @@ body.driver-active .OnboardingArrow {
 }
 .welcome-description a {
   text-decoration: none !important;
-  color: #111111 !important;
+  color: var(--rf-strong) !important;
   cursor: pointer !important;
 }
 
@@ -2376,9 +2412,9 @@ body.driver-active .OnboardingArrow {
   width: 100%;
   height: 44px;
   border-radius: 30px;
-  background: white;
-  border: 1px solid #e8e8e8;
-  color: #29292f;
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border);
+  color: var(--rf-text);
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 14px;
   cursor: pointer;
@@ -2387,14 +2423,14 @@ body.driver-active .OnboardingArrow {
 }
 
 .welcome-content {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   max-height: calc(95vh - 300px);
   overflow-y: overlay;
   padding-top: 20px;
   padding-bottom: 20px;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--rf-border);
 }
 
 .welcome-content-wrap {
@@ -2405,7 +2441,7 @@ body.driver-active .OnboardingArrow {
 .welcome-content-title {
   font-family: "Satoshi-Bold", sans-serif;
   font-size: 14px;
-  color: #29292f;
+  color: var(--rf-text);
   margin-bottom: 8px;
   margin-top: 8px;
   text-align: center;
@@ -2428,7 +2464,7 @@ body.driver-active .OnboardingArrow {
 .welcome-feature-icon {
   width: 20px;
   height: 20px;
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--rf-wash-strong);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2437,7 +2473,7 @@ body.driver-active .OnboardingArrow {
 
 .welcome-feature-icon-text {
   font-size: 14px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-family: "Satoshi-Medium", sans-serif;
 }
 
@@ -2453,7 +2489,7 @@ body.driver-active .OnboardingArrow {
 .welcome-support {
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 12px;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   text-align: center;
   margin-top: 20px;
   display: flex;
@@ -2469,7 +2505,7 @@ body.driver-active .OnboardingArrow {
 .DropdownMenuContent,
 .DropdownMenuSubContent {
   min-width: 200px;
-  background-color: white;
+  background-color: var(--rf-bg);
   margin-top: 4px;
   margin-right: 8px;
   padding-top: 12px;
@@ -2477,7 +2513,7 @@ body.driver-active .OnboardingArrow {
   border-radius: 15px;
   z-index: 99999;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
   box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -2510,11 +2546,12 @@ body.driver-active .OnboardingArrow {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #111111;
+  background: var(--rf-strong);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--rf-text-contrast);
 }
 
 .ItemIndicatorArrow {
@@ -2541,42 +2578,42 @@ body.driver-active .OnboardingArrow {
 .DropdownMenuCheckboxItem:hover,
 .DropdownMenuRadioItem:hover,
 .DropdownMenuSubTrigger:hover {
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
   cursor: pointer;
 }
 
 .DropdownMenuSubTrigger[data-state=open] {
-  background-color: var(--violet-4);
-  color: var(--violet-11);
+  background-color: var(--rf-bg-hover);
+  color: var(--rf-text);
 }
 
 .DropdownMenuItem[data-disabled],
 .DropdownMenuCheckboxItem[data-disabled],
 .DropdownMenuRadioItem[data-disabled],
 .DropdownMenuSubTrigger[data-disabled] {
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   cursor: not-allowed;
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
 }
 
 .DropdownMenuItem[data-highlighted],
 .DropdownMenuCheckboxItem[data-highlighted],
 .DropdownMenuRadioItem[data-highlighted],
 .DropdownMenuSubTrigger[data-highlighted] {
-  background-color: var(--violet-9);
-  color: var(--violet-1);
+  background-color: var(--rf-bg-hover);
+  color: var(--rf-text);
 }
 
 .DropdownMenuLabel {
   padding-left: 25px;
   font-size: 12px;
   line-height: 25px;
-  color: var(--mauve-11);
+  color: var(--rf-text-secondary);
 }
 
 .DropdownMenuSeparator {
   height: 1px;
-  background-color: var(--violet-6);
+  background-color: var(--rf-border);
   margin: 5px;
 }
 
@@ -2590,7 +2627,7 @@ body.driver-active .OnboardingArrow {
 }
 
 .DropdownMenuArrow {
-  fill: white;
+  fill: var(--rf-bg);
 }
 
 .IconButton {
@@ -2603,25 +2640,25 @@ body.driver-active .OnboardingArrow {
   cursor: pointer;
 }
 .IconButton svg {
-  color: #9797a4;
+  color: var(--rf-icon);
 }
 
 .IconButton:hover {
-  background-color: var(--violet-3);
+  background-color: var(--rf-wash-hover);
 }
 
 .RightSlot {
   margin-left: auto;
   padding-left: 20px;
-  color: var(--mauve-11);
+  color: var(--rf-text-secondary);
 }
 
 [data-highlighted] > .RightSlot {
-  color: white;
+  color: inherit;
 }
 
 [data-disabled] .RightSlot {
-  color: var(--mauve-8);
+  color: var(--rf-text-secondary);
 }
 
 @keyframes slideUpAndFade {
@@ -2674,12 +2711,12 @@ button {
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--rf-border);
   line-height: 1;
   height: 36px;
   gap: 5px;
-  background-color: #fff;
-  color: #29292f;
+  background-color: var(--rf-bg);
+  color: var(--rf-text);
   font-size: 13px;
   width: 100%;
   box-sizing: border-box;
@@ -2690,21 +2727,21 @@ button {
 }
 
 .SelectTrigger:hover {
-  border-color: #d4d3d0;
-  background: #fafafa;
+  border-color: var(--rf-border-strong);
+  background: var(--rf-bg-hover);
   cursor: pointer;
 }
 
 .SelectTrigger:focus {
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2) !important;
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring) !important;
 }
 
 .SelectTrigger[data-placeholder] {
-  color: var(--violet9);
+  color: var(--rf-text-secondary);
 }
 
 .SelectTrigger[data-state=open] {
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .SelectValue {
@@ -2749,9 +2786,9 @@ button {
   width: var(--radix-select-trigger-width);
   max-height: var(--radix-select-content-available-height);
   font-family: "Satoshi-Medium", sans-serif;
-  background-color: white;
+  background-color: var(--rf-bg);
   border-radius: 10px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--rf-border);
   margin-top: 4px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   padding: 4px;
@@ -2760,36 +2797,35 @@ button {
 .SelectItem {
   font-size: 13px;
   line-height: 1;
-  color: var(--violet11);
   display: flex;
   align-items: center;
   height: 34px;
   padding-left: 8px;
   padding-right: 8px;
   border-radius: 6px;
-  color: #29292f;
+  color: var(--rf-text);
   position: relative;
   user-select: none;
 }
 
 .SelectItem[data-disabled] {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   pointer-events: none;
 }
 
 .SelectItem[data-highlighted] {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   outline: none !important;
 }
 
 .SelectItem:hover {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   cursor: pointer;
 }
 
 .SelectSeparator {
   height: 1px;
-  background-color: #e8e8e8;
+  background-color: var(--rf-border);
   width: calc(100% - 24px);
   margin: auto;
   border-radius: 30px;
@@ -2802,7 +2838,8 @@ button {
   right: 12px;
   width: 24px;
   height: 24px;
-  background: #111111;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -2814,14 +2851,14 @@ button {
   align-items: center;
   justify-content: center;
   height: 25px;
-  background-color: white;
-  color: var(--violet11);
+  background-color: var(--rf-bg);
+  color: var(--rf-icon);
   cursor: default;
 }
 
 .SelectOff {
-  background: rgba(0, 0, 0, 0.05);
-  color: #6e7684;
+  background: var(--rf-wash-hover);
+  color: var(--rf-text-secondary);
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 4px;
@@ -2838,7 +2875,7 @@ button {
   padding: 6px;
 }
 .SelectIconButton:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--rf-wash-hover);
 }
 
 .SelectItemWithIcon {
@@ -2885,24 +2922,24 @@ input {
 .TabsTrigger {
   padding-left: 14px;
   padding-right: 14px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   user-select: none;
   cursor: pointer;
 }
 
 .TabsTrigger[data-state=active] {
-  color: #29292f;
+  color: var(--rf-text);
 }
 
 .TabsTrigger:focus-visible {
   position: relative;
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2) !important;
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring) !important;
 }
 
 .TabsTriggerSpacer {
   height: 30px;
   width: 1px;
-  background: #e8e8e8;
+  background: var(--rf-border);
   flex-shrink: 0;
   margin-left: 4px;
   margin-right: 4px;
@@ -2925,7 +2962,7 @@ input {
   left: 0;
   width: 100%;
   height: 30px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.5) 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--rf-fade) 100%);
   pointer-events: none; /* Allow content behind the gradient to be clickable */
 }
 
@@ -2934,7 +2971,7 @@ input {
 }
 
 .TabsContent:focus-visible {
-  box-shadow: inset 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .TabsContent[data-state=inactive] {
@@ -2950,7 +2987,7 @@ input {
   margin-top: auto;
   margin-bottom: auto;
   border-radius: 6px;
-  background: #fff;
+  background: var(--rf-bg-active);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -2963,8 +3000,8 @@ input {
 
 .TabsList.tl {
   border-radius: 8px;
-  background: #f7f7f5;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg-soft);
+  border: 1px solid var(--rf-border);
   padding: 3px;
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 13px;
@@ -2992,7 +3029,7 @@ input {
   height: 100%;
   width: calc(100% - 8px);
   margin-left: 4px;
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--rf-wash-soft);
   z-index: -2;
   left: 0px;
   border-radius: 6px;
@@ -3012,13 +3049,13 @@ input {
 /* Icon-only top tabs: light segmented control (home / record /
    screenshot-disabled). The sliding .pill-anim marks the active tab. */
 .TabsList.tl.icon-tabs {
-  background: #f7f7f5;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg-soft);
+  border: 1px solid var(--rf-border);
   padding: 4px;
   gap: 2px;
 }
 .TabsList.tl.icon-tabs .pill-anim {
-  background: #fff;
+  background: var(--rf-bg-active);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   height: 32px;
 }
@@ -3032,14 +3069,14 @@ input {
   width: 44px;
   padding: 0;
   justify-content: center;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 0;
 }
 .TabsList.tl.icon-tabs .TabsTrigger.tl.icon-tab svg {
   display: block;
 }
 .TabsList.tl.icon-tabs .TabsTrigger.tl.icon-tab[data-state=active] {
-  color: #111111;
+  color: var(--rf-strong);
 }
 .TabsList.tl.icon-tabs .TabsTrigger.tl.icon-tab:disabled {
   opacity: 0.35;
@@ -3063,7 +3100,7 @@ input {
 }
 .recording-ui .TabsList {
   width: 100%;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid var(--rf-border);
   margin: auto;
   justify-content: center;
 }
@@ -3078,7 +3115,7 @@ input {
   font-size: 12px;
 }
 .recording-ui .TabsTrigger:hover {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   border-radius: 8px;
 }
 .recording-ui .TabsTrigger:focus-visible {
@@ -3095,10 +3132,10 @@ input {
   margin: auto;
   height: 2px;
   border-radius: 30px;
-  background: #111111;
+  background: var(--rf-strong);
 }
 .recording-ui .TabsTrigger[data-state=active] > .TabsTriggerLabel {
-  color: #29292f !important;
+  color: var(--rf-text) !important;
 }
 .recording-ui .TabsTriggerLabel {
   text-align: center;
@@ -3115,7 +3152,7 @@ input {
   border-radius: 6px;
 }
 .recording-ui .TabsContent {
-  background: #fff;
+  background: var(--rf-bg);
   padding: 12px 4px 4px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
@@ -3141,7 +3178,7 @@ input {
 }
 .video-ui .TabsList {
   width: 100%;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid var(--rf-border);
   margin: auto;
   justify-content: space-between;
   padding-left: 12px;
@@ -3167,7 +3204,7 @@ input {
   padding-right: 20px;
 }
 .video-ui .TabsTrigger:hover {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 }
@@ -3185,16 +3222,16 @@ input {
   margin: auto;
   height: 2px;
   border-radius: 30px;
-  background: #111111;
+  background: var(--rf-strong);
 }
 .video-ui .TabsTrigger[data-state=active] > .TabsTriggerLabel {
-  color: #29292f !important;
+  color: var(--rf-text) !important;
 }
 .video-ui .TabsTriggerLabel {
   text-align: center;
 }
 .video-ui .TabsContent {
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
@@ -3225,21 +3262,21 @@ input {
 }
 .video-ui .TabsSort:hover {
   cursor: pointer;
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
 }
 .video-ui .TabsSortLabel {
   display: flex;
   flex-direction: row;
   justify-content: right;
   align-items: center;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   white-space: nowrap;
 }
 .video-ui .TabsSortLabel img {
   margin-left: 8px;
 }
 .video-ui .TabsSort:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
   outline: none !important;
 }
 .video-ui .TabsIconButton {
@@ -3253,10 +3290,10 @@ input {
 }
 .video-ui .TabsIconButton:hover {
   cursor: pointer;
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
 }
 .video-ui .TabsIconButton:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
   outline: none !important;
 }
 .video-ui .TabsSearchInline {
@@ -3270,7 +3307,7 @@ input {
   padding-left: 12px;
   padding-right: 4px;
   border-radius: 30px;
-  background: #f6f7fb;
+  background: var(--rf-bg-hover);
   box-sizing: border-box;
 }
 .video-ui .TabsSearchInline > img {
@@ -3284,7 +3321,7 @@ input {
   height: 24px;
 }
 .video-ui .TabsSearchInline .TabsIconButton:hover {
-  background: rgba(41, 41, 47, 0.08);
+  background: var(--rf-wash-strong);
 }
 .video-ui .TabsSearchInline .TabsIconButton img {
   width: 12px;
@@ -3295,11 +3332,11 @@ input {
   min-width: 0;
   border: none;
   background: transparent;
-  color: #29292f;
+  color: var(--rf-text);
   font-size: 14px;
 }
 .video-ui .TabsSearchInput::placeholder {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
 }
 .video-ui .TabsContent::after {
   display: none;
@@ -3309,8 +3346,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #29292f; /* dark background */
-  color: white;
+  background-color: var(--rf-fixed-float-bg); /* dark background */
+  color: var(--rf-fixed-float-text);
   border-radius: 100px; /* pill shape */
   padding: 10px 16px;
   font-weight: 600;
@@ -3344,7 +3381,7 @@ input {
 .projectActiveBannerDivider {
   width: 1px;
   height: 24px;
-  background-color: #44444d; /* subtle divider color */
+  background-color: var(--rf-fixed-float-divider); /* subtle divider color */
 }
 
 .projectActiveBannerClose {
@@ -3369,9 +3406,9 @@ input {
   display: flex;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid #e8e8e8;
-  background-color: #fff;
-  color: #29292f;
+  border: 1px solid var(--rf-border);
+  background-color: var(--rf-bg);
+  color: var(--rf-text);
   font-size: 13px;
   box-sizing: border-box;
   margin-top: 4px;
@@ -3404,7 +3441,7 @@ input {
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--rf-backdrop);
 }
 
 .more-panel {
@@ -3415,8 +3452,8 @@ input {
   z-index: 4;
   box-sizing: border-box;
   padding: 0 12px 6px;
-  background: #fff;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg);
+  border: 1px solid var(--rf-border);
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transform-origin: 83% 100%;
@@ -3438,8 +3475,8 @@ input {
   height: 36px;
   margin: 0 -12px 4px;
   padding: 0 6px 0 12px;
-  border-bottom: 1px solid #e8e8e8;
-  color: #6e7684;
+  border-bottom: 1px solid var(--rf-border);
+  color: var(--rf-text-secondary);
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 13px;
 }
@@ -3450,7 +3487,7 @@ input {
   border-radius: 6px;
 }
 .more-panel-head .IconButton:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--rf-wash-hover);
 }
 
 .more-panel-actions {
@@ -3478,8 +3515,8 @@ input {
 }
 .bottom-bar {
   display: flex;
-  background: #f7f7f5;
-  border: 1px solid #e8e8e8;
+  background: var(--rf-bg-soft);
+  border: 1px solid var(--rf-border);
   border-radius: 12px;
   padding: 4px;
   gap: 2px;
@@ -3494,7 +3531,7 @@ input {
   gap: 2px;
   padding: 6px 0 4px;
   border-radius: 8px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   cursor: pointer;
   user-select: none;
 }
@@ -3507,16 +3544,16 @@ input {
   font-family: "Satoshi-Medium", sans-serif;
 }
 .bottom-bar-item.active {
-  background: #fff;
+  background: var(--rf-bg-active);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  color: #29292f;
+  color: var(--rf-text);
 }
 .bottom-bar-item:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 .bottom-bar-item:not(:disabled):not(.active):hover {
-  color: #29292f;
+  color: var(--rf-text);
 }
 
 /* Toggle UI lives in src/pages/Components/Toggle.jsx (self-contained
@@ -3545,7 +3582,7 @@ input {
 }
 
 .Label {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 13px;
   display: inline-block !important;
   /* Ellipsis */
@@ -3557,9 +3594,9 @@ input {
 }
 
 .ExperimentalLabel {
-  color: #fff;
+  color: var(--rf-text-contrast);
   font-size: 12px;
-  background-color: #111111;
+  background-color: var(--rf-strong);
   border-radius: 15px;
   padding: 2px 8px;
   display: inline-block !important;
@@ -3600,10 +3637,10 @@ input {
   margin-left: -8px;
 }
 .labelDropdownWrap:hover::after {
-  border-color: #fff;
+  border-color: var(--rf-bg);
 }
 .labelDropdownWrap:hover {
-  background-color: #fff;
+  background-color: var(--rf-wash-hover);
 }
 
 .labelDropdownActive .labelDropdownContent {
@@ -3615,24 +3652,24 @@ input {
 
 .labelDropdownContent {
   position: absolute;
-  background-color: #fff;
+  background-color: var(--rf-bg);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 9999999999;
   border-radius: 15px;
   padding: 8px 0px;
   margin-top: 4px;
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--rf-border);
   display: none;
 }
 .labelDropdownContent .labelDropdownContentItem {
-  color: #29292f;
+  color: var(--rf-text);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 .labelDropdownContent .labelDropdownContentItem:hover {
-  background-color: #f6f7fb;
+  background-color: var(--rf-bg-hover);
   cursor: pointer;
 }
 
@@ -3652,11 +3689,11 @@ input {
   padding-left: 28px;
   font-size: 12px;
   line-height: 1.4;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   user-select: none;
 }
 .checkbox > [data-slot=field-error] {
-  color: #d2234d;
+  color: var(--rf-danger);
 }
 .checkbox[data-disabled=true] {
   opacity: 0.5;
@@ -3676,7 +3713,7 @@ input {
   font-size: 14px;
   font-weight: 500;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
   cursor: inherit;
   user-select: none;
 }
@@ -3712,8 +3749,8 @@ input {
   height: 16px;
   overflow: hidden;
   border-radius: 6px;
-  border: 1.5px solid #e8e8e8;
-  background-color: #fff;
+  border: 1.5px solid var(--rf-border);
+  background-color: var(--rf-bg);
   box-shadow: 0 4px 20px rgba(38, 38, 52, 0.08);
   outline: none;
   cursor: inherit;
@@ -3727,33 +3764,33 @@ input {
   transform-origin: center;
   transform: scale(0.7);
   border-radius: 6px;
-  background-color: #111111;
+  background-color: var(--rf-strong);
   opacity: 0;
   pointer-events: none;
   transition: transform 100ms linear, opacity 200ms linear, background-color 200ms ease-out;
 }
 .checkbox__content:focus-within .checkbox__control {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 .checkbox__content:hover .checkbox__control {
-  border-color: #9797a4;
+  border-color: var(--rf-icon);
 }
 .checkbox[data-selected=true] .checkbox__control, .checkbox[data-indeterminate=true] .checkbox__control {
   border-color: transparent;
-  color: #fff;
+  color: var(--rf-text-contrast);
 }
 .checkbox[data-selected=true] .checkbox__control::before, .checkbox[data-indeterminate=true] .checkbox__control::before {
   transform: scale(1);
   opacity: 1;
 }
 .checkbox[data-indeterminate=true] .checkbox__control {
-  background-color: #111111;
+  background-color: var(--rf-strong);
 }
 .checkbox[data-invalid=true]:not([data-selected=true]):not([data-indeterminate=true]) .checkbox__control {
-  border-color: #d2234d;
+  border-color: var(--rf-danger);
 }
 .checkbox[data-invalid=true][data-selected=true] .checkbox__control::before, .checkbox[data-invalid=true][data-indeterminate=true] .checkbox__control::before {
-  background-color: #d2234d;
+  background-color: var(--rf-danger);
 }
 
 .checkbox__indicator {
@@ -3764,7 +3801,7 @@ input {
   justify-content: center;
   width: 12px;
   height: 12px;
-  color: #fff;
+  color: var(--rf-text-contrast);
 }
 .checkbox__indicator svg {
   width: 100%;
@@ -3777,16 +3814,16 @@ input {
   transition: stroke-dashoffset 150ms linear 15ms;
 }
 .checkbox[data-invalid=true] .checkbox__indicator {
-  color: #fff;
+  color: var(--rf-text-contrast);
 }
 
 .checkbox--secondary .checkbox__control {
   box-shadow: none;
-  background-color: #f6f7fb;
+  background-color: var(--rf-bg-hover);
 }
 
 .checkbox--secondary:not([data-selected=true]):not([data-indeterminate=true]) .checkbox__control {
-  background-color: #f6f7fb;
+  background-color: var(--rf-bg-hover);
 }
 
 .video-item-root {
@@ -3814,7 +3851,7 @@ input {
   min-width: 64px;
   width: 64px;
   height: 36px;
-  background: #e8e8e8;
+  background: var(--rf-border);
   border-radius: 6px;
   overflow: hidden;
   margin-right: 12px;
@@ -3833,7 +3870,7 @@ input {
   padding-right: 4px;
 }
 .video-item-root .video-item-info-title {
-  color: #29292f;
+  color: var(--rf-text);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -3842,7 +3879,7 @@ input {
   margin-top: 4px;
   display: flex;
   align-items: center;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 12px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -3857,11 +3894,11 @@ input {
 
 .video-item-root:hover {
   cursor: pointer;
-  background: #e9eaee;
+  background: var(--rf-bg-hover);
 }
 
 .video-item-root:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
   outline: none !important;
 }
 
@@ -3875,7 +3912,7 @@ input {
   opacity: 0;
 }
 .video-item-right .copy-link {
-  background: #fff;
+  background: var(--rf-bg);
   height: 32px;
   width: 32px;
   border-radius: 10px;
@@ -3886,13 +3923,13 @@ input {
   z-index: 999999;
 }
 .video-item-right .copy-link:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
   outline: none !important;
 }
 .video-item-right .more-actions {
   height: 32px;
   width: 32px;
-  background: #fff;
+  background: var(--rf-bg);
   text-align: center;
   border-radius: 10px;
   display: flex;
@@ -3900,7 +3937,7 @@ input {
   justify-content: center;
 }
 .video-item-right .more-actions:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
   outline: none !important;
 }
 
@@ -3923,7 +3960,7 @@ input {
   font-weight: 500;
 }
 .main-button .main-button-label {
-  color: #fff;
+  color: var(--rf-text-contrast);
   text-align: center;
   vertical-align: middle;
   align-items: center;
@@ -3932,7 +3969,7 @@ input {
   position: absolute;
   font-size: 12px;
   right: 12px;
-  color: #fff;
+  color: var(--rf-text-contrast);
   opacity: 0.55;
 }
 .main-button:hover {
@@ -3944,12 +3981,12 @@ input {
 }
 
 .main-button:focus {
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.2) !important;
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring) !important;
 }
 
 .recording-button {
   margin-top: 12px;
-  background: #111111;
+  background: var(--rf-strong);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 2;
@@ -3957,21 +3994,21 @@ input {
 }
 
 .recording-button:hover {
-  background: #2a2a2a;
+  background: var(--rf-strong-hover);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
 .recording-button:active {
-  background: #000000;
+  background: var(--rf-strong-active);
 }
 
 .dashboard-button {
-  background: #29292f;
+  background: var(--rf-text);
   transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .dashboard-button:hover {
-  background: #2a2a2a;
+  background: var(--rf-strong-hover);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -3982,7 +4019,7 @@ input {
   border-radius: 15px;
   padding: 4px 8px;
   position: absolute;
-  color: #fff;
+  color: var(--rf-text-contrast);
   opacity: 0.7;
   font-family: "Satoshi-Medium", sans-serif;
   font-size: 12px;
@@ -4011,7 +4048,7 @@ input {
   justify-content: center;
   border-radius: 30px;
   position: relative;
-  color: #FFF;
+  color: var(--rf-fixed-white);
 }
 .background-effect span {
   position: absolute;
@@ -4034,7 +4071,7 @@ input {
   width: 46px;
   height: 46px;
   position: absolute;
-  border: 2px solid #111111;
+  border: 2px solid var(--rf-strong);
   box-sizing: border-box;
 }
 .background-effect img {
@@ -4055,12 +4092,12 @@ input {
   width: 46px;
   height: 46px;
   position: absolute;
-  border: 2px solid #111111;
+  border: 2px solid var(--rf-strong);
   opacity: 0.5;
   box-sizing: border-box;
 }
 .background-effect:focus-visible {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .region-dimensions {
@@ -4076,7 +4113,7 @@ input {
   position: relative;
 }
 .region-input input {
-  color: #29292f !important;
+  color: var(--rf-text) !important;
   border-radius: 30px;
   height: 40px;
   box-sizing: border-box;
@@ -4085,14 +4122,14 @@ input {
   padding-left: 18px;
   padding-right: 40px;
   font-family: "Satoshi-Medium", sans-serif;
-  background-color: #fff;
+  background-color: var(--rf-bg);
 }
 .region-input input:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 .region-input span {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-family: "Satoshi-Medium", sans-serif;
   position: absolute;
   right: 18px;
@@ -4121,17 +4158,17 @@ input {
   padding-left: 18px;
   padding-right: 40px;
   font-family: "Satoshi-Medium", sans-serif;
-  background-color: #fff;
+  background-color: var(--rf-bg);
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
 }
 .time-set-input input:focus-visible {
   outline: none;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 .time-set-input span {
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-family: "Satoshi-Medium", sans-serif;
   position: absolute;
   right: 18px;
@@ -4141,13 +4178,13 @@ input {
 
 .TooltipContent {
   border-radius: 30px;
-  background-color: #29292f;
+  background-color: var(--rf-text);
   padding: 10px 15px;
   font-size: 12px;
   line-height: 1;
   font-family: "Satoshi-Medium", sans-serif;
   z-index: 99999999 !important;
-  color: #fff;
+  color: var(--rf-text-contrast);
   box-shadow: hsla(206, 22%, 7%, 0.35) 0px 10px 38px -10px, hsla(206, 22%, 7%, 0.2) 0px 10px 20px -15px;
   user-select: none;
   transition: opacity 0.3 ease-in-out !important;
@@ -4290,7 +4327,7 @@ input {
   padding-right: 4px;
   transition: opacity 0.25s cubic-bezier(0.61, 0.11, 0.08, 0.96);
   min-width: max-content;
-  background-color: rgba(30, 30, 30, 0.8);
+  background-color: var(--rf-fixed-glass);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   height: 28px;
   position: absolute;
@@ -4300,7 +4337,7 @@ input {
   backdrop-filter: blur(10px);
   z-index: 99999999999;
   opacity: 0;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--rf-fixed-ring-light);
 }
 
 .camera-draggable:hover .camera-toolbar, .camera-draggable:hover .camera-resize {
@@ -4314,7 +4351,7 @@ input {
 .CameraToolbarSeparator {
   width: 1px;
   height: 18px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--rf-fixed-ring-light-strong);
   margin: 0 4px;
 }
 
@@ -4322,7 +4359,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
+  color: var(--rf-fixed-float-text);
   height: 22px;
   width: 22px;
   text-align: center;
@@ -4330,13 +4367,13 @@ input {
   line-height: 1;
   border-radius: 50%;
   transition: background-color 0.25s ease-in-out;
-  background-color: rgba(124, 139, 165, 0);
+  background-color: transparent;
 }
 .CameraToggleItem svg, .CameraToolbarButton svg {
-  color: #9797a4;
+  color: var(--rf-icon);
 }
 .CameraToggleItem:hover, .CameraToolbarButton:hover {
-  background-color: rgba(124, 139, 165, 0.2) !important;
+  background-color: var(--rf-fixed-hover-cool) !important;
   cursor: pointer;
 }
 .CameraToggleItem:disabled, .CameraToolbarButton:disabled {
@@ -4344,10 +4381,10 @@ input {
   pointer-events: none;
 }
 .CameraToggleItem[data-state=on], .CameraToolbarButton[data-state=on] {
-  color: #FFF;
+  color: var(--rf-fixed-float-text);
 }
 .CameraToggleItem[data-state=on] svg, .CameraToolbarButton[data-state=on] svg {
-  color: #FFF;
+  color: var(--rf-fixed-float-text);
 }
 
 .CameraToggleItem:hover, .CameraToggleButton:hover {
@@ -4356,7 +4393,7 @@ input {
 
 .CameraToggleItem:focus-visible, .CameraToggleButton:focus-visible {
   position: relative;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .CameraToggleGroup {
@@ -4377,9 +4414,9 @@ input {
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-color: rgba(30, 30, 30, 0.8);
+  background-color: var(--rf-fixed-glass);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--rf-fixed-ring-light);
   backdrop-filter: blur(10px);
   align-items: center;
   box-sizing: border-box;
@@ -4389,7 +4426,7 @@ input {
   opacity: 0;
 }
 .camera-resize svg {
-  color: #9797A4;
+  color: var(--rf-fixed-icon);
   text-align: center;
   margin: auto;
   display: block;
@@ -4421,7 +4458,7 @@ input {
 .countdown-overlay {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--rf-fixed-overlay);
   position: absolute;
   top: 0px;
   left: 0px;
@@ -4448,7 +4485,7 @@ input {
   letter-spacing: normal !important;
   text-transform: none !important;
   word-spacing: normal !important;
-  color: #fff;
+  color: var(--rf-text-contrast);
   text-align: center;
   display: block;
   transition: all 0.6s ease-in-out;
@@ -4542,7 +4579,7 @@ input {
   margin: auto;
   bottom: 20px;
   border-radius: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--rf-fixed-ring-light-strong);
   text-align: center;
   display: block;
   padding: 10px 20px;
@@ -4551,7 +4588,7 @@ input {
   line-height: 1.4;
   letter-spacing: normal;
   text-transform: none;
-  color: #fff;
+  color: var(--rf-text-contrast);
   z-index: 99999999999;
   width: fit-content;
 }
@@ -4562,7 +4599,7 @@ button {
 }
 
 .AlertDialogOverlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--rf-fixed-overlay);
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -4571,7 +4608,7 @@ button {
 
 .AlertDialogContent {
   overflow: auto !important;
-  background-color: white;
+  background-color: var(--rf-bg);
   border-radius: 30px;
   box-shadow: hsla(206, 22%, 7%, 0.35) 0px 10px 38px -10px, hsla(206, 22%, 7%, 0.2) 0px 10px 20px -15px;
   position: fixed;
@@ -4592,7 +4629,7 @@ button {
 
 .AlertDialogTitle {
   margin: 0;
-  color: #29292f;
+  color: var(--rf-text);
   font-size: 14px;
   line-height: 1.4;
   font-family: "Satoshi-Bold", sans-serif;
@@ -4601,12 +4638,12 @@ button {
 
 .AlertDialogDescription {
   margin-bottom: 20px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 14px;
   line-height: 1.5;
 }
 .AlertDialogDescription a {
-  color: #111111 !important;
+  color: var(--rf-strong) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   display: inline-block;
@@ -4626,43 +4663,43 @@ button {
 }
 
 .Button.blue {
-  background-color: rgba(0, 0, 0, 0.06);
-  color: #111111;
+  background-color: var(--rf-neutral-soft-bg);
+  color: var(--rf-strong);
 }
 .Button.blue:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--rf-neutral-soft-bg-hover);
   cursor: pointer;
 }
 .Button.blue:focus {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .Button.red {
-  background-color: rgba(247, 56, 90, 0.1);
-  color: rgb(247, 56, 90);
+  background-color: var(--rf-danger-soft-bg);
+  color: var(--rf-danger-text);
 }
 
 .Button.red:hover {
-  background-color: rgba(247, 56, 90, 0.15);
+  background-color: var(--rf-danger-soft-bg-hover);
   cursor: pointer;
 }
 
 .Button.red:focus {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 .Button.grey {
-  background: rgba(110, 118, 132, 0.1);
-  color: #6e7684;
+  background: var(--rf-muted-soft-bg);
+  color: var(--rf-text-secondary);
 }
 
 .Button.grey:hover {
-  background: rgba(110, 118, 132, 0.15);
+  background: var(--rf-muted-soft-bg-hover);
   cursor: pointer;
 }
 
 .Button.grey:focus {
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0px 0px 0px 2px var(--rf-focus-ring);
 }
 
 @keyframes overlayShow {
@@ -4693,12 +4730,12 @@ button {
   line-height: 1;
   font-weight: 500;
   height: 35px;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-family: "Satoshi-Medium", sans-serif;
 }
 .SideButtonModal:hover {
   cursor: pointer;
-  background: rgba(110, 118, 132, 0.05);
+  background: var(--rf-muted-faint-bg);
 }
 
 .box-hole {
@@ -4715,8 +4752,8 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: white;
-  border: 2px solid rgba(0, 0, 0, 0.5);
+  background-color: var(--rf-fixed-white);
+  border: 2px solid var(--rf-fixed-ring-dark-strong);
   box-sizing: border-box;
 }
 
@@ -4812,8 +4849,8 @@ button {
 }
 
 .warning-root {
-  background-color: #29292f;
-  color: #fff;
+  background-color: var(--rf-text);
+  color: var(--rf-text-contrast);
   border-radius: 30px;
   box-shadow: hsla(206, 22%, 7%, 0.35) 0px 10px 38px -10px, hsla(206, 22%, 7%, 0.2) 0px 10px 20px -15px;
   padding: 14px 20px;
@@ -4914,23 +4951,23 @@ button {
   }
 }
 .warning-title {
-  color: #fff;
+  color: var(--rf-text-contrast);
   font-family: "Satoshi-Medium", sans-serif;
   line-height: 1.4;
 }
 
 .warning-description {
-  color: #fff;
+  color: var(--rf-text-contrast);
   opacity: 0.8;
   font-family: "Satoshi-Medium", sans-serif;
   line-height: 1.5;
 }
 
 .ToastAction {
-  color: #fff;
+  color: var(--rf-text-contrast);
   font-family: "Satoshi-Medium", sans-serif;
   text-align: right;
-  background-color: #51515f;
+  background-color: var(--rf-fixed-float-action);
   padding: 0px 12px !important;
   height: 24px !important;
   cursor: pointer;
@@ -4942,6 +4979,127 @@ button {
 
 .warning-close:hover {
   cursor: pointer;
+}
+
+/* Recordful theme tokens: the single source of truth for every UI color.
+   Light values live on `.root-container`; dark overrides under
+   `.root-container.recordful-dark` (toggled from PopupContainer, persisted in
+   chrome.storage). All component styles reference these via var(--rf-*)
+   (directly, or through the $color-* aliases in _variables.scss), so flipping
+   the theme re-skins the popup, toolbar, dropdowns, menus, modal, toasts and
+   every other component with no per-component logic.
+   Tokens prefixed `fixed-` are intentionally identical in both themes:
+   scrims, floating dark chrome and semantic status colors. */
+.root-container {
+  --rf-bg: #fff;
+  --rf-bg-soft: #f7f7f5;
+  --rf-bg-hover: #f6f7fb;
+  --rf-bg-active: #fff;
+  --rf-popover: #f2f1f2;
+  --rf-border: #e8e8e8;
+  --rf-border-strong: #d4d3d0;
+  --rf-text: #29292f;
+  --rf-text-strong: #111111;
+  --rf-text-secondary: #6e7684;
+  --rf-text-contrast: #fff;
+  --rf-strong: #111111;
+  --rf-strong-hover: #2a2a2a;
+  --rf-strong-active: #000000;
+  --rf-icon: #9797a4;
+  --rf-track-off: #e5e5e0;
+  --rf-focus-ring: rgba(17, 17, 17, 0.2);
+  --rf-danger: #d2234d;
+  --rf-danger-soft: #faf0f4;
+  --rf-danger-text: #f7385a;
+  --rf-pink-soft: #fff8fa;
+  --rf-pink-text: #f0175b;
+  --rf-danger-soft-bg: rgba(247, 56, 90, 0.1);
+  --rf-danger-soft-bg-hover: rgba(247, 56, 90, 0.15);
+  --rf-muted-soft-bg: rgba(110, 118, 132, 0.1);
+  --rf-muted-soft-bg-hover: rgba(110, 118, 132, 0.15);
+  --rf-muted-faint-bg: rgba(110, 118, 132, 0.05);
+  --rf-neutral-soft-bg: rgba(0, 0, 0, 0.06);
+  --rf-neutral-soft-bg-hover: rgba(0, 0, 0, 0.1);
+  --rf-wash-hover: rgba(0, 0, 0, 0.05);
+  --rf-wash-soft: rgba(0, 0, 0, 0.04);
+  --rf-wash-strong: rgba(0, 0, 0, 0.06);
+  --rf-fade: rgba(255, 255, 255, 0.5);
+  --rf-fade-strong: rgba(246, 247, 251, 0);
+  --rf-backdrop: rgba(255, 255, 255, 0.6);
+  --rf-scroll: rgba(41, 41, 47, 0.18);
+  --rf-scroll-hover: rgba(41, 41, 47, 0.3);
+  --rf-spinner-track: rgba(0, 0, 0, 0.1);
+  --rf-separator: #dddcdc;
+  --rf-eyehov: #e6e7ea;
+  --rf-fixed-float-bg: #29292f;
+  --rf-fixed-float-text: #fff;
+  --rf-fixed-float-divider: #44444d;
+  --rf-fixed-float-action: #51515f;
+  --rf-fixed-glass: rgba(30, 30, 30, 0.8);
+  --rf-fixed-overlay: rgba(0, 0, 0, 0.5);
+  --rf-fixed-dim: rgba(0, 0, 0, 0.2);
+  --rf-fixed-success: #78c072;
+  --rf-fixed-success-soft: rgba(120, 192, 114, 0.1);
+  --rf-fixed-record: #f7387d;
+  --rf-fixed-timer-warning: #ff4c4c;
+  --rf-fixed-black: #000;
+  --rf-fixed-white: #fff;
+  --rf-fixed-ring-dark: rgba(0, 0, 0, 0.2);
+  --rf-fixed-ring-dark-strong: rgba(0, 0, 0, 0.5);
+  --rf-fixed-ring-light: rgba(255, 255, 255, 0.2);
+  --rf-fixed-ring-light-strong: rgba(255, 255, 255, 0.3);
+  --rf-fixed-icon: #9797a4;
+  --rf-fixed-hover-cool: rgba(124, 139, 165, 0.2);
+  --rf-fixed-select: #0d99ff;
+  --rf-fixed-glass-card: rgba(255, 255, 255, 0.15);
+  --rf-fixed-glass-border: rgba(255, 255, 255, 0.2);
+  --rf-fixed-spinner-track: rgba(255, 255, 255, 0.2);
+  --rf-fixed-spinner-top: rgba(255, 255, 255, 0.8);
+  --rf-fixed-dim-strong: rgba(0, 0, 0, 0.15);
+  --rf-fixed-outline: #d9d9d9;
+}
+
+.root-container.recordful-dark {
+  --rf-bg: #1e1e24;
+  --rf-bg-soft: #26262d;
+  --rf-bg-hover: #2e2e37;
+  --rf-bg-active: #3a3a44;
+  --rf-popover: #2b2b33;
+  --rf-border: #38383f;
+  --rf-border-strong: #4c4c57;
+  --rf-text: #ececf1;
+  --rf-text-strong: #ffffff;
+  --rf-text-secondary: #a3a3b2;
+  --rf-text-contrast: #141416;
+  --rf-strong: #f2f2f4;
+  --rf-strong-hover: #ffffff;
+  --rf-strong-active: #c9c9d1;
+  --rf-icon: #8e8e9a;
+  --rf-track-off: #45454f;
+  --rf-focus-ring: rgba(255, 255, 255, 0.32);
+  --rf-danger: #ff5c7a;
+  --rf-danger-soft: #332228;
+  --rf-danger-text: #ff7a93;
+  --rf-pink-soft: #2c2126;
+  --rf-pink-text: #ff7a9e;
+  --rf-danger-soft-bg: rgba(255, 92, 122, 0.16);
+  --rf-danger-soft-bg-hover: rgba(255, 92, 122, 0.24);
+  --rf-muted-soft-bg: rgba(148, 163, 184, 0.14);
+  --rf-muted-soft-bg-hover: rgba(148, 163, 184, 0.2);
+  --rf-muted-faint-bg: rgba(148, 163, 184, 0.08);
+  --rf-neutral-soft-bg: rgba(255, 255, 255, 0.08);
+  --rf-neutral-soft-bg-hover: rgba(255, 255, 255, 0.14);
+  --rf-wash-hover: rgba(255, 255, 255, 0.08);
+  --rf-wash-soft: rgba(255, 255, 255, 0.06);
+  --rf-wash-strong: rgba(255, 255, 255, 0.1);
+  --rf-fade: rgba(30, 30, 36, 0.6);
+  --rf-fade-strong: rgba(30, 30, 36, 0);
+  --rf-backdrop: rgba(10, 10, 14, 0.6);
+  --rf-scroll: rgba(255, 255, 255, 0.18);
+  --rf-scroll-hover: rgba(255, 255, 255, 0.3);
+  --rf-spinner-track: rgba(255, 255, 255, 0.14);
+  --rf-separator: #45454f;
+  --rf-eyehov: #33333c;
 }
 
 :host {
@@ -4971,7 +5129,7 @@ button {
 .recordful-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
   border-radius: 16px;
-  border: 0px solid #fff;
+  border: 0px solid var(--rf-bg);
 }
 
 .recordful-scrollbar::-webkit-scrollbar-button {
@@ -4979,18 +5137,18 @@ button {
 }
 
 .recordful-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #a0a0a5;
-  border: 4px solid #fff;
+  background-color: var(--rf-icon);
+  border: 4px solid var(--rf-bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a5;
-  border: 4px solid #f4f4f4;
+  background-color: var(--rf-icon);
+  border: 4px solid var(--rf-bg);
 }
 
 .RecordfulDropdownMenuContent {
   min-width: 200px;
-  background-color: white;
+  background-color: var(--rf-bg);
   margin-top: 4px;
   margin-right: 8px;
   padding-top: 12px;
@@ -4998,7 +5156,7 @@ button {
   border-radius: 15px;
   z-index: 99999;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
   box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -5026,7 +5184,8 @@ button {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #111111;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -5049,22 +5208,22 @@ button {
 }
 
 .RecordfulDropdownMenuItem:hover {
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
   cursor: pointer;
 }
 
 .RecordfulDropdownMenuItem[data-disabled] {
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   cursor: not-allowed;
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
 }
 
 .driver-popover.RecordfulOnboardingPopover,
 .RecordfulOnboardingPopover,
 .onboarding-popover {
   border-radius: 30px !important;
-  background: #fff !important;
-  color: #29292f !important;
+  background: var(--rf-bg) !important;
+  color: var(--rf-text) !important;
   font-family: "Satoshi-Regular", sans-serif !important;
   box-shadow: 0 4px 20px rgba(38, 38, 52, 0.08) !important;
   padding: 20px !important;
@@ -5078,21 +5237,21 @@ button {
   font-size: 1rem !important;
   font-family: "Satoshi-Medium", sans-serif !important;
   margin-bottom: 12px !important;
-  color: #29292f !important;
+  color: var(--rf-text) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description,
 .RecordfulOnboardingPopover .driver-popover-description,
 .onboarding-popover .driver-popover-description {
   font-size: 14px !important;
   font-family: "Satoshi-Medium", sans-serif !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   line-height: 1.5 !important;
   margin-bottom: 18px !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-description a,
 .RecordfulOnboardingPopover .driver-popover-description a,
 .onboarding-popover .driver-popover-description a {
-  color: #111111 !important;
+  color: var(--rf-strong) !important;
   font-family: "Satoshi-Bold", sans-serif !important;
   text-decoration: none !important;
 }
@@ -5101,7 +5260,7 @@ button {
 .onboarding-popover .driver-popover-close-btn {
   top: 14px;
   right: 12px;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   font-size: 1.5rem !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow,
@@ -5118,28 +5277,28 @@ button {
 .onboarding-popover .driver-popover-arrow-side-top {
   border-left: 8px solid transparent !important;
   border-right: 8px solid transparent !important;
-  border-top: 8px solid #fff !important;
+  border-top: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-bottom,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-bottom,
 .onboarding-popover .driver-popover-arrow-side-bottom {
   border-left: 8px solid transparent !important;
   border-right: 8px solid transparent !important;
-  border-bottom: 8px solid #fff !important;
+  border-bottom: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-left,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-left,
 .onboarding-popover .driver-popover-arrow-side-left {
   border-top: 8px solid transparent !important;
   border-bottom: 8px solid transparent !important;
-  border-left: 8px solid #fff !important;
+  border-left: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-side-right,
 .RecordfulOnboardingPopover .driver-popover-arrow-side-right,
 .onboarding-popover .driver-popover-arrow-side-right {
   border-top: 8px solid transparent !important;
   border-bottom: 8px solid transparent !important;
-  border-right: 8px solid #fff !important;
+  border-right: 8px solid var(--rf-bg) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-arrow-align-start,
 .RecordfulOnboardingPopover .driver-popover-arrow-align-start,
@@ -5166,7 +5325,7 @@ button {
 .onboarding-popover .driver-popover-progress-text {
   font-size: 0.8rem !important;
   font-family: "Satoshi-Medium", sans-serif !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   opacity: 0.7 !important;
   margin-top: 2px !important;
 }
@@ -5192,7 +5351,7 @@ button {
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
-  background-color: #111111 !important;
+  background-color: var(--rf-strong) !important;
   color: white !important;
   border: none !important;
   padding: 10px 14px !important;
@@ -5206,25 +5365,25 @@ button {
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-next-btn:hover {
-  background: rgb(4.25, 4.25, 4.25) !important;
+  background: var(--rf-strong-hover) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn {
   background-color: transparent !important;
-  color: #29292f !important;
-  border: 1px solid #e8e8e8 !important;
+  color: var(--rf-text) !important;
+  border: 1px solid var(--rf-border) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-prev-btn:hover {
-  background: #f6f7fb !important;
+  background: var(--rf-bg-hover) !important;
 }
 .driver-popover.RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn,
 .RecordfulOnboardingPopover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn,
 .onboarding-popover .driver-popover-footer .driver-popover-navigation-btns .driver-popover-close-btn {
   background-color: transparent !important;
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
 }
 
 .driver-overlay {

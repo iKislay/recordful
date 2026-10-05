@@ -201,7 +201,7 @@ const CursorModes = () => {
           width: "100px",
           height: "100px",
           borderRadius: "50%",
-          boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.5)",
+          boxShadow: "0 0 0 9999px var(--rf-fixed-overlay)",
           transform: "translate(-50%, -50%)",
           pointerEvents: "none",
           zIndex: 99999999999,

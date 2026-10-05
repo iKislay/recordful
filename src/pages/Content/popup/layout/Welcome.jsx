@@ -82,7 +82,7 @@ const Welcome = (props) => {
           <p
             className="welcome-content-description"
             style={{
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               textAlign: "center",
             }}
           >
@@ -125,7 +125,7 @@ const Welcome = (props) => {
             style={{
               marginTop: "14px",
               fontSize: "13px",
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               cursor: "pointer",
               textAlign: "center",
             }}

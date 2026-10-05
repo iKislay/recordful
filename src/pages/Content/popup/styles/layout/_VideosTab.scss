@@ -25,7 +25,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--rf-backdrop);
     z-index: 999;
   }
 }
@@ -46,12 +46,12 @@
     box-shadow: none;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(41, 41, 47, 0.18);
+    background: var(--rf-scroll);
     border: none;
     border-radius: 10px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(41, 41, 47, 0.3);
+    background: var(--rf-scroll-hover);
   }
   &::-webkit-scrollbar-corner {
     background: transparent;
@@ -78,7 +78,7 @@
     height: 36px;
     background: linear-gradient(
       to bottom,
-      rgba(246, 247, 251, 0),
+      var(--rf-fade-strong),
       $color-light-grey
     );
     pointer-events: none;
@@ -99,7 +99,7 @@
   bottom: 0px;
   margin: auto;
   border-radius: $container-border-radius;
-  background: white;
+  background: var(--rf-bg);
   box-shadow: 0px 4px 100px 0px rgba(0, 0, 0, 0.15);
   z-index: 9999999;
 }
@@ -141,7 +141,7 @@
   align-items: center;
   justify-content: center;
   padding: 60px 0;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: 14px;
 }
 .empty-state {
@@ -171,8 +171,8 @@
 .spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(0, 0, 0, 0.1);
-  border-top-color: #6e7684;
+  border: 3px solid var(--rf-spinner-track);
+  border-top-color: var(--rf-text-secondary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 10px;
@@ -185,7 +185,7 @@
   justify-content: center;
   gap: $spacing-03;
   padding: $spacing-04 0;
-  color: #6e7684;
+  color: var(--rf-text-secondary);
   font-size: $font-size-small;
 }
 .spinner-small {

@@ -3,7 +3,7 @@
 .DropdownMenuContent,
 .DropdownMenuSubContent {
   min-width: 200px;
-  background-color: white;
+  background-color: var(--rf-bg);
   margin-top: 4px;
   margin-right: 8px;
   padding-top: 12px;
@@ -45,6 +45,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--rf-text-contrast);
 }
 .ItemIndicatorArrow {
   background: transparent !important;
@@ -72,8 +73,8 @@
   }
 }
 .DropdownMenuSubTrigger[data-state="open"] {
-  background-color: var(--violet-4);
-  color: var(--violet-11);
+  background-color: var(--rf-bg-hover);
+  color: var(--rf-text);
 }
 .DropdownMenuItem[data-disabled],
 .DropdownMenuCheckboxItem[data-disabled],
@@ -87,20 +88,20 @@
 .DropdownMenuCheckboxItem[data-highlighted],
 .DropdownMenuRadioItem[data-highlighted],
 .DropdownMenuSubTrigger[data-highlighted] {
-  background-color: var(--violet-9);
-  color: var(--violet-1);
+  background-color: var(--rf-bg-hover);
+  color: var(--rf-text);
 }
 
 .DropdownMenuLabel {
   padding-left: 25px;
   font-size: 12px;
   line-height: 25px;
-  color: var(--mauve-11);
+  color: var(--rf-text-secondary);
 }
 
 .DropdownMenuSeparator {
   height: 1px;
-  background-color: var(--violet-6);
+  background-color: var(--rf-border);
   margin: 5px;
 }
 
@@ -114,7 +115,7 @@
 }
 
 .DropdownMenuArrow {
-  fill: white;
+  fill: var(--rf-bg);
 }
 
 .IconButton {
@@ -127,11 +128,11 @@
   cursor: pointer;
 
   svg {
-    color: #9797a4;
+    color: var(--rf-icon);
   }
 }
 .IconButton:hover {
-  background-color: var(--violet-3);
+  background-color: var(--rf-wash-hover);
 }
 .IconButton:focus {
 }
@@ -139,13 +140,13 @@
 .RightSlot {
   margin-left: auto;
   padding-left: 20px;
-  color: var(--mauve-11);
+  color: var(--rf-text-secondary);
 }
 [data-highlighted] > .RightSlot {
-  color: white;
+  color: inherit;
 }
 [data-disabled] .RightSlot {
-  color: var(--mauve-8);
+  color: var(--rf-text-secondary);
 }
 
 @keyframes slideUpAndFade {

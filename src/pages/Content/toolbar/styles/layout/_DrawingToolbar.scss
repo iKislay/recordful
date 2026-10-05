@@ -47,7 +47,7 @@
 		display: block;
 		width: 100%;
 		height: 100%;
-		background: rgb(242, 241, 242);
+		background: var(--rf-popover);
 		background-clip: content-box;
 		-webkit-mask-image: radial-gradient(circle at 50% 59px, transparent 20px, #000 20px);
 		mask-image: radial-gradient(circle at 50% 59px, transparent 20px, #000 20px);
@@ -59,7 +59,7 @@
 		z-index: -2;
 	}
 	.ToolbarSeparator {
-		background-color: #dddcdc;
+		background-color: var(--rf-separator);
 	}
 }
 
@@ -80,6 +80,6 @@
 	width: 14px;
 	height: 14px;
 	background: #ED6C3A;
-	border: 1.5px solid rgba(0, 0, 0, 0.2);
+	border: 1.5px solid var(--rf-fixed-ring-dark);
 	border-radius: 50%;
 }

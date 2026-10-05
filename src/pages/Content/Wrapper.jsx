@@ -36,7 +36,7 @@ const RecordingLoader = () => {
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(0, 0, 0, 0.5)",
+        background: "var(--rf-fixed-overlay)",
         backdropFilter: "blur(20px) saturate(180%)",
         WebkitBackdropFilter: "blur(20px) saturate(180%)",
         display: "flex",
@@ -49,8 +49,8 @@ const RecordingLoader = () => {
     >
       <div
         style={{
-          background: "rgba(255, 255, 255, 0.15)",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
+          background: "var(--rf-fixed-glass-card)",
+          border: "1px solid var(--rf-fixed-glass-border)",
           borderRadius: 20,
           padding: 40,
           width: 160,
@@ -74,8 +74,8 @@ const RecordingLoader = () => {
           style={{
             width: 60,
             height: 60,
-            border: "3px solid rgba(255, 255, 255, 0.2)",
-            borderTop: "3px solid rgba(255, 255, 255, 0.8)",
+            border: "3px solid var(--rf-fixed-spinner-track)",
+            borderTop: "3px solid var(--rf-fixed-spinner-top)",
             borderRadius: "50%",
             animation: "spin 1s linear infinite",
           }}
@@ -85,7 +85,7 @@ const RecordingLoader = () => {
             marginTop: 20,
             fontSize: 15,
             fontWeight: 500,
-            color: "#FFFFFF",
+            color: "var(--rf-fixed-white)",
             textAlign: "center",
             letterSpacing: "-0.01em",
           }}
@@ -396,7 +396,7 @@ const Wrapper = () => {
                     ) === -1 &&
                     !contentState.pendingRecording &&
                     !contentState.preparingRecording
-                      ? "rgba(0,0,0,0.15)"
+                      ? "var(--rf-fixed-dim-strong)"
                       : "rgba(0,0,0,0)",
                   top: 0,
                   left: 0,
@@ -438,7 +438,10 @@ const Wrapper = () => {
           )}
           <CursorModes />
           <root.div
-            className="root-container"
+            className={
+              "root-container" +
+              (contentState.theme === "dark" ? " recordful-dark" : "")
+            }
             id="recordful-root-container"
             style={{
               display: "block",
@@ -459,7 +462,7 @@ const Wrapper = () => {
               textTransform: "none",
               textIndent: "0",
               textAlign: "left",
-              color: "#29292F",
+              color: "var(--rf-text)",
               direction: "ltr",
               whiteSpace: "normal",
               fontStyle: "normal",

@@ -42,7 +42,7 @@
 .ExperimentalLabel {
   color: $color-text-contrast;
   font-size: 12px;
-  background-color: #111111;
+  background-color: var(--rf-strong);
   border-radius: 15px;
   padding: 2px 8px;
   display: inline-block !important;
@@ -83,10 +83,10 @@
     margin-left: -8px;
   }
   &:hover::after {
-    border-color: #fff;
+    border-color: var(--rf-bg);
   }
   &:hover {
-    background-color: #fff;
+    background-color: var(--rf-wash-hover);
   }
 }
 .labelDropdownActive {

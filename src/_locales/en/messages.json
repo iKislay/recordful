@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Recordful - Free & Private Screen Recorder",
+    "message": "Recordful: From Screen Recording to Motion Video",
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "The free and privacy-friendly screen recorder for everyone. Capture, annotate, edit videos and more - all with no sign in needed.",
+    "message": "Record your product in the browser, then turn it into a polished video with smart zooms and cinematic motion.",
     "description": "Extension description"
   },
   "recordTab": {

@@ -17,7 +17,7 @@ const LoggedOut = ({ onManageClick, onDowngradeClick }) => {
             className="welcome-description"
             style={{
               fontSize: "14px",
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               lineHeight: "1.5",
               marginBottom: "20px",
             }}
@@ -30,9 +30,9 @@ const LoggedOut = ({ onManageClick, onDowngradeClick }) => {
             className="welcome-cta"
             style={{
               marginBottom: "20px",
-              backgroundColor: "#29292F",
+              backgroundColor: "var(--rf-strong)",
               boxSizing: "border-box",
-              color: "white",
+              color: "var(--rf-text-contrast)",
               height: "45px",
               width: "100%",
               borderRadius: "999px",
@@ -57,7 +57,7 @@ const LoggedOut = ({ onManageClick, onDowngradeClick }) => {
             style={{
               marginBottom: "12px",
               fontSize: "14px",
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               textAlign: "center",
             }}
           >
@@ -68,8 +68,8 @@ const LoggedOut = ({ onManageClick, onDowngradeClick }) => {
           <div
             className="welcome-cta"
             style={{
-              backgroundColor: "white",
-              border: "1px solid #E5E7EB",
+              backgroundColor: "var(--rf-bg)",
+              border: "1px solid var(--rf-border)",
               boxSizing: "border-box",
               height: "45px",
               width: "100%",
@@ -77,7 +77,7 @@ const LoggedOut = ({ onManageClick, onDowngradeClick }) => {
               textAlign: "center",
               fontWeight: "600",
               cursor: "pointer",
-              color: "#141416",
+              color: "var(--rf-text-strong)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

@@ -11,6 +11,40 @@ const Content = () => {
         <Wrapper />
       </ContentState>
       <style type="text/css">{`
+			/* Page-level theme tokens (outside the shadow tree: tooltips,
+			   body-portaled menus and the driver.js onboarding popover read
+			   these from <html>). html.recordful-dark is toggled by
+			   ContentState whenever the popup theme changes. */
+			html {
+				--rf-bg: #fff;
+				--rf-bg-hover: #f6f7fb;
+				--rf-text: #29292f;
+				--rf-text-secondary: #6e7684;
+				--rf-text-contrast: #fff;
+				--rf-strong: #111111;
+				--rf-border: #e8e8e8;
+				--rf-fixed-float-bg: #29292f;
+				--rf-fixed-float-text: #fff;
+				--color-background: #f9fafb;
+				--color-text-primary: #1f2430;
+				--color-text-secondary: #667085;
+				--color-primary: #111111;
+				--color-border: #d0d5dd;
+			}
+			html.recordful-dark {
+				--rf-bg: #1e1e24;
+				--rf-bg-hover: #2e2e37;
+				--rf-text: #ececf1;
+				--rf-text-secondary: #a3a3b2;
+				--rf-text-contrast: #141416;
+				--rf-strong: #f2f2f4;
+				--rf-border: #38383f;
+				--color-background: #1e1e24;
+				--color-text-primary: #ececf1;
+				--color-text-secondary: #a3a3b2;
+				--color-primary: #f2f2f4;
+				--color-border: #38383f;
+			}
 			#recordful-ui, #recordful-ui div {
 				opacity: unset;
 				background-color: unset;
@@ -24,7 +58,7 @@ const Content = () => {
 			.recordful-outline {
 				position: absolute;
 				z-index: 99999999999;
-				border: 2px solid #111111;
+				border: 2px solid var(--rf-strong);
 				outline-offset: -2px;
 				pointer-events: none;
 				border-radius: 5px!important;
@@ -37,7 +71,7 @@ const Content = () => {
 			}
 			.recordful-shadow-dom .TooltipContent {
   border-radius: 30px!important;
-	background-color: #29292F!important;
+	background-color: var(--rf-fixed-float-bg)!important;
   padding: 10px 15px!important;
   font-size: 12px;
 	margin-bottom: 10px!important;
@@ -45,7 +79,7 @@ const Content = () => {
   line-height: 1;
 	font-family: 'Satoshi-Medium', sans-serif;
 	z-index: 99999999!important;
-  color: #FFF;
+  color: var(--rf-fixed-float-text);
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px!important;
   user-select: none;
 	transition: opacity 0.3 ease-in-out;
@@ -124,14 +158,14 @@ const Content = () => {
 .RecordfulDropdownMenuContent {
 	z-index: 99999999999!important;
   min-width: 200px;
-  background-color: white;
+  background-color: var(--rf-bg);
   margin-top: 4px;
   margin-right: 8px;
   padding-top: 12px;
   padding-bottom: 12px;
   border-radius: 15px;
   font-family: 'Satoshi-Medium', sans-serif;
-  color: #29292F;
+  color: var(--rf-text);
   box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
     0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
@@ -155,7 +189,8 @@ const Content = () => {
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #111111;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -176,13 +211,13 @@ const Content = () => {
   outline: none;
 }
 .RecordfulDropdownMenuItem:hover {
-    background-color: #F6F7FB !important;
+    background-color: var(--rf-bg-hover) !important;
     cursor: pointer;
 }
 .RecordfulDropdownMenuItem[data-disabled] {
-  color: #6E7684 !important;
+  color: var(--rf-text-secondary) !important;
   cursor: not-allowed;
-  background-color: #F6F7FB !important;
+  background-color: var(--rf-bg-hover) !important;
 }
 
 `}</style>

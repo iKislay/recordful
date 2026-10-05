@@ -88,7 +88,7 @@
 }
 
 .ToastDescription {
-  color: var(--slate-11);
+  color: inherit;
 	font-family: $font-medium;
 }
 
@@ -96,7 +96,7 @@
 	color: $color-text-contrast;
   font-family: $font-medium;
 	text-align: right;
-	background-color: #51515F;
+	background-color: var(--rf-fixed-float-action);
 	padding: 0px 12px!important;
 	height: 24px!important;
 	cursor: pointer;

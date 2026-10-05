@@ -70,7 +70,7 @@
 
 .video-item-root:hover {
   cursor: pointer;
-  background: #e9eaee;
+  background: var(--rf-bg-hover);
 }
 .video-item-root:focus-visible {
   box-shadow: $focus-border;

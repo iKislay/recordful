@@ -8,9 +8,9 @@
 	height: 28px;
 	width: 28px;
 	border-radius: 50%;
-	background-color: rgba(30, 30, 30, .8);
+	background-color: var(--rf-fixed-glass);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
-	border: 3px solid rgba(255, 255, 255, .2);
+	border: 3px solid var(--rf-fixed-ring-light);
 	backdrop-filter: blur(10px);
 	align-items: center;
 	box-sizing: border-box;
@@ -20,7 +20,7 @@
 	opacity: 0;
 
 	svg {
-		color: #9797A4;
+		color: var(--rf-fixed-icon);
 		text-align: center;
 		margin: auto;
 		display: block;

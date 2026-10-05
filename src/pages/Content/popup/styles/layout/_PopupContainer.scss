@@ -1,6 +1,7 @@
 @use "../../../styles/_variables" as *;
 
-.popup-container:hover .popup-controls {
+.popup-container:hover .popup-controls,
+.popup-container:hover .popup-theme-toggle {
   opacity: 1;
 }
 .open {
@@ -17,7 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: var(--rf-bg);
   border: 1px solid $color-border;
   border-radius: 999px;
   color: $color-text-secondary;
@@ -54,7 +55,7 @@
     border-radius: 6px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.05);
+      background: var(--rf-wash-hover);
     }
 
     svg {
@@ -64,6 +65,41 @@
   }
   .popup-close {
     cursor: pointer;
+  }
+}
+.popup-theme-toggle {
+  opacity: 0.55;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999999;
+  background: transparent;
+  padding: 2px;
+  transition: opacity 0.15s ease;
+
+  .popup-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--rf-wash-hover);
+    }
+
+    svg {
+      color: $color-text-secondary;
+      margin-bottom: -2px;
+    }
   }
 }
 
@@ -123,7 +159,7 @@
   // visible for the grab tab and the help pill that sit outside it.
   border-radius: inherit;
   overflow: hidden;
-  background: #fff;
+  background: var(--rf-bg);
   padding: 12px 12px 14px;
 }
 
@@ -149,7 +185,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: #f7f7f5;
+  background-color: var(--rf-bg-soft);
   margin-left: -12px;
   margin-top: -12px;
   margin-bottom: 8px;
@@ -190,7 +226,7 @@
   }
 }
 .permission-button {
-  background: #f7f7f5;
+  background: var(--rf-bg-soft);
   border: 1px solid $color-border;
   border-radius: 10px;
   color: $color-text-primary;
@@ -211,7 +247,7 @@
     margin-bottom: $spacing-02 !important;
   }
   &:hover {
-    background: rgba(0, 0, 0, 0.04);
+    background: var(--rf-wash-soft);
     cursor: pointer;
   }
 
@@ -226,7 +262,7 @@
   right: 0px;
   margin: auto;
   bottom: -40px;
-  background: #edeef2;
+  background: var(--rf-bg-soft);
   border-radius: 30px;
   padding: 4px 12px;
   text-align: center;
@@ -244,6 +280,6 @@
 
   &:hover {
     cursor: pointer;
-    background: #fefeff;
+    background: var(--rf-bg-hover);
   }
 }

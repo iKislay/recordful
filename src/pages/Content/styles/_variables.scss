@@ -24,18 +24,20 @@
   "chrome-extension://__MSG_@@extension_id__/assets/fonts/GloriaHallelujah-Regular"
 );
 
-/* Colors */
-$color-background: #fff;
-$color-light-grey: #f6f7fb;
-$color-primary: #111111;
-$color-border: #e8e8e8;
-$color-text-contrast: #fff;
-$color-text-primary: #29292f;
-$color-text-secondary: #6e7684;
-$color-red: #d2234d;
-$color-red-light: #faf0f4;
-$color-primary-transparent: rgba(0, 0, 0, 0.06);
-$color-icon: #9797a4;
+/* Colors: aliases over the var(--rf-*) theme tokens in _theme.scss, so every
+   existing usage re-skins itself when the theme flips. Never put a raw color
+   here; add a token in _theme.scss instead. */
+$color-background: var(--rf-bg);
+$color-light-grey: var(--rf-bg-hover);
+$color-primary: var(--rf-strong);
+$color-border: var(--rf-border);
+$color-text-contrast: var(--rf-text-contrast);
+$color-text-primary: var(--rf-text);
+$color-text-secondary: var(--rf-text-secondary);
+$color-red: var(--rf-danger);
+$color-red-light: var(--rf-danger-soft);
+$color-primary-transparent: var(--rf-wash-strong);
+$color-icon: var(--rf-icon);
 
 /* Font */
 //$font-size-normal: 0.875rem;
@@ -73,12 +75,12 @@ $container-shadow-focus: 2px 2px 10px rgba(0, 0, 0, 0.1);
 $container-soft-shadow: 0 4px 20px rgb(38 38 52 / 8%);
 
 /* Gradients */
-$gradient-primary: #111111;
+$gradient-primary: var(--rf-strong);
 $gradient-shadow-primary: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.35));
 
 /* Events */
-$focus-border: 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
-$focus-inner-border: inset 0px 0px 0px 2px rgba(0, 0, 0, 0.35);
+$focus-border: 0px 0px 0px 2px var(--rf-focus-ring);
+$focus-inner-border: inset 0px 0px 0px 2px var(--rf-focus-ring);
 
 /* Z-index */
 $z-index-max: 99999999999;

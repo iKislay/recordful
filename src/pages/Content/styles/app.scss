@@ -8,7 +8,7 @@
 @use "../camera-only/styles/CameraOnly.scss";
 @use "../warning/styles/Warning.scss";
 @use "./_variables" as *;
-@use "sass:color";
+@use "./_theme.scss";
 
 // Reset inherited properties inside the shadow tree.
 :host {
@@ -36,23 +36,23 @@
 .recordful-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
   border-radius: 16px;
-  border: 0px solid #fff;
+  border: 0px solid var(--rf-bg);
 }
 .recordful-scrollbar::-webkit-scrollbar-button {
   display: none;
 }
 .recordful-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #a0a0a5;
-  border: 4px solid #fff;
+  background-color: var(--rf-icon);
+  border: 4px solid var(--rf-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a5;
-  border: 4px solid #f4f4f4;
+  background-color: var(--rf-icon);
+  border: 4px solid var(--rf-bg);
 }
 
 .RecordfulDropdownMenuContent {
   min-width: 200px;
-  background-color: white;
+  background-color: var(--rf-bg);
   margin-top: 4px;
   margin-right: 8px;
   padding-top: 12px;
@@ -60,7 +60,7 @@
   border-radius: 15px;
   z-index: 99999;
   font-family: "Satoshi-Medium", sans-serif;
-  color: #29292f;
+  color: var(--rf-text);
   box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
     0px 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
@@ -84,7 +84,8 @@
   right: 12px;
   width: 18px;
   height: 18px;
-  background: #111111;
+  background: var(--rf-strong);
+  color: var(--rf-text-contrast);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -105,13 +106,13 @@
   outline: none;
 }
 .RecordfulDropdownMenuItem:hover {
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
   cursor: pointer;
 }
 .RecordfulDropdownMenuItem[data-disabled] {
-  color: #6e7684 !important;
+  color: var(--rf-text-secondary) !important;
   cursor: not-allowed;
-  background-color: #f6f7fb !important;
+  background-color: var(--rf-bg-hover) !important;
 }
 
 // Onboarding (driver.js)
@@ -143,7 +144,7 @@
     margin-bottom: 18px !important;
 
     a {
-      color: #111111 !important;
+      color: var(--rf-strong) !important;
       font-family: $font-bold !important;
       text-decoration: none !important;
     }
@@ -232,7 +233,7 @@
       }
       .driver-popover-next-btn {
         &:hover {
-          background: color.adjust($color-primary, $lightness: -5%) !important;
+          background: var(--rf-strong-hover) !important;
         }
       }
 

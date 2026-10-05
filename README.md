@@ -1,10 +1,11 @@
 # Recordful
 
-The free and privacy-friendly screen recorder with no limits.
+**From screen recording to motion video.**
 
-Record, annotate, and edit tab, desktop, and camera videos right in your
-browser. Unlimited recordings, no watermarks, no sign-in required. Your
-videos never leave your machine unless you choose to share them.
+Record your product in the browser, then turn it into a polished video
+with smart zooms, cinematic camera movement, 3D effects, transitions, and
+motion design. Professional screen recording, without the production
+workflow.
 
 > Recordful Pro ([recordful.app/pro](https://recordful.app/pro)) adds cloud
 > sharing, multi-scene editing, auto-zoom keyframes, and captions for the

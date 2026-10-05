@@ -13,8 +13,8 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: white;
-  border: 2px solid rgba(0, 0, 0, .5);
+  background-color: var(--rf-fixed-white);
+  border: 2px solid var(--rf-fixed-ring-dark-strong);
   box-sizing: border-box;
 }
 .resize-handle.top-left {

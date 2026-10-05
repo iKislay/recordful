@@ -48,7 +48,7 @@ const InactiveSubscription = ({
             className="welcome-description"
             style={{
               fontSize: "14px",
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               lineHeight: "1.5",
               marginBottom: "20px",
             }}
@@ -66,10 +66,10 @@ const InactiveSubscription = ({
           {formattedDate && hasSubscribedBefore && (
             <div
               style={{
-                backgroundColor: "#FFF8FA",
+                backgroundColor: "var(--rf-pink-soft)",
                 borderRadius: "30px",
                 padding: "1.25rem 1.5rem",
-                color: "#F0175B",
+                color: "var(--rf-pink-text)",
                 fontSize: "14px",
                 fontWeight: 500,
                 lineHeight: "1.5",
@@ -92,9 +92,9 @@ const InactiveSubscription = ({
             className="welcome-cta"
             style={{
               marginBottom: "20px",
-              backgroundColor: "#29292F",
+              backgroundColor: "var(--rf-strong)",
               boxSizing: "border-box",
-              color: "white",
+              color: "var(--rf-text-contrast)",
               height: "45px",
               width: "100%",
               borderRadius: "999px",
@@ -122,7 +122,7 @@ const InactiveSubscription = ({
             style={{
               marginBottom: "12px",
               fontSize: "14px",
-              color: "#6E7684",
+              color: "var(--rf-text-secondary)",
               textAlign: "center",
             }}
           >
@@ -133,8 +133,8 @@ const InactiveSubscription = ({
           <div
             className="welcome-cta"
             style={{
-              backgroundColor: "white",
-              border: "1px solid #E5E7EB",
+              backgroundColor: "var(--rf-bg)",
+              border: "1px solid var(--rf-border)",
               boxSizing: "border-box",
               height: "45px",
               width: "100%",
@@ -142,7 +142,7 @@ const InactiveSubscription = ({
               textAlign: "center",
               fontWeight: "600",
               cursor: "pointer",
-              color: "#141416",
+              color: "var(--rf-text-strong)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

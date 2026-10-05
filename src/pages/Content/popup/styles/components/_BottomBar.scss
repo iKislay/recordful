@@ -12,7 +12,7 @@
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--rf-backdrop);
 }
 
 .more-panel {
@@ -23,7 +23,7 @@
   z-index: 4;
   box-sizing: border-box;
   padding: 0 12px 6px;
-  background: #fff;
+  background: var(--rf-bg);
   border: 1px solid $color-border;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -62,7 +62,7 @@
     border-radius: 6px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.05);
+      background: var(--rf-wash-hover);
     }
   }
 }
@@ -94,7 +94,7 @@
 
 .bottom-bar {
   display: flex;
-  background: #f7f7f5;
+  background: var(--rf-bg-soft);
   border: 1px solid $color-border;
   border-radius: 12px;
   padding: 4px;
@@ -125,7 +125,7 @@
   }
 
   &.active {
-    background: #fff;
+    background: var(--rf-bg-active);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     color: $color-text-primary;
   }
