@@ -5,26 +5,14 @@
 const URL =
   "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/assets";
 
-const TempFigma = `${URL}/temp/figma.webp`;
-const TempTwitter = `${URL}/temp/twitter.webp`;
-const TempDesignSystem = `${URL}/temp/designsystem.webp`;
-const TempMarketing = `${URL}/temp/marketing.webp`;
-const TempSubstack = `${URL}/temp/substack.webp`;
 const HandleControl = `${URL}/canvas/handle.png`;
 const RotateControl = `${URL}/canvas/rotate.png`;
 const MiddleHandleControl = `${URL}/canvas/middle-handle.png`;
 const MiddleHandleControlV = `${URL}/canvas/middle-handle-v.png`;
-const PlaceholderThumb = `${URL}/placeholder-thumb.png`;
 
 export {
-  TempFigma,
-  TempTwitter,
-  TempDesignSystem,
-  TempMarketing,
-  TempSubstack,
   HandleControl,
   RotateControl,
   MiddleHandleControl,
   MiddleHandleControlV,
-  PlaceholderThumb,
 };

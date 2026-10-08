@@ -70,9 +70,7 @@ const Setup = () => {
                 {chrome.i18n.getMessage("setupStep3Before")}
                 <span>
                   <img
-                    src={chrome.runtime.getURL(
-                      "assets/helper/mini-recordful.png"
-                    )}
+                    src={chrome.runtime.getURL("assets/img/icon-34.png")}
                   />
                 </span>
                 {chrome.i18n.getMessage("setupStep3After")}

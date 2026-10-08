@@ -7,9 +7,6 @@ const Announcement = (props) => {
   return (
     <div className="welcome">
       <div className="announcement-wrap">
-        <div className="announcement-hero">
-          <img src={chrome.runtime.getURL("assets/helper/hero.png")} />
-        </div>
         <div className="announcement-details">
           <div className="announcement-title">
             {chrome.i18n.getMessage("updateAnnouncementTitle")} 👋

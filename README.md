@@ -22,6 +22,12 @@ workflow.
 - Export to MP4, GIF, and WebM, or save to Google Drive
 - Alarms, countdown, movable toolbar, fully offline-capable
 
+## Private by default
+
+Recordings stay on your device until you choose to export or upload them:
+
+![Recordful Recordings folder with locally saved videos](src/assets/helper/backup.png)
+
 ## Install
 
 No Chrome Web Store listing yet. Until there is one, run the latest

@@ -1161,7 +1161,7 @@ const ContentState = (props) => {
             () => {
               noMorePermissions();
             },
-            chrome.runtime.getURL("assets/helper/permissions.webp"),
+            chrome.runtime.getURL("assets/helper/permission.png"),
             chrome.i18n.getMessage("learnMoreDot"),
             URL2,
             true,
