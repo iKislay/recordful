@@ -44,6 +44,36 @@ import {
 } from "../components/SVG";
 import MicToggle from "../components/MicToggle";
 
+// Furthest the toolbar may rest from the screen edge it is docked to.
+const MAX_EDGE_GAP = 48;
+
+// Docked left or right the toolbar is vertical; docked top or bottom it is
+// horizontal, and ToolbarTop / ToolbarBottom name the side its popouts open
+// on (away from the edge).
+const EDGE_CLASS = {
+  left: "ToolbarVertical",
+  right: "ToolbarVertical ToolbarRight",
+  top: "ToolbarBottom",
+  bottom: "ToolbarTop",
+};
+
+// Another edge takes over only once the pointer is this much closer to it,
+// so the toolbar doesn't flip in a corner or the moment it is grabbed there.
+const EDGE_SWITCH_MARGIN = 80;
+
+const nearestEdge = (x, y, current) => {
+  const distances = {
+    left: x,
+    right: window.innerWidth - x,
+    top: y,
+    bottom: window.innerHeight - y,
+  };
+  return Object.keys(distances).reduce(
+    (a, b) => (distances[b] + EDGE_SWITCH_MARGIN < distances[a] ? b : a),
+    current,
+  );
+};
+
 const ToolbarWrap = () => {
   const [contentState, setContentState] = useContext(contentStateContext);
   const [t] = useContext(timerContext);
@@ -52,7 +82,11 @@ const ToolbarWrap = () => {
   const [hovering, setHovering] = React.useState(false);
   const DragRef = React.useRef(null);
   const ToolbarRef = React.useRef(null);
-  const [side, setSide] = React.useState("ToolbarTop");
+  // Positions saved before docking existed carry no edge.
+  const [edge, setEdge] = React.useState(
+    contentState.toolbarPosition.edge ||
+      (contentState.toolbarPosition.right ? "right" : "left"),
+  );
   const [elastic, setElastic] = React.useState("");
   const [shake, setShake] = React.useState("");
   const [dragging, setDragging] = React.useState("");
@@ -143,7 +177,8 @@ const ToolbarWrap = () => {
     }
   }, [t]);
 
-  // The grab handle pops 12px out of the pill's top edge; keep it reachable.
+  // The grab handle pops 12px out of the vertical pill's top edge; keep it
+  // reachable.
   const HANDLE_OVERHANG = 12;
 
   // offsetWidth/Height ignore the drag scale + shake transforms.
@@ -158,21 +193,36 @@ const ToolbarWrap = () => {
     };
   };
 
+  // Pulls a position to within MAX_EDGE_GAP of the docked edge.
+  const dockToEdge = (x, y) => {
+    const { offsetWidth, offsetHeight } = ToolbarRef.current;
+    if (edge === "left") x = Math.min(x, MAX_EDGE_GAP);
+    if (edge === "right")
+      x = Math.max(x, window.innerWidth - offsetWidth - MAX_EDGE_GAP);
+    if (edge === "top") y = Math.min(y, MAX_EDGE_GAP);
+    if (edge === "bottom")
+      y = Math.max(y, window.innerHeight - offsetHeight - MAX_EDGE_GAP);
+    return clampToViewport(x, y);
+  };
+
+  // Changing edge changes the pill's size, so re-dock once it has rendered.
+  // Not mid-drag: the pill follows the cursor until it is dropped.
   useLayoutEffect(() => {
+    if (dragging) return;
     function setToolbarPosition() {
       const { x, y } = DragRef.current.getDraggablePosition();
-      DragRef.current.updatePosition(clampToViewport(x, y));
+      DragRef.current.updatePosition(dockToEdge(x, y));
     }
     window.addEventListener("resize", setToolbarPosition);
     setToolbarPosition();
     return () => window.removeEventListener("resize", setToolbarPosition);
-  }, []);
+  }, [edge, dragging]);
 
   const handleChange = (value) => {
     setMode(value);
   };
 
-  // Position at drag start; Escape drops the toolbar back here.
+  // Position and edge at drag start; Escape drops the toolbar back here.
   const dragStartRef = useRef(null);
   const dragCancelledRef = useRef(false);
 
@@ -196,7 +246,7 @@ const ToolbarWrap = () => {
   }, [dragging]);
 
   const handleDragStart = (e, d) => {
-    dragStartRef.current = { x: d.x, y: d.y };
+    dragStartRef.current = { x: d.x, y: d.y, edge };
     setDragging("ToolbarDragging");
   };
 
@@ -209,11 +259,7 @@ const ToolbarWrap = () => {
       return;
     }
 
-    if (d.y < 130) {
-      setSide("ToolbarBottom");
-    } else {
-      setSide("ToolbarTop");
-    }
+    setEdge((current) => nearestEdge(e.clientX, e.clientY, current));
 
     const clamped = clampToViewport(d.x, d.y);
     setShake(clamped.x !== d.x || clamped.y !== d.y ? "ToolbarShake" : "");
@@ -222,75 +268,41 @@ const ToolbarWrap = () => {
   const handleDrop = (e, d) => {
     setShake("");
     setDragging("");
-    if (dragCancelledRef.current) {
-      dragCancelledRef.current = false;
-      d = dragStartRef.current;
-    }
-
-    const { x: xpos, y: ypos } = clampToViewport(d.x, d.y);
-    if (xpos !== d.x || ypos !== d.y) setElastic("ToolbarElastic");
-
-    if (ypos < 130) {
-      setSide("ToolbarBottom");
-    } else {
-      setSide("ToolbarTop");
-    }
-    DragRef.current.updatePosition({ x: xpos, y: ypos });
-
     setTimeout(() => {
       setElastic("");
     }, 250);
 
-    setContentState((prevContentState) => ({
-      ...prevContentState,
-      toolbarPosition: {
-        ...prevContentState.toolbarPosition,
-        offsetX: xpos,
-        offsetY: ypos,
-        left: xpos < window.innerWidth / 2 ? true : false,
-        right: xpos < window.innerWidth / 2 ? false : true,
-        top: ypos < window.innerHeight / 2 ? true : false,
-        bottom: ypos < window.innerHeight / 2 ? false : true,
-      },
-    }));
-
-    let left = xpos < window.innerWidth / 2 ? true : false;
-    let right = xpos < window.innerWidth / 2 ? false : true;
-    let top = ypos < window.innerHeight / 2 ? true : false;
-    let bottom = ypos < window.innerHeight / 2 ? false : true;
-    let offsetX = xpos;
-    let offsetY = ypos;
-
-    if (right) {
-      offsetX = window.innerWidth - xpos;
-    }
-    if (bottom) {
-      offsetY = window.innerHeight - ypos;
+    // Back to where the drag started, which is already docked and saved.
+    if (dragCancelledRef.current) {
+      dragCancelledRef.current = false;
+      const { edge: startEdge, ...start } = dragStartRef.current;
+      setElastic("ToolbarElastic");
+      setEdge(startEdge);
+      DragRef.current.updatePosition(start);
+      return;
     }
 
+    const { x: xpos, y: ypos } = dockToEdge(d.x, d.y);
+    if (xpos !== d.x || ypos !== d.y) setElastic("ToolbarElastic");
+    DragRef.current.updatePosition({ x: xpos, y: ypos });
+
+    const right = xpos >= window.innerWidth / 2;
+    const bottom = ypos >= window.innerHeight / 2;
+    const toolbarPosition = {
+      offsetX: right ? window.innerWidth - xpos : xpos,
+      offsetY: bottom ? window.innerHeight - ypos : ypos,
+      left: !right,
+      right,
+      top: !bottom,
+      bottom,
+      edge,
+    };
+
     setContentState((prevContentState) => ({
       ...prevContentState,
-      toolbarPosition: {
-        ...prevContentState.toolbarPosition,
-        offsetX: offsetX,
-        offsetY: offsetY,
-        left: left,
-        right: right,
-        top: top,
-        bottom: bottom,
-      },
+      toolbarPosition,
     }));
-
-    chrome.storage.local.set({
-      toolbarPosition: {
-        offsetX: offsetX,
-        offsetY: offsetY,
-        left: left,
-        right: right,
-        top: top,
-        bottom: bottom,
-      },
-    });
+    chrome.storage.local.set({ toolbarPosition });
   };
 
   useEffect(() => {
@@ -305,7 +317,7 @@ const ToolbarWrap = () => {
       x = window.innerWidth - contentState.toolbarPosition.offsetX;
     }
 
-    // handleDrop clamps into the viewport: saved positions from a larger
+    // handleDrop docks into the viewport: saved positions from a larger
     // display can land off-screen (external monitor saved, restored on
     // built-in).
     handleDrop(null, { x: x, y: y });
@@ -406,9 +418,7 @@ const ToolbarWrap = () => {
           className={
             "ToolbarRoot" +
             " " +
-            "ToolbarVertical" +
-            " " +
-            side +
+            EDGE_CLASS[edge] +
             " " +
             transparent +
             " " +

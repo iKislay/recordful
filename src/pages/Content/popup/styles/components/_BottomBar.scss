@@ -7,11 +7,13 @@
 }
 
 /* More: blooms out of the More button over the card instead of stretching
-   it. Sits on the bottom bar's footprint and grows upward. */
+   it. Sits on the bottom bar's footprint and grows upward. Stacked above
+   everything in the card it covers: the dropdown triggers and the mic
+   waveform iframe (z-index 999999). */
 .more-backdrop {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 1000000;
   background: var(--rf-backdrop);
 }
 
@@ -20,7 +22,7 @@
   left: 12px;
   right: 12px;
   bottom: 14px;
-  z-index: 4;
+  z-index: 1000001;
   box-sizing: border-box;
   padding: 0 12px 6px;
   background: var(--rf-bg);

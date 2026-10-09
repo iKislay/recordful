@@ -1,6 +1,6 @@
 {
   "name": "recordful",
-  "version": "4.6.12",
+  "version": "4.6.13",
   "description": "Record your product in the browser, then turn it into a polished video with smart zooms, cinematic camera movement, 3D effects, transitions, and motion design.",
   "scripts": {
     "build": "cross-env NODE_ENV=production node utils/build.js",

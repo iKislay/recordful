@@ -325,7 +325,7 @@ export const updateFromStorage = (check = true, id = null) => {
         theme:
           result.theme === "dark" || result.theme === "light"
             ? result.theme
-            : prevContentState.theme || "light",
+            : prevContentState.theme || "dark",
         wasLoggedIn: result.wasLoggedIn || false,
         sortBy: result.sortBy || "newest",
         instantMode: result.instantMode || false,

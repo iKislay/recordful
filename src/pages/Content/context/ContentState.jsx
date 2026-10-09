@@ -1286,6 +1286,7 @@ const ContentState = (props) => {
       top: false,
       offsetX: 0,
       offsetY: 100,
+      edge: "left",
     },
     popupPosition: {
       left: false,
@@ -1360,7 +1361,7 @@ const ContentState = (props) => {
     toolbarHover: false,
     hideUI: false,
     bigTab: "record",
-    theme: "light",
+    theme: "dark",
     askDismiss: true,
     quality: "max",
     systemAudio: true,

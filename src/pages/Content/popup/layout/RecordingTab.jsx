@@ -151,6 +151,7 @@ const RecordingTab = (props) => {
           regionDisabled={tabRecordingDisabled}
           shadowRef={props.shadowRef}
         />
+        {/* Multi recording is hidden until it is fixed; uncomment to restore.
         <div className="mode-multi-row">
           <TooltipWrap
             content={
@@ -297,6 +298,7 @@ const RecordingTab = (props) => {
               </div>
             </TooltipWrap>
         </div>
+        */}
 
         {showModalSoon && (
           <div

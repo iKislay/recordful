@@ -220,10 +220,12 @@ iframe.recordful-iframe {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   padding-right: 10px;
   height: 48px;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  border-radius: $container-border-radius;
+  /* In flow, so the Rnd drag box is exactly the pill and drag coordinates
+     are its top-left corner. */
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  border-radius: 16px;
 
   &::after {
     content: "";
@@ -235,7 +237,7 @@ iframe.recordful-iframe {
     position: absolute;
     left: 0px;
     top: 0px;
-    border-radius: $container-border-radius;
+    border-radius: 16px;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.2s ease-in-out;
   }
@@ -245,37 +247,27 @@ iframe.recordful-iframe {
   opacity: 0 !important;
 }
 
-/* Vertical light toolbar: same controls stacked top-to-bottom. Only the
-   bar's own direct children are re-stacked (child combinators) so the
-   popouts (draw/blur/cursor) keep their horizontal inner layout. Those
-   popouts open to the right of the bar instead of above it, with the
-   notch flipped to the bar-facing edge. */
+/* The toolbar docks to a screen edge. Against the top or bottom edge it is
+   the horizontal bar styled by the base rules, with popouts opening above
+   (.ToolbarTop) or below (.ToolbarBottom) it. Against the left or right
+   edge it is .ToolbarVertical: the same controls stacked top-to-bottom,
+   popouts included, opening beside the bar. */
 .ToolbarRoot.ToolbarVertical {
   flex-direction: column;
-  align-items: center;
   width: max-content;
   min-width: 56px;
   height: auto;
   padding: 22px 8px 12px;
-  /* In flow, so the Rnd drag box is exactly the pill and drag coordinates
-     are its top-left corner (the base style hangs it off a 0x0 box). */
-  position: relative;
-  bottom: auto;
-  left: auto;
-  user-select: none;
-  -webkit-user-select: none;
 }
 .ToolbarRoot.ToolbarVertical > .ToolbarRecordingControls {
   flex-direction: column;
   width: auto;
   height: auto;
   padding: 4px 2px;
+  border-radius: 12px;
 }
 /* Stop (recording) button stays red; everything else is black/white. */
-.ToolbarRoot.ToolbarVertical
-  > .ToolbarRecordingControls
-  > div:first-child
-  svg {
+.ToolbarRoot > .ToolbarRecordingControls > div:first-child svg {
   color: $color-red;
 }
 .ToolbarRoot.ToolbarVertical
@@ -306,14 +298,14 @@ iframe.recordful-iframe {
   align-self: stretch;
   width: auto;
 }
-/* Pre-recording close button is the pill's last item in vertical mode
-   instead of crowding the grab handle on top. */
-.ToolbarRoot.ToolbarVertical > .toolbar-controls {
+/* Pre-recording close button is the pill's last item instead of a badge
+   hanging off its corner. */
+.ToolbarRoot > .toolbar-controls {
   position: static;
   order: 1;
   width: 32px;
   height: 32px;
-  margin-top: 4px;
+  margin-left: 4px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -326,8 +318,18 @@ iframe.recordful-iframe {
     background-color: var(--rf-wash-strong);
   }
 }
+.ToolbarRoot.ToolbarVertical > .toolbar-controls {
+  margin: 4px 0 0;
+}
 .ToolbarRoot.ToolbarVertical .ToolbarModeItem::before {
   display: none;
+}
+.ToolbarRoot .ToolbarButton.grab {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 /* Drag handle pops out of the pill's top edge instead of sitting inside it.
    It keeps the Rnd `grab` handle class, so dragging still starts only here. */
@@ -343,14 +345,10 @@ iframe.recordful-iframe {
   border: 1px solid $color-border;
   border-radius: 999px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  cursor: grab;
   z-index: 6;
 }
 .ToolbarRoot.ToolbarVertical .ToolbarButton.grab:hover {
   background: var(--rf-bg);
-}
-.ToolbarRoot.ToolbarVertical .ToolbarButton.grab:active {
-  cursor: grabbing;
 }
 /* 8px is the pill's side padding, 6px the gap: the popout sits right
    beside the pill instead of on top of it. */
@@ -414,12 +412,23 @@ iframe.recordful-iframe {
 .ToolbarRoot.ToolbarVertical .shapeToolbar.show-toolbar {
   transform: translateY(-50%) scale(1) !important;
 }
+/* Docked to the right edge: popouts open leftward, onto the screen. */
+.ToolbarRoot.ToolbarRight .DrawingToolbar {
+  left: auto !important;
+  right: calc(100% + 8px + 6px) !important;
+  transform-origin: 100% 50% !important;
+}
+.ToolbarRoot.ToolbarRight .shapeToolbar {
+  left: auto !important;
+  right: calc(100% + 10px) !important;
+  transform-origin: 100% 50% !important;
+}
 .ToolbarRecordingControls {
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--rf-bg-hover);
-  border-radius: $container-border-radius;
+  border-radius: 12px;
   font-family: $font-medium;
   height: calc(100% - 12px);
   padding-left: 2px;

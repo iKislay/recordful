@@ -38,3 +38,9 @@
 	pointer-events: all!important;
 	transform: scale(1) translateY(calc(-50% + 16px), 0px)!important;
 }
+// Popouts open downward when the toolbar is docked to the top edge, so the
+// shape picker hangs below its popout instead of covering the toolbar.
+.ToolbarBottom .shapeToolbar {
+	top: 58px;
+	bottom: auto;
+}

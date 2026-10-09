@@ -33,8 +33,8 @@ const GradientBackground = ({ subtle = false }) => {
             pointer-events: none;
             opacity: 0.55;
             background:
-              radial-gradient(ellipse 220% 200% at 30% -120%, transparent 72%, rgba(43, 174, 248, 0.16) 88%, transparent 100%),
-              radial-gradient(ellipse 220% 200% at 70% -120%, transparent 72%, rgba(47, 125, 240, 0.2) 88%, transparent 100%);
+              radial-gradient(ellipse 220% 200% at 30% -120%, transparent 72%, rgba(252, 57, 105, 0.16) 88%, transparent 100%),
+              radial-gradient(ellipse 220% 200% at 70% -120%, transparent 72%, rgba(229, 55, 223, 0.2) 88%, transparent 100%);
             -webkit-mask-image: ${waveMask};
             mask-image: ${waveMask};
             -webkit-mask-size: 100% 100%;

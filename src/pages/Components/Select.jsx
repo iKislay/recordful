@@ -104,9 +104,10 @@ export function Select({
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && setOpen(false);
+    // composedPath, not e.target: inside the popup's shadow DOM the target
+    // seen from window is the shadow host, never a node within the select.
     const onPointer = (e) => {
-      if (rootRef.current && !rootRef.current.contains(e.target))
-        setOpen(false);
+      if (!e.composedPath().includes(rootRef.current)) setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener("pointerdown", onPointer);

@@ -30,39 +30,6 @@ const Waveform = () => {
       analyser.getFloatTimeDomainData(dataArray);
       canvasContext.clearRect(0, 0, canvas.width, canvas.height);
       canvasContext.beginPath();
-      const sliceWidth = 0.9;
-      const waveformHeight = canvas.height;
-      const waveformOffset = (canvas.height - waveformHeight) / 2;
-      let x = 0;
-      let sum = 0;
-      let count = 0;
-      for (let i = 0; i < dataArray.length; i++) {
-        const v = (dataArray[i] + 1) / 2;
-        sum += v;
-        count++;
-        if (count === 10) {
-          const avg = sum / count;
-          const y = avg * waveformHeight * 2 + waveformOffset;
-          if (i === 0) {
-            canvasContext.moveTo(x, y);
-          } else {
-            canvasContext.lineTo(x, y);
-          }
-          x += sliceWidth;
-          sum = 0;
-          count = 0;
-        }
-      }
-      canvasContext.strokeStyle = "#78C072";
-      canvasContext.stroke();
-
-      animationFrameId = requestAnimationFrame(startVisualization);
-    }
-
-    function startVisualization() {
-      analyser.getFloatTimeDomainData(dataArray);
-      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-      canvasContext.beginPath();
       const sliceWidth = 0.7;
       const waveformHeight = canvas.height * 0.9;
       const waveformOffset = (canvas.height - waveformHeight) / 2;
@@ -134,12 +101,17 @@ const Waveform = () => {
     };
   }, []);
 
+  // Popup passes its theme in the iframe hash (waveform.html#dark), so the
+  // meter matches the popup instead of flashing a white bar in dark mode.
+  const isDark =
+    typeof window !== "undefined" && window.location.hash === "#dark";
+
   return (
     <canvas
       ref={canvasRef}
       width="324"
       height="30"
-      style={{ background: "#f5f6fa" }}
+      style={{ background: isDark ? "#1e1e24" : "#f5f6fa" }}
     />
   );
 };

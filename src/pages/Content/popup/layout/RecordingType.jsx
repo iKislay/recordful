@@ -241,7 +241,9 @@ const RecordingType = (props) => {
               position: "relative",
             }}
             allow="camera; microphone"
-            src={chrome.runtime.getURL("waveform.html")}
+            src={chrome.runtime.getURL(
+              "waveform.html#" + contentState.theme
+            )}
           ></iframe>
         </div>
       )}
