@@ -57,6 +57,20 @@ if (process.env.RECORDFUL_SKIP_ENV) {
   );
 }
 
+// Fail fast: a web-editor build with no app base silently falls back to the
+// built-in editor at runtime (editor.html checks APP_BASE before redirecting).
+// That exact fallback shipped to the store once; never ship it again.
+if (
+  !process.env.RECORDFUL_SKIP_ENV &&
+  (process.env.RECORDFUL_EDITOR || "web") === "web" &&
+  !process.env.RECORDFUL_APP_BASE
+) {
+  throw new Error(
+    "[recordful] RECORDFUL_APP_BASE is empty but RECORDFUL_EDITOR=web. " +
+      "Export it (prod: https://recordful.app) or build with RECORDFUL_EDITOR=builtin / RECORDFUL_SKIP_ENV=1.",
+  );
+}
+
 // Entry points for the different pages
 const entryPoints = {
   background: path.join(__dirname, "src", "pages", "Background", "index.js"),
