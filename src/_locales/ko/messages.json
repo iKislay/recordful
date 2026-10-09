@@ -1912,5 +1912,13 @@
   "backgroundToolLabel": {
     "message": "배경",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "클릭 시 자동 확대",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "마이크 연결이 끊겨 녹화가 일시 중지되었습니다. 마이크를 다시 켜거나, 마이크 없이 계속하려면 녹화를 재개하세요.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

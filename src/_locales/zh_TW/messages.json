@@ -1912,5 +1912,13 @@
   "backgroundToolLabel": {
     "message": "背景",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "點擊時自動縮放",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "麥克風已中斷連線，錄製已暫停。請重新開啟麥克風，或在沒有麥克風的情況下繼續錄製。",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

@@ -1912,5 +1912,13 @@
   "backgroundToolLabel": {
     "message": "Fons",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "Zoom automàtic en fer clic",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "El micròfon s'ha desconnectat i la gravació s'ha posat en pausa. Torna a activar el micròfon o reprèn per continuar sense ell.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

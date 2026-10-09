@@ -1910,5 +1910,13 @@
   "backgroundToolLabel": {
     "message": "Тло",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "Автозум під час кліків",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "Мікрофон від'єднано, тому запис призупинено. Увімкніть мікрофон знову або продовжте запис без нього.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

@@ -1907,5 +1907,13 @@
   "backgroundToolLabel": {
     "message": "Sfondo",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "Zoom automatico sui clic",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "Microfono disconnesso, la registrazione è in pausa. Riattiva il microfono oppure riprendi per continuare senza.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

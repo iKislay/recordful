@@ -1912,5 +1912,13 @@
   "backgroundToolLabel": {
     "message": "Latar belakang",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "autoZoomPopup": {
+    "message": "Zoom otomatis saat klik",
+    "description": "Popup option: the editor opens with a zoom on each click"
+  },
+  "micDisconnectedToast": {
+    "message": "Mikrofon terputus, jadi perekaman dijeda. Nyalakan kembali mikrofon, atau lanjutkan tanpa mikrofon.",
+    "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
   }
 }

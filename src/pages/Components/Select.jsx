@@ -243,9 +243,11 @@ export function SelectContent({ className, children }) {
   // On open, flip upward when there isn't room below and there's more above.
   useLayoutEffect(() => {
     if (!open) return;
-    const trigger = document.getElementById(ctx.triggerId);
     const node = innerRef.current;
-    if (!trigger || !node) return;
+    // getRootNode, not document: in the popup the trigger lives in a shadow
+    // root, which document.getElementById cannot see.
+    const trigger = node?.getRootNode().getElementById(ctx.triggerId);
+    if (!trigger) return;
     const rect = trigger.getBoundingClientRect();
     const h = node.offsetHeight;
     const below = window.innerHeight - rect.bottom;

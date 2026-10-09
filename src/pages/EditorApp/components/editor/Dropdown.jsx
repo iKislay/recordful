@@ -31,8 +31,8 @@ const Dropdown = () => {
     {
       name: "YoutubeShorts",
       label: "Youtube Shorts",
-      width: 1920,
-      height: 1080,
+      width: 1080,
+      height: 1920,
     },
     {
       name: "InstagramPost",
