@@ -57,10 +57,20 @@ if (process.env.RECORDFUL_SKIP_ENV) {
   );
 }
 
-// Fail fast: a web-editor build with no app base silently falls back to the
-// built-in editor at runtime (editor.html checks APP_BASE before redirecting).
-// That exact fallback shipped to the store once; never ship it again.
+// Where recordings are edited. Every build opens the hosted editor unless it
+// explicitly opts out with RECORDFUL_EDITOR=builtin: local, self-hosted and
+// open-source release builds included, so a missing app base never drops
+// anyone into the built-in editor. Kept apart from RECORDFUL_APP_BASE, which
+// also switches on cloud calls (diagnostics, sign-in) that those builds must
+// not make.
+const editorBase = process.env.RECORDFUL_APP_BASE || "https://recordful.app";
+
+// Fail fast: a production web-editor build with no app base used to fall back
+// to the built-in editor, and that shipped to the store once. The editor base
+// default above closes that hole; this still stops a store build from going
+// out without the app base its cloud features need.
 if (
+  !isDev &&
   !process.env.RECORDFUL_SKIP_ENV &&
   (process.env.RECORDFUL_EDITOR || "web") === "web" &&
   !process.env.RECORDFUL_APP_BASE
@@ -68,6 +78,22 @@ if (
   throw new Error(
     "[recordful] RECORDFUL_APP_BASE is empty but RECORDFUL_EDITOR=web. " +
       "Export it (prod: https://recordful.app) or build with RECORDFUL_EDITOR=builtin / RECORDFUL_SKIP_ENV=1.",
+  );
+}
+
+// The agent bridge lets a local process start recordings. It must never reach
+// a store build, so anything but a development build refuses the flag.
+const agentBridgeEnabled = process.env.RECORDFUL_AGENT_BRIDGE === "1";
+if (agentBridgeEnabled && !isDev) {
+  throw new Error(
+    "[recordful] RECORDFUL_AGENT_BRIDGE=1 is only allowed in development builds (npm run build:agent).",
+  );
+}
+if (agentBridgeEnabled) {
+  console.log(
+    `[recordful] agent bridge: ON (port ${process.env.RECORDFUL_AGENT_BRIDGE_PORT || 47823}, token ${
+      process.env.RECORDFUL_AGENT_BRIDGE_TOKEN ? "baked in" : "from chrome.storage"
+    })`,
   );
 }
 
@@ -319,6 +345,7 @@ const config = {
       "process.env.RECORDFUL_EDITOR": JSON.stringify(
         process.env.RECORDFUL_EDITOR || "web",
       ),
+      "process.env.RECORDFUL_EDITOR_BASE": JSON.stringify(editorBase),
       "process.env.MAX_RECORDING_DURATION": JSON.stringify(
         process.env.MAX_RECORDING_DURATION || 3600 // Default to 1 hour
       ),
@@ -327,6 +354,16 @@ const config = {
       ),
       "process.env.RECORDFUL_DEV_MODE": JSON.stringify(
         process.env.RECORDFUL_DEV_MODE || ""
+      ),
+      "process.env.RECORDFUL_AGENT_BRIDGE": JSON.stringify(
+        agentBridgeEnabled ? "1" : "0"
+      ),
+      "process.env.RECORDFUL_AGENT_BRIDGE_PORT": JSON.stringify(
+        agentBridgeEnabled ? process.env.RECORDFUL_AGENT_BRIDGE_PORT || "" : ""
+      ),
+      // Baked in only for bridge builds; the token never reaches any other bundle.
+      "process.env.RECORDFUL_AGENT_BRIDGE_TOKEN": JSON.stringify(
+        agentBridgeEnabled ? process.env.RECORDFUL_AGENT_BRIDGE_TOKEN || "" : ""
       ),
     }),
 

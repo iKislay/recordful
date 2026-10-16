@@ -9,7 +9,7 @@ import { CAMERA_OFFSETS, CAMERA_SUFFIX } from "../Recorder/cameraTrack";
 
 const APP_ORIGIN = (() => {
   try {
-    return new URL(process.env.RECORDFUL_APP_BASE).origin;
+    return new URL(process.env.RECORDFUL_EDITOR_BASE).origin;
   } catch {
     return null;
   }

@@ -41,7 +41,9 @@ export const handleTabActivation = async (activeInfo) => {
           "recordingType",
         ]);
       if (tabRecordedID && tabRecordedID !== activeInfo.tabId) {
-        sendMessageTab(activeInfo.tabId, { type: "hide-popup-recording" });
+        sendMessageTab(activeInfo.tabId, {
+          type: "hide-popup-recording",
+        }).catch(() => {});
       } else {
         // Update the active tab reference
         chrome.storage.local.set({ activeTab: activeInfo.tabId });
@@ -57,7 +59,9 @@ export const handleTabActivation = async (activeInfo) => {
         }).catch(() => {});
       }
     } else if (!isActivelyRecording && !restarting && !pendingRecording) {
-      sendMessageTab(activeInfo.tabId, { type: "recording-ended" });
+      sendMessageTab(activeInfo.tabId, { type: "recording-ended" }).catch(
+        () => {}
+      );
     }
 
     // If there's a recording start time, update the UI with time
@@ -75,9 +79,15 @@ export const handleTabActivation = async (activeInfo) => {
       if (alarm) {
         const { alarmTime } = await chrome.storage.local.get(["alarmTime"]);
         const remaining = Math.max(0, Math.floor(alarmTime - elapsed));
-        sendMessageTab(activeInfo.tabId, { type: "time", time: remaining });
+        sendMessageTab(activeInfo.tabId, {
+          type: "time",
+          time: remaining,
+        }).catch(() => {});
       } else {
-        sendMessageTab(activeInfo.tabId, { type: "time", time: elapsed });
+        sendMessageTab(activeInfo.tabId, {
+          type: "time",
+          time: elapsed,
+        }).catch(() => {});
       }
     }
   } catch (error) {

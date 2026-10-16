@@ -108,7 +108,7 @@ export const handleTabUpdate = async (tabId, changeInfo, tab) => {
       const isPendingOrRestarting = restarting || pendingRecording;
 
       if (!isActivelyRecording && !isPendingOrRestarting) {
-        sendMessageTab(tabId, { type: "recording-ended" });
+        sendMessageTab(tabId, { type: "recording-ended" }).catch(() => {});
       } else if (isActivelyRecording) {
         if (tabRecordedID && tabRecordedID === tabId) {
           diagEvent("recorded-tab-navigated");
@@ -116,9 +116,11 @@ export const handleTabUpdate = async (tabId, changeInfo, tab) => {
             type: "recording-check",
             force: true,
             recordingStartTime,
-          });
+          }).catch(() => {});
         } else if (tabRecordedID && tabRecordedID !== tabId) {
-          sendMessageTab(tabId, { type: "hide-popup-recording" });
+          sendMessageTab(tabId, { type: "hide-popup-recording" }).catch(
+            () => {}
+          );
         }
       }
 
@@ -139,9 +141,13 @@ export const handleTabUpdate = async (tabId, changeInfo, tab) => {
         if (alarm) {
           const { alarmTime } = await chrome.storage.local.get(["alarmTime"]);
           const remaining = Math.max(0, Math.floor(alarmTime - elapsed));
-          sendMessageTab(tabId, { type: "time", time: remaining });
+          sendMessageTab(tabId, { type: "time", time: remaining }).catch(
+            () => {}
+          );
         } else {
-          sendMessageTab(tabId, { type: "time", time: elapsed });
+          sendMessageTab(tabId, { type: "time", time: elapsed }).catch(
+            () => {}
+          );
         }
       }
 
@@ -150,14 +156,14 @@ export const handleTabUpdate = async (tabId, changeInfo, tab) => {
       sendMessageTab(tabId, {
         type: "commands",
         commands: commands,
-      });
+      }).catch(() => {});
 
       // Check if tab is playground.html
       if (
         tab.url.includes(chrome.runtime.getURL("playground.html")) &&
         changeInfo.status === "complete"
       ) {
-        sendMessageTab(tab.id, { type: "toggle-popup" });
+        sendMessageTab(tab.id, { type: "toggle-popup" }).catch(() => {});
       }
       // if we look logged out, try a force refresh in case AUTH_SUCCESS was missed.
       tryAppAuthRefresh(tab.url).catch(() => {});

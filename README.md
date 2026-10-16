@@ -65,14 +65,19 @@ Two release builds exist (both gated by secret-scan scripts):
 
 ## Self-hosting
 
-Self-hosted (unpacked) builds run entirely in local-only mode: no API
-calls, no sign-in, nothing sent anywhere. Cloud features only activate in
-the official store build, which talks to the private backend over
-build-time env vars (`RECORDFUL_API_BASE_URL`, `RECORDFUL_APP_BASE`,
-`RECORDFUL_WEBSITE_BASE`, `RECORDFUL_ENABLE_CLOUD_FEATURES`). A recording
-opens in the app's editor by default, and the editor built into the
-extension stays as the offline fallback. `npm run build:builtin`, or
-`RECORDFUL_EDITOR=builtin`, keeps the built-in editor instead.
+Self-hosted (unpacked) builds run in local-only mode: no API calls, no
+sign-in, no uploads. Cloud features only activate in the official store
+build, which talks to the private backend over build-time env vars
+(`RECORDFUL_API_BASE_URL`, `RECORDFUL_APP_BASE`, `RECORDFUL_WEBSITE_BASE`,
+`RECORDFUL_ENABLE_CLOUD_FEATURES`).
+
+Every build, self-hosted ones included, opens recordings in the web editor
+at [recordful.app/editor](https://recordful.app/editor) (or
+`RECORDFUL_APP_BASE` when set). The recording is passed from the extension
+to the editor page inside your browser and is never uploaded. The editor
+built into the extension is used only when the site can't be reached and
+for recovering an interrupted recording. To always use the built-in editor
+instead, build with `npm run build:builtin` or `RECORDFUL_EDITOR=builtin`.
 
 ## License
 

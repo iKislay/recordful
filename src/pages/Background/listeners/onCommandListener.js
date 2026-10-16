@@ -100,13 +100,19 @@ export const onCommandListener = () => {
         return;
       }
       lastToggleDrawingAt = now;
-      sendMessageTab(activeTab.id, { type: "toggle-drawing-mode" });
+      sendMessageTab(activeTab.id, { type: "toggle-drawing-mode" }).catch(
+        () => {}
+      );
     } else if (command === "toggle-blur-mode") {
-      sendMessageTab(activeTab.id, { type: "toggle-blur-mode" });
+      sendMessageTab(activeTab.id, { type: "toggle-blur-mode" }).catch(
+        () => {}
+      );
     } else if (command === "toggle-hide-ui") {
-      sendMessageTab(activeTab.id, { type: "toggle-hide-ui" });
+      sendMessageTab(activeTab.id, { type: "toggle-hide-ui" }).catch(() => {});
     } else if (command === "toggle-cursor-mode") {
-      sendMessageTab(activeTab.id, { type: "toggle-cursor-mode" });
+      sendMessageTab(activeTab.id, { type: "toggle-cursor-mode" }).catch(
+        () => {}
+      );
     }
   });
 };
