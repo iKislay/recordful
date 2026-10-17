@@ -1,6 +1,7 @@
 // Dev-only bridge that lets a local MCP server (recordful-agent-bridge) drive
 // the recorder. Loaded only when the build sets RECORDFUL_AGENT_BRIDGE=1, which
 // webpack.config.js refuses outside development builds.
+import { armTab, watchArmedTab } from "./armedTab";
 import { createBridgeClient } from "./client";
 import { commands } from "./commands";
 
@@ -18,9 +19,17 @@ export const initAgentBridge = () => {
   });
 
   // Handing Recordful a tab is the moment the user wants an agent; it's also
-  // the gesture Chrome requires before tab capture can start.
-  chrome.action.onClicked.addListener(() => client.wake("toolbar-icon"));
-  chrome.commands.onCommand.addListener(() => client.wake("shortcut"));
+  // the gesture Chrome requires before tab capture can start. It also arms
+  // that tab: the only one page tools may act on (besides the recorded tab).
+  chrome.action.onClicked.addListener((tab) => {
+    armTab(tab, "toolbar-icon");
+    client.wake("toolbar-icon");
+  });
+  chrome.commands.onCommand.addListener((_command, tab) => {
+    armTab(tab, "shortcut");
+    client.wake("shortcut");
+  });
+  watchArmedTab();
 
   client.resumeIfWanted();
 };

@@ -19,6 +19,9 @@ const PATH = "/recordful-agent-bridge/v1";
 const PING_INTERVAL_MS = 20000;
 const RECONNECT_BACKOFF_MS = [1000, 2000, 5000, 10000, 30000, 30000];
 const TOKEN_STORAGE_KEY = "agentBridgeToken";
+// Overrides the build-time port, e.g. to test against a second bridge while
+// an MCP client's bridge holds the default one.
+const PORT_STORAGE_KEY = "agentBridgePort";
 // storage.session outlives worker restarts but not the browser: a worker
 // that Chrome recycled mid-session picks the connection back up on boot.
 const WANTED_KEY = "agentBridgeWanted";
@@ -27,21 +30,27 @@ const CloseCode = { AuthFailed: 4401, BadMessage: 4400, ProtocolVersion: 4426 };
 const log = (...args) => console.info("[Recordful][AgentBridge]", ...args);
 const warn = (...args) => console.warn("[Recordful][AgentBridge]", ...args);
 
-export const createBridgeClient = ({ port, buildToken, commands }) => {
+export const createBridgeClient = ({ port: buildPort, buildToken, commands }) => {
   let ws = null;
   let attempt = 0;
   let attemptsLeft = 0;
   let reconnectTimer = null;
   let pingTimer = null;
-  // Mutating commands run one at a time; two overlapping starts would race
-  // the recorder's own in-flight guards.
-  let exclusiveChain = Promise.resolve();
+  // Commands on the same queue run one at a time: two overlapping starts
+  // would race the recorder's own in-flight guards, and two page actions
+  // would fight over the cursor. Commands with no queue run at once.
+  const queues = new Map();
 
   const getToken = async () => {
     const { [TOKEN_STORAGE_KEY]: stored } = await chrome.storage.local.get([
       TOKEN_STORAGE_KEY,
     ]);
     return stored || buildToken || "";
+  };
+
+  const getPort = async () => {
+    const { [PORT_STORAGE_KEY]: stored } = await chrome.storage.local.get([PORT_STORAGE_KEY]);
+    return Number.isInteger(stored) && stored > 0 && stored < 65536 ? stored : buildPort;
   };
 
   const send = (msg) => {
@@ -107,9 +116,9 @@ export const createBridgeClient = ({ port, buildToken, commands }) => {
       );
     }
     const params = msg.params && typeof msg.params === "object" ? msg.params : {};
-    if (!command.exclusive) return command.run(params);
-    const run = exclusiveChain.then(() => command.run(params));
-    exclusiveChain = run.catch(() => {});
+    if (!command.queue) return command.run(params);
+    const run = (queues.get(command.queue) || Promise.resolve()).then(() => command.run(params));
+    queues.set(command.queue, run.catch(() => {}));
     return run;
   };
 
@@ -144,6 +153,8 @@ export const createBridgeClient = ({ port, buildToken, commands }) => {
       return;
     }
 
+    const port = await getPort();
+    if (ws) return;
     const socket = new WebSocket(`ws://127.0.0.1:${port}${PATH}`);
     ws = socket;
     const clientNonce = newNonce();
@@ -238,8 +249,8 @@ export const createBridgeClient = ({ port, buildToken, commands }) => {
   };
 
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area !== "local" || !changes[TOKEN_STORAGE_KEY]) return;
-    log("pairing token changed, reconnecting");
+    if (area !== "local" || !(changes[TOKEN_STORAGE_KEY] || changes[PORT_STORAGE_KEY])) return;
+    log("pairing token or port changed, reconnecting");
     // Closing an authenticated socket schedules the reconnect itself.
     if (ws) ws.close(1000, "token changed");
     else wake("token-changed");

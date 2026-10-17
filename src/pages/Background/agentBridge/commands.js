@@ -5,7 +5,9 @@
 import { getCurrentTab, sendMessageTab } from "../tabManagement";
 import { sendMessageRecord } from "../recording/sendMessageRecord.js";
 import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
+import { getArmedTab } from "./armedTab";
 import { AgentBridgeError, AgentErrorCode } from "./errors";
+import { pageCommands } from "./pageCommands";
 
 const POLL_MS = 250;
 // pendingRecording can clear a beat before recording flips true on a healthy
@@ -116,6 +118,8 @@ const STATE_KEYS = [
 const getStatus = async () => {
   const snap = await chrome.storage.local.get(STATE_KEYS);
   const manifest = chrome.runtime.getManifest();
+  const armed = await getArmedTab();
+  const armedTab = armed ? await chrome.tabs.get(armed.tabId).catch(() => null) : null;
   return {
     state: recorderState(snap),
     recordingType: snap.recordingType || null,
@@ -125,6 +129,11 @@ const getStatus = async () => {
     permissions: await grantedPermissions(),
     extension: { id: chrome.runtime.id, version: manifest.version },
     editor: process.env.RECORDFUL_EDITOR,
+    // The tab page tools act on; null until the user clicks the Recordful icon.
+    agent: {
+      armedTab: armedTab ? { ...describeTab(armedTab), via: armed.via, armedAt: armed.at } : null,
+      pageTools: Object.keys(pageCommands),
+    },
   };
 };
 
@@ -214,7 +223,7 @@ const startRecording = async ({ tabId, timeoutMs } = {}) => {
         hint:
           after.recordingType === "screen"
             ? "Chrome's screen-share picker is most likely waiting for the user to choose what to share."
-            : "Chrome only allows tab capture after the user has invoked Recordful on this tab (clicked its toolbar icon or pressed its shortcut). If they haven't, the start stalls here: ask them to do that, then retry.",
+            : "Chrome only allows tab capture after the user has invoked Recordful on this tab (clicked its toolbar icon or pressed its shortcut). If they haven't, the start stalls here: ask them to do that, then retry. If they have, a Recordful or browser prompt on the page (camera or microphone access, \"microphone is muted\") is probably waiting for them to answer.",
       };
     }
     throw new AgentBridgeError(
@@ -355,11 +364,13 @@ const probeCapture = async ({ tabId } = {}) => {
   };
 };
 
+// status.get has no queue, so it never waits behind a slow start.
 export const commands = {
-  "status.get": { run: getStatus, exclusive: false },
-  "recording.start": { run: startRecording, exclusive: true },
-  "recording.stop": { run: stopRecording, exclusive: true },
-  "recording.pause": { run: () => setPaused(true), exclusive: true },
-  "recording.resume": { run: () => setPaused(false), exclusive: true },
-  "capture.probe": { run: probeCapture, exclusive: true },
+  "status.get": { run: getStatus, queue: null },
+  "recording.start": { run: startRecording, queue: "recorder" },
+  "recording.stop": { run: stopRecording, queue: "recorder" },
+  "recording.pause": { run: () => setPaused(true), queue: "recorder" },
+  "recording.resume": { run: () => setPaused(false), queue: "recorder" },
+  "capture.probe": { run: probeCapture, queue: "recorder" },
+  ...pageCommands,
 };
