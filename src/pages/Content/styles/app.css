@@ -3512,6 +3512,34 @@ input {
   background: var(--rf-wash-hover);
 }
 
+.more-panel-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 6px 0 0;
+  padding: 10px 0 6px;
+  border: 0;
+  border-top: 1px solid var(--rf-border);
+  background: none;
+  color: var(--rf-text);
+  font-family: "Satoshi-Medium", sans-serif;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.more-panel-link svg {
+  color: var(--rf-text-secondary);
+}
+.more-panel-link:hover svg {
+  color: var(--rf-text);
+}
+.more-panel-link:focus-visible {
+  outline: 2px solid var(--rf-strong);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .more-panel-actions {
   display: flex;
   align-items: center;

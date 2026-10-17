@@ -1915,5 +1915,117 @@
   "micDisconnectedToast": {
     "message": "Microfono disconnesso, la registrazione è in pausa. Riattiva il microfono oppure riprendi per continuare senza.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "Agenti IA",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "Agenti IA",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Lascia che app di IA come Claude, Cursor o opencode registrino demo del prodotto per te. Si collegano tramite recordful-mcp, che gira sul tuo computer. Niente passa da un server.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "Consenti alle app di IA di controllare Recordful",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "Configura la tua app di IA",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "Aggiungi questo server MCP alla tua app di IA, poi chiedile di registrare qualcosa. Quando te lo chiede, fai clic sull'icona di Recordful nella scheda da registrare.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Configurazione per Claude, Cursor, VS Code, opencode e altro",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "Copia",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "Copiato",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "Attivo. Fai clic sull'icona di Recordful in una scheda quando la tua app di IA te lo chiede.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "Connessione…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "In attesa della tua approvazione per un'app di IA",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "Connesso a $APP$",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "App di IA associate",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "Nessuna app di IA si è ancora collegata.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "Dimentica",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "Collegare $APP$ a Recordful?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ potrà avviare, mettere in pausa e interrompere le registrazioni, e fare clic e digitare nella scheda che gli affidi con l'icona di Recordful. Consenti solo se $APP$ ti mostra questo codice:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "Consenti",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "Rifiuta",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "Questa richiesta non è più aperta. Chiedi alla tua app di IA di riprovare.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: connesso a $APP$",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

@@ -10,9 +10,10 @@ import { AgentBridgeError, AgentErrorCode } from "./errors";
 import { pageCommands } from "./pageCommands";
 
 const POLL_MS = 250;
-// pendingRecording can clear a beat before recording flips true on a healthy
-// start, so only call it a failure once it has stayed clear this long.
-const PENDING_CLEARED_GRACE_MS = 2000;
+// pendingRecording can clear before recording flips true on a healthy start
+// (some start paths take ~5s), so only call it a failure once it has stayed
+// clear this long.
+const PENDING_CLEARED_GRACE_MS = 8000;
 // Stop hands off to the content-script pill; if that tab didn't act, go
 // straight to the recorder like the shortcut's fallback does.
 const STOP_DIRECT_FALLBACK_MS = 3000;
@@ -105,6 +106,9 @@ const recorderState = (snap) => {
   return "idle";
 };
 
+// "region" is the popup's "Tab area"; both capture the tab itself.
+const TAB_CAPTURE_MODES = new Set(["tab", "region"]);
+
 const STATE_KEYS = [
   "recording",
   "pendingRecording",
@@ -147,12 +151,24 @@ const startRecording = async ({ tabId, timeoutMs } = {}) => {
     );
   }
 
-  const tab = await resolveTab(tabId);
+  // Default to the tab the user handed over, not whatever is focused now.
+  const armed = await getArmedTab();
+  const tab = await resolveTab(tabId ?? armed?.tabId);
   if (!isRecordableUrl(tab.url)) {
     throw new AgentBridgeError(
       AgentErrorCode.TabNotRecordable,
       "Recordful can't record this page (browser pages and the Web Store block extensions). Navigate to the app first.",
       { url: tab.url || null },
+    );
+  }
+  // Chrome only allows tab capture after the user invoked Recordful on that
+  // tab; without it the start stalls at "Starting recording…". Fail fast and
+  // say what's needed. Screen and camera modes don't depend on it.
+  if (TAB_CAPTURE_MODES.has(before.recordingType) && armed?.tabId !== tab.id) {
+    throw new AgentBridgeError(
+      AgentErrorCode.NotArmed,
+      "The user hasn't handed this tab to Recordful yet. Ask them to click the Recordful toolbar icon on the tab to record, then retry.",
+      { tabId: tab.id, url: tab.url || null, armedTabId: armed?.tabId ?? null },
     );
   }
   if (tabId !== undefined && tabId !== null) {

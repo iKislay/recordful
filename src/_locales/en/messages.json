@@ -1938,5 +1938,117 @@
   "backgroundToolLabel": {
     "message": "Background",
     "description": "Editor toolbar button for the video background tool"
+  },
+  "agentsSettingsOption": {
+    "message": "AI agents",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "AI agents",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Let AI apps like Claude, Cursor or opencode record product demos for you. They connect through recordful-mcp, which runs on your computer. Nothing goes through a server.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "Let AI apps control Recordful",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "Set up your AI app",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "Add this MCP server to your AI app, then ask it to record something. When it asks, click the Recordful icon on the tab to record.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Setup for Claude, Cursor, VS Code, opencode and more",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "Copy",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "Copied",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "On. Click the Recordful icon on a tab when your AI app asks.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "Connecting…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "Waiting for you to approve an AI app",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "Connected to $APP$",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "Paired AI apps",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "No AI app has connected yet.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "Forget",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "Connect $APP$ to Recordful?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ will be able to start, pause and stop recordings, and to click and type in the tab you hand it with the Recordful icon. Allow only if $APP$ shows you this code:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "Allow",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "Deny",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "This request is no longer open. Ask your AI app to try again.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: connected to $APP$",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

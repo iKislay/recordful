@@ -15,6 +15,7 @@ import {
 } from "../CloudRecorder/recorderStorage/opfsKvStore";
 import { handleGetStreamingData } from "./recording/recordingHelpers";
 import { initUninstallSurvey } from "./utils/uninstallSurvey";
+import { initAgentBridge } from "./agentBridge";
 
 // Don't tear down an in-flight start on SW restart: a fresh start is
 // mid-setup (recorder tab not loaded yet), not dead. Mirrors the alarm
@@ -341,13 +342,10 @@ initKeepAwake();
 initLifecycleObserver();
 initUninstallSurvey();
 
-// Dev-only agent bridge. DefinePlugin folds the test to false in every other
-// build, so webpack never even parses the require and it ships nowhere.
-// Synchronous on purpose: its icon/shortcut listeners must exist before the
-// event that woke the worker is dispatched.
-if (process.env.RECORDFUL_AGENT_BRIDGE === "1") {
-  require("./agentBridge").initAgentBridge();
-}
+// AI agents (recordful-mcp): inert until the user turns it on. Synchronous on
+// purpose: its icon/shortcut listeners must exist before the event that woke
+// the worker is dispatched.
+initAgentBridge();
 
 // Recovery must run AFTER clearStaleLocks: if the recorder tab died
 // with the SW, clearStaleLocks clears pendingRecording and recovery

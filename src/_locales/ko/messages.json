@@ -1920,5 +1920,117 @@
   "micDisconnectedToast": {
     "message": "마이크 연결이 끊겨 녹화가 일시 중지되었습니다. 마이크를 다시 켜거나, 마이크 없이 계속하려면 녹화를 재개하세요.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "AI 에이전트",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "AI 에이전트",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Claude, Cursor, opencode 같은 AI 앱이 제품 데모를 대신 녹화하게 하세요. AI 앱은 내 컴퓨터에서 실행되는 recordful-mcp를 통해 연결되며, 서버를 거치지 않습니다.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "AI 앱이 Recordful을 제어하도록 허용",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "AI 앱 설정하기",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "이 MCP 서버를 AI 앱에 추가한 다음 무언가를 녹화해 달라고 요청하세요. AI 앱이 요청하면 녹화할 탭에서 Recordful 아이콘을 클릭하세요.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Claude, Cursor, VS Code, opencode 등 설정 방법",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "복사",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "복사됨",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "켜짐. AI 앱이 요청하면 탭에서 Recordful 아이콘을 클릭하세요.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "연결 중…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "AI 앱 승인을 기다리는 중",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "$APP$에 연결됨",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "연결된 AI 앱",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "아직 연결된 AI 앱이 없습니다.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "삭제",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "$APP$을(를) Recordful에 연결할까요?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$이(가) 녹화를 시작, 일시정지, 중지하고, Recordful 아이콘으로 넘겨준 탭에서 클릭하고 입력할 수 있게 됩니다. $APP$에 이 코드가 표시될 때만 허용하세요:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "허용",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "거부",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "이 요청은 더 이상 유효하지 않습니다. AI 앱에 다시 시도하라고 요청하세요.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: $APP$에 연결됨",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

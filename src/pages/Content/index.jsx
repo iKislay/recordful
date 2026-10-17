@@ -5,14 +5,13 @@ import "./publicPath";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Content from "./Content";
+import { initAgentPage } from "./agentPage";
 
-// Dev-only agent page tools. DefinePlugin folds the test to false in every
-// other build, so webpack never parses the require and it ships nowhere.
-// Outside the guard below on purpose: a re-injected copy takes over from the
-// earlier one (see agentPage/index.js).
-if (process.env.RECORDFUL_AGENT_BRIDGE === "1") {
-  require("./agentPage").initAgentPage();
-}
+// AI agents page tools: a listener that answers only Recordful's own worker,
+// which only asks while the user has AI agents on and has handed over this
+// tab. Outside the guard below on purpose: a re-injected copy takes over from
+// the earlier one (see agentPage/index.js).
+initAgentPage();
 
 // Idempotency: content script is injected via manifest AND by
 // executeScripts() on session start; both mounts would double-fire.

@@ -1918,5 +1918,117 @@
   "micDisconnectedToast": {
     "message": "Мікрофон від'єднано, тому запис призупинено. Увімкніть мікрофон знову або продовжте запис без нього.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "ШІ-агенти",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "ШІ-агенти",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Дозвольте ШІ-застосункам, як-от Claude, Cursor чи opencode, записувати демо продукту за вас. Вони підключаються через recordful-mcp, який працює на вашому комп'ютері. Нічого не проходить через сервер.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "Дозволити ШІ-застосункам керувати Recordful",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "Налаштуйте свій ШІ-застосунок",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "Додайте цей MCP-сервер до свого ШІ-застосунку й попросіть його щось записати. Коли він попросить, натисніть значок Recordful у вкладці, яку треба записати.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Налаштування для Claude, Cursor, VS Code, opencode та інших",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "Копіювати",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "Скопійовано",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "Увімкнено. Натисніть значок Recordful у вкладці, коли ШІ-застосунок попросить.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "Підключення…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "Очікує вашого дозволу для ШІ-застосунку",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "Підключено до $APP$",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "Сполучені ШІ-застосунки",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "Жоден ШІ-застосунок ще не підключався.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "Забути",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "Підключити $APP$ до Recordful?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ зможе починати, призупиняти й зупиняти запис, а також натискати й вводити текст у вкладці, яку ви передасте йому значком Recordful. Дозволяйте, лише якщо $APP$ показує вам цей код:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "Дозволити",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "Відхилити",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "Цей запит більше не дійсний. Попросіть ШІ-застосунок спробувати ще раз.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: підключено до $APP$",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

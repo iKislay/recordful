@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { DotsThree, Palette, X } from "@phosphor-icons/react";
+import { CaretRight, DotsThree, Palette, X } from "@phosphor-icons/react";
   const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
   const shortcut = isMac ? "⌥⇧E" : "Alt⇧E";
 
@@ -169,6 +169,17 @@ const BottomBar = (props) => {
                   value="autoZoom"
                 />
               )}
+              <button
+                type="button"
+                className="more-panel-link"
+                onClick={() => {
+                  setMoreOpen(false);
+                  chrome.runtime.sendMessage({ type: "open-agent-settings" });
+                }}
+              >
+                <span>{chrome.i18n.getMessage("agentsSettingsOption")}</span>
+                <CaretRight size={14} />
+              </button>
             </div>
           </>,
           props.shadowRef.current.shadowRoot.querySelector(".popup-content")

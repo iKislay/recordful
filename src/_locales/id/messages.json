@@ -1920,5 +1920,117 @@
   "micDisconnectedToast": {
     "message": "Mikrofon terputus, jadi perekaman dijeda. Nyalakan kembali mikrofon, atau lanjutkan tanpa mikrofon.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "Agen AI",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "Agen AI",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Biarkan aplikasi AI seperti Claude, Cursor, atau opencode merekam demo produk untuk Anda. Aplikasi terhubung melalui recordful-mcp, yang berjalan di komputer Anda. Tidak ada yang melewati server.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "Izinkan aplikasi AI mengontrol Recordful",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "Siapkan aplikasi AI Anda",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "Tambahkan server MCP ini ke aplikasi AI Anda, lalu minta untuk merekam sesuatu. Saat diminta, klik ikon Recordful di tab yang ingin direkam.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Penyiapan untuk Claude, Cursor, VS Code, opencode, dan lainnya",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "Salin",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "Disalin",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "Aktif. Klik ikon Recordful di sebuah tab saat aplikasi AI Anda memintanya.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "Menghubungkan…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "Menunggu persetujuan Anda untuk aplikasi AI",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "Terhubung ke $APP$",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "Aplikasi AI yang dipasangkan",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "Belum ada aplikasi AI yang terhubung.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "Lupakan",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "Hubungkan $APP$ ke Recordful?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ akan dapat memulai, menjeda, dan menghentikan rekaman, serta mengklik dan mengetik di tab yang Anda serahkan dengan ikon Recordful. Izinkan hanya jika $APP$ menampilkan kode ini kepada Anda:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "Izinkan",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "Tolak",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "Permintaan ini sudah tidak berlaku. Minta aplikasi AI Anda untuk mencoba lagi.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: terhubung ke $APP$",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

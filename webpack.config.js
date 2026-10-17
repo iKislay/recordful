@@ -81,20 +81,16 @@ if (
   );
 }
 
-// The agent bridge lets a local process start recordings. It must never reach
-// a store build, so anything but a development build refuses the flag.
-const agentBridgeEnabled = process.env.RECORDFUL_AGENT_BRIDGE === "1";
-if (agentBridgeEnabled && !isDev) {
-  throw new Error(
-    "[recordful] RECORDFUL_AGENT_BRIDGE=1 is only allowed in development builds (npm run build:agent).",
+// The AI agents bridge ships in every build, off until the user turns it on.
+// A baked-in shared secret and port override exist for scripted test runs and
+// are compiled into development builds only, never into a release.
+if (!isDev && (process.env.RECORDFUL_AGENT_BRIDGE_TOKEN || process.env.RECORDFUL_AGENT_BRIDGE_PORT)) {
+  console.warn(
+    "[recordful] RECORDFUL_AGENT_BRIDGE_TOKEN/PORT are ignored outside development builds.",
   );
 }
-if (agentBridgeEnabled) {
-  console.log(
-    `[recordful] agent bridge: ON (port ${process.env.RECORDFUL_AGENT_BRIDGE_PORT || 47823}, token ${
-      process.env.RECORDFUL_AGENT_BRIDGE_TOKEN ? "baked in" : "from chrome.storage"
-    })`,
-  );
+if (isDev && process.env.RECORDFUL_AGENT_BRIDGE_TOKEN) {
+  console.log("[recordful] AI agents bridge: shared secret baked in (development build)");
 }
 
 // Entry points for the different pages
@@ -139,6 +135,7 @@ const entryPoints = {
     "index.js"
   ),
   editorbridge: path.join(__dirname, "src", "pages", "EditorBridge", "index.js"),
+  agents: path.join(__dirname, "src", "pages", "Agents", "index.js"),
   remuxoffscreen: path.join(
     __dirname,
     "src",
@@ -355,15 +352,12 @@ const config = {
       "process.env.RECORDFUL_DEV_MODE": JSON.stringify(
         process.env.RECORDFUL_DEV_MODE || ""
       ),
-      "process.env.RECORDFUL_AGENT_BRIDGE": JSON.stringify(
-        agentBridgeEnabled ? "1" : "0"
-      ),
       "process.env.RECORDFUL_AGENT_BRIDGE_PORT": JSON.stringify(
-        agentBridgeEnabled ? process.env.RECORDFUL_AGENT_BRIDGE_PORT || "" : ""
+        isDev ? process.env.RECORDFUL_AGENT_BRIDGE_PORT || "" : ""
       ),
       // Baked in only for bridge builds; the token never reaches any other bundle.
       "process.env.RECORDFUL_AGENT_BRIDGE_TOKEN": JSON.stringify(
-        agentBridgeEnabled ? process.env.RECORDFUL_AGENT_BRIDGE_TOKEN || "" : ""
+        isDev ? process.env.RECORDFUL_AGENT_BRIDGE_TOKEN || "" : ""
       ),
     }),
 

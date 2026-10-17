@@ -5,7 +5,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production node utils/build.js",
     "build:dev": "cross-env NODE_ENV=development RECORDFUL_DEV_MODE=true node utils/build.js",
-    "build:agent": "cross-env NODE_ENV=development RECORDFUL_DEV_MODE=true RECORDFUL_AGENT_BRIDGE=1 node utils/build.js",
+    "build:agent": "cross-env NODE_ENV=development RECORDFUL_DEV_MODE=true node utils/build.js",
     "build:prod": "cross-env NODE_ENV=production node utils/build.js",
     "build:local": "cross-env NODE_ENV=production RECORDFUL_USE_LOCAL_ENV=1 node utils/build.js",
     "build:builtin": "cross-env NODE_ENV=production RECORDFUL_EDITOR=builtin node utils/build.js",

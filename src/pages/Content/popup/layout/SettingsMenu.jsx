@@ -738,6 +738,15 @@ const SettingsMenu = (props) => {
             className="DropdownMenuItem"
             onSelect={(e) => {
               e.preventDefault();
+              chrome.runtime.sendMessage({ type: "open-agent-settings" });
+            }}
+          >
+            {chrome.i18n.getMessage("agentsSettingsOption")}
+          </DropdownMenu.Item>
+          <DropdownMenu.Item
+            className="DropdownMenuItem"
+            onSelect={(e) => {
+              e.preventDefault();
               handleTroubleshooting();
             }}
           >

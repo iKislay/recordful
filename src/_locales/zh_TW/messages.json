@@ -1920,5 +1920,117 @@
   "micDisconnectedToast": {
     "message": "麥克風已中斷連線，錄製已暫停。請重新開啟麥克風，或在沒有麥克風的情況下繼續錄製。",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "AI 代理",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "AI 代理",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "讓 Claude、Cursor 或 opencode 等 AI 應用程式為你錄製產品示範。它們透過在你電腦上執行的 recordful-mcp 連線，不經過任何伺服器。",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "允許 AI 應用程式控制 Recordful",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "設定你的 AI 應用程式",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "將這個 MCP 伺服器加入你的 AI 應用程式，然後請它錄製內容。當它提出要求時，在要錄製的分頁上點選 Recordful 圖示。",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Claude、Cursor、VS Code、opencode 等的設定方式",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "複製",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "已複製",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "已開啟。AI 應用程式要求時，在分頁上點選 Recordful 圖示。",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "連線中…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "正在等待你核准一個 AI 應用程式",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "已連線至 $APP$",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "已配對的 AI 應用程式",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "尚未有 AI 應用程式連線。",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "移除",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "要將 $APP$ 連線至 Recordful 嗎？",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ 將能開始、暫停及停止錄製，並在你透過 Recordful 圖示交給它的分頁中點選和輸入。只有在 $APP$ 向你顯示此代碼時才允許：",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "允許",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "拒絕",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "此要求已失效。請讓你的 AI 應用程式再試一次。",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful：已連線至 $APP$",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

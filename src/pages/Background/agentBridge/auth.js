@@ -11,6 +11,16 @@ export const newNonce = () => {
   return toHex(bytes);
 };
 
+// A pairing secret: 32 random bytes, base64url without padding (43 chars).
+export const newSecret = () => {
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
+  return btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+};
+
 export const computeProof = async (token, role, serverNonce, clientNonce) => {
   const key = await crypto.subtle.importKey(
     "raw",

@@ -1920,5 +1920,117 @@
   "micDisconnectedToast": {
     "message": "Mikrofon bağlantısı kesildi, bu yüzden kayıt duraklatıldı. Mikrofonu yeniden açın veya mikrofonsuz devam etmek için sürdürün.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "Yapay zekâ ajanları",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "Yapay zekâ ajanları",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Claude, Cursor veya opencode gibi yapay zekâ uygulamalarının senin için ürün demoları kaydetmesine izin ver. Bilgisayarında çalışan recordful-mcp üzerinden bağlanırlar. Hiçbir şey bir sunucudan geçmez.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "Yapay zekâ uygulamalarının Recordful'u kontrol etmesine izin ver",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "Yapay zekâ uygulamanı kur",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "Bu MCP sunucusunu yapay zekâ uygulamana ekle, sonra ondan bir şey kaydetmesini iste. İstediğinde, kaydedilecek sekmede Recordful simgesine tıkla.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Claude, Cursor, VS Code, opencode ve diğerleri için kurulum",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "Kopyala",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "Kopyalandı",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "Açık. Yapay zekâ uygulaman istediğinde bir sekmede Recordful simgesine tıkla.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "Bağlanıyor…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "Bir yapay zekâ uygulaması için onayını bekliyor",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "$APP$ ile bağlı",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "Eşleştirilmiş yapay zekâ uygulamaları",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "Henüz hiçbir yapay zekâ uygulaması bağlanmadı.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "Unut",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "$APP$ Recordful'a bağlansın mı?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ kayıtları başlatabilecek, duraklatabilecek ve durdurabilecek; Recordful simgesiyle ona verdiğin sekmede tıklayıp yazabilecek. Yalnızca $APP$ sana bu kodu gösteriyorsa izin ver:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "İzin ver",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "Reddet",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "Bu istek artık geçerli değil. Yapay zekâ uygulamandan tekrar denemesini iste.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: $APP$ ile bağlı",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

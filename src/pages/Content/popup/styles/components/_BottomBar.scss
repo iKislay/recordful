@@ -69,6 +69,38 @@
   }
 }
 
+// Opens the AI agents page.
+.more-panel-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 6px 0 0;
+  padding: 10px 0 6px;
+  border: 0;
+  border-top: 1px solid $color-border;
+  background: none;
+  color: $color-text-primary;
+  font-family: $font-medium;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+
+  svg {
+    color: $color-text-secondary;
+  }
+
+  &:hover svg {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
 .more-panel-actions {
   display: flex;
   align-items: center;

@@ -21,6 +21,7 @@ workflow.
 - Built-in editor: trim, crop, and manage audio tracks
 - Export to MP4, GIF, and WebM, or save to Google Drive
 - Alarms, countdown, movable toolbar, fully offline-capable
+- AI agents: let Claude, Cursor, opencode or any MCP app record product demos for you
 
 ## Private by default
 
@@ -30,8 +31,9 @@ Recordings stay on your device until you choose to export or upload them:
 
 ## Install
 
-No Chrome Web Store listing yet. Until there is one, run the latest
-release unpacked:
+Install [Recordful from the Chrome Web Store](https://chromewebstore.google.com/detail/hkcgjbkibidgbefehehenlmhjanjaopc).
+
+To run a release unpacked instead:
 
 1. Download the newest `Build.zip` from the
    [releases page](https://github.com/iKislay/recordful/releases) and unzip it.
@@ -43,6 +45,29 @@ To enable Save to Google Drive, create your own OAuth client ID
 > Create Credential > OAuth Client ID > Chrome App) and put it in
 `manifest.json`. See [this guide](https://developer.chrome.com/docs/extensions/reference/manifest/key)
 for a persistent extension key.
+
+## AI agents
+
+Recordful can be driven by AI apps through the Model Context Protocol. Ask
+Claude Code, Claude Desktop, Cursor, VS Code, opencode or any MCP app to
+"record a demo of the sign-up flow", and it plans the walkthrough, drives the
+page with a smooth on-screen cursor while Recordful records, and opens the
+editor when it's done.
+
+1. Add the server to your AI app: `npx -y recordful-mcp`. Per-app setup is in
+   [recordful-mcp](https://github.com/iKislay/recordful-mcp#install).
+2. In Recordful's popup, open **More → AI agents** and turn it on.
+3. When your AI asks, click the Recordful icon on the tab to record, and
+   approve the pairing code the first time.
+
+It's off until you turn it on, runs entirely on your computer (the server
+listens on `127.0.0.1` only), pairs once per computer against a code you
+check, and acts only in the tab you hand over. The code lives in
+`src/pages/Background/agentBridge/` (connection, pairing, commands),
+`src/pages/Content/agentPage/` (page tools) and `src/pages/Agents/` (the AI
+agents page). For scripted tests, a development build can bake in a shared
+secret with `RECORDFUL_AGENT_BRIDGE_TOKEN` (and a port with
+`RECORDFUL_AGENT_BRIDGE_PORT`); both are compiled out of other builds.
 
 ## Develop
 

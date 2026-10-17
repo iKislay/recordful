@@ -1920,5 +1920,117 @@
   "micDisconnectedToast": {
     "message": "மைக்ரோஃபோன் துண்டிக்கப்பட்டதால் பதிவு இடைநிறுத்தப்பட்டுள்ளது. மைக்கை மீண்டும் இயக்கவும், அல்லது அது இல்லாமல் தொடர மீண்டும் தொடங்கவும்.",
     "description": "Toast shown when the microphone track ends mid-recording (unplugged, permission revoked); the recording is paused, not ended"
+  },
+  "agentsSettingsOption": {
+    "message": "AI முகவர்கள்",
+    "description": "Settings menu item that opens the AI agents page"
+  },
+  "agentsPageTitle": {
+    "message": "AI முகவர்கள்",
+    "description": "Title of the AI agents page"
+  },
+  "agentsIntro": {
+    "message": "Claude, Cursor, opencode போன்ற AI ஆப்ஸ் உங்களுக்காக தயாரிப்பு டெமோக்களைப் பதிவு செய்யட்டும். அவை உங்கள் கணினியில் இயங்கும் recordful-mcp மூலம் இணைகின்றன. எதுவும் சர்வர் வழியாகச் செல்லாது.",
+    "description": "Intro text on the AI agents page"
+  },
+  "agentsToggleLabel": {
+    "message": "AI ஆப்ஸ் Recordful-ஐக் கட்டுப்படுத்த அனுமதி",
+    "description": "Label of the switch that turns AI agents on"
+  },
+  "agentsSetupTitle": {
+    "message": "உங்கள் AI ஆப்பை அமைக்கவும்",
+    "description": "Heading of the setup section"
+  },
+  "agentsSetupHint": {
+    "message": "இந்த MCP சர்வரை உங்கள் AI ஆப்பில் சேர்த்து, ஏதாவது பதிவு செய்யச் சொல்லுங்கள். அது கேட்கும்போது, பதிவு செய்ய வேண்டிய டேபில் Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
+    "description": "Setup instructions above the MCP server command"
+  },
+  "agentsSetupLink": {
+    "message": "Claude, Cursor, VS Code, opencode மற்றும் பலவற்றுக்கான அமைப்பு",
+    "description": "Link to setup instructions for each AI app"
+  },
+  "agentsCopy": {
+    "message": "நகலெடு",
+    "description": "Button that copies the setup command"
+  },
+  "agentsCopied": {
+    "message": "நகலெடுக்கப்பட்டது",
+    "description": "Shown after the setup command was copied"
+  },
+  "agentsStatusIdle": {
+    "message": "இயக்கத்தில் உள்ளது. உங்கள் AI ஆப் கேட்கும்போது ஒரு டேபில் Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
+    "description": "Status when AI agents are on but no app is connected"
+  },
+  "agentsStatusConnecting": {
+    "message": "இணைக்கிறது…",
+    "description": "Status while connecting to the local MCP server"
+  },
+  "agentsStatusPairing": {
+    "message": "ஒரு AI ஆப்புக்கான உங்கள் ஒப்புதலுக்காகக் காத்திருக்கிறது",
+    "description": "Status while a pairing request waits for the user"
+  },
+  "agentsStatusConnected": {
+    "message": "$APP$ உடன் இணைக்கப்பட்டது",
+    "description": "Status when an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairedTitle": {
+    "message": "இணைக்கப்பட்ட AI ஆப்ஸ்",
+    "description": "Heading of the list of paired AI apps"
+  },
+  "agentsPairedEmpty": {
+    "message": "இதுவரை எந்த AI ஆப்பும் இணைக்கப்படவில்லை.",
+    "description": "Shown when no AI app has paired yet"
+  },
+  "agentsForget": {
+    "message": "மறந்துவிடு",
+    "description": "Button that removes a paired AI app"
+  },
+  "agentsPairTitle": {
+    "message": "$APP$-ஐ Recordful உடன் இணைக்கவா?",
+    "description": "Title of the window asking to approve an AI app",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairBody": {
+    "message": "$APP$ பதிவுகளைத் தொடங்கவும், இடைநிறுத்தவும், நிறுத்தவும், Recordful ஐகான் மூலம் நீங்கள் ஒப்படைக்கும் டேபில் கிளிக் செய்யவும் தட்டச்சு செய்யவும் முடியும். $APP$ இந்தக் குறியீட்டைக் காட்டினால் மட்டுமே அனுமதியுங்கள்:",
+    "description": "Explanation in the pairing window, followed by the code",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentsPairAllow": {
+    "message": "அனுமதி",
+    "description": "Button that approves the AI app"
+  },
+  "agentsPairDeny": {
+    "message": "மறு",
+    "description": "Button that declines the AI app"
+  },
+  "agentsPairExpired": {
+    "message": "இந்தக் கோரிக்கை இனி செல்லுபடியாகாது. மீண்டும் முயற்சிக்க உங்கள் AI ஆப்பிடம் சொல்லுங்கள்.",
+    "description": "Shown when the pairing request is no longer open"
+  },
+  "agentBadgeTitle": {
+    "message": "Recordful: $APP$ உடன் இணைக்கப்பட்டது",
+    "description": "Toolbar icon tooltip while an AI app is connected",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
   }
 }

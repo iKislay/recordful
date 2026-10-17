@@ -1,7 +1,5 @@
-// Dev-only: carries out page actions for the agent bridge (see
-// Background/agentBridge/pageCommands.js). Compiled in only when the build
-// sets RECORDFUL_AGENT_BRIDGE=1; every other build folds the guard in
-// Content/index.jsx to false and never includes this module.
+// Carries out page actions for AI agents (see
+// Background/agentBridge/pageCommands.js), on the tab the user handed over.
 import { performAction } from "./actions";
 import * as cursor from "./cursor";
 

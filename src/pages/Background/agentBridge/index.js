@@ -1,20 +1,35 @@
-// Dev-only bridge that lets a local MCP server (recordful-agent-bridge) drive
-// the recorder. Loaded only when the build sets RECORDFUL_AGENT_BRIDGE=1, which
-// webpack.config.js refuses outside development builds.
+// Lets AI apps drive Recordful through a local MCP server (recordful-mcp).
+// Inert until the user turns on AI agents in Recordful's settings: no socket,
+// no network, nothing logged.
+import { registerMessage } from "../../../messaging/messageRouter";
 import { armTab, watchArmedTab } from "./armedTab";
 import { createBridgeClient } from "./client";
 import { commands } from "./commands";
 
 const DEFAULT_PORT = 47823;
 
+const openAgentsPage = async () => {
+  const url = chrome.runtime.getURL("agents.html");
+  const [existing] = await chrome.tabs.query({ url });
+  if (existing?.id) {
+    await chrome.tabs.update(existing.id, { active: true });
+    await chrome.windows.update(existing.windowId, { focused: true }).catch(() => {});
+    return;
+  }
+  await chrome.tabs.create({ url, active: true });
+};
+
 // Must run synchronously during worker startup: Chrome only delivers the
 // event that woke the worker (an icon click, a shortcut) to listeners that
 // were registered by then.
 export const initAgentBridge = () => {
-  const port = Number(process.env.RECORDFUL_AGENT_BRIDGE_PORT) || DEFAULT_PORT;
+  // The port and a shared secret are build-time knobs for development builds
+  // only, so scripted test runs can skip the switch and the pairing window.
+  const isDev = process.env.NODE_ENV === "development";
+  const port = (isDev && Number(process.env.RECORDFUL_AGENT_BRIDGE_PORT)) || DEFAULT_PORT;
   const client = createBridgeClient({
     port,
-    buildToken: process.env.RECORDFUL_AGENT_BRIDGE_TOKEN || "",
+    buildToken: (isDev && process.env.RECORDFUL_AGENT_BRIDGE_TOKEN) || "",
     commands,
   });
 
@@ -30,6 +45,10 @@ export const initAgentBridge = () => {
     client.wake("shortcut");
   });
   watchArmedTab();
+
+  registerMessage("open-agent-settings", () => {
+    openAgentsPage().catch(() => {});
+  });
 
   client.resumeIfWanted();
 };
