@@ -6405,6 +6405,12 @@ const CloudRecorder = () => {
     ]);
 
     const { cameraFlipped } = await chrome.storage.local.get(["cameraFlipped"]);
+    // The pointer's path while this take recorded, for the editor's cursor
+    // and the zooms that follow it: [seconds, x, y] as fractions of the
+    // picture, with a fourth number where the page showed a hand or I-beam.
+    const { pointerMoves } = await chrome.storage.session
+      .get("pointerMoves")
+      .catch(() => ({}));
 
     let insertAfterSceneId = null;
     if (multiMode) {
@@ -6534,6 +6540,7 @@ const CloudRecorder = () => {
             : null,
         },
         clickEvents: scaledClickEvents,
+        pointerMoves: Array.isArray(pointerMoves) ? pointerMoves : [],
         // Omitted when unknown: the app defaults to monitor, and a
         // guess would be worse than that default.
         ...(capturedSurface ? { surface: capturedSurface } : {}),
