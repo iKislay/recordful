@@ -5,6 +5,58 @@ const MOVES_PER_BATCH = 8;
 // What counts as the thing clicked, when the click lands on a part of it.
 const CONTROLS =
   "button, a, input, select, textarea, label, summary, [role], [onclick], [tabindex]";
+// Fields the browser's own "auto" cursor shows an I-beam over.
+const TYPED =
+  "textarea, input:not([type]), input[type=text], input[type=search], input[type=email], input[type=url], input[type=tel], input[type=password], input[type=number]";
+// The cursor the page showed, as the editor numbers it in a move: none is
+// the arrow, so a move over nothing special stays three numbers long.
+export const CURSOR_CODES = { hand: 1, text: 2 };
+
+/**
+ * The cursor the page shows over `target` at `e`'s point, as the editor
+ * draws it: a hand over links and buttons, an I-beam over text, else the
+ * arrow.
+ */
+function cursorKind(target, e) {
+  if (!(target instanceof Element)) return "arrow";
+  const { cursor } = getComputedStyle(target);
+  if (cursor === "pointer") return "hand";
+  if (cursor === "text" || cursor === "vertical-text") return "text";
+  if (cursor !== "auto") return "arrow";
+  // "auto" is the browser's pick: an I-beam where text can be typed, or
+  // over the letters of text that can be selected.
+  if (target.isContentEditable || target.closest(TYPED)) return "text";
+  const range = document.caretRangeFromPoint?.(e.clientX, e.clientY);
+  const node = range?.startContainer;
+  if (node?.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) {
+    return "arrow";
+  }
+  if (getComputedStyle(node.parentElement).userSelect === "none") {
+    return "arrow";
+  }
+  const letters = document.createRange();
+  letters.selectNodeContents(node);
+  for (const rect of letters.getClientRects()) {
+    if (
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom
+    ) {
+      return "text";
+    }
+  }
+  return "arrow";
+}
+
+/** The cursor's kind, or the arrow if the page cannot be asked. */
+const safeKind = (target, e) => {
+  try {
+    return cursorKind(target, e);
+  } catch {
+    return "arrow";
+  }
+};
 
 export function startClickTracking(
   isRegion = false,
@@ -108,19 +160,30 @@ export function startClickTracking(
       rect.width,
       rect.height,
     ];
+    const kind = safeKind(target, e);
     chrome.runtime.sendMessage({
       type: "click-event",
-      payload: { ...payload, box, timestamp: Date.now() },
+      payload: {
+        ...payload,
+        box,
+        timestamp: Date.now(),
+        // The cursor the page showed: the editor draws the same one.
+        ...(kind !== "arrow" && { kind }),
+      },
     });
   };
 
   // The pointer's path, for zooms that follow it: where it is a few times a
   // second while it moves, sent in batches so the page is barely touched.
   let moved = null;
+  // What the pointer was over: an event's path is gone once it is handled,
+  // and inside a shadow root its target is only the host.
+  let movedOver = null;
   let frame = null;
   let moves = [];
   const noteMove = (e) => {
     moved = e;
+    movedOver = e.composedPath()[0] ?? e.target;
   };
   const sendMoves = () => {
     if (!moves.length) return;
@@ -130,13 +193,20 @@ export function startClickTracking(
     moves = [];
   };
   const sampler = setInterval(() => {
+    const event = moved;
     const payload =
-      moved && cachedRecordingType !== "camera" ? placed(moved) : null;
+      event && cachedRecordingType !== "camera" ? placed(event) : null;
     moved = null;
     // Nothing moved since the last look: what is waiting can go.
     if (!payload) return sendMoves();
     frame = payload;
-    moves.push([Date.now(), payload.x, payload.y]);
+    // With the cursor the page showed there, where it was not the arrow.
+    const code = CURSOR_CODES[safeKind(movedOver, event)];
+    moves.push(
+      code
+        ? [Date.now(), payload.x, payload.y, code]
+        : [Date.now(), payload.x, payload.y],
+    );
     if (moves.length >= MOVES_PER_BATCH) sendMoves();
   }, MOVE_SAMPLE_MS);
 

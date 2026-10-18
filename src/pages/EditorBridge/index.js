@@ -90,6 +90,9 @@ const readCamera = async (fileName) => {
   }
 };
 
+// The cursor the page showed, as a move numbers it and as the site names it.
+const CURSOR_KINDS = { 1: "hand", 2: "text" };
+
 const normalizeClicks = (clickEvents) =>
   (clickEvents || [])
     .filter((click) =>
@@ -101,12 +104,20 @@ const normalizeClicks = (clickEvents) =>
       y: click.fy,
       // The clicked control: left, top, right, bottom, as fractions too.
       ...(click.box?.every(Number.isFinite) && { box: click.box }),
+      ...((click.kind === "hand" || click.kind === "text") && {
+        kind: click.kind,
+      }),
     }));
 
 const normalizeMoves = (pointerMoves) =>
   (pointerMoves || [])
     .filter((move) => move.every(Number.isFinite))
-    .map(([time, x, y]) => ({ time, x, y }));
+    .map(([time, x, y, cursor]) => ({
+      time,
+      x,
+      y,
+      ...(CURSOR_KINDS[cursor] && { kind: CURSOR_KINDS[cursor] }),
+    }));
 
 const readRecording = async (fileName = null) => {
   const stored = await chrome.storage.local.get([

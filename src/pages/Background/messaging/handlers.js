@@ -2283,7 +2283,7 @@ export const setupHandlers = () => {
   };
 
   registerMessage("click-event", async ({ payload }, sender) => {
-    const { x, y, surface, region } = payload;
+    const { x, y, surface, region, kind } = payload;
     const clockTime = await clickTimeFromClock();
 
     // Only the cloud recorder answers; the clock stands in for the local one.
@@ -2308,6 +2308,8 @@ export const setupHandlers = () => {
       surface,
       region,
       timestamp: videoTime,
+      // The cursor the page showed, where it was not the arrow.
+      ...((kind === "hand" || kind === "text") && { kind }),
       ...place(x, y),
       ...(corners && {
         box: corners
@@ -2318,7 +2320,8 @@ export const setupHandlers = () => {
   });
 
   // The pointer's path, for the editor's zooms that follow it: [seconds into
-  // the recording, x, y], the place as fractions of the picture. Kept for
+  // the recording, x, y], the place as fractions of the picture, and a
+  // fourth number where the page showed a hand (1) or an I-beam (2). Kept for
   // the session and away from storage.local, whose every write is broadcast
   // to every content script.
   // ponytail: one array, rewritten with each batch and capped; write it in
@@ -2332,12 +2335,13 @@ export const setupHandlers = () => {
     const videoTime = await clickTimeFromClock();
     const now = Date.now();
     if (videoTime === null) return;
-    const batch = payload.moves.map(([at, x, y]) => {
+    const batch = payload.moves.map(([at, x, y, cursor]) => {
       const { fx, fy } = place(x, y);
       return [
         Math.round((videoTime - (now - at) / 1000) * 100) / 100,
         Math.round(fx * 1000) / 1000,
         Math.round(fy * 1000) / 1000,
+        ...(cursor === 1 || cursor === 2 ? [cursor] : []),
       ];
     });
     _moveWriteQueue = _moveWriteQueue
