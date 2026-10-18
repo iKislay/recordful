@@ -360,19 +360,10 @@ export const surfaceHandler = async (request, videoRef) => {
   const croppedCapture = CROPPED_TYPES.includes(request.recordingType);
   const fullMonitor = request.surface === "monitor" && !croppedCapture;
 
-  if (!CLOUD_FEATURES_ENABLED) {
-    const shouldEnterPip = fullMonitor;
-    if (shouldEnterPip && videoRef.current) {
-      try {
-        await videoRef.current.requestPictureInPicture();
-      } catch (err) {
-        console.error("❌ Failed to enter PiP:", err);
-        setPipMode(false);
-        chrome.runtime.sendMessage({ type: "pip-ended" });
-      }
-    }
-    return;
-  }
+  // The camera is recorded as a file of its own here, so a PiP caught by a
+  // full-screen capture would put it in the picture a second time. The
+  // camera preview window (Content/camera-preview) shows it instead.
+  if (!CLOUD_FEATURES_ENABLED) return;
 
   // Auth data is passed along with the set-surface message from the background
   // script (setSurface.js) to avoid an async round-trip that would lose the
@@ -381,16 +372,12 @@ export const surfaceHandler = async (request, videoRef) => {
     const isSubscribed = request.subscribed || false;
     const instantMode = request.instantMode || false;
 
-    // PiP rule: enter PiP when the bubble needs to be visible to the
-    // capture (free+monitor, pro+instant+monitor) or as a draggable
-    // preview when the camera is already a separate cloud track
-    // (pro+non-instant+non-monitor). Skip PiP when the on-page bubble
-    // is captured naturally (pro+instant+non-monitor) or would imply
-    // the camera's part of the screen recording when it isn't
-    // (pro+non-instant+monitor).
-    const shouldEnterPip =
-      (fullMonitor && (!isSubscribed || instantMode)) ||
-      (request.surface !== "monitor" && isSubscribed && !instantMode);
+    // PiP rule: enter PiP only where the camera has to be in the capture,
+    // a Pro instant recording of a monitor, which keeps no camera file.
+    // Every other recording keeps the camera as a file of its own, and the
+    // camera preview window shows it there; a PiP here would also close
+    // that window, as Chrome keeps one PiP at a time.
+    const shouldEnterPip = fullMonitor && isSubscribed && instantMode;
 
     if (shouldEnterPip && videoRef.current) {
       await videoRef.current.requestPictureInPicture();

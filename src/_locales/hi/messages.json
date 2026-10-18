@@ -2032,5 +2032,17 @@
         "example": "Claude Code"
       }
     }
+  },
+  "showCameraPreviewTooltip": {
+    "message": "कैमरा प्रीव्यू दिखाएँ",
+    "description": "Toolbar tooltip: reopens the floating camera preview window during a recording"
+  },
+  "cameraPreviewSettingLabel": {
+    "message": "रिकॉर्डिंग के दौरान कैमरा प्रीव्यू",
+    "description": "Settings menu checkbox: show the camera in a floating window while recording; the window is not part of the recording"
+  },
+  "cameraPreviewPausedLabel": {
+    "message": "रुका हुआ",
+    "description": "Label over the camera preview window while the recording is paused"
   }
 }

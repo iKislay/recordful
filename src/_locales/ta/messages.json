@@ -2032,5 +2032,17 @@
         "example": "Claude Code"
       }
     }
+  },
+  "showCameraPreviewTooltip": {
+    "message": "கேமரா முன்னோட்டத்தைக் காட்டு",
+    "description": "Toolbar tooltip: reopens the floating camera preview window during a recording"
+  },
+  "cameraPreviewSettingLabel": {
+    "message": "பதிவின்போது கேமரா முன்னோட்டம்",
+    "description": "Settings menu checkbox: show the camera in a floating window while recording; the window is not part of the recording"
+  },
+  "cameraPreviewPausedLabel": {
+    "message": "இடைநிறுத்தப்பட்டது",
+    "description": "Label over the camera preview window while the recording is paused"
   }
 }

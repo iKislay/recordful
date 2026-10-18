@@ -25,6 +25,7 @@ import {
 } from "../../utils/startFlowTrace";
 import { triggerSupportDownload } from "../../utils/triggerSupportDownload";
 import { apiIssueCopy } from "../utils/apiIssueCopy";
+import { openCameraPreview } from "../camera-preview/cameraPreview";
 
 // Re-asking can't change these, so the retry would only re-open the modal.
 // Anything else (a busy or still-waking device) is worth another pass.
@@ -927,6 +928,8 @@ const ContentState = (props) => {
             camera:
               contentStateRef.current.recordingType === "camera" ? true : false,
           });
+          // Last: it spends this click's activation, which nothing after it needs.
+          openCameraPreview(contentStateRef.current);
           setContentState((prevContentState) => ({
             ...prevContentState,
 
@@ -979,6 +982,9 @@ const ContentState = (props) => {
           contentStateRef.current.recordingType === "camera" ? true : false,
       });
       traceStep("desktopCaptureSent");
+      // Last: it spends the Start click's activation, which nothing after it
+      // needs. Too late (a slow start) and it just doesn't open.
+      openCameraPreview(contentStateRef.current);
       setContentState((prevContentState) => ({
         ...prevContentState,
 

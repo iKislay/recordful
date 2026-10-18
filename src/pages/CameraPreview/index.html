@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recordful - Camera preview</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #111;
+      }
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* A preview reads like a mirror; the recording is never flipped. */
+        transform: scaleX(-1);
+        display: block;
+      }
+      .paused {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.45);
+        color: #fff;
+        font: 600 13px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+        letter-spacing: 0.02em;
+      }
+      body.is-paused .paused {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+    <video muted playsinline autoplay></video>
+    <div class="paused"></div>
+  </body>
+</html>
