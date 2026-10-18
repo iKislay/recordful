@@ -20,6 +20,11 @@ import {
   getFastRecorderStickyState,
 } from "../../../../media/fastRecorderGate";
 import { resetOnboardingSeen } from "../onboarding/storage";
+import {
+  cameraPreviewSupported,
+  setCameraPreviewEnabled,
+  useCameraPreview,
+} from "../../camera-preview/cameraPreview";
 import { runProPopupOnboardingIfNeeded } from "../onboarding/proOnboarding";
 
 const CLOUD_FEATURES_ENABLED =
@@ -28,6 +33,7 @@ const DEV_MODE = process.env.RECORDFUL_DEV_MODE === "true";
 
 const SettingsMenu = (props) => {
   const [contentState, setContentState] = useContext(contentStateContext);
+  const cameraPreview = useCameraPreview();
   const [restore, setRestore] = useState(false);
   const [cloudRestore, setCloudRestore] = useState(false);
   const [openQuality, setOpenQuality] = useState(false);
@@ -697,6 +703,14 @@ const SettingsMenu = (props) => {
           >
             {chrome.i18n.getMessage("systemAudioLabel")}
           </MenuCheckboxItem>
+          {cameraPreviewSupported() && (
+            <MenuCheckboxItem
+              checked={cameraPreview.enabled}
+              onCheckedChange={(checked) => setCameraPreviewEnabled(checked)}
+            >
+              {chrome.i18n.getMessage("cameraPreviewSettingLabel")}
+            </MenuCheckboxItem>
+          )}
           {!contentState.isSubscribed &&
             !contentState.isLoggedIn &&
             fastRecorderInfo?.probe?.ok === true &&

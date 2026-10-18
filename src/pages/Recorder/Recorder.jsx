@@ -54,6 +54,10 @@ import {
   screenSurfaceSwitching,
 } from "../utils/screenCaptureMode";
 import { acquireDisplayMediaWithFocusRetry } from "../utils/acquireDisplayMedia";
+import {
+  resolveCaptureSurface,
+  setCapturedSurface,
+} from "../utils/captureSurface";
 import { chooseWriter } from "./recorderStorage/chooseWriter";
 import { chooseReader } from "./recorderStorage/chooseReader";
 import { lifecycle } from "../utils/lifecycleLog";
@@ -3845,6 +3849,9 @@ const Recorder = () => {
           onReactivate: () =>
             chrome.runtime.sendMessage({ type: "activate-recorder-tab" }),
         });
+      // Unknown until this take's stream is up. The camera preview reads it to
+      // stay out of a full-screen recording, and a stale one could let it in.
+      void setCapturedSurface(null);
       try {
         try {
           stream = await acquireDisplay(displayConstraints);
@@ -3902,6 +3909,11 @@ const Recorder = () => {
         path: "getDisplayMedia",
         streamId: stream.id,
       });
+      void setCapturedSurface(
+        resolveCaptureSurface(
+          stream.getVideoTracks()[0].getSettings().displaySurface,
+        ),
+      );
     } else {
       // Chrome's tab capture defaults to a 1920x1080 frame and pillarboxes
       // narrower tabs to fit. Match the constraint box to the tab's real
@@ -3979,6 +3991,8 @@ const Recorder = () => {
       const endGum = perfSpan("Recorder getUserMedia(desktop/tab)", {
         isTab: Boolean(isTab.current),
       });
+      // Unknown until this take's stream is up, as above.
+      void setCapturedSurface(null);
       try {
         try {
           stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -4041,6 +4055,9 @@ const Recorder = () => {
 
       const surface = stream.getVideoTracks()[0].getSettings().displaySurface;
       debug("Display surface", surface);
+      void setCapturedSurface(
+        resolveCaptureSurface(surface, { isTab: isTab.current }),
+      );
       chrome.runtime.sendMessage({ type: "set-surface", surface: surface });
     }
 

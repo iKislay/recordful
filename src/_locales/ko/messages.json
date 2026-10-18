@@ -2032,5 +2032,17 @@
         "example": "Claude Code"
       }
     }
+  },
+  "showCameraPreviewTooltip": {
+    "message": "카메라 미리보기 표시",
+    "description": "Toolbar tooltip: reopens the floating camera preview window during a recording"
+  },
+  "cameraPreviewSettingLabel": {
+    "message": "녹화 중 카메라 미리보기",
+    "description": "Settings menu checkbox: show the camera in a floating window while recording; the window is not part of the recording"
+  },
+  "cameraPreviewPausedLabel": {
+    "message": "일시정지됨",
+    "description": "Label over the camera preview window while the recording is paused"
   }
 }

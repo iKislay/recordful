@@ -43,6 +43,16 @@ import {
   CloseButtonToolbar,
 } from "../components/SVG";
 import MicToggle from "../components/MicToggle";
+import {
+  cameraPreviewSupported,
+  openCameraPreview,
+  useCameraPreview,
+} from "../../camera-preview/cameraPreview";
+import {
+  cameraPreviewEligible,
+  previewNeedsSurface,
+  surfaceAllowsPreview,
+} from "../../camera-preview/rules";
 
 // Furthest the toolbar may rest from the screen edge it is docked to.
 const MAX_EDGE_GAP = 48;
@@ -371,6 +381,21 @@ const ToolbarWrap = () => {
     }
   }, [mode]);
 
+  // Brings the camera preview back during a recording: after a navigation
+  // closed it with the old page, or after the person closed it. Only once the
+  // recording is known to leave its window out of the picture.
+  const preview = useCameraPreview();
+  const showPreviewButton =
+    contentState.recording &&
+    preview.enabled &&
+    !preview.open &&
+    cameraPreviewSupported() &&
+    cameraPreviewEligible(contentState, {
+      cloudFeatures: process.env.RECORDFUL_ENABLE_CLOUD_FEATURES === "true",
+    }) &&
+    (!previewNeedsSurface(contentState.recordingType) ||
+      surfaceAllowsPreview(preview.surface));
+
   const enableCamera = () => {
     setContentState((prevContentState) => ({
       ...prevContentState,
@@ -646,6 +671,18 @@ const ToolbarWrap = () => {
                   <CameraIcon />
                 </ToolTrigger>
               )}
+            {showPreviewButton && (
+              <ToolTrigger
+                type="button"
+                content={chrome.i18n.getMessage("showCameraPreviewTooltip")}
+                value="camera-preview"
+                onClick={() =>
+                  openCameraPreview(contentState, { reopen: true })
+                }
+              >
+                <CameraIcon />
+              </ToolTrigger>
+            )}
           </Toolbar.ToggleGroup>
         </Toolbar.Root>
       </Rnd>

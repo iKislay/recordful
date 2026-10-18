@@ -120,6 +120,13 @@ const entryPoints = {
     "index.jsx"
   ),
   camera: path.join(__dirname, "src", "pages", "Camera", "index.jsx"),
+  camerapreview: path.join(
+    __dirname,
+    "src",
+    "pages",
+    "CameraPreview",
+    "index.js"
+  ),
   waveform: path.join(__dirname, "src", "pages", "Waveform", "index.jsx"),
   permissions: path.join(__dirname, "src", "pages", "Permissions", "index.jsx"),
   setup: path.join(__dirname, "src", "pages", "Setup", "index.jsx"),
@@ -189,6 +196,7 @@ const htmlPlugins = Object.keys(entryPoints)
       remuxoffscreen: "RemuxOffscreen",
       localplaybackbridge: "LocalPlaybackBridge",
       editorbridge: "EditorBridge",
+      camerapreview: "CameraPreview",
     };
 
     const folderName =

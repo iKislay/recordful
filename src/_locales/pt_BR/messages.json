@@ -2032,5 +2032,17 @@
         "example": "Claude Code"
       }
     }
+  },
+  "showCameraPreviewTooltip": {
+    "message": "Mostrar a prévia da câmera",
+    "description": "Toolbar tooltip: reopens the floating camera preview window during a recording"
+  },
+  "cameraPreviewSettingLabel": {
+    "message": "Prévia da câmera durante a gravação",
+    "description": "Settings menu checkbox: show the camera in a floating window while recording; the window is not part of the recording"
+  },
+  "cameraPreviewPausedLabel": {
+    "message": "Pausado",
+    "description": "Label over the camera preview window while the recording is paused"
   }
 }
