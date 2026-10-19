@@ -6,12 +6,15 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import Content from "./Content";
 import { initAgentPage } from "./agentPage";
+import { initScreenshot } from "./screenshot";
 
 // AI agents page tools: a listener that answers only Recordful's own worker,
 // which only asks while the user has AI agents on and has handed over this
 // tab. Outside the guard below on purpose: a re-injected copy takes over from
 // the earlier one (see agentPage/index.js).
 initAgentPage();
+// Screenshots: answers the worker as it takes one (see screenshot/index.js).
+initScreenshot();
 
 // Idempotency: content script is injected via manifest AND by
 // executeScripts() on session start; both mounts would double-fire.

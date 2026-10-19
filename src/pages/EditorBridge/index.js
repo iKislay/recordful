@@ -6,6 +6,7 @@
 // Only the configured app origin is answered, and only as this page's parent.
 import { chooseReader } from "../EditorApp/recorderStorage/chooseReader";
 import { CAMERA_OFFSETS, CAMERA_SUFFIX } from "../Recorder/cameraTrack";
+import { deleteShot, getShot } from "../utils/shotStore";
 
 const APP_ORIGIN = (() => {
   try {
@@ -22,6 +23,10 @@ const RESULT = "recordful-editor-bridge-result";
 const LIST_REQUEST = "recordful-editor-bridge-list";
 const LIST_RESULT = "recordful-editor-bridge-list-result";
 const ACK = "recordful-editor-bridge-ack";
+// A screenshot just taken (Background/screenshot), and the site saying it kept it.
+const SHOT_REQUEST = "recordful-editor-bridge-shot";
+const SHOT_RESULT = "recordful-editor-bridge-shot-result";
+const SHOT_ACK = "recordful-editor-bridge-shot-ack";
 
 const OPFS_RECORDING_PREFIX = "recording-";
 const META_SUFFIX = ".meta.json";
@@ -192,6 +197,22 @@ if (APP_ORIGIN && window.parent !== window) {
     }
     if (event.data?.source === ACK) {
       ackTake(event.data?.id);
+      return;
+    }
+    if (event.data?.source === SHOT_REQUEST) {
+      const shot = await getShot(event.data?.id).catch(() => null);
+      post({
+        source: SHOT_RESULT,
+        blob: shot?.blob?.size ? shot.blob : null,
+        title: shot?.title ?? "",
+        url: shot?.url ?? "",
+        texts: Array.isArray(shot?.texts) ? shot.texts : [],
+        takenAt: shot?.takenAt ?? null,
+      });
+      return;
+    }
+    if (event.data?.source === SHOT_ACK) {
+      void deleteShot(event.data?.id).catch(() => {});
       return;
     }
     if (event.data?.source !== REQUEST) return;

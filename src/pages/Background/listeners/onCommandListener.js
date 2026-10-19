@@ -1,6 +1,13 @@
 import { sendMessageTab, getCurrentTab } from "../tabManagement";
 import { sendMessageRecord } from "../recording/sendMessageRecord.js";
 import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
+import { takeScreenshot } from "../screenshot/takeScreenshot";
+
+const SCREENSHOT_COMMANDS = {
+  "screenshot-area": "area",
+  "screenshot-visible": "visible",
+  "screenshot-page": "page",
+};
 
 export const onCommandListener = () => {
   let lastToggleDrawingAt = 0;
@@ -9,6 +16,11 @@ export const onCommandListener = () => {
   chrome.commands.onCommand.addListener(async (command) => {
     const activeTab = await getCurrentTab();
     if (!activeTab || !activeTab.id) return;
+
+    if (SCREENSHOT_COMMANDS[command]) {
+      void takeScreenshot(SCREENSHOT_COMMANDS[command], activeTab);
+      return;
+    }
 
     if (command === "start-recording") {
       // shortcut pressed from another window must not start a second recording

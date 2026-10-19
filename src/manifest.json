@@ -102,6 +102,15 @@
     },
     "toggle-cursor-mode": {
       "description": "Toggle cursor options (set a shortcut for Alt+Shift+C)"
+    },
+    "screenshot-area": {
+      "description": "Screenshot a selected area"
+    },
+    "screenshot-visible": {
+      "description": "Screenshot the visible part of the page"
+    },
+    "screenshot-page": {
+      "description": "Screenshot the full page"
     }
   },
   "permissions": [

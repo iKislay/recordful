@@ -1,5 +1,7 @@
 import { initializeListeners } from "./listeners";
 import { setupHandlers } from "./messaging/handlers";
+import { setupScreenshotHandlers } from "./screenshot/takeScreenshot";
+import { setupShareListener } from "./share/shareImage";
 import {
   messageRouter,
   messageDispatcher,
@@ -337,6 +339,8 @@ const cleanupOrphanOpfsSessions = async () => {
 messageRouter();
 initializeListeners();
 setupHandlers();
+setupScreenshotHandlers();
+setupShareListener();
 initCountdownFallback();
 initKeepAwake();
 initLifecycleObserver();
