@@ -67,6 +67,18 @@
     "message": "标签区域",
     "description": "Tab area recording type label on popup"
   },
+  "windowType": {
+    "message": "窗口",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "区域",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "此页面无法录制区域",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "摄像头",
     "description": "Camera recording type label on popup"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "按住说话",
     "description": "Push to talk switch label"
-  },
-  "customAreaLabel": {
-    "message": "设置要录制的区域",
-    "description": "Custom area switch label"
   },
   "flipCameraLabel": {
     "message": "翻转摄像头",
@@ -2043,5 +2051,61 @@
   "cameraPreviewPausedLabel": {
     "message": "已暂停",
     "description": "Label over the camera preview window while the recording is paused"
+  },
+  "screenshotTab": {
+    "message": "Screenshot",
+    "description": "Screenshot tab label on popup"
+  },
+  "screenshotAreaTitle": {
+    "message": "Selected area",
+    "description": "Screenshot mode: a dragged area or an element"
+  },
+  "screenshotAreaHint": {
+    "message": "Drag a box, or click an element",
+    "description": "Hint under the area mode"
+  },
+  "screenshotVisibleTitle": {
+    "message": "Visible part",
+    "description": "Screenshot mode: the visible part of the page"
+  },
+  "screenshotVisibleHint": {
+    "message": "What is on screen now",
+    "description": "Hint under the visible mode"
+  },
+  "screenshotPageTitle": {
+    "message": "Full page",
+    "description": "Screenshot mode: the whole page"
+  },
+  "screenshotPageHint": {
+    "message": "Scrolls and stitches the whole page",
+    "description": "Hint under the full page mode"
+  },
+  "screenshotPrivacyNote": {
+    "message": "Private by default. No watermark.",
+    "description": "Note under the screenshot modes"
+  },
+  "screenshotOpenEditor": {
+    "message": "Edit a picture",
+    "description": "Link to open the screenshot editor with any picture"
+  },
+  "screenshotRestricted": {
+    "message": "Chrome doesn't allow screenshots of this page.",
+    "description": "Error when the page cannot be captured"
+  },
+  "screenshotFailed": {
+    "message": "That screenshot didn't work. Try again.",
+    "description": "Error when a screenshot fails"
+  },
+  "screenshotScreenTitle": {
+    "message": "Entire screen or window",
+    "description": "Screenshot mode: a screen or app window picked in Chrome's dialog"
+  },
+  "screenshotScreenHint": {
+    "message": "Anything on your computer, not just this tab",
+    "description": "Hint under the screen mode"
+  },
+  "screenshotScreenBlocked": {
+    "message": "This site doesn't allow screen capture. Try it from another tab.",
+    "description": "Error when the page's policy blocks screen capture"
   }
 }

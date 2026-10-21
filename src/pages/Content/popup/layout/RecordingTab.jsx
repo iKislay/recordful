@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 
 import RecordingType from "./RecordingType";
-import ModeDropdown from "../components/ModeDropdown";
+import CaptureModeTiles from "../components/CaptureModeTiles";
 import { Check, X } from "@phosphor-icons/react";
 
 import Toggle from "../../../Components/Toggle";
@@ -77,6 +77,73 @@ const RecordingTab = (props) => {
     }
   };
 
+  // Screen and Window share recordingType "screen". preferredScreenSurface
+  // only tells the recorder's picker to open on windows; the recorder reads
+  // it straight from storage, so it lives here rather than in contentState.
+  const [screenSurface, setScreenSurface] = useState("monitor");
+  useEffect(() => {
+    chrome.storage.local
+      .get(["preferredScreenSurface"])
+      .then(({ preferredScreenSurface }) => {
+        if (preferredScreenSurface === "window") setScreenSurface("window");
+      })
+      .catch(() => {});
+  }, []);
+
+  // Area always means "drag a box on the page". Older builds had a plain
+  // tab mode with the box behind a switch, and cancel/discard clear the box,
+  // so turn it back on whenever Area is the pick and the browser can crop.
+  const cropAvailable = typeof CropTarget !== "undefined";
+  useEffect(() => {
+    if (
+      contentState.recordingType !== "region" ||
+      contentState.customRegion ||
+      !cropAvailable ||
+      tabRecordingDisabled
+    )
+      return;
+    setContentState((prev) => ({ ...prev, customRegion: true }));
+    chrome.storage.local.set({ customRegion: true, region: true });
+  }, [contentState.recordingType, contentState.customRegion, tabRecordingDisabled]);
+
+  const captureMode =
+    contentState.recordingType === "region" ||
+    contentState.recordingType === "tab"
+      ? "area"
+      : screenSurface === "window"
+        ? "window"
+        : "screen";
+
+  const onCaptureModeChange = (mode) => {
+    if (mode === "area") {
+      setContentState((prev) => ({
+        ...prev,
+        recordingType: "region",
+        customRegion: cropAvailable,
+      }));
+      chrome.storage.local.set({
+        recordingType: "region",
+        customRegion: cropAvailable,
+        ...(cropAvailable ? { region: true } : {}),
+      });
+      chrome.runtime.sendMessage({ type: "screen-update" });
+      return;
+    }
+    const surface = mode === "window" ? "window" : "monitor";
+    setScreenSurface(surface);
+    setContentState((prev) => ({
+      ...prev,
+      recordingType: "screen",
+      customRegion: false,
+    }));
+    chrome.storage.local.set({
+      recordingType: "screen",
+      customRegion: false,
+      preferredScreenSurface: surface,
+    });
+    chrome.runtime.sendMessage({ type: "screen-update" });
+  };
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setShowModalSoon(false);
@@ -141,15 +208,10 @@ const RecordingTab = (props) => {
             </div>
           </div>
         )}
-        <ModeDropdown
-          value={
-            contentState.recordingType === "tab"
-              ? "region"
-              : contentState.recordingType
-          }
-          onChange={onValueChange}
-          regionDisabled={tabRecordingDisabled}
-          shadowRef={props.shadowRef}
+        <CaptureModeTiles
+          value={captureMode}
+          onChange={onCaptureModeChange}
+          areaDisabled={tabRecordingDisabled}
         />
         {/* Multi recording is hidden until it is fixed; uncomment to restore.
         <div className="mode-multi-row">

@@ -14,6 +14,7 @@ import { Rnd } from "react-rnd";
 import { CloseIconPopup, HelpIconPopup } from "../toolbar/components/SVG";
 
 import RecordingTab from "./layout/RecordingTab";
+import ScreenshotTab from "./layout/ScreenshotTab";
 import TooltipWrap from "./components/TooltipWrap";
 import InactiveSubscription from "./layout/InactiveSubscription";
 import LoggedOut from "./layout/LoggedOut";
@@ -38,6 +39,7 @@ const PopupContainer = (props) => {
   const [onboarding, setOnboarding] = useState(false);
   const [showProSplash, setShowProSplash] = useState(false);
   const recordTabRef = useRef(null);
+  const screenshotTabRef = useRef(null);
   const pillRef = useRef(null);
   const [URL, setURL] = useState("https://help.recordful.app/");
   const isCloudBuild = process.env.RECORDFUL_ENABLE_CLOUD_FEATURES === "true";
@@ -92,6 +94,7 @@ const PopupContainer = (props) => {
 
   const onValueChange = (tab) => {
     setTab(tab);
+    chrome.storage.local.set({ popupTab: tab });
 
     setContentState((prevContentState) => ({
       ...prevContentState,
@@ -99,9 +102,13 @@ const PopupContainer = (props) => {
     }));
   };
   useEffect(() => {
-    // Only "record" lives in the popup now; home opens the web dashboard.
-    // A stored "dashboard" from an older build would otherwise blank the tabs.
+    // "record" and "screenshot" live in the popup; home opens the web
+    // dashboard. A stored "dashboard" from an older build would otherwise
+    // blank the tabs. The last of the two used opens again.
     setTab("record");
+    chrome.storage.local.get(["popupTab"], (result) => {
+      if (result.popupTab === "screenshot") setTab("screenshot");
+    });
   }, []);
 
   const previewWelcome = (() => {
@@ -132,10 +139,13 @@ const PopupContainer = (props) => {
     (isCloudBuild && previewWelcome),
   );
 
-  useLayoutEffect(() => {
-    if (!recordTabRef.current || !pillRef.current) return;
+  const activeTabRef = () =>
+    tab === "screenshot" ? screenshotTabRef.current : recordTabRef.current;
 
-    const tabRef = recordTabRef.current;
+  useLayoutEffect(() => {
+    if (!activeTabRef() || !pillRef.current) return;
+
+    const tabRef = activeTabRef();
 
     pillRef.current.style.left = `${tabRef.offsetLeft}px`;
     pillRef.current.style.width = `${tabRef.getBoundingClientRect().width}px`;
@@ -306,7 +316,7 @@ const PopupContainer = (props) => {
 
   useEffect(() => {
     requestAnimationFrame(() => {
-      const tabRef = recordTabRef.current;
+      const tabRef = activeTabRef();
 
       if (tabRef && pillRef.current) {
         pillRef.current.style.left = `${tabRef.offsetLeft}px`;
@@ -616,29 +626,28 @@ const PopupContainer = (props) => {
                   <TooltipWrap
                     name="icon-tab-wrap"
                     content={
-                      chrome.i18n.getMessage("screenshotComingSoon") ||
-                      "Screenshot (coming soon)"
+                      chrome.i18n.getMessage("screenshotTab") || "Screenshot"
                     }
                     side="bottom"
                   >
-                    <span className="icon-tab-disabled">
-                      <Tabs.Trigger
-                        className="TabsTrigger tl icon-tab"
-                        value="screenshot"
-                        tabIndex={0}
-                        disabled
-                        aria-label={
-                          chrome.i18n.getMessage("screenshotComingSoon") ||
-                          "Screenshot (coming soon)"
-                        }
-                      >
-                        <Camera size={18} />
-                      </Tabs.Trigger>
-                    </span>
+                    <Tabs.Trigger
+                      className="TabsTrigger tl icon-tab"
+                      value="screenshot"
+                      ref={screenshotTabRef}
+                      tabIndex={0}
+                      aria-label={
+                        chrome.i18n.getMessage("screenshotTab") || "Screenshot"
+                      }
+                    >
+                      <Camera size={18} />
+                    </Tabs.Trigger>
                   </TooltipWrap>
                 </Tabs.List>
                 <Tabs.Content className="TabsContent tl" value="record">
                   <RecordingTab shadowRef={props.shadowRef} />
+                </Tabs.Content>
+                <Tabs.Content className="TabsContent tl" value="screenshot">
+                  <ScreenshotTab />
                 </Tabs.Content>
               </Tabs.Root>
             )}
