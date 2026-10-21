@@ -67,6 +67,18 @@
     "message": "Àrea",
     "description": "Etiqueta del tipus de gravació 'Àrea de la pestanya' en el pop-up"
   },
+  "windowType": {
+    "message": "Finestra",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Àrea",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "La gravació d'àrea no està disponible en aquesta pàgina",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Càmera",
     "description": "Etiqueta del tipus de gravació 'Càmera' en el pop-up"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Manté premuda una tecla per parlar",
     "description": "Etiqueta de l'interruptor 'Pulsa per parlar' en el pop-up"
-  },
-  "customAreaLabel": {
-    "message": "Defineix una àrea per gravar",
-    "description": "Etiqueta de l'interruptor 'Defineix una àrea per gravar' en el pop-up"
   },
   "flipCameraLabel": {
     "message": "Inverteix la càmera",

@@ -67,6 +67,18 @@
     "message": "Область вкладки",
     "description": "Метка типа записи области вкладки на всплывающем окне"
   },
+  "windowType": {
+    "message": "Окно",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Область",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "Запись области недоступна на этой странице",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Камера",
     "description": "Метка типа записи с камеры на всплывающем окне"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Нажмите, чтобы говорить",
     "description": "Метка переключения 'Push to talk'"
-  },
-  "customAreaLabel": {
-    "message": "Установите область для записи",
-    "description": "Метка переключения 'Custom area'"
   },
   "flipCameraLabel": {
     "message": "Повернуть камеру",

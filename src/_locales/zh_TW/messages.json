@@ -67,6 +67,18 @@
     "message": "分頁區域",
     "description": "Tab area recording type label on popup"
   },
+  "windowType": {
+    "message": "視窗",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "區域",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "此頁面無法錄製區域",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "攝影機",
     "description": "Camera recording type label on popup"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "按鍵發話",
     "description": "Push to talk switch label"
-  },
-  "customAreaLabel": {
-    "message": "設定要錄製的區域",
-    "description": "Custom area switch label"
   },
   "flipCameraLabel": {
     "message": "翻轉攝影機",

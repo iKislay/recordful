@@ -67,6 +67,18 @@
     "message": "Zone",
     "description": "Étiquette du type d'enregistrement de zone d'onglet dans le menu déroulant"
   },
+  "windowType": {
+    "message": "Fenêtre",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Zone",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "L'enregistrement d'une zone n'est pas disponible sur cette page",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Caméra",
     "description": "Étiquette du type d'enregistrement de caméra dans le menu déroulant"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Appuyer pour parler",
     "description": "Étiquette du commutateur Appuyer pour parler"
-  },
-  "customAreaLabel": {
-    "message": "Définir une zone d'enregistrement",
-    "description": "Étiquette du commutateur de zone personnalisée"
   },
   "flipCameraLabel": {
     "message": "Retourner la caméra",

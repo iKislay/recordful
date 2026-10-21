@@ -67,6 +67,18 @@
     "message": "Area tab",
     "description": "Label jenis perekaman area tab pada popup"
   },
+  "windowType": {
+    "message": "Jendela",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Area",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "Perekaman area tidak tersedia di halaman ini",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Kamera",
     "description": "Label jenis perekaman kamera pada popup"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Tekan untuk berbicara",
     "description": "Label sakelar Tekan untuk berbicara"
-  },
-  "customAreaLabel": {
-    "message": "Atur area untuk direkam",
-    "description": "Label sakelar area kustom"
   },
   "flipCameraLabel": {
     "message": "Putar kamera",

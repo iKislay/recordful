@@ -67,6 +67,18 @@
     "message": "Sekme alanı",
     "description": "Açılır pencere üzerinde sekme alanı kaydı türü etiketi"
   },
+  "windowType": {
+    "message": "Pencere",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Alan",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "Bu sayfada alan kaydı kullanılamıyor",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Kamera",
     "description": "Açılır pencere üzerinde kamera kaydı türü etiketi"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Konuşmaya başlamak için basın",
     "description": "Konuşmaya başla anahtarı etiketi"
-  },
-  "customAreaLabel": {
-    "message": "Kaydedilecek bir alan belirleyin",
-    "description": "Özel alan anahtarı etiketi"
   },
   "flipCameraLabel": {
     "message": "Kamerayı çevir",

@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState, useRef } from "react";
 
 import Dropdown from "../components/Dropdown";
 import Switch from "../components/Switch";
-import RegionDimensions from "../components/RegionDimensions";
 import BottomBar from "../components/BottomBar";
 import { contentStateContext } from "../../context/ContentState";
 import { MicrophoneSlash, VideoCameraSlash } from "@phosphor-icons/react";
@@ -245,17 +244,6 @@ const RecordingType = (props) => {
               "waveform.html#" + contentState.theme
             )}
           ></iframe>
-        </div>
-      )}
-      {contentState.recordingType === "region" && cropActive && (
-        <div>
-          <div className="popup-content-divider"></div>
-          <Switch
-            label={chrome.i18n.getMessage("customAreaLabel")}
-            name="customRegion"
-            value="customRegion"
-          />
-          {contentState.customRegion && <RegionDimensions />}
         </div>
       )}
       {contentState.isLoggedIn &&

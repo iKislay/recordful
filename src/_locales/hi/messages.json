@@ -67,6 +67,18 @@
     "message": "टैब क्षेत्र",
     "description": "पॉपअप पर टैब क्षेत्र रिकॉर्डिंग प्रकार लेबल"
   },
+  "windowType": {
+    "message": "विंडो",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "क्षेत्र",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "इस पेज पर क्षेत्र रिकॉर्डिंग उपलब्ध नहीं है",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "कैमरा",
     "description": "पॉपअप पर कैमरा रिकॉर्डिंग प्रकार लेबल"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "बोलने के लिए दबाएं",
     "description": "पुश टू टॉक स्विच लेबल"
-  },
-  "customAreaLabel": {
-    "message": "रिकॉर्ड करने के लिए एक क्षेत्र सेट करें",
-    "description": "कस्टम क्षेत्र स्विच लेबल"
   },
   "flipCameraLabel": {
     "message": "कैमरा पलटें",

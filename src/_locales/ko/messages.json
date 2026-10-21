@@ -67,6 +67,18 @@
     "message": "탭 영역",
     "description": "Tab area recording type label on popup"
   },
+  "windowType": {
+    "message": "창",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "영역",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "이 페이지에서는 영역 녹화를 사용할 수 없습니다",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "카메라",
     "description": "Camera recording type label on popup"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "푸시 투 토크",
     "description": "Push to talk switch label"
-  },
-  "customAreaLabel": {
-    "message": "녹화할 영역 설정",
-    "description": "Custom area switch label"
   },
   "flipCameraLabel": {
     "message": "카메라 뒤집기",

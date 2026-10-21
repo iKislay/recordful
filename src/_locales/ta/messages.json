@@ -67,6 +67,18 @@
     "message": "கையெழுத்து பகுதி",
     "description": "கையெழுத்து பகுதி படம் பதிவு வகை படிதம்"
   },
+  "windowType": {
+    "message": "சாளரம்",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "பகுதி",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "இந்தப் பக்கத்தில் பகுதிப் பதிவு கிடைக்காது",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "கேமரா",
     "description": "கேமரா பதிவு வகை படிதம்"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "அழுக்கு",
     "description": "அழுக்கு ஸ்விட்ச் பொத்தான்"
-  },
-  "customAreaLabel": {
-    "message": "புதுப்பிக்க பருவத்தை அமைக்கவும்",
-    "description": "புதுப்பிக்க ஸ்விட்ச் பொத்தான்"
   },
   "flipCameraLabel": {
     "message": "கேமரா தளம்",

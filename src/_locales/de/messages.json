@@ -67,6 +67,18 @@
     "message": "Tab-Bereich",
     "description": "Label für die Aufnahmeart 'Tab-Bereich' in der Popup-Ansicht"
   },
+  "windowType": {
+    "message": "Fenster",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Bereich",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "Bereichsaufnahme ist auf dieser Seite nicht verfügbar",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Kamera",
     "description": "Label für die Aufnahmeart 'Kamera' in der Popup-Ansicht"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Push-to-Talk",
     "description": "Label für den Schalter 'Push-to-Talk'"
-  },
-  "customAreaLabel": {
-    "message": "Bereich zum Aufnehmen festlegen",
-    "description": "Label für den Schalter 'Benutzerdefinierte Bereichsaufnahme'"
   },
   "flipCameraLabel": {
     "message": "Kamera umdrehen",

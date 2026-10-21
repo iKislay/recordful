@@ -8049,9 +8049,11 @@ const CloudRecorder = () => {
             const targetHeight = height;
             const isTabModeRequest =
               data.recordingType === "region" || isTab.current;
-            const { disableSurfaceSwitching } = await chrome.storage.local.get([
-              "disableSurfaceSwitching",
-            ]);
+            const { disableSurfaceSwitching, preferredScreenSurface } =
+              await chrome.storage.local.get([
+                "disableSurfaceSwitching",
+                "preferredScreenSurface",
+              ]);
             // Supersample against the fixed 1920x1080 encode size, not the tier.
             // Region is excluded because it crops instead of downscaling. The
             // kill-switch restores the tier, not the encode cap, to keep 1440p.
@@ -8080,7 +8082,11 @@ const CloudRecorder = () => {
                   : { ideal: cloudCap.height, max: cloudCap.height },
                 // Open the picker on Entire Screen for screen, Chrome Tab for
                 // tab/region. Hint only; the user can still switch panes.
-                displaySurface: isTabModeRequest ? "browser" : "monitor",
+                displaySurface: isTabModeRequest
+                  ? "browser"
+                  : preferredScreenSurface === "window"
+                    ? "window"
+                    : "monitor",
               },
               // systemAudio:"include" (default may hide the toggle).
               // surfaceSwitching keeps Chrome's "Share this tab instead" button.
@@ -9064,8 +9070,14 @@ const CloudRecorder = () => {
           // Desktop picker path: non-tab mode without region, or tabPreferred forced
           // isTab=false (playground) so there's no pre-obtained streamId.
           void traceStep("pickerRequested");
+          // The popup's Window tile: only windows to pick from.
+          const { preferredScreenSurface } = await chrome.storage.local.get([
+            "preferredScreenSurface",
+          ]);
           chrome.desktopCapture.chooseDesktopMedia(
-            ["screen", "window", "tab", "audio"],
+            preferredScreenSurface === "window"
+              ? ["window"]
+              : ["screen", "window", "tab", "audio"],
             null,
             (streamId) => {
               chrome.runtime

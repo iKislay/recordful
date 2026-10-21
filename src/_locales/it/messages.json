@@ -67,6 +67,18 @@
     "message": "Area",
     "description": "Etichetta del tipo di registrazione dell'area della scheda nel menu a discesa"
   },
+  "windowType": {
+    "message": "Finestra",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Area",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "La registrazione di un'area non è disponibile su questa pagina",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Fotocamera",
     "description": "Etichetta del tipo di registrazione della fotocamera nel menu a discesa"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Premi per parlare",
     "description": "Etichetta dell'interruttore di premi per parlare"
-  },
-  "customAreaLabel": {
-    "message": "Imposta un'area di registrazione",
-    "description": "Etichetta dell'interruttore dell'area personalizzata"
   },
   "flipCameraLabel": {
     "message": "Rovescia la fotocamera",

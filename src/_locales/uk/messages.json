@@ -67,6 +67,18 @@
     "message": "Область вкладки",
     "description": "Tab area recording type label on popup"
   },
+  "windowType": {
+    "message": "Вікно",
+    "description": "Window recording type label on popup"
+  },
+  "areaType": {
+    "message": "Область",
+    "description": "Area recording type label on popup"
+  },
+  "areaUnavailableTooltip": {
+    "message": "Запис області недоступний на цій сторінці",
+    "description": "Tooltip on the disabled Area tile when the page blocks area capture"
+  },
   "cameraType": {
     "message": "Камера",
     "description": "Camera recording type label on popup"
@@ -130,10 +142,6 @@
   "pushToTalkLabel": {
     "message": "Натискайте, щоб говорити",
     "description": "Push to talk switch label"
-  },
-  "customAreaLabel": {
-    "message": "Встановіть область для запису",
-    "description": "Custom area switch label"
   },
   "flipCameraLabel": {
     "message": "Перевернути камеру",
