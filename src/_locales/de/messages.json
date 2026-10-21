@@ -2108,5 +2108,9 @@
   "screenshotScreenBlocked": {
     "message": "This site doesn't allow screen capture. Try it from another tab.",
     "description": "Error when the page's policy blocks screen capture"
+  },
+  "captureModeLabel": {
+    "message": "Aufnahmemodus",
+    "description": "Accessible name of the Screen / Window / Area picker on popup"
   }
 }
