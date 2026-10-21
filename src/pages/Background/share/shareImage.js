@@ -13,12 +13,14 @@ const TARGETS = {
   forg: "https://forg.to/explore?compose=1",
 };
 
+// The site this build was made for (a dev build's is its local server), and no
+// other: a store build must not trust a local address.
 const SITE_ORIGINS = (() => {
-  const origins = ["http://localhost:3000"];
   try {
-    origins.push(new URL(process.env.RECORDFUL_EDITOR_BASE).origin);
-  } catch {}
-  return origins;
+    return [new URL(process.env.RECORDFUL_EDITOR_BASE).origin];
+  } catch {
+    return [];
+  }
 })();
 
 // A little over what a 3× screenshot of a long page weighs, as base64.
