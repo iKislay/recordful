@@ -1077,13 +1077,16 @@ export const setupHandlers = () => {
       if (extVersion) headers["x-recordful-ext-version"] = String(extVersion);
       if (recordfulToken) headers.Authorization = `Bearer ${recordfulToken}`;
       // No keepalive:true (MV3 SW fetches with it can hang forever).
-      // 3s abort then fall through to editor-tab proxy. Healthy is
-      // <500ms, 1s was too tight and tripped on normal latency spikes.
+      // Abort then fall through to editor-tab proxy. Healthy is <1s, but a
+      // cold server function plus its database lookups can pass 3s, and a
+      // take whose scene never lands opens with no zooms and no cursor.
+      // Saving a scene twice is harmless, so a slow answer costs nothing.
       const controller = new AbortController();
-      const abortTimer = setTimeout(() => controller.abort(), 3_000);
+      const abortTimer = setTimeout(() => controller.abort(), 8_000);
       let res;
       try {
-        res = await fetch(`${API_BASE}/videos/${projectId}/scenes/`, {
+        // No trailing slash: the server redirects it, a second round trip.
+        res = await fetch(`${API_BASE}/videos/${projectId}/scenes`, {
           method: "POST",
           headers,
           body: JSON.stringify(payload),

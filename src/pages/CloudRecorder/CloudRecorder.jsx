@@ -1571,7 +1571,7 @@ const CloudRecorder = () => {
     const { recordfulToken } = await chrome.storage.local.get([
       "recordfulToken",
     ]);
-    const res = await fetch(`${API_BASE}/videos/${projectId}/recover-scene/`, {
+    const res = await fetch(`${API_BASE}/videos/${projectId}/recover-scene`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -6404,7 +6404,10 @@ const CloudRecorder = () => {
       "recordingType",
     ]);
 
-    const { cameraFlipped } = await chrome.storage.local.get(["cameraFlipped"]);
+    const { cameraFlipped, autoZoom } = await chrome.storage.local.get([
+      "cameraFlipped",
+      "autoZoom",
+    ]);
     // The pointer's path while this take recorded, for the editor's cursor
     // and the zooms that follow it: [seconds, x, y] as fractions of the
     // picture, with a fourth number where the page showed a hand or I-beam.
@@ -6541,6 +6544,9 @@ const CloudRecorder = () => {
         },
         clickEvents: scaledClickEvents,
         pointerMoves: Array.isArray(pointerMoves) ? pointerMoves : [],
+        // Whether the editor opens the take with zooms on its clicks; on
+        // unless the person turned it off, as in the local editor.
+        autoZoom: autoZoom !== false,
         // Omitted when unknown: the app defaults to monitor, and a
         // guess would be worse than that default.
         ...(capturedSurface ? { surface: capturedSurface } : {}),
