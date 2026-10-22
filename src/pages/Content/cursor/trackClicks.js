@@ -117,6 +117,11 @@ export function startClickTracking(
       height: isRegion ? regionHeight : window.innerHeight,
       outerWidth: window.outerWidth,
       outerHeight: window.outerHeight,
+      // Where the page's top-left is on the screen, for a recording of the
+      // whole screen. Told by the event itself: the window's own bounds
+      // count borders Windows draws invisibly, a few pixels off the page.
+      screenLeft: e.screenX - e.clientX,
+      screenTop: e.screenY - e.clientY,
       surface: cachedSurface,
       recordingWindowId: cachedRecordingWindowId,
       region: isRegion,
