@@ -18,6 +18,20 @@ export const AgentErrorCode = {
   ElementObscured: "ELEMENT_OBSCURED",
   NavigationFailed: "NAVIGATION_FAILED",
   WaitTimeout: "WAIT_TIMEOUT",
+  // uploads, videos, transcripts
+  NoRecording: "NO_RECORDING",
+  CloudUnavailable: "CLOUD_UNAVAILABLE",
+  CloudUnreachable: "CLOUD_UNREACHABLE",
+  CloudError: "CLOUD_ERROR",
+  NotSignedIn: "NOT_SIGNED_IN",
+  ProRequired: "PRO_REQUIRED",
+  VideoNotFound: "VIDEO_NOT_FOUND",
+  StorageFull: "STORAGE_FULL",
+  NotUploaded: "NOT_UPLOADED",
+  RateLimited: "RATE_LIMITED",
+  TranscriptionUnavailable: "TRANSCRIPTION_UNAVAILABLE",
+  UploadFailed: "UPLOAD_FAILED",
+  UploadInterrupted: "UPLOAD_INTERRUPTED",
 };
 
 export class AgentBridgeError extends Error {

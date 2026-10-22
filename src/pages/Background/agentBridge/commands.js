@@ -8,6 +8,8 @@ import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
 import { getArmedTab } from "./armedTab";
 import { AgentBridgeError, AgentErrorCode } from "./errors";
 import { pageCommands } from "./pageCommands";
+import { accountStatus, cloudAvailable, planOf, videoLinks } from "./cloud";
+import { LAST_RECORDING_KEY, videoCommands } from "./videoCommands";
 
 const POLL_MS = 250;
 // pendingRecording can clear before recording flips true on a healthy start
@@ -18,6 +20,8 @@ const PENDING_CLEARED_GRACE_MS = 8000;
 // straight to the recorder like the shortcut's fallback does.
 const STOP_DIRECT_FALLBACK_MS = 3000;
 const EDITOR_WAIT_MS = 15000;
+// A local take is finalized (written out under its name) shortly after stop.
+const FINALIZE_WAIT_MS = 20000;
 const PAUSE_WAIT_MS = 8000;
 const OPTIONAL_PERMISSIONS = ["desktopCapture", "offscreen", "alarms"];
 
@@ -138,6 +142,10 @@ const getStatus = async () => {
       armedTab: armedTab ? { ...describeTab(armedTab), via: armed.via, armedAt: armed.at } : null,
       pageTools: Object.keys(pageCommands),
     },
+    // Signed in to recordful.app, and on Pro: Pro recordings go to the cloud
+    // as they record, and uploads and transcripts need Pro.
+    account: await accountStatus().catch(() => null),
+    lastRecording: (await chrome.storage.session.get([LAST_RECORDING_KEY]).catch(() => ({})))[LAST_RECORDING_KEY] ?? null,
   };
 };
 
@@ -254,7 +262,7 @@ const startRecording = async ({ tabId, timeoutMs } = {}) => {
 
 const stopRecording = async ({ timeoutMs } = {}) => {
   const timeout = clampTimeout(timeoutMs, 30000);
-  const before = await chrome.storage.local.get([...STATE_KEYS, "sandboxTab"]);
+  const before = await chrome.storage.local.get([...STATE_KEYS, "sandboxTab", "recordingTab"]);
   if (!before.recording) {
     throw new AgentBridgeError(
       AgentErrorCode.NotRecording,
@@ -263,6 +271,11 @@ const stopRecording = async ({ timeoutMs } = {}) => {
         : "No recording in progress",
     );
   }
+
+  // Cloud (Pro) recordings upload as they record; local ones become a take.
+  // Decided before stopping, while the recorder still exists.
+  const cloud = await isCloudRecording(before.recordingTab);
+  const { projectId } = await chrome.storage.local.get(["projectId"]);
 
   const message = { type: "stop-recording-tab", reason: "agent-stop" };
   const targetTabId = before.recordingUiTabId || (await getCurrentTab())?.id;
@@ -294,6 +307,30 @@ const stopRecording = async ({ timeoutMs } = {}) => {
     );
   }
 
+  if (cloud && typeof projectId === "string" && projectId) {
+    await chrome.storage.session
+      .set({ [LAST_RECORDING_KEY]: { kind: "cloud", videoId: projectId, at: Date.now() } })
+      .catch(() => {});
+    return {
+      outcome: "stopped",
+      recording: { kind: "cloud", videoId: projectId, ...videoLinks(projectId) },
+      plan: "pro",
+      hint: "It was recorded to the cloud and is finishing its upload. get_video follows it; get_transcript reads it back.",
+    };
+  }
+
+  // A local take: wait until it's written out, to name it.
+  const finalized = await waitFor(
+    ["lastRecordingFinalizedFileName"],
+    (snap) => snap.lastRecordingFinalizedFileName || null,
+    FINALIZE_WAIT_MS,
+  );
+  const { lastRecordingBackendRef } = await chrome.storage.local.get(["lastRecordingBackendRef"]);
+  const takeId = finalized || lastRecordingBackendRef?.fileName || null;
+  await chrome.storage.session
+    .set({ [LAST_RECORDING_KEY]: { kind: "local", takeId, at: Date.now() } })
+    .catch(() => {});
+
   // The editor opens after the recording finalizes; report it when it shows.
   const editorTabId = await waitFor(
     ["sandboxTab"],
@@ -307,12 +344,43 @@ const stopRecording = async ({ timeoutMs } = {}) => {
   if (editorTabId) {
     editorTab = await chrome.tabs.get(editorTabId).catch(() => null);
   }
+  const account = cloudAvailable() ? await accountStatus().catch(() => null) : null;
+  const plan = planOf(account);
   return {
     outcome: "stopped",
+    recording: { kind: "local", takeId },
+    plan,
     editorTabId: editorTabId || null,
     editorUrl: editorTab?.url || null,
-    hint: editorTabId ? undefined : "The editor had not opened yet; it may still be finalizing the recording.",
+    hint: [
+      editorTabId ? null : "The editor had not opened yet; it may still be finalizing the recording.",
+      plan === "pro"
+        ? "It's saved on this computer. upload_recording uploads it to recordful.app, then get_transcript reads it back."
+        : plan === "free"
+          ? "It's saved on this computer and opens in Recordful's editor. Uploads and transcripts are Recordful Pro features and this account is on the free plan, so don't offer them; the user can upgrade at recordful.app/upgrade."
+          : plan === "signed-out"
+            ? "It's saved on this computer and opens in Recordful's editor. Recordful isn't signed in, so uploads and transcripts (Recordful Pro) aren't available; don't offer them unless the user signs in to a Pro account."
+            : null,
+    ]
+      .filter(Boolean)
+      .join(" ") || undefined,
   };
+};
+
+// The cloud recorder runs in an offscreen document (offscreenrecorder.html?cloud=1)
+// or, for a custom area, in a cloudrecorder.html tab.
+const isCloudRecording = async (recordingTabId) => {
+  try {
+    const contexts = await chrome.runtime.getContexts({ contextTypes: ["OFFSCREEN_DOCUMENT"] });
+    if (contexts.some((c) => /offscreenrecorder\.html\?(.*&)?cloud=1/.test(c.documentUrl || ""))) {
+      return true;
+    }
+  } catch {}
+  if (Number.isInteger(recordingTabId)) {
+    const tab = await chrome.tabs.get(recordingTabId).catch(() => null);
+    if ((tab?.url || tab?.pendingUrl || "").includes("cloudrecorder.html")) return true;
+  }
+  return false;
 };
 
 const setPaused = async (wantPaused) => {
@@ -389,4 +457,5 @@ export const commands = {
   "recording.resume": { run: () => setPaused(false), queue: "recorder" },
   "capture.probe": { run: probeCapture, queue: "recorder" },
   ...pageCommands,
+  ...videoCommands,
 };

@@ -1936,7 +1936,7 @@
     "description": "Title of the AI agents page"
   },
   "agentsIntro": {
-    "message": "Дозвольте ШІ-застосункам, як-от Claude, Cursor чи opencode, записувати демо продукту за вас. Вони підключаються через recordful-mcp, який працює на вашому комп'ютері. Нічого не проходить через сервер.",
+    "message": "Дозвольте ШІ-застосункам, як-от Claude, Cursor чи opencode, записувати демо продукту за вас. Вони підключаються через recordful-mcp, який працює на вашому комп'ютері. Запис залишає його, лише коли його завантажують на recordful.app (Pro).",
     "description": "Intro text on the AI agents page"
   },
   "agentsToggleLabel": {

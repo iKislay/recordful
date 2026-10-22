@@ -48,11 +48,13 @@ for a persistent extension key.
 
 ## AI agents
 
-Recordful can be driven by AI apps through the Model Context Protocol. Ask
-Claude Code, Claude Desktop, Cursor, VS Code, opencode or any MCP app to
-"record a demo of the sign-up flow", and it plans the walkthrough, drives the
-page with a smooth on-screen cursor while Recordful records, and opens the
-editor when it's done.
+Recordful can be driven by AI apps through the Model Context Protocol, or from
+a shell. Ask Claude Code, Claude Desktop, Cursor, VS Code, opencode or any MCP
+app to "record a demo of the sign-up flow", and it plans the walkthrough,
+drives the page with a smooth on-screen cursor while Recordful records, and
+opens the editor when it's done. With Recordful Pro it can also upload the
+video, hand you the link, and read the transcript back. Recording works on
+every plan; on the free plan the AI says links and transcripts need Pro.
 
 1. Add the server to your AI app: `npx -y recordful-mcp`. Per-app setup is in
    [recordful-mcp](https://github.com/iKislay/recordful-mcp#install).
@@ -60,9 +62,12 @@ editor when it's done.
 3. When your AI asks, click the Recordful icon on the tab to record, and
    approve the pairing code the first time.
 
-It's off until you turn it on, runs entirely on your computer (the server
-listens on `127.0.0.1` only), pairs once per computer against a code you
-check, and acts only in the tab you hand over. The code lives in
+It's off until you turn it on, runs on your computer (the server listens on
+`127.0.0.1` only, and a recording leaves it only when it's uploaded), pairs
+once per computer against a code you check, and acts only in the tab you hand
+over. Uploads and transcripts go through recordful.app's API as the signed-in
+user, with Recordful's own session; the AI never sees a credential
+(`src/pages/Background/agentBridge/cloud.js`, `videoCommands.js`). The code lives in
 `src/pages/Background/agentBridge/` (connection, pairing, commands),
 `src/pages/Content/agentPage/` (page tools) and `src/pages/Agents/` (the AI
 agents page). For scripted tests, a development build can bake in a shared

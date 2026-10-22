@@ -1937,7 +1937,7 @@
     "description": "Title of the AI agents page"
   },
   "agentsIntro": {
-    "message": "让 Claude、Cursor 或 opencode 等 AI 应用为你录制产品演示。它们通过在你电脑上运行的 recordful-mcp 连接，不经过任何服务器。",
+    "message": "让 Claude、Cursor 或 opencode 等 AI 应用为你录制产品演示。它们通过在你电脑上运行的 recordful-mcp 连接。只有上传到 recordful.app 时，录制内容才会离开你的电脑（Pro）。",
     "description": "Intro text on the AI agents page"
   },
   "agentsToggleLabel": {

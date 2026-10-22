@@ -1933,7 +1933,7 @@
     "description": "Title of the AI agents page"
   },
   "agentsIntro": {
-    "message": "Lascia che app di IA come Claude, Cursor o opencode registrino demo del prodotto per te. Si collegano tramite recordful-mcp, che gira sul tuo computer. Niente passa da un server.",
+    "message": "Lascia che app di IA come Claude, Cursor o opencode registrino demo del prodotto per te. Si collegano tramite recordful-mcp, che gira sul tuo computer. Una registrazione ne esce solo quando viene caricata su recordful.app (Pro).",
     "description": "Intro text on the AI agents page"
   },
   "agentsToggleLabel": {

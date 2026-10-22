@@ -1938,7 +1938,7 @@
     "description": "Title of the AI agents page"
   },
   "agentsIntro": {
-    "message": "Biarkan aplikasi AI seperti Claude, Cursor, atau opencode merekam demo produk untuk Anda. Aplikasi terhubung melalui recordful-mcp, yang berjalan di komputer Anda. Tidak ada yang melewati server.",
+    "message": "Biarkan aplikasi AI seperti Claude, Cursor, atau opencode merekam demo produk untuk Anda. Aplikasi terhubung melalui recordful-mcp, yang berjalan di komputer Anda. Rekaman hanya keluar dari komputer Anda saat diunggah ke recordful.app (Pro).",
     "description": "Intro text on the AI agents page"
   },
   "agentsToggleLabel": {
