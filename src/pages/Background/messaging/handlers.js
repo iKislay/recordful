@@ -2263,19 +2263,51 @@ export const setupHandlers = () => {
         fy: (y + outerHeight - height) / outerHeight,
       });
     }
-    const monitor = (await chrome.system.display.getInfo()).find(
-      (d) =>
-        win.left >= d.bounds.left &&
-        win.left < d.bounds.left + d.bounds.width &&
-        win.top >= d.bounds.top &&
-        win.top < d.bounds.top + d.bounds.height,
-    );
-    if (!monitor) return null;
-    // The page sits below the browser's own bars here too.
+    // The monitor most of the window is on. Not the one under its top-left
+    // corner: on Windows a maximized window starts a few pixels off the
+    // screen (its invisible resize border, at -7 or -8), so that corner is
+    // on no monitor at all and every click and move was dropped.
+    const winWidth = win.width ?? outerWidth;
+    const winHeight = win.height ?? outerHeight;
+    const overlap = ({ bounds: b }) =>
+      Math.max(
+        0,
+        Math.min(win.left + winWidth, b.left + b.width) -
+          Math.max(win.left, b.left),
+      ) *
+      Math.max(
+        0,
+        Math.min(win.top + winHeight, b.top + b.height) -
+          Math.max(win.top, b.top),
+      );
+    const displays = await chrome.system.display.getInfo();
+    // Where the page's top-left is on the screen, as its mouse events tell
+    // it. Exact: the window's bounds above are off by its invisible border.
+    const { screenLeft, screenTop } = payload;
+    const told = Number.isFinite(screenLeft) && Number.isFinite(screenTop);
+    const monitor =
+      (told &&
+        displays.find(
+          ({ bounds: b }) =>
+            screenLeft >= b.left &&
+            screenLeft < b.left + b.width &&
+            screenTop >= b.top &&
+            screenTop < b.top + b.height,
+        )) ||
+      displays.reduce(
+        (best, each) => (!best || overlap(each) > overlap(best) ? each : best),
+        null,
+      );
+    if (!monitor || (!told && !overlap(monitor))) return null;
+    // Without it, from the window: the page sits below the browser's own
+    // bars, and the window's border beside the page (none on a Mac) runs
+    // under it too, so that much of the height left over is below the page.
+    const border = (outerWidth - width) / 2;
+    const left = told ? screenLeft : win.left + border;
+    const top = told ? screenTop : win.top + outerHeight - height - border;
     return (x, y) => {
-      const adjX =
-        win.left + (outerWidth - width) / 2 + x - monitor.bounds.left;
-      const adjY = win.top + outerHeight - height + y - monitor.bounds.top;
+      const adjX = left + x - monitor.bounds.left;
+      const adjY = top + y - monitor.bounds.top;
       return {
         x: adjX,
         y: adjY,
