@@ -56,9 +56,12 @@ opens the editor when it's done. With Recordful Pro it can also upload the
 video, hand you the link, and read the transcript back. Recording works on
 every plan; on the free plan the AI says links and transcripts need Pro.
 
-1. Add the server to your AI app: `npx -y recordful-mcp`. Per-app setup is in
-   [recordful-mcp](https://github.com/iKislay/recordful-mcp#install).
-2. In Recordful's popup, open **More → AI agents** and turn it on.
+1. Add the server to your AI app: `npx -y recordful-mcp install --target <app>` (or paste
+   the prompt from `npx -y recordful-mcp prompt` into your AI app). Per-app setup is in
+   [recordful-mcp](https://github.com/iKislay/recordful-mcp#install) and the
+   [help center](https://help.recordful.app/docs/ai-agents).
+2. In Recordful's popup, open **More → AI agents** and turn it on. Chrome asks once to allow
+   recording; that click is the only chance Chrome gives to ask, so an AI can't do it for you.
 3. When your AI asks, click the Recordful icon on the tab to record, and
    approve the pairing code the first time.
 

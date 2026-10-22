@@ -159,6 +159,20 @@ const startRecording = async ({ tabId, timeoutMs } = {}) => {
     );
   }
 
+  // Recordful asks for screen-capture, alarms and offscreen access the first
+  // time a recording starts, and Chrome only shows that prompt on a click, so
+  // an agent's start can't. Say so now instead of failing 8 s later.
+  const account = await chrome.storage.local.get(["isLoggedIn", "isSubscribed"]);
+  const needed = ["desktopCapture", "alarms", "offscreen"];
+  if (account.isLoggedIn && account.isSubscribed) needed.push("clipboardWrite");
+  if (!(await chrome.permissions.contains({ permissions: needed }))) {
+    throw new AgentBridgeError(
+      AgentErrorCode.PermissionsNeeded,
+      "Recordful needs a one-time browser permission before it can record, and Chrome only asks for it on a click. Ask the user to turn AI agents off and on again in Recordful (popup → More → AI agents) and click Allow, or to press Start recording in Recordful once. Then retry.",
+      { permissions: needed },
+    );
+  }
+
   // Default to the tab the user handed over, not whatever is focused now.
   const armed = await getArmedTab();
   const tab = await resolveTab(tabId ?? armed?.tabId);

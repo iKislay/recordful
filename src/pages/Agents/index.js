@@ -136,14 +136,20 @@ const showManage = async () => {
     }
   };
 
-  const local = await chrome.storage.local.get([ENABLED_KEY, PAIRINGS_KEY]);
+  const local = await chrome.storage.local.get([ENABLED_KEY, PAIRINGS_KEY, "isLoggedIn", "isSubscribed"]);
   const session = await chrome.storage.session.get([STATUS_KEY]).catch(() => ({}));
   enabled = local[ENABLED_KEY] === true;
   status = session[STATUS_KEY] || null;
   renderStatus();
   renderPairings(local[PAIRINGS_KEY]);
 
+  // Turning AI agents on is a real click, the one moment Chrome lets Recordful
+  // ask for the access a recording needs (an agent's start can't). Keep the
+  // list in step with checkCapturePermissions; request() must come first.
+  const capturePermissions = ["desktopCapture", "alarms", "offscreen"];
+  if (local.isLoggedIn && local.isSubscribed) capturePermissions.push("clipboardWrite");
   toggle.addEventListener("change", () => {
+    if (toggle.checked) chrome.permissions.request({ permissions: capturePermissions }).catch(() => {});
     chrome.storage.local.set({ [ENABLED_KEY]: toggle.checked });
   });
 

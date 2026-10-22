@@ -7,6 +7,7 @@ export const AgentErrorCode = {
   NoTargetTab: "NO_TARGET_TAB",
   TabNotRecordable: "TAB_NOT_RECORDABLE",
   StartFailed: "START_FAILED",
+  PermissionsNeeded: "PERMISSIONS_NEEDED",
   StopFailed: "STOP_FAILED",
   Internal: "INTERNAL",
   // page tools
