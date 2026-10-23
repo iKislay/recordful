@@ -33,6 +33,8 @@ export const AgentErrorCode = {
   TranscriptionUnavailable: "TRANSCRIPTION_UNAVAILABLE",
   UploadFailed: "UPLOAD_FAILED",
   UploadInterrupted: "UPLOAD_INTERRUPTED",
+  // managing videos, folders and comments
+  Forbidden: "FORBIDDEN",
 };
 
 export class AgentBridgeError extends Error {

@@ -288,6 +288,7 @@ const getVideo = async ({ videoId } = {}) => {
     visibility: video ? visibilityOf(video) : null,
     durationSeconds: video?.durationSeconds ?? null,
     createdAt: video?.createdAt ?? null,
+    folderId: video?.folderId ?? null,
     ...videoLinks(id),
     // "uploading" → "processing" → "ready" (the site's own upload stages).
     stage: uploadingHere ? "uploading" : status?.stage ?? "uploading",
@@ -308,6 +309,7 @@ const listVideos = async ({ limit, query } = {}) => {
       createdAt: v.createdAt ?? null,
       durationSeconds: v.durationSeconds ?? null,
       visibility: visibilityOf(v),
+      folderId: v.folderId ?? null,
       ...videoLinks(v.id),
     })),
   };
@@ -347,6 +349,139 @@ const getTranscript = async ({ videoId, start = true } = {}) => {
   return { videoId: id, status: now.status };
 };
 
+// ---- managing videos, folders and comments (Recordful Pro) -------------------
+
+const MAX_COMMENT = 2000;
+
+const cleanText = (value, name, max) => {
+  const text = typeof value === "string" ? value.trim() : "";
+  if (!text || text.length > max) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, `${name} must be 1 to ${max} characters`);
+  }
+  return text;
+};
+
+const requireFolderId = (value, name) => {
+  if (typeof value !== "string" || !VIDEO_ID.test(value)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, `${name} must be a folder ID (list_folders shows them)`);
+  }
+  return value;
+};
+
+const updateVideo = async ({ videoId, title, visibility } = {}) => {
+  await requirePro();
+  if (title === undefined && visibility === undefined) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "Give a new title or a visibility to change.");
+  }
+  if (visibility !== undefined && !VISIBILITIES.includes(visibility)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, `visibility must be one of ${VISIBILITIES.join(", ")}`);
+  }
+  const body = {
+    ...(title !== undefined ? { title: cleanText(title, "title", 200) } : {}),
+    ...(visibility !== undefined ? { visibility } : {}),
+  };
+  const id = await requireVideoId(videoId);
+  await api(`/videos/${id}`, { method: "PATCH", body });
+  const { video } = await api(`/videos/${id}`);
+  return { videoId: id, title: video?.title ?? null, visibility: video ? visibilityOf(video) : null, ...videoLinks(id) };
+};
+
+// Never defaults to "the last recording" and needs an explicit confirm: a
+// deleted video can't come back.
+const deleteVideo = async ({ videoId, confirm } = {}) => {
+  await requirePro();
+  if (typeof videoId !== "string" || !VIDEO_ID.test(videoId)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "videoId must be the Recordful video ID to delete (list_videos shows them)");
+  }
+  if (confirm !== true) {
+    throw new AgentBridgeError(
+      AgentErrorCode.InvalidParams,
+      "Deleting a video can't be undone. Ask the user to confirm this exact video, then call again with confirm: true.",
+    );
+  }
+  await api(`/videos/${videoId}/delete`, { method: "POST", body: { deleteProject: true } });
+  const last = await getSession(LAST_RECORDING_KEY);
+  if (last?.videoId === videoId) await chrome.storage.session.remove(LAST_RECORDING_KEY).catch(() => {});
+  return { deleted: true, videoId };
+};
+
+const getEngagement = async ({ videoId } = {}) => {
+  await requirePro();
+  const id = await requireVideoId(videoId);
+  const e = await api(`/videos/${id}/engagement`);
+  const comments = (e.comments || []).slice(-200).map((c) => ({
+    id: c.id,
+    body: c.body,
+    createdAt: c.createdAt,
+    author: c.author?.name ?? null,
+  }));
+  return { videoId: id, views: e.views ?? 0, likes: e.likes ?? 0, likedByUser: Boolean(e.liked), comments, ...videoLinks(id) };
+};
+
+const commentOnVideo = async ({ videoId, body } = {}) => {
+  await requirePro();
+  const text = cleanText(body, "body", MAX_COMMENT);
+  const id = await requireVideoId(videoId);
+  const { comment } = await api(`/public/videos/${id}/comments`, { method: "POST", body: { body: text } });
+  return {
+    videoId: id,
+    comment: { id: comment.id, body: comment.body, createdAt: comment.createdAt, author: comment.author?.name ?? null },
+    ...videoLinks(id),
+  };
+};
+
+const likeVideo = async ({ videoId, liked = true } = {}) => {
+  await requirePro();
+  if (typeof liked !== "boolean") throw new AgentBridgeError(AgentErrorCode.InvalidParams, "liked must be true or false");
+  const id = await requireVideoId(videoId);
+  const r = await api(`/public/videos/${id}/like`, { method: "POST", body: { liked } });
+  return { videoId: id, liked: r.liked, likes: r.likes };
+};
+
+const listFolders = async () => {
+  await requirePro();
+  const { folders } = await api("/folders");
+  return { folders: (folders || []).map((f) => ({ folderId: f.id, name: f.name, parentId: f.parentId ?? null, shared: Boolean(f.isPublic) })) };
+};
+
+const createFolder = async ({ name, parentId } = {}) => {
+  await requirePro();
+  const clean = cleanText(name, "name", 120);
+  const parent = parentId === undefined || parentId === null ? null : requireFolderId(parentId, "parentId");
+  const { folder } = await api("/folders", { method: "POST", body: { name: clean, parentId: parent } });
+  return { folderId: folder.id, name: folder.name, parentId: folder.parentId ?? null, shared: Boolean(folder.isPublic) };
+};
+
+// folderId null moves them to the top level.
+const moveVideos = async ({ videoIds, folderId } = {}) => {
+  await requirePro();
+  if (!Array.isArray(videoIds) || videoIds.length < 1 || videoIds.length > 200 || videoIds.some((v) => typeof v !== "string" || !VIDEO_ID.test(v))) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "videoIds must be 1 to 200 Recordful video IDs");
+  }
+  const to = folderId === undefined || folderId === null ? null : requireFolderId(folderId, "folderId");
+  const r = await api("/folders/move", { method: "POST", body: { recordings: videoIds, folders: [], to } });
+  const skipped = Array.isArray(r.skipped) ? r.skipped : [];
+  return {
+    folderId: to,
+    moved: videoIds.length - skipped.length,
+    skipped,
+    ...(skipped.length ? { note: "Skipped videos belong to someone else; only their recorder or the workspace owner can move them." } : {}),
+  };
+};
+
+const getStorage = async () => {
+  await requirePro();
+  const q = await api("/storage/quota");
+  const used = q.usedBytes ?? 0;
+  const limit = q.limitBytes ?? 0;
+  return {
+    usedBytes: used,
+    limitBytes: limit,
+    usedPercent: limit ? Math.round((used / limit) * 1000) / 10 : null,
+    canUpload: Boolean(q.canUpload),
+  };
+};
+
 // Each takes the recorder's queue only when it touches local files; the rest
 // can run beside recording and page actions.
 export const videoCommands = {
@@ -356,6 +491,15 @@ export const videoCommands = {
   "video.get": { run: getVideo, queue: null },
   "video.list": { run: listVideos, queue: null },
   "video.transcript": { run: getTranscript, queue: null },
+  "video.update": { run: updateVideo, queue: null },
+  "video.delete": { run: deleteVideo, queue: null },
+  "video.engagement": { run: getEngagement, queue: null },
+  "video.comment": { run: commentOnVideo, queue: null },
+  "video.like": { run: likeVideo, queue: null },
+  "video.move": { run: moveVideos, queue: null },
+  "folder.list": { run: listFolders, queue: null },
+  "folder.create": { run: createFolder, queue: null },
+  "storage.get": { run: getStorage, queue: null },
 };
 
 export { cloudAvailable };
