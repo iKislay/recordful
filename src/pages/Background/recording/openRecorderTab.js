@@ -128,6 +128,7 @@ const openRecorderTab = async (
       region: false,
       wasRegion: false,
       clickEvents: [],
+      capturedCursor: null,
       recordingUiTabId: activeTab.id,
     });
     traceStep("recorderOffscreenCreated");
@@ -219,6 +220,7 @@ const openRecorderTab = async (
     region: false,
     wasRegion: true,
     clickEvents: [],
+    capturedCursor: null,
     recordingUiTabId: activeTab.id,
     ...(isRegion ? { tabRecordedID: activeTab.id } : {}),
   });

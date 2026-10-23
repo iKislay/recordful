@@ -1236,6 +1236,17 @@ export class WebCodecsRecorder {
     this._stopping = false;
   }
 
+  /**
+   * When the video's first frame was taken, by the wall clock: where its
+   * second 0 is. Null until a frame has arrived.
+   */
+  videoStartedAt() {
+    if (this._videoStartUs == null) return null;
+    return Math.round(
+      performance.timeOrigin + this._videoStartUs / 1000,
+    );
+  }
+
   // cleanup() nulls _videoStartUs, so this reads null once it has run. The
   // finalize-time capture in WebCodecsTrackRecorder lands before that.
   _effectiveOutputFps() {

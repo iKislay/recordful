@@ -1,7 +1,47 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 
+// Opened by the background as an offscreen document, not inside a page: it
+// then asks for the extension itself, which no website's policy can block.
+const IS_OFFSCREEN = new URLSearchParams(location.search).has("offscreen");
+
+/**
+ * The cameras and microphones the extension itself may use, as the extension
+ * set them in Chrome's settings. Read in the offscreen document, where the
+ * answer is the extension's own: nothing is opened, so no light comes on.
+ */
+const extensionDevices = async () => {
+  const state = async (name) => {
+    try {
+      return (await navigator.permissions.query({ name })).state;
+    } catch {
+      return "prompt";
+    }
+  };
+  const [camera, microphone] = await Promise.all([
+    state("camera"),
+    state("microphone"),
+  ]);
+  const camOk = camera === "granted";
+  const micOk = microphone === "granted";
+  if (!camOk && !micOk) return { success: false, error: "NotAllowedError" };
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const pick = (kind) =>
+    devices
+      .filter((device) => device.kind === kind)
+      .map(({ deviceId, label }) => ({ deviceId, label }));
+  return {
+    success: true,
+    audioinput: micOk ? pick("audioinput") : [],
+    audiooutput: micOk ? pick("audiooutput") : [],
+    videoinput: camOk ? pick("videoinput") : [],
+    cameraPermission: camOk,
+    microphonePermission: micOk,
+  };
+};
+
 const Recorder = () => {
   useEffect(() => {
+    if (IS_OFFSCREEN) return;
     chrome.runtime.sendMessage({
       type: "recordful-permissions-loaded",
     });
@@ -23,6 +63,7 @@ const Recorder = () => {
   }, []);
 
   useEffect(() => {
+    if (IS_OFFSCREEN) return;
     const handleDeviceChange = () => {
       // Recheck permissions and enumerate devices
       checkPermissions();
@@ -172,39 +213,60 @@ const Recorder = () => {
 
     streams.forEach((stream) => stream.getTracks().forEach((t) => t.stop()));
 
-    if (!camOk && !micOk) {
-      chrome.runtime.sendMessage({
-        type: "recordful-permissions",
-        success: false,
-        error: lastError?.name || "unknown",
-      });
+    let result =
+      camOk || micOk
+        ? {
+            success: true,
+            audioinput: micOk ? pick("audioinput") : [],
+            audiooutput: micOk ? pick("audiooutput") : [],
+            videoinput: camOk ? pick("videoinput") : [],
+            cameraPermission: camOk,
+            microphonePermission: micOk,
+          }
+        : { success: false, error: lastError?.name || "unknown" };
+
+    // This frame sits in the page, so the page's policy can block it (and
+    // Chrome then reports a denial) even though the extension was allowed in
+    // its own settings, which is what recording uses. The extension's own
+    // answer fills in what the page would not let this frame see.
+    if (!camOk || !micOk) {
+      const own = await chrome.runtime
+        .sendMessage({ type: "extension-media-devices" })
+        .catch(() => null);
+      if (own?.success) {
+        const cam = camOk || own.cameraPermission;
+        const mic = micOk || own.microphonePermission;
+        result = {
+          success: true,
+          audioinput: micOk ? result.audioinput : own.audioinput || [],
+          audiooutput: micOk ? result.audiooutput : own.audiooutput || [],
+          videoinput: camOk ? result.videoinput : own.videoinput || [],
+          cameraPermission: Boolean(cam),
+          microphonePermission: Boolean(mic),
+        };
+      }
+    }
+
+    if (!result.success) {
+      chrome.runtime.sendMessage({ type: "recordful-permissions", ...result });
       return;
     }
 
-    const audioinput = micOk ? pick("audioinput") : [];
-    const audiooutput = micOk ? pick("audiooutput") : [];
-    const videoinput = camOk ? pick("videoinput") : [];
-
-    chrome.storage.local.set({
-      audioinput: audioinput,
-      audiooutput: audiooutput,
-      videoinput: videoinput,
-      cameraPermission: camOk,
-      microphonePermission: micOk,
-    });
-
-    chrome.runtime.sendMessage({
-      type: "recordful-permissions",
-      success: true,
-      audioinput: audioinput,
-      audiooutput: audiooutput,
-      videoinput: videoinput,
-      cameraPermission: camOk,
-      microphonePermission: micOk,
-    });
+    const { success, ...found } = result;
+    chrome.storage.local.set(found);
+    chrome.runtime.sendMessage({ type: "recordful-permissions", ...result });
   };
 
-  const onMessage = (message, sender) => {
+  const onMessage = (message, sender, sendResponse) => {
+    // The background asking the offscreen copy for the extension's devices.
+    if (message.type === "extension-media-devices-probe") {
+      if (!IS_OFFSCREEN) return;
+      extensionDevices()
+        .catch((err) => ({ success: false, error: err?.name || "unknown" }))
+        .then(sendResponse);
+      return true;
+    }
+    if (IS_OFFSCREEN) return;
     // sender.tab is only unset when the background relayed this (see
     // relayToSenderTab); a direct broadcast may be another tab's request.
     if (sender?.tab) return;

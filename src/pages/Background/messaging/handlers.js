@@ -28,6 +28,7 @@ import { sendMessageRecord } from "../recording/sendMessageRecord";
 import { acquireStreamForOffscreen } from "../offscreen/acquireStream";
 import { registerProxyStorageHandlers } from "../offscreen/proxyStorageHandlers";
 import { ensureRemuxOffscreen } from "../offscreen/ensureRemuxOffscreen";
+import { extensionMediaDevices } from "../offscreen/extensionMediaDevices";
 import { forceProcessing } from "../recording/forceProcessing";
 import {
   restartActiveTab,
@@ -1754,6 +1755,9 @@ export const setupHandlers = () => {
   registerMessage("recordful-permissions-loaded", relayToSenderTab);
   registerMessage("recordful-site-policy", relayToSenderTab);
   registerMessage("recordful-permissions", relayToSenderTab);
+  // The extension's own cameras and microphones, for a permissions frame the
+  // page's policy blocks.
+  registerMessage("extension-media-devices", () => extensionMediaDevices());
   registerMessage(
     "recording-complete",
     async (message, sender) => {
@@ -2224,15 +2228,22 @@ export const setupHandlers = () => {
 
   // Where a click fell in the recording, from the clock: the local recorder
   // does not answer "get-video-time", only the cloud one does.
+  // Measured from the video's first frame where the recorder has told it
+  // (videoClockStart), else from when recording was asked to start.
   const clickTimeFromClock = async () => {
-    const { recordingStartTime, totalPausedMs, paused } =
+    const { recordingStartTime, videoClockStart, totalPausedMs, paused } =
       await chrome.storage.local.get([
         "recordingStartTime",
+        "videoClockStart",
         "totalPausedMs",
         "paused",
       ]);
     if (!recordingStartTime || paused) return null;
-    return (Date.now() - recordingStartTime - (totalPausedMs || 0)) / 1000;
+    const start =
+      Number.isFinite(videoClockStart) && videoClockStart >= recordingStartTime
+        ? videoClockStart
+        : recordingStartTime;
+    return (Date.now() - start - (totalPausedMs || 0)) / 1000;
   };
 
   // How a point of the sender's page falls on the recorded picture: a
@@ -2362,7 +2373,7 @@ export const setupHandlers = () => {
   // ponytail: one array, rewritten with each batch and capped; write it in
   // chunks if recordings longer than the cap (about 80 minutes of constant
   // movement) need their whole path.
-  const POINTER_MOVES_MAX = 20000;
+  const POINTER_MOVES_MAX = 60000;
   let _moveWriteQueue = Promise.resolve();
   registerMessage("pointer-moves", async ({ payload }, sender) => {
     const place = await pictureOf(payload, sender);

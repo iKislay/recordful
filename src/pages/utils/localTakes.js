@@ -45,6 +45,7 @@ const readTakeMeta = async (fileName) => {
       clicks: Array.isArray(parsed.clicks) ? parsed.clicks : null,
       moves: Array.isArray(parsed.moves) ? parsed.moves : null,
       autoZoom: parsed.autoZoom === true,
+      realCursor: parsed.realCursor === "hidden" ? "hidden" : "shown",
     };
   } catch {
     return null;
@@ -104,8 +105,13 @@ export const readRecording = async (fileName = null) => {
     "lastRecordingBackendRef",
     "clickEvents",
     "autoZoom",
+    "capturedCursor",
   ]);
-  const { lastRecordingBackendRef, clickEvents, autoZoom } = stored;
+  const { lastRecordingBackendRef, clickEvents, autoZoom, capturedCursor } =
+    stored;
+  // Whether the real pointer is in the picture. The editor draws its own
+  // cursor only where it is not, so the video never shows two.
+  const realCursor = capturedCursor === "hidden" ? "hidden" : "shown";
   const { pointerMoves } = await chrome.storage.session.get("pointerMoves");
   // No name means the site's older single-take request: the latest take.
   const ref = fileName
@@ -124,6 +130,7 @@ export const readRecording = async (fileName = null) => {
         moves: normalizeMoves(pointerMoves),
         // On unless switched off in the popup's options.
         autoZoom: autoZoom !== false,
+        realCursor,
       };
     }
     return {};
@@ -149,5 +156,13 @@ export const readRecording = async (fileName = null) => {
     moves: normalizeMoves(archived?.moves ?? (isLatest ? pointerMoves : [])),
     // On unless switched off in the popup's options.
     autoZoom: archived ? archived.autoZoom : autoZoom !== false,
+    // A take archived before this was noted showed the real pointer.
+    realCursor: archived
+      ? archived.realCursor === "hidden"
+        ? "hidden"
+        : "shown"
+      : isLatest
+        ? realCursor
+        : "shown",
   };
 };

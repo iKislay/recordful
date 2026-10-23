@@ -147,7 +147,7 @@ export const markRetainedHanded = async ({ recordingId = null, fileName = null }
 // so the finished take's copy is snapshotted beside its file before that.
 // Stored raw; the bridge normalizes, the same code it uses for a live take.
 const META_SUFFIX = ".meta.json";
-const MOVES_MAX = 20000;
+const MOVES_MAX = 60000;
 const CLICKS_MAX = 5000;
 
 const takeMetaName = (fileName) => `${fileName}${META_SUFFIX}`;
@@ -174,13 +174,19 @@ export const archiveTakeMeta = async () => {
   let ref = null;
   let clickEvents = [];
   let autoZoom = true;
+  let capturedCursor = null;
   try {
-    ({ lastRecordingBackendRef: ref, clickEvents = [], autoZoom = true } =
-      await chrome.storage.local.get({
-        lastRecordingBackendRef: null,
-        clickEvents: [],
-        autoZoom: true,
-      }));
+    ({
+      lastRecordingBackendRef: ref,
+      clickEvents = [],
+      autoZoom = true,
+      capturedCursor = null,
+    } = await chrome.storage.local.get({
+      lastRecordingBackendRef: null,
+      clickEvents: [],
+      autoZoom: true,
+      capturedCursor: null,
+    }));
   } catch {
     return;
   }
@@ -207,6 +213,7 @@ export const archiveTakeMeta = async () => {
           ? pointerMoves.slice(-MOVES_MAX)
           : [],
         autoZoom: autoZoom !== false,
+        realCursor: capturedCursor === "hidden" ? "hidden" : "shown",
         at: Date.now(),
       }),
     );
