@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "Mode perekaman",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Buka di editor Recordful",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "Anda sedang offline",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "Rekaman Anda aman. Rekaman akan terbuka di editor Recordful begitu Anda kembali online.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

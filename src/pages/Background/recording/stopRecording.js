@@ -74,8 +74,18 @@ const onTabLoaded = (tabId, onReady, onTimeout = null, onClosed = null) => {
   chrome.tabs.onRemoved.addListener(removeListener);
 };
 
+// A web-editor build's editor.html hands the tab to the site at once, and the
+// site fetches the take itself (Editor/index.jsx). The messages below are for
+// the built-in editor; nothing on the site answers them, and that is no failure.
+const HANDED_TO_SITE =
+  process.env.RECORDFUL_EDITOR === "web" && !!process.env.RECORDFUL_EDITOR_BASE;
+
 // persistent flag so an editor mounting AFTER the failure still picks it up
 const markEditorStartFailed = async (tabId, errorCode, why) => {
+  if (HANDED_TO_SITE) {
+    diagEvent("editor-handed-to-site", { tabId, errorCode });
+    return;
+  }
   diagEvent("editor-start-failed", { tabId, errorCode, why });
   try {
     await chrome.storage.local.set({
@@ -733,6 +743,7 @@ export const handleStopRecordingTab = async (request) => {
               postStopRecordingId: null,
             });
             releasePostStopEditorLock({ postStopRecordingId: null });
+            if (HANDED_TO_SITE) return;
             if (isViewerRoute) {
               sendMessageTab(tab.id, { type: "viewer-recording" }).catch(
                 (err) => {

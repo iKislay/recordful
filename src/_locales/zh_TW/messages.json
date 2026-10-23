@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "錄製模式",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "在 Recordful 編輯器中開啟",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "你已離線",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "你的錄製內容很安全。恢復連線後，它會立即在 Recordful 編輯器中開啟。",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

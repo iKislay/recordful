@@ -5,40 +5,52 @@ import { createRoot } from "react-dom/client";
 import ContentState from "../EditorApp/context/ContentState";
 import EditorApp from "../EditorApp/EditorApp";
 import EditorPageBridge from "../EditorApp/EditorPageBridge";
+import { latestTakeName, webEditorUrl } from "../utils/webEditorUrl";
 
-// The hosted editor (RECORDFUL_APP_BASE, else https://recordful.app; see
-// webpack.config.js), so every build edits there unless RECORDFUL_EDITOR=builtin.
-const EDITOR_BASE = process.env.RECORDFUL_EDITOR_BASE;
-
-// A build with RECORDFUL_EDITOR=web edits on the app's site: this page hands
-// the tab over to it, and the site fetches the recording through
-// editorbridge.html. The built-in editor below stays as the fallback, used
-// when the site cannot be reached and for recovering an interrupted
-// recording, which only this page knows how to do.
-const siteEditorReachable = async () => {
-  if (process.env.RECORDFUL_EDITOR !== "web" || !EDITOR_BASE) return false;
-  if (new URLSearchParams(window.location.search).get("mode") === "recover") {
-    return false;
-  }
-  try {
-    const res = await fetch(`${EDITOR_BASE}/api/health`, {
-      signal: AbortSignal.timeout(2500),
-    });
-    return res.ok;
-  } catch {
-    return false;
-  }
-};
-
-siteEditorReachable().then((reachable) => {
-  if (reachable) {
-    // The site only knows the store build's ID; unpacked and self-hosted
-    // builds have their own, so name ours or it can't reach editorbridge.html.
-    const url = new URL("/editor", EDITOR_BASE);
-    url.searchParams.set("ext", chrome.runtime.id);
-    window.location.replace(url.href);
+// Every build edits on the site (see webpack.config.js) unless it opts out
+// with RECORDFUL_EDITOR=builtin, for people who host their own editor.
+//
+// There is no fallback to the built-in editor. The site fetches the take
+// through editorbridge.html and keeps asking until it has it, and the take
+// stays protected here until the site has kept a whole copy
+// (recordingRetention.js). Recovery goes the same way: the background has
+// already pointed lastRecordingBackendRef at the recovered file.
+const handOffToSite = async () => {
+  const url = webEditorUrl(await latestTakeName());
+  const go = () => window.location.replace(url);
+  if (navigator.onLine) {
+    go();
     return;
   }
+  // Offline, the site cannot load. Wait here, where the take is safe, and
+  // go the moment the connection is back.
+  window.addEventListener("online", go, { once: true });
+  const container = window.document.querySelector("#app-container");
+  if (!container) return;
+  const card = document.createElement("div");
+  card.style.cssText =
+    "max-width:420px;margin:20vh auto;padding:24px;font-family:Satoshi-Medium,system-ui,sans-serif;text-align:center;color:#29292f";
+  const title = document.createElement("h1");
+  title.style.cssText = "font-size:18px;margin:0 0 8px";
+  title.textContent = chrome.i18n.getMessage("editorHandoffOfflineTitle");
+  const text = document.createElement("p");
+  text.style.cssText = "font-size:14px;line-height:1.5;color:#6e7684;margin:0 0 16px";
+  text.textContent = chrome.i18n.getMessage("editorHandoffOfflineDescription");
+  const button = document.createElement("button");
+  button.style.cssText =
+    "font:inherit;font-size:14px;padding:8px 16px;border:none;border-radius:30px;background:#29292f;color:#fff;cursor:pointer";
+  button.textContent = chrome.i18n.getMessage("openWebEditorLabel");
+  button.addEventListener("click", go);
+  card.append(title, text, button);
+  container.append(card);
+};
+
+if (
+  process.env.RECORDFUL_EDITOR === "web" &&
+  process.env.RECORDFUL_EDITOR_BASE
+) {
+  handOffToSite();
+} else {
   const container = window.document.querySelector("#app-container");
   if (container) {
     createRoot(container).render(
@@ -48,7 +60,7 @@ siteEditorReachable().then((reachable) => {
       </ContentState>
     );
   }
-});
+}
 
 // Hot Module Replacement
 if (module.hot) {

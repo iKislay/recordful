@@ -292,6 +292,7 @@ const ContentState = (props) => {
     finalizingRecording: false,
     lastDownloadInfo: null,
     lastRecordingBackend: null,
+    loadedTakeName: null,
     blob: null,
     webm: null,
     originalBlob: null,
@@ -1332,6 +1333,11 @@ const ContentState = (props) => {
       setContentState((prev) => ({
         ...prev,
         lastRecordingBackend: lastRecordingBackendRef?.backend || "idb",
+        // The file this editor opened, for handing the same take to the site.
+        loadedTakeName:
+          lastRecordingBackendRef?.backend === "opfs"
+            ? lastRecordingBackendRef.fileName || null
+            : null,
       }));
       if (lastRecordingBackendRef?.backend === "opfs") {
         // retry truncated/transient reads so a recoverable first open doesn't hit the modal

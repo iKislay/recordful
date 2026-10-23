@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "Kayıt modu",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Recordful düzenleyicisinde aç",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "Çevrimdışısınız",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "Kaydınız güvende. Tekrar çevrimiçi olduğunuzda Recordful düzenleyicisinde açılacak.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

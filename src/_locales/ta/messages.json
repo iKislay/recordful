@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "பதிவு முறை",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Recordful எடிட்டரில் திற",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "நீங்கள் ஆஃப்லைனில் உள்ளீர்கள்",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "உங்கள் பதிவு பாதுகாப்பாக உள்ளது. மீண்டும் ஆன்லைனுக்கு வந்தவுடன் Recordful எடிட்டரில் திறக்கும்.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

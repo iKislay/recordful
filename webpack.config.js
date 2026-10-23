@@ -344,9 +344,9 @@ const config = {
         process.env.RECORDFUL_ENABLE_CLOUD_FEATURES
       ),
       // The web editor, unless RECORDFUL_EDITOR says otherwise (see
-      // `build:builtin`): after a recording the app's editor opens, falling
-      // back to the one built into the extension when the site cannot be
-      // reached. Anything but "web" keeps the built-in editor.
+      // `build:builtin`): after a recording the app's editor opens, always;
+      // there is no fallback to the one built into the extension. Anything
+      // but "web" keeps the built-in editor, for self-hosters.
       "process.env.RECORDFUL_EDITOR": JSON.stringify(
         process.env.RECORDFUL_EDITOR || "web",
       ),

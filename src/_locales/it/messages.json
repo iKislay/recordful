@@ -2107,5 +2107,17 @@
   "captureModeLabel": {
     "message": "Modalità di registrazione",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Apri nell'editor di Recordful",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "Sei offline",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "La tua registrazione è al sicuro. Si aprirà nell'editor di Recordful appena tornerai online.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

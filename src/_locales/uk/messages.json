@@ -2110,5 +2110,17 @@
   "captureModeLabel": {
     "message": "Режим запису",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Відкрити в редакторі Recordful",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "Немає з'єднання з інтернетом",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "Ваш запис у безпеці. Він відкриється в редакторі Recordful, щойно з'явиться з'єднання.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

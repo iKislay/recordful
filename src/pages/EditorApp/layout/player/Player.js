@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Nav from "./Nav";
 import ShareMenu from "./ShareMenu";
+import OpenWebEditor from "./OpenWebEditor";
 import Content from "./Content";
 import Sidebar from "./Sidebar";
 
@@ -16,6 +17,7 @@ const Player = () => {
   return (
     <div className={styles.layout}>
       <Nav>
+        <OpenWebEditor />
         <ShareMenu alertsNode={alertsNode} />
       </Nav>
       <div className={styles.body}>

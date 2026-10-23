@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "Mode d'enregistrament",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Obre a l'editor de Recordful",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "No tens connexió",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "La gravació està segura. S'obrirà a l'editor de Recordful tan aviat com tornis a estar en línia.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

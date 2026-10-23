@@ -1,6 +1,9 @@
-// Keeps a finished recording safe from the next recording's cleanup while its
-// editor tab is open. Closing the tab drops the protection, never the bytes.
-// Logged out only: a signed-in recording is already uploaded.
+// Keeps a finished recording safe from the next recording's cleanup until the
+// person has a copy elsewhere: downloaded, or kept by the site's editor. Until
+// then it is their only copy, so neither a closed tab, a signed-in account
+// nor a full disk releases it. A take the site kept is held a while longer
+// (HANDED_GRACE_MS), so a copy the browser later clears from the site can be
+// fetched again. Recordings the cloud recorder made never register here.
 import {
   CHUNK_SLOT_A,
   CHUNK_SLOT_B,
@@ -8,9 +11,17 @@ import {
 } from "../../utils/chunkStores";
 
 const KEY = "retainedRecordings";
-// Below this much free space retention yields. A recording nobody can write
-// beats a spare copy of an old one.
+// Below this much free space the grace copies of handed takes yield. A take
+// the site has not kept never does: it is nobody's spare.
 const MIN_FREE_BYTES = 2 * 1024 * 1024 * 1024;
+// How long a take the site kept stays here as well.
+const HANDED_GRACE_MS = 7 * 24 * 60 * 60 * 1000;
+
+const inGrace = (e) =>
+  e.handed && Number.isFinite(e.handedAt) && Date.now() - e.handedAt < HANDED_GRACE_MS;
+// Still the only copy, or a grace copy: the registry must remember it even
+// with no tab open, or the next recording sweeps it.
+const worthKeeping = (e) => (!e.saved && !e.handed) || inGrace(e);
 
 const read = async () => {
   try {
@@ -67,7 +78,6 @@ export const registerRetainable = async (entry) => {
   // its identity from the tab holding it.
   const id =
     entry.recordingId || entry.fileName || `tab:${entry.tabId}`;
-  if (await isLoggedIn()) return;
   const list = await read();
   const prev = list.find((e) => e.recordingId === id);
   const next = list.filter((e) => e.recordingId !== id && e.tabId !== entry.tabId);
@@ -84,6 +94,7 @@ export const registerRetainable = async (entry) => {
     // A re-register (recover, reopen) must not un-hand a take the site
     // already kept: that would pin its bytes forever.
     handed: prev?.handed === true,
+    handedAt: prev?.handedAt ?? null,
     at: Date.now(),
   });
   await write(next);
@@ -122,10 +133,13 @@ export const markRetainedHanded = async ({ recordingId = null, fileName = null }
   if (!target || target.handed) return;
   await write(
     list.map((e) =>
-      e.recordingId === target.recordingId ? { ...e, handed: true } : e,
+      e.recordingId === target.recordingId
+        ? { ...e, handed: true, handedAt: Date.now() }
+        : e,
     ),
   );
-  if (target.fileName) await removeTakeMeta(target.fileName).catch(() => {});
+  // The pointer trail stays beside it through the grace period, so a take
+  // fetched again still has its clicks; it goes with the file.
 };
 
 // The pointer trail behind a take: where it clicked and moved, for the web
@@ -217,6 +231,8 @@ export const PROMPT_MIN_DURATION_MS = 0;
 const PROMPT_DISMISS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 export const unsavedRetained = async () => {
+  // The warning stays off when signed in, as before; the take is protected
+  // either way (computeRetentionPlan).
   if (await isLoggedIn()) return null;
   try {
     const { unsavedRecordingPromptDismissed: dismissedAt } =
@@ -235,14 +251,21 @@ export const unsavedRetained = async () => {
   return alive.find((e) => !e.saved && !e.handed) || null;
 };
 
-// Drop entries whose editor tab is gone. Does not delete any bytes.
+// The entries whose editor tab is still open. Forgets the closed ones that are
+// released anyway; one still worth keeping stays registered without its tab,
+// or the next recording would sweep its bytes. Deletes no bytes itself.
 export const pruneRetained = async () => {
   const list = await read();
   // In parallel. This sits on the record-start path, and a pile of open editors
   // would otherwise cost one round trip each before recording.
   const live = await Promise.all(list.map((e) => tabExists(e.tabId)));
   const alive = list.filter((_, i) => live[i]);
-  if (alive.length !== list.length) await write(alive);
+  const kept = list
+    .map((e, i) => (live[i] ? e : worthKeeping(e) ? { ...e, tabId: null } : null))
+    .filter(Boolean);
+  const changed =
+    kept.length !== list.length || kept.some((e, i) => e.tabId !== list[i].tabId);
+  if (changed) await write(kept);
   return alive;
 };
 
@@ -256,12 +279,14 @@ export const computeRetentionPlan = async () => {
   // the estimate and the tab lookups.
   const list = await read();
   if (!list.length) return empty;
-  if (await isLoggedIn()) return empty;
-  if (!(await hasHeadroom())) return empty;
 
-  // Saved means they already have the file, handed means the site's dashboard
-  // kept it, so both release exactly as before retention existed.
-  const pending = list.filter((e) => !e.saved && !e.handed);
+  // Saved means they already have the file. Handed means the site's editor
+  // kept it: held through its grace period while the disk has room, then
+  // released. Anything else is the only copy and is always kept.
+  const graceRoom = list.some(inGrace) && (await hasHeadroom());
+  const pending = list.filter(
+    (e) => (!e.saved && !e.handed) || (graceRoom && inGrace(e)),
+  );
   if (!pending.length) return empty;
   const opfs = pending.filter((e) => e.backend === "opfs" && e.fileName);
   const keepNames = opfs.map((e) => e.fileName);
@@ -307,7 +332,7 @@ export const forgetRetained = async (tabId) => {
     .map((e) => {
       if (e.tabId !== tabId) return e;
       changed = true;
-      if (!e.saved && !e.handed) return { ...e, tabId: null };
+      if (worthKeeping(e)) return { ...e, tabId: null };
       return null;
     })
     .filter(Boolean);

@@ -2130,5 +2130,17 @@
   "screenshotScreenBlocked": {
     "message": "This site doesn't allow screen capture. Try it from another tab.",
     "description": "Error when the page's policy blocks screen capture"
+  },
+  "openWebEditorLabel": {
+    "message": "Open in Recordful editor",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "You're offline",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "Your recording is safe. It opens in the Recordful editor as soon as you're back online.",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

@@ -2112,5 +2112,17 @@
   "captureModeLabel": {
     "message": "रिकॉर्डिंग मोड",
     "description": "Accessible name of the Screen / Window / Area picker on popup"
+  },
+  "openWebEditorLabel": {
+    "message": "Recordful एडिटर में खोलें",
+    "description": "Button that opens the recording in the Recordful web editor"
+  },
+  "editorHandoffOfflineTitle": {
+    "message": "आप ऑफ़लाइन हैं",
+    "description": "Title shown before opening the web editor while offline"
+  },
+  "editorHandoffOfflineDescription": {
+    "message": "आपकी रिकॉर्डिंग सुरक्षित है। ऑनलाइन होते ही यह Recordful एडिटर में खुल जाएगी।",
+    "description": "Text shown before opening the web editor while offline"
   }
 }

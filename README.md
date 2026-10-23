@@ -107,10 +107,13 @@ build, which talks to the private backend over build-time env vars
 Every build, self-hosted ones included, opens recordings in the web editor
 at [recordful.app/editor](https://recordful.app/editor) (or
 `RECORDFUL_APP_BASE` when set). The recording is passed from the extension
-to the editor page inside your browser and is never uploaded. The editor
-built into the extension is used only when the site can't be reached and
-for recovering an interrupted recording. To always use the built-in editor
-instead, build with `npm run build:builtin` or `RECORDFUL_EDITOR=builtin`.
+to the editor page inside your browser and is never uploaded, and the
+extension keeps its copy until the editor has saved a whole one. There is
+no fallback to the editor built into the extension; offline, the recording
+waits and opens once the connection is back. To host your own editor, build
+with `npm run build:builtin` or `RECORDFUL_EDITOR=builtin`: recordings then
+open in the built-in editor, whose "Open in Recordful editor" button moves
+a recording to the web editor whenever you want.
 
 ## License
 
