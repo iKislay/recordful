@@ -53,8 +53,14 @@ const errorFor = (status, body) => {
   const code = body?.error;
   if (status === 401) return notSignedInError();
   if (status === 402 || code === "pro_required") return proRequiredError();
+  if (status === 403) {
+    return new AgentBridgeError(
+      AgentErrorCode.Forbidden,
+      "Only the person who recorded it, or the workspace owner, can do that.",
+    );
+  }
   if (status === 404) {
-    return new AgentBridgeError(AgentErrorCode.VideoNotFound, "No such video in this Recordful account.");
+    return new AgentBridgeError(AgentErrorCode.VideoNotFound, "Not found in this Recordful account (a video, folder or comment that doesn't exist, or isn't visible to this user).");
   }
   if (status === 413 || code === "storage_full") {
     return new AgentBridgeError(
