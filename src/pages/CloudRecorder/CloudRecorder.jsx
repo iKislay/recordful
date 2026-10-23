@@ -34,6 +34,7 @@ import { acquireDisplayMediaWithFocusRetry } from "../utils/acquireDisplayMedia"
 import {
   resolveCaptureSurface,
   setCapturedSurface,
+  leaveCursorOut,
 } from "../utils/captureSurface";
 import { startPrewarm, stopPrewarm } from "../Recorder/streamWarmup";
 import { preloadWebCodecsModules } from "../Recorder/webcodecs/WebCodecsRecorder";
@@ -6384,6 +6385,7 @@ const CloudRecorder = () => {
       projectId,
       clickEvents = [],
       capturedSurface = null,
+      capturedCursor = null,
       multiMode,
       multiSceneCount = 0,
       multiLastSceneId = null,
@@ -6395,6 +6397,7 @@ const CloudRecorder = () => {
       "projectId",
       "clickEvents",
       "capturedSurface",
+      "capturedCursor",
       "multiMode",
       "multiSceneCount",
       "multiLastSceneId",
@@ -6550,6 +6553,9 @@ const CloudRecorder = () => {
         // Omitted when unknown: the app defaults to monitor, and a
         // guess would be worse than that default.
         ...(capturedSurface ? { surface: capturedSurface } : {}),
+        // Whether the real pointer is in the picture: the editor draws its
+        // own cursor only where it is not, so the video never shows two.
+        realCursor: capturedCursor === "hidden" ? "hidden" : "shown",
         instantMode: instantMode.current,
         newProject: !recordingToScene && (!multiMode || multiSceneCount === 0),
         insertAfterSceneId,
@@ -7880,12 +7886,15 @@ const CloudRecorder = () => {
 
           // Report what was cropped, not the crop. preferCurrentTab
           // makes this browser unless the user switched panes.
-          await setCapturedSurface(
-            resolveCaptureSurface(
-              screenStream.current.getVideoTracks()[0].getSettings()
-                .displaySurface,
-              { isTab: isTab.current }
-            )
+          const regionSurface = resolveCaptureSurface(
+            screenStream.current.getVideoTracks()[0].getSettings()
+              .displaySurface,
+            { isTab: isTab.current }
+          );
+          await setCapturedSurface(regionSurface);
+          void leaveCursorOut(
+            screenStream.current.getVideoTracks()[0],
+            regionSurface
           );
 
           bindScreenTrack(screenStream.current.getVideoTracks()[0]);
@@ -8316,6 +8325,7 @@ const CloudRecorder = () => {
             isTab: isTab.current,
           });
           await setCapturedSurface(capturedSurface);
+          void leaveCursorOut(track, capturedSurface);
 
           traceStep("streamAcquired", {
             surface: surface || null,

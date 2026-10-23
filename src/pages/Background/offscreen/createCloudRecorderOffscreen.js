@@ -1,10 +1,13 @@
 // Offscreen doc host for the recorder; immune to background-tab freeze/discard.
 // ?cloud=1 renders <CloudRecorder/>, else <Recorder/>. Chrome allows only one
 // offscreen doc per extension, so any existing one is closed first.
+import { settleMediaDevicesProbe } from "./extensionMediaDevices";
+
 export const createCloudRecorderOffscreen = async ({ cloud = true } = {}) => {
   if (!chrome.offscreen || typeof chrome.offscreen.createDocument !== "function") {
     throw new Error("chrome.offscreen API unavailable");
   }
+  await settleMediaDevicesProbe();
 
   try {
     const contexts = await chrome.runtime.getContexts({});

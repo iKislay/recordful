@@ -1,7 +1,9 @@
 // How often the pointer's place is noted while it moves, in milliseconds, and
-// how many places are sent to the background at once.
-const MOVE_SAMPLE_MS = 250;
-const MOVES_PER_BATCH = 8;
+// how many places are sent to the background at once. The editor draws the
+// only cursor in the video from these, so they are close enough together for
+// it to follow the hand, not cut its corners.
+const MOVE_SAMPLE_MS = 80;
+const MOVES_PER_BATCH = 24;
 // What counts as the thing clicked, when the click lands on a part of it.
 const CONTROLS =
   "button, a, input, select, textarea, label, summary, [role], [onclick], [tabindex]";
@@ -207,10 +209,11 @@ export function startClickTracking(
     frame = payload;
     // With the cursor the page showed there, where it was not the arrow.
     const code = CURSOR_CODES[safeKind(movedOver, event)];
+    // When the pointer got there, not when it was looked at: a sampling step
+    // late, the drawn cursor trailed the hand.
+    const at = Math.round(performance.timeOrigin + event.timeStamp);
     moves.push(
-      code
-        ? [Date.now(), payload.x, payload.y, code]
-        : [Date.now(), payload.x, payload.y],
+      code ? [at, payload.x, payload.y, code] : [at, payload.x, payload.y],
     );
     if (moves.length >= MOVES_PER_BATCH) sendMoves();
   }, MOVE_SAMPLE_MS);

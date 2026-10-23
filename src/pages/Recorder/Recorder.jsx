@@ -57,6 +57,7 @@ import { acquireDisplayMediaWithFocusRetry } from "../utils/acquireDisplayMedia"
 import {
   resolveCaptureSurface,
   setCapturedSurface,
+  leaveCursorOut,
 } from "../utils/captureSurface";
 import { chooseWriter } from "./recorderStorage/chooseWriter";
 import { chooseReader } from "./recorderStorage/chooseReader";
@@ -414,6 +415,26 @@ const Recorder = () => {
     } catch (err) {
       debugWarn("Failed to persist recording timing state", err);
     }
+  };
+
+  // The video starts at its first frame, which comes a moment after
+  // recordingStartTime: the encoder is still being set up. Clicks and the
+  // pointer's path are placed in the video from the clock, so they are
+  // measured from that frame, or the drawn cursor trails the real one.
+  const noteVideoClockStart = (runGeneration) => {
+    const started = Date.now();
+    const look = () => {
+      if (runGeneration !== recordingGeneration.current) return;
+      const at = recorder.current?.videoStartedAt?.();
+      if (Number.isFinite(at)) {
+        chrome.storage.local.set({ videoClockStart: at }).catch(() => {});
+        return;
+      }
+      // MediaRecorder has no first-frame time; recordingStartTime stands.
+      if (typeof recorder.current?.videoStartedAt !== "function") return;
+      if (Date.now() - started < 10000) setTimeout(look, 50);
+    };
+    look();
   };
 
   async function canFitChunk(byteLength) {
@@ -2793,11 +2814,13 @@ const Recorder = () => {
       recording: true,
       paused: false,
       recordingStartTime: recordingStartTime.current,
+      videoClockStart: null,
       pausedAt: null,
       totalPausedMs: 0,
     });
     isStarting.current = false;
     isRecording.current = true;
+    noteVideoClockStart(runGeneration);
     startSessionHeartbeat();
     startRecordingTick();
     persistSessionState("recording");
@@ -3909,11 +3932,11 @@ const Recorder = () => {
         path: "getDisplayMedia",
         streamId: stream.id,
       });
-      void setCapturedSurface(
-        resolveCaptureSurface(
-          stream.getVideoTracks()[0].getSettings().displaySurface,
-        ),
+      const displaySurface = resolveCaptureSurface(
+        stream.getVideoTracks()[0].getSettings().displaySurface,
       );
+      void setCapturedSurface(displaySurface);
+      void leaveCursorOut(stream.getVideoTracks()[0], displaySurface);
     } else {
       // Chrome's tab capture defaults to a 1920x1080 frame and pillarboxes
       // narrower tabs to fit. Match the constraint box to the tab's real
@@ -4055,9 +4078,11 @@ const Recorder = () => {
 
       const surface = stream.getVideoTracks()[0].getSettings().displaySurface;
       debug("Display surface", surface);
-      void setCapturedSurface(
-        resolveCaptureSurface(surface, { isTab: isTab.current }),
-      );
+      const capturedSurface = resolveCaptureSurface(surface, {
+        isTab: isTab.current,
+      });
+      void setCapturedSurface(capturedSurface);
+      void leaveCursorOut(stream.getVideoTracks()[0], capturedSurface);
       chrome.runtime.sendMessage({ type: "set-surface", surface: surface });
     }
 

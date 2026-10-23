@@ -7,6 +7,8 @@
  * worker that calls createSyncAccessHandle() on OPFS, which is only
  * available in Dedicated Workers.
  */
+import { settleMediaDevicesProbe } from "./extensionMediaDevices";
+
 const REMUX_OFFSCREEN_URL = "remuxoffscreen.html";
 
 // Concurrent remux requests each passed the check below and called createDocument.
@@ -25,6 +27,7 @@ const ensureRemuxOffscreenImpl = async () => {
   if (!chrome.offscreen || typeof chrome.offscreen.createDocument !== "function") {
     throw new Error("offscreen-api-unavailable");
   }
+  await settleMediaDevicesProbe();
 
   // The recorder offscreen tears down asynchronously right after a recording
   // stops, so a download fired immediately after can still see it present.
