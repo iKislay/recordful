@@ -355,9 +355,17 @@
     "message": "Restableix els elements difuminats",
     "description": "Missatge emergent 'Neteja tots els elements difuminats'"
   },
-  "highlightClicksTooltip": {
-    "message": "Ressalta els clics",
-    "description": "Missatge emergent 'Ressalta les clicades'"
+  "clickCircleTooltip": {
+    "message": "Efecte de clic: cercle",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Efecte de clic: ondulació",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Efecte de clic: pressió",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Ressalta el cursor",

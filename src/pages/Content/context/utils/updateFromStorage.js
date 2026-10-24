@@ -1,12 +1,6 @@
 import { setContentState } from "../ContentState";
 import { checkRecording } from "./checkRecording";
-
-const CURSOR_EFFECTS = ["target", "highlight", "spotlight"];
-
-const normalizeCursorEffects = (effects) => {
-  if (!Array.isArray(effects)) return [];
-  return effects.filter((effect) => CURSOR_EFFECTS.includes(effect));
-};
+import { normalizeCursorEffects } from "../../cursor/clickEffects";
 
 const deriveCursorMode = (effects, fallbackMode) => {
   if (effects.length === 0) return "none";
@@ -89,9 +83,7 @@ export const updateFromStorage = (check = true, id = null) => {
           : "none";
       const cursorEffects = hasStoredEffects
         ? storedEffects
-        : legacyMode !== "none"
-        ? [legacyMode]
-        : [];
+        : normalizeCursorEffects([legacyMode]);
       const cursorMode = deriveCursorMode(cursorEffects, legacyMode);
 
       setContentState((prevContentState) => ({

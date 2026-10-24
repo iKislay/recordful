@@ -355,9 +355,17 @@
     "message": "सभी ब्लर किए गए तत्वों को हटाएं",
     "description": "सभी ब्लर किए गए तत्वों को हटाएं टूलटिप"
   },
-  "highlightClicksTooltip": {
-    "message": "क्लिक को हाइलाइट करें",
-    "description": "क्लिक को हाइलाइट करें टूलटिप"
+  "clickCircleTooltip": {
+    "message": "क्लिक प्रभाव: गोला",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "क्लिक प्रभाव: लहर",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "क्लिक प्रभाव: दबाव",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "कर्सर को हाइलाइट करें",

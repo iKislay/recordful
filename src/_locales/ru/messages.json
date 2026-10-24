@@ -355,9 +355,17 @@
     "message": "Очистить все размытые элементы",
     "description": "Подсказка для очистки всех размытых элементов"
   },
-  "highlightClicksTooltip": {
-    "message": "Подсветить клики",
-    "description": "Подсказка для подсветки кликов"
+  "clickCircleTooltip": {
+    "message": "Эффект клика: круг",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Эффект клика: рябь",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Эффект клика: нажатие",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Подсветить курсор",

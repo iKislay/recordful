@@ -355,9 +355,17 @@
     "message": "Wyczyść wszystkie elementy rozmyte",
     "description": "Podpowiedź wyczyszczenia wszystkich elementów rozmytych"
   },
-  "highlightClicksTooltip": {
-    "message": "Podświetl kliknięcia",
-    "description": "Podpowiedź podświetlania kliknięć"
+  "clickCircleTooltip": {
+    "message": "Efekt kliknięcia: koło",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Efekt kliknięcia: fala",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Efekt kliknięcia: nacisk",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Podświetl kursor",

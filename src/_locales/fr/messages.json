@@ -355,9 +355,17 @@
     "message": "Effacer tous les éléments flous",
     "description": "Conseil pour effacer tous les éléments flous"
   },
-  "highlightClicksTooltip": {
-    "message": "Surligner les clics",
-    "description": "Conseil pour surligner les clics"
+  "clickCircleTooltip": {
+    "message": "Effet de clic : cercle",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Effet de clic : onde",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Effet de clic : pression",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Surligner le curseur",

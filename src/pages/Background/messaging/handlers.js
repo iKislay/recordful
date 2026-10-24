@@ -2366,7 +2366,7 @@ export const setupHandlers = () => {
     }
     // The clicked control's box as fractions of the picture: left, top,
     // right, bottom. Rounded, since the whole list is rewritten on each flush.
-    const { box } = payload;
+    const { box, drawn } = payload;
     const corners = Array.isArray(box) && [
       place(box[0], box[1]),
       place(box[0] + box[2], box[1] + box[3]),
@@ -2376,6 +2376,8 @@ export const setupHandlers = () => {
       region,
       timestamp: videoTime,
       ...place(x, y),
+      // The page showed a click effect, so it is in the video.
+      ...(drawn && { drawn: true }),
       ...(corners && {
         box: corners
           .flatMap(({ fx, fy }) => [fx, fy])

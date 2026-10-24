@@ -355,9 +355,17 @@
     "message": "Cancella tutti gli elementi sfocati",
     "description": "Suggerimento per cancellare tutti gli elementi sfocati"
   },
-  "highlightClicksTooltip": {
-    "message": "Evidenzia clic",
-    "description": "Suggerimento per evidenziare clic"
+  "clickCircleTooltip": {
+    "message": "Effetto clic: cerchio",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Effetto clic: onda",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Effetto clic: pressione",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Evidenzia cursore",

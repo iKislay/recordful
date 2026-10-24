@@ -355,9 +355,17 @@
     "message": "清除所有模糊的元素",
     "description": "Clear all blurred elements tooltip"
   },
-  "highlightClicksTooltip": {
-    "message": "突顯點擊",
-    "description": "Highlight clicks tooltip"
+  "clickCircleTooltip": {
+    "message": "點擊效果：圓圈",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "點擊效果：漣漪",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "點擊效果：按壓",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "突顯游標",

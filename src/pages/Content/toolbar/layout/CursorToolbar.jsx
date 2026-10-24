@@ -2,13 +2,17 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import * as Toolbar from "@radix-ui/react-toolbar";
 import TooltipWrap from "../components/TooltipWrap";
 
+import { toggledEffects } from "../../cursor/clickEffects";
+
 // Context
 import { contentStateContext } from "../../context/ContentState";
 
 // Icons
 import {
   CursorIcon,
-  TargetCursorIcon,
+  ClickCircleIcon,
+  ClickRippleIcon,
+  ClickPressureIcon,
   HighlightCursorIcon,
   SpotlightCursorIcon,
   HideCursorIcon,
@@ -53,16 +57,9 @@ const CursorToolbar = (props) => {
       ? contentState.cursorEffects
       : [];
 
-    let nextEffects = [];
-    if (shiftKey) {
-      if (currentEffects.includes(effect)) {
-        nextEffects = currentEffects.filter((item) => item !== effect);
-      } else {
-        nextEffects = [...currentEffects, effect];
-      }
-    } else {
-      nextEffects = [effect];
-    }
+    const nextEffects = shiftKey
+      ? toggledEffects(currentEffects, effect)
+      : [effect];
 
     lastClickedEffectRef.current = effect;
     const nextMode = deriveCursorMode(
@@ -122,23 +119,53 @@ const CursorToolbar = (props) => {
         </TooltipWrap>
         <Toolbar.Separator className="ToolbarSeparator" />
         <TooltipWrap
-          content={chrome.i18n.getMessage("highlightClicksTooltip")}
+          content={chrome.i18n.getMessage("clickCircleTooltip")}
           shortcut="1"
         >
           <div className="ToolbarToggleWrap">
             <Toolbar.ToggleItem
               className="ToolbarToggleItem"
-              value="target"
-              data-state={isEffectActive("target") ? "on" : "off"}
-              onClick={handleClick("target")}
+              value="circle"
+              data-state={isEffectActive("circle") ? "on" : "off"}
+              onClick={handleClick("circle")}
             >
-              <TargetCursorIcon />
+              <ClickCircleIcon />
+            </Toolbar.ToggleItem>
+          </div>
+        </TooltipWrap>
+        <TooltipWrap
+          content={chrome.i18n.getMessage("clickRippleTooltip")}
+          shortcut="2"
+        >
+          <div className="ToolbarToggleWrap">
+            <Toolbar.ToggleItem
+              className="ToolbarToggleItem"
+              value="ripple"
+              data-state={isEffectActive("ripple") ? "on" : "off"}
+              onClick={handleClick("ripple")}
+            >
+              <ClickRippleIcon />
+            </Toolbar.ToggleItem>
+          </div>
+        </TooltipWrap>
+        <TooltipWrap
+          content={chrome.i18n.getMessage("clickPressureTooltip")}
+          shortcut="3"
+        >
+          <div className="ToolbarToggleWrap">
+            <Toolbar.ToggleItem
+              className="ToolbarToggleItem"
+              value="pressure"
+              data-state={isEffectActive("pressure") ? "on" : "off"}
+              onClick={handleClick("pressure")}
+            >
+              <ClickPressureIcon />
             </Toolbar.ToggleItem>
           </div>
         </TooltipWrap>
         <TooltipWrap
           content={chrome.i18n.getMessage("highlightCursorTooltip")}
-          shortcut="2"
+          shortcut="4"
         >
           <div className="ToolbarToggleWrap">
             <Toolbar.ToggleItem
@@ -153,7 +180,7 @@ const CursorToolbar = (props) => {
         </TooltipWrap>
         <TooltipWrap
           content={chrome.i18n.getMessage("spotlightCursorTooltip")}
-          shortcut="3"
+          shortcut="5"
         >
           <div className="ToolbarToggleWrap">
             <Toolbar.ToggleItem

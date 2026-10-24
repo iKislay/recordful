@@ -1,3 +1,5 @@
+import { CLICK_EFFECTS } from "./clickEffects";
+
 // How often the pointer's place is noted while it moves, in milliseconds, and
 // how many places are sent to the background at once.
 const MOVE_SAMPLE_MS = 250;
@@ -109,9 +111,13 @@ export function startClickTracking(
       rect.width,
       rect.height,
     ];
+    // Whether the page showed a click effect, which is then in the video: the
+    // editor must not add a second one.
+    const effects = contentStateRef?.current?.cursorEffects;
+    const drawn = CLICK_EFFECTS.some((effect) => effects?.includes(effect));
     chrome.runtime.sendMessage({
       type: "click-event",
-      payload: { ...payload, box, timestamp: Date.now() },
+      payload: { ...payload, box, drawn, timestamp: Date.now() },
     });
   };
 

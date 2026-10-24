@@ -355,9 +355,17 @@
     "message": "Очистити всі розмиті елементи",
     "description": "Clear all blurred elements tooltip"
   },
-  "highlightClicksTooltip": {
-    "message": "Підсвічувати кліки",
-    "description": "Highlight clicks tooltip"
+  "clickCircleTooltip": {
+    "message": "Ефект кліку: коло",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Ефект кліку: брижі",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Ефект кліку: натискання",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Підсвічувати курсор",

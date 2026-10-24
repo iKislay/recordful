@@ -81,6 +81,8 @@ const normalizeClicks = (clickEvents) =>
       y: click.fy,
       // The clicked control: left, top, right, bottom, as fractions too.
       ...(click.box?.every(Number.isFinite) && { box: click.box }),
+      // The page showed a click effect, so it is in the video.
+      ...(click.drawn === true && { drawn: true }),
     }));
 
 const normalizeMoves = (pointerMoves) =>

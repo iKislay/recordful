@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useContext, useMemo, useRef } from "react";
 
 import { contentStateContext } from "../context/ContentState";
+import {
+  CLICK_EFFECTS,
+  pictureHeight,
+  showClickEffect,
+} from "../cursor/clickEffects";
 
 const CursorModes = () => {
   const [contentState, setContentState] = useContext(contentStateContext);
   const effectsRef = useRef(new Set());
   // Refs to avoid querySelector per mousemove.
   const cursorHighlightRef = useRef(null);
-  const cursorClickTargetRef = useRef(null);
+  // What is recorded, which sets how large a click's effect is.
+  const pictureRef = useRef({ surface: "default", region: false, regionHeight: 0 });
   const spotlightRef = useRef(null);
 
   useEffect(() => {
@@ -17,30 +23,38 @@ const CursorModes = () => {
     effectsRef.current = new Set(nextEffects);
   }, [contentState.cursorEffects]);
 
+  useEffect(() => {
+    pictureRef.current = {
+      ...pictureRef.current,
+      region: Boolean(contentState.customRegion),
+      regionHeight: contentState.regionHeight,
+    };
+  }, [contentState.customRegion, contentState.regionHeight]);
+
+  useEffect(() => {
+    const surfaceOf = (surface) => {
+      pictureRef.current = { ...pictureRef.current, surface: surface || "default" };
+    };
+    chrome.storage.local
+      .get("surface")
+      .then(({ surface }) => surfaceOf(surface))
+      .catch(() => {});
+    const onChanged = (changes, area) => {
+      if (area === "local" && changes.surface) surfaceOf(changes.surface.newValue);
+    };
+    chrome.storage.onChanged.addListener(onChanged);
+    return () => chrome.storage.onChanged.removeListener(onChanged);
+  }, []);
+
   const mouseDownHandler = (e) => {
-    if (effectsRef.current.has("target")) {
-      const target = cursorClickTargetRef.current;
-      if (!target) return;
-      target.style.transform =
-        "translate(-50%, -50%) scale(1)";
-      target.style.opacity = "1";
-    }
-  };
-
-  const mouseUpHandler = (e) => {
-    if (effectsRef.current.has("target")) {
-      const target = cursorClickTargetRef.current;
-      if (!target) return;
-      target.style.transform =
-        "translate(-50%, -50%) scale(0)";
-      target.style.opacity = "0";
-
-      window.setTimeout(() => {
-        const targetReset = cursorClickTargetRef.current;
-        if (!targetReset) return;
-        targetReset.style.transform =
-          "translate(-50%, -50%) scale(1)";
-      }, 350);
+    const effect = CLICK_EFFECTS.find((each) => effectsRef.current.has(each));
+    if (effect) {
+      showClickEffect(
+        effect,
+        e.clientX,
+        e.clientY,
+        pictureHeight(pictureRef.current),
+      );
     }
   };
 
@@ -56,14 +70,6 @@ const CursorModes = () => {
     const scrollLeft = window.scrollX;
     const mouseX = lastMouseRef.current.x;
     const mouseY = lastMouseRef.current.y;
-
-    if (effectsRef.current.has("target")) {
-      const target = cursorClickTargetRef.current;
-      if (target) {
-        target.style.top = mouseY + scrollTop + "px";
-        target.style.left = mouseX + scrollLeft + "px";
-      }
-    }
 
     if (effectsRef.current.has("highlight")) {
       const highlight = cursorHighlightRef.current;
@@ -113,13 +119,11 @@ const CursorModes = () => {
   useEffect(() => {
     document.addEventListener("mousedown", mouseDownHandler);
     document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
     document.addEventListener("scroll", scrollHandler);
 
     return () => {
       document.removeEventListener("mousedown", mouseDownHandler);
       document.removeEventListener("mousemove", mouseMoveHandler);
-      document.removeEventListener("mouseup", mouseUpHandler);
       document.removeEventListener("scroll", scrollHandler);
       if (stateRafRef.current !== null) {
         cancelAnimationFrame(stateRafRef.current);
@@ -133,7 +137,6 @@ const CursorModes = () => {
   // spotlight (depends on lastMousePosition) re-styles freely.
   const effects = contentState.cursorEffects;
   const showHighlight = Array.isArray(effects) && effects.includes("highlight");
-  const showTarget = Array.isArray(effects) && effects.includes("target");
   const showSpotlight = Array.isArray(effects) && effects.includes("spotlight");
 
   const highlightStyle = useMemo(
@@ -156,39 +159,12 @@ const CursorModes = () => {
     [showHighlight],
   );
 
-  const targetStyle = useMemo(
-    () => ({
-      display: "block",
-      visibility: showTarget ? "visible" : "hidden",
-      position: "absolute",
-      top: 0,
-      opacity: 0,
-      left: 0,
-      width: "40px",
-      height: "40px",
-      pointerEvents: "none",
-      zIndex: 99999999999,
-      border: "3px solid red",
-      transform: "none",
-      borderRadius: "50%",
-      animation: "none",
-      transition:
-        "opacity .5s cubic-bezier(.25,.8,.25,1), transform .35s cubic-bezier(.25,.8,.25,1)",
-    }),
-    [showTarget],
-  );
-
   return (
     <div>
       <div
         ref={cursorHighlightRef}
         className="cursor-highlight"
         style={highlightStyle}
-      ></div>
-      <div
-        ref={cursorClickTargetRef}
-        className="cursor-click-target"
-        style={targetStyle}
       ></div>
       <div
         ref={spotlightRef}
@@ -207,19 +183,6 @@ const CursorModes = () => {
           zIndex: 99999999999,
         }}
       ></div>
-      <style>
-        {`
-					@keyframes scaleDown {
-							from {
-									transform: translate(-50%, -50%) scale(1);
-									opacity: 1;
-							}
-							to {
-									transform: translate(-50%, -50%) scale(0);
-									opacity: 0;
-							}
-					`}
-      </style>
     </div>
   );
 };

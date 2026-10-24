@@ -355,9 +355,17 @@
     "message": "Hapus semua elemen yang diblur",
     "description": "Petunjuk untuk menghapus semua elemen yang diblur"
   },
-  "highlightClicksTooltip": {
-    "message": "Sorot klik",
-    "description": "Petunjuk untuk sorotan klik"
+  "clickCircleTooltip": {
+    "message": "Efek klik: lingkaran",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Efek klik: riak",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Efek klik: tekanan",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Sorotan kursor",

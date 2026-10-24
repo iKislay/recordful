@@ -355,9 +355,17 @@
     "message": "அனைத்து மூடிய உருக்கங்களையும் அகற்று",
     "description": "அனைத்து மூடிய உருக்கங்களையும் அகற்று டூல்டிப்"
   },
-  "highlightClicksTooltip": {
-    "message": "கிளிக்குகளை குறிக்க",
-    "description": "கிளிக்குகளை குறிக்க டூல்டிப்"
+  "clickCircleTooltip": {
+    "message": "கிளிக் விளைவு: வட்டம்",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "கிளிக் விளைவு: அலை",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "கிளிக் விளைவு: அழுத்தம்",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "கோர்சரை குறிக்க",

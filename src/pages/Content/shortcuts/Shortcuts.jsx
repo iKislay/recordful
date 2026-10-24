@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useRef } from "react";
 
 import { contentStateContext } from "../context/ContentState";
+import { toggledEffects } from "../cursor/clickEffects";
 // Static import; see Wrapper.jsx for why content scripts can't
 // dynamic-import on strict-CSP pages.
 import { undoCanvas, redoCanvas, saveCanvas } from "../canvas/modules/History";
@@ -131,9 +132,7 @@ const Shortcuts = ({ shortcuts }) => {
       const current = Array.isArray(state.cursorEffects)
         ? state.cursorEffects
         : [];
-      const next = current.includes(effect)
-        ? current.filter((item) => item !== effect)
-        : [...current, effect];
+      const next = toggledEffects(current, effect);
       const nextMode = deriveCursorMode(next, effect);
 
       setContentState((prev) => ({
@@ -329,12 +328,18 @@ const Shortcuts = ({ shortcuts }) => {
             clearCursorEffects();
             break;
           case "1":
-            toggleCursorEffect("target");
+            toggleCursorEffect("circle");
             break;
           case "2":
-            toggleCursorEffect("highlight");
+            toggleCursorEffect("ripple");
             break;
           case "3":
+            toggleCursorEffect("pressure");
+            break;
+          case "4":
+            toggleCursorEffect("highlight");
+            break;
+          case "5":
             toggleCursorEffect("spotlight");
             break;
           default:

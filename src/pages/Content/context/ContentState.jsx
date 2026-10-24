@@ -26,6 +26,7 @@ import {
 import { triggerSupportDownload } from "../../utils/triggerSupportDownload";
 import { apiIssueCopy } from "../utils/apiIssueCopy";
 import { openCameraPreview } from "../camera-preview/cameraPreview";
+import { normalizeCursorEffects } from "../cursor/clickEffects";
 
 // Re-asking can't change these, so the retry would only re-open the modal.
 // Anything else (a busy or still-waking device) is worth another pass.
@@ -43,13 +44,6 @@ export const timerContext = createContext([0, () => {}]);
 export const contentStateRef = { current: null };
 export let setContentState = () => {};
 export let setTimer = () => {};
-
-const CURSOR_EFFECTS = ["target", "highlight", "spotlight"];
-
-const normalizeCursorEffects = (effects) => {
-  if (!Array.isArray(effects)) return [];
-  return effects.filter((effect) => CURSOR_EFFECTS.includes(effect));
-};
 
 const deriveCursorMode = (effects, fallbackMode) => {
   if (effects.length === 0) return "none";

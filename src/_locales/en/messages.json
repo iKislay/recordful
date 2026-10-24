@@ -347,9 +347,17 @@
     "message": "Clear all blurred elements",
     "description": "Clear all blurred elements tooltip"
   },
-  "highlightClicksTooltip": {
-    "message": "Highlight clicks",
-    "description": "Highlight clicks tooltip"
+  "clickCircleTooltip": {
+    "message": "Click effect: circle",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Click effect: ripple",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Click effect: pressure",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Highlight cursor",

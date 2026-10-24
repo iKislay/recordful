@@ -355,9 +355,17 @@
     "message": "Alle unscharfen Elemente löschen",
     "description": "Tooltip zum Löschen aller unscharfen Elemente"
   },
-  "highlightClicksTooltip": {
-    "message": "Klicks hervorheben",
-    "description": "Tooltip zum Hervorheben von Klicks"
+  "clickCircleTooltip": {
+    "message": "Klickeffekt: Kreis",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Klickeffekt: Welle",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Klickeffekt: Druck",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Cursor hervorheben",

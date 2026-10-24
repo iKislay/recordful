@@ -32,7 +32,9 @@ import {
   PauseIcon,
   ResumeIcon,
   CursorIcon,
-  TargetCursorIcon,
+  ClickCircleIcon,
+  ClickRippleIcon,
+  ClickPressureIcon,
   HighlightCursorIcon,
   SpotlightCursorIcon,
   RestartIcon,
@@ -630,7 +632,11 @@ const ToolbarWrap = () => {
                 shortcut={contentState.toggleCursorModeShortcut}
                 disabled={contentState.recordingType === "camera"}
               >
-                {contentState.cursorMode === "target" && <TargetCursorIcon />}
+                {contentState.cursorMode === "circle" && <ClickCircleIcon />}
+                {contentState.cursorMode === "ripple" && <ClickRippleIcon />}
+                {contentState.cursorMode === "pressure" && (
+                  <ClickPressureIcon />
+                )}
                 {contentState.cursorMode === "highlight" && (
                   <HighlightCursorIcon />
                 )}

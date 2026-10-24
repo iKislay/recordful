@@ -355,9 +355,17 @@
     "message": "Borrar todos los elementos desenfocados",
     "description": "Consejo para borrar todos los elementos desenfocados"
   },
-  "highlightClicksTooltip": {
-    "message": "Resaltar clics",
-    "description": "Consejo para resaltar clics"
+  "clickCircleTooltip": {
+    "message": "Efecto de clic: círculo",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Efecto de clic: onda",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Efecto de clic: presión",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "Resaltar cursor",

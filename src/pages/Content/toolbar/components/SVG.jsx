@@ -8,7 +8,6 @@ import {
   Circle,
   Clock,
   CornersOut,
-  Crosshair,
   Cursor,
   CursorClick,
   DotsNine,
@@ -33,6 +32,7 @@ import {
   SpeakerHigh,
   Square,
   StopCircle,
+  Target,
   TextT,
   Trash,
   Triangle,
@@ -120,7 +120,9 @@ const Stroke3Icon = (props) => (
   />
 );
 
-const TargetCursorIcon = make(Crosshair);
+const ClickCircleIcon = make(Circle);
+const ClickRippleIcon = make(Target);
+const ClickPressureIcon = make(Circle, "fill");
 const HighlightCursorIcon = make(CursorClick);
 const HideCursorIcon = make(EyeSlash);
 const TextIcon = make(TextT);
@@ -172,7 +174,9 @@ export {
   Stroke1Icon,
   Stroke2Icon,
   Stroke3Icon,
-  TargetCursorIcon,
+  ClickCircleIcon,
+  ClickRippleIcon,
+  ClickPressureIcon,
   HighlightCursorIcon,
   HideCursorIcon,
   TextIcon,

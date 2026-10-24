@@ -355,9 +355,17 @@
     "message": "Tüm bulanık öğeleri temizle",
     "description": "Tüm bulanık öğeleri açıklama"
   },
-  "highlightClicksTooltip": {
-    "message": "Tıklamaları vurgula",
-    "description": "Tıklamaları vurgula açıklama"
+  "clickCircleTooltip": {
+    "message": "Tıklama efekti: daire",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "Tıklama efekti: dalga",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "Tıklama efekti: basınç",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "İmleci vurgula",

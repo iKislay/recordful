@@ -355,9 +355,17 @@
     "message": "모든 흐린 요소 지우기",
     "description": "Clear all blurred elements tooltip"
   },
-  "highlightClicksTooltip": {
-    "message": "클릭 강조",
-    "description": "Highlight clicks tooltip"
+  "clickCircleTooltip": {
+    "message": "클릭 효과: 원",
+    "description": "Click effect circle tooltip"
+  },
+  "clickRippleTooltip": {
+    "message": "클릭 효과: 물결",
+    "description": "Click effect ripple tooltip"
+  },
+  "clickPressureTooltip": {
+    "message": "클릭 효과: 눌림",
+    "description": "Click effect pressure tooltip"
   },
   "highlightCursorTooltip": {
     "message": "커서 강조",
