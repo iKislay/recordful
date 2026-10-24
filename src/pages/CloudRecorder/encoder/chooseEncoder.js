@@ -281,6 +281,9 @@ export const inspectTrackPlan = async ({
   };
 };
 
+// Outlasts the 12s no-first-chunk watchdog so a software rebuild can emit a chunk first.
+const STICKY_RECOVERY_GRACE_MS = 20000;
+
 export const chooseTrackEncoder = async ({
   track,
   stream,
@@ -352,8 +355,10 @@ export const chooseTrackEncoder = async ({
       Boolean(plan.screenPreferSoftware),
     trackKind: track,
   });
+  let chunksOut = 0;
   recorder.ondataavailable = (event) => {
     if (event.data && event.data.size > 0) {
+      chunksOut += 1;
       const maybe = onDataAvailable(event.data);
       if (maybe && typeof maybe.then === "function") {
         recorder._pendingWrites.add(maybe);
@@ -368,6 +373,7 @@ export const chooseTrackEncoder = async ({
       }
     }
   };
+  let pendingFailure = null;
   recorder.onerror = (event) => {
     const err = event?.error;
     // Salvage stop() already ran; don't sticky-disable or double-report.
@@ -378,6 +384,22 @@ export const chooseTrackEncoder = async ({
       `[chooseEncoder] WebCodecs ${track} runtime error:`,
       err,
     );
+    // An early error can be followed by a good software rebuild; judge by chunks after it.
+    if (pendingFailure) return;
+    pendingFailure = {
+      chunksAtError: chunksOut,
+      err,
+      timer: setTimeout(() => settleFailure(), STICKY_RECOVERY_GRACE_MS),
+    };
+  };
+  const settleFailure = () => {
+    const pending = pendingFailure;
+    if (!pending) return;
+    pendingFailure = null;
+    clearTimeout(pending.timer);
+    const { err } = pending;
+    // Chunks flowed after the error, so the device is not held against WebCodecs.
+    if (chunksOut > pending.chunksAtError) return;
     // Pro marks failures per-session (in-memory) instead of persisting
     // useWebCodecsRecorder=false; fresh HW probes run each session.
     void markFastRecorderFailure(`cloud-${track}-runtime`, {
@@ -385,6 +407,11 @@ export const chooseTrackEncoder = async ({
       detail: err?.detail || null,
       track,
     });
+  };
+  const stopRecorder = recorder.stop.bind(recorder);
+  recorder.stop = () => {
+    settleFailure();
+    return stopRecorder();
   };
 
   return {

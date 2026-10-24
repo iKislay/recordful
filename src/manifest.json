@@ -3,7 +3,7 @@
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
   "default_locale": "en",
-  "version": "4.6.21",
+  "version": "4.6.22",
   "background": {
     "service_worker": "background.bundle.js"
   },
@@ -99,6 +99,9 @@
     },
     "toggle-hide-ui": {
       "description": "Toggle hide UI (set a shortcut for Alt+Shift+H)"
+    },
+    "toggle-mic": {
+      "description": "Toggle microphone (set a shortcut for Alt+Shift+A)"
     },
     "toggle-cursor-mode": {
       "description": "Toggle cursor options (set a shortcut for Alt+Shift+C)"

@@ -1334,6 +1334,7 @@ const ContentState = (props) => {
     microphonePermission: true,
     askMicrophone: true,
     recordingShortcut: "⌥⇧D",
+    toggleMicShortcut: "",
     toggleDrawingModeShortcut: "",
     toggleBlurModeShortcut: "",
     toggleCursorModeShortcut: "",

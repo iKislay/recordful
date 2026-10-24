@@ -2,13 +2,12 @@ const isEdge = navigator.userAgent.includes("Edg");
 
 const EDGE_CLIENT_ID =
   "560517327251-856rbcshgori6mft9slnsaq34p21td3n.apps.googleusercontent.com";
-const REDIRECT_URI = isEdge ? chrome.identity.getRedirectURL() : "";
 
 const signInEdge = async () => {
   const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
   authUrl.searchParams.set("client_id", EDGE_CLIENT_ID);
   authUrl.searchParams.set("response_type", "token");
-  authUrl.searchParams.set("redirect_uri", REDIRECT_URI);
+  authUrl.searchParams.set("redirect_uri", chrome.identity.getRedirectURL());
   authUrl.searchParams.set(
     "scope",
     "https://www.googleapis.com/auth/drive.file"
@@ -76,7 +75,17 @@ const signIn = async () => {
     if (isEdge) {
       return await signInEdge();
     } else {
-      return await signInChrome();
+      try {
+        return await signInChrome();
+      } catch (chromeErr) {
+        // User said no on the consent screen: don't pop a second window.
+        if (/did not approve|cancel/i.test(String(chromeErr?.message))) {
+          throw chromeErr;
+        }
+        // getAuthToken is tied to the profile's account, which a managed
+        // Chromebook may not allow. Let the user pick any Google account.
+        return await signInEdge();
+      }
     }
   } catch (error) {
     console.error("[Drive] drive_auth_failed:", error.message);

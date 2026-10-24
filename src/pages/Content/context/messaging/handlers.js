@@ -711,6 +711,31 @@ export const setupHandlers = () => {
     });
   });
 
+  // Same effect as the toolbar's mic button, for the keyboard.
+  registerMessage("toggle-mic", () => {
+    const current = contentStateRef.current;
+    if (
+      !current.microphonePermission ||
+      current.defaultAudioInput === "none"
+    ) {
+      return;
+    }
+    const pressed = !current.micActive;
+    setContentState((prev) => ({ ...prev, micActive: pressed }));
+    chrome.storage.local.set({ micActive: pressed });
+    chrome.runtime.sendMessage({
+      type: "set-mic-active-tab",
+      active: pressed,
+      defaultAudioInput: current.defaultAudioInput,
+    });
+    current.openToast?.(
+      pressed
+        ? chrome.i18n.getMessage("micOnToast")
+        : chrome.i18n.getMessage("micOffToast"),
+      () => {},
+    );
+  });
+
   registerMessage("toggle-cursor-mode", () => {
     if (contentStateRef.current.recordingType === "camera") return;
     const state = getState();
@@ -887,8 +912,13 @@ export const setupHandlers = () => {
       (command) => command.name === "toggle-cursor-mode",
     );
 
+    const toggleMicCommand = message.commands.find(
+      (command) => command.name === "toggle-mic",
+    );
+
     setContentState((prev) => ({
       ...prev,
+      toggleMicShortcut: toggleMicCommand?.shortcut || "",
       recordingShortcut: startRecordingCommand.shortcut,
       dismissRecordingShortcut: cancelRecordingCommand.shortcut,
       toggleDrawingModeShortcut: toggleDrawingModeCommand?.shortcut || "",
