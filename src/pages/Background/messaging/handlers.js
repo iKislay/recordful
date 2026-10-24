@@ -2226,6 +2226,15 @@ export const setupHandlers = () => {
     return true;
   });
 
+  // How much later than its own time a thing shows in the video. The frame
+  // Chrome hands the recorder at some moment shows the screen as it was
+  // about two frames earlier, so the real cursor in the video trails the
+  // pointer events by this much, and the cursor drawn from them runs ahead
+  // of it. Measured on Windows (Chrome 155, 30 fps screen capture) against
+  // the OS pointer driven to known pixels: 55 to 60 ms. Other systems are
+  // left as the clocks read, as nothing has measured them.
+  const CAPTURE_DELAY_S = /Windows/.test(navigator.userAgent) ? 0.06 : 0;
+
   // Where a click fell in the recording, from the clock: the local recorder
   // does not answer "get-video-time", only the cloud one does.
   // Measured from the video's first frame where the recorder has told it
@@ -2243,7 +2252,9 @@ export const setupHandlers = () => {
       Number.isFinite(videoClockStart) && videoClockStart >= recordingStartTime
         ? videoClockStart
         : recordingStartTime;
-    return (Date.now() - start - (totalPausedMs || 0)) / 1000;
+    return (
+      (Date.now() - start - (totalPausedMs || 0)) / 1000 + CAPTURE_DELAY_S
+    );
   };
 
   // How a point of the sender's page falls on the recorded picture: a
@@ -2341,7 +2352,11 @@ export const setupHandlers = () => {
     // Only the cloud recorder answers; the clock stands in for the local one.
     const videoTime = await new Promise((resolve) =>
       sendMessageRecord({ type: "get-video-time" }, (response) =>
-        resolve(response?.videoTime ?? clockTime),
+        resolve(
+          Number.isFinite(response?.videoTime)
+            ? response.videoTime + CAPTURE_DELAY_S
+            : clockTime,
+        ),
       ).catch(() => resolve(clockTime)),
     );
     const place = await pictureOf(payload, sender);

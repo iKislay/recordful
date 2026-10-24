@@ -16,25 +16,14 @@ export const resolveCaptureSurface = (displaySurface, { isTab } = {}) => {
   return isTab ? "browser" : null;
 };
 
-// Whether the real pointer is in the picture, kept as capturedCursor so the
-// editor can paint it out under the cursor it draws. Chrome draws the system
-// pointer into every window and screen capture, whatever the track says
-// (Chrome 155 reports `cursor: "never"` for a whole screen and draws it
-// anyway, and honours no `cursor` constraint), and never into a tab's.
-const cursorOfSurface = (surface) =>
-  surface === "browser" ? "hidden" : "shown";
-
-// null means unknown, and the keys are left cleared so the scene payload
+// null means unknown, and the key is left cleared so the scene payload
 // omits surface rather than guessing.
 export const setCapturedSurface = async (surface) => {
   try {
     if (surface) {
-      await chrome.storage.local.set({
-        capturedSurface: surface,
-        capturedCursor: cursorOfSurface(surface),
-      });
+      await chrome.storage.local.set({ capturedSurface: surface });
     } else {
-      await chrome.storage.local.remove(["capturedSurface", "capturedCursor"]);
+      await chrome.storage.local.remove(["capturedSurface"]);
     }
   } catch {}
 };

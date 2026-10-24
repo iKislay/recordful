@@ -174,18 +174,15 @@ export const archiveTakeMeta = async () => {
   let ref = null;
   let clickEvents = [];
   let autoZoom = true;
-  let capturedCursor = null;
   try {
     ({
       lastRecordingBackendRef: ref,
       clickEvents = [],
       autoZoom = true,
-      capturedCursor = null,
     } = await chrome.storage.local.get({
       lastRecordingBackendRef: null,
       clickEvents: [],
       autoZoom: true,
-      capturedCursor: null,
     }));
   } catch {
     return;
@@ -213,7 +210,6 @@ export const archiveTakeMeta = async () => {
           ? pointerMoves.slice(-MOVES_MAX)
           : [],
         autoZoom: autoZoom !== false,
-        realCursor: capturedCursor === "hidden" ? "hidden" : "shown",
         at: Date.now(),
       }),
     );

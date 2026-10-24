@@ -6384,7 +6384,6 @@ const CloudRecorder = () => {
       projectId,
       clickEvents = [],
       capturedSurface = null,
-      capturedCursor = null,
       multiMode,
       multiSceneCount = 0,
       multiLastSceneId = null,
@@ -6396,7 +6395,6 @@ const CloudRecorder = () => {
       "projectId",
       "clickEvents",
       "capturedSurface",
-      "capturedCursor",
       "multiMode",
       "multiSceneCount",
       "multiLastSceneId",
@@ -6552,9 +6550,6 @@ const CloudRecorder = () => {
         // Omitted when unknown: the app defaults to monitor, and a
         // guess would be worse than that default.
         ...(capturedSurface ? { surface: capturedSurface } : {}),
-        // Whether the real pointer is in the picture: the editor draws its
-        // own cursor only where it is not, so the video never shows two.
-        realCursor: capturedCursor === "hidden" ? "hidden" : "shown",
         instantMode: instantMode.current,
         newProject: !recordingToScene && (!multiMode || multiSceneCount === 0),
         insertAfterSceneId,
