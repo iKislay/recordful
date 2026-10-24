@@ -233,11 +233,11 @@ const RecordingType = (props) => {
         <div>
           <iframe
             className="recordful-iframe"
+            // No z-index: this meter must stay under the open dropdown lists
+            // (z-index 50 in Select.scss), which sit just above it.
             style={{
               width: "100%",
               height: "30px",
-              zIndex: 999999,
-              position: "relative",
             }}
             allow="camera; microphone"
             src={chrome.runtime.getURL(
