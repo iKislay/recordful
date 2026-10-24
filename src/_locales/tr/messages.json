@@ -2124,5 +2124,93 @@
   "editorHandoffOfflineDescription": {
     "message": "Kaydınız güvende. Tekrar çevrimiçi olduğunuzda Recordful düzenleyicisinde açılacak.",
     "description": "Text shown before opening the web editor while offline"
+  },
+  "teleprompterLabel": {
+    "message": "Teleprompter",
+    "description": "Switch label: opens the floating teleprompter window"
+  },
+  "teleprompterUnavailableLabel": {
+    "message": "Teleprompter (bu sayfada kullanılamıyor)",
+    "description": "Switch label shown when the page cannot open the teleprompter window"
+  },
+  "teleprompterIntroTitle": {
+    "message": "Teleprompter nasıl çalışır",
+    "description": "Modal title shown the first time the teleprompter is switched on"
+  },
+  "teleprompterIntroDescription": {
+    "message": "Metniniz, bir pencere veya sekme paylaştığınızda, bir alan kaydettiğinizde ya da yalnızca kameranızı kaydettiğinizde kayda girmeyen kayan bir pencerede açılır. Tüm ekranı paylaşırsanız pencere videoda görünürdü, bu yüzden başlarken kapanır. Metniniz her zaman kaydedilir.",
+    "description": "Modal body: where the script window shows and when it closes"
+  },
+  "teleprompterClosedToast": {
+    "message": "Teleprompter kayda girmesin diye kapatıldı",
+    "description": "Toast: the teleprompter window was closed because the whole screen is being recorded"
+  },
+  "teleprompterPlaceholder": {
+    "message": "Metninizi yazın veya yapıştırın",
+    "description": "Placeholder in the empty teleprompter script box"
+  },
+  "teleprompterPlay": {
+    "message": "Kaydırmayı başlat",
+    "description": "Teleprompter button: start scrolling the script"
+  },
+  "teleprompterPause": {
+    "message": "Kaydırmayı duraklat",
+    "description": "Teleprompter button: pause scrolling the script"
+  },
+  "teleprompterMore": {
+    "message": "Diğer metin seçenekleri",
+    "description": "Teleprompter button: open the script options menu"
+  },
+  "teleprompterTextSize": {
+    "message": "Metin boyutu",
+    "description": "Teleprompter menu row: text size"
+  },
+  "teleprompterSpeed": {
+    "message": "Hız",
+    "description": "Teleprompter menu row: scroll speed"
+  },
+  "teleprompterSmaller": {
+    "message": "Daha küçük metin",
+    "description": "Teleprompter button: decrease text size"
+  },
+  "teleprompterLarger": {
+    "message": "Daha büyük metin",
+    "description": "Teleprompter button: increase text size"
+  },
+  "teleprompterSlower": {
+    "message": "Daha yavaş",
+    "description": "Teleprompter button: scroll slower"
+  },
+  "teleprompterFaster": {
+    "message": "Daha hızlı",
+    "description": "Teleprompter button: scroll faster"
+  },
+  "teleprompterWpmUnit": {
+    "message": "kelime/dk",
+    "description": "Unit shown after the scroll speed, words per minute"
+  },
+  "teleprompterScrollOnStart": {
+    "message": "Kayıt başlayınca kaydır",
+    "description": "Teleprompter menu option: start scrolling when the recording starts"
+  },
+  "teleprompterRewind": {
+    "message": "En üste kaydır",
+    "description": "Teleprompter menu option: scroll the script back to the top"
+  },
+  "teleprompterHide": {
+    "message": "Metni gizle",
+    "description": "Teleprompter menu option: close the teleprompter window"
+  },
+  "teleprompterPlayDisabled": {
+    "message": "Kayda başladığınızda otomatik olarak kayar",
+    "description": "Tooltip on the disabled teleprompter play button before recording starts"
+  },
+  "teleprompterClear": {
+    "message": "Metni temizle",
+    "description": "Script menu item: empty the script"
+  },
+  "teleprompterClearConfirm": {
+    "message": "Temizlemek için tekrar tıkla",
+    "description": "Script menu item after the first click: asks for a second click to empty the script"
   }
 }

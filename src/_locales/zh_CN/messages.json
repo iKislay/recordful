@@ -2123,5 +2123,93 @@
   "editorHandoffOfflineDescription": {
     "message": "你的录制内容很安全。恢复联网后，它会立即在 Recordful 编辑器中打开。",
     "description": "Text shown before opening the web editor while offline"
+  },
+  "teleprompterLabel": {
+    "message": "提词器",
+    "description": "Switch label: opens the floating teleprompter window"
+  },
+  "teleprompterUnavailableLabel": {
+    "message": "提词器（此页面不可用）",
+    "description": "Switch label shown when the page cannot open the teleprompter window"
+  },
+  "teleprompterIntroTitle": {
+    "message": "提词器的工作方式",
+    "description": "Modal title shown the first time the teleprompter is switched on"
+  },
+  "teleprompterIntroDescription": {
+    "message": "你的讲稿会在一个悬浮窗口中打开。共享窗口或标签页、录制某个区域或只录制摄像头时，该窗口不会出现在录制中。如果共享整个屏幕，窗口会出现在视频里，所以开始时会将其关闭。你的讲稿始终会被保存。",
+    "description": "Modal body: where the script window shows and when it closes"
+  },
+  "teleprompterClosedToast": {
+    "message": "已关闭提词器，避免被录进视频",
+    "description": "Toast: the teleprompter window was closed because the whole screen is being recorded"
+  },
+  "teleprompterPlaceholder": {
+    "message": "输入或粘贴你的讲稿",
+    "description": "Placeholder in the empty teleprompter script box"
+  },
+  "teleprompterPlay": {
+    "message": "开始滚动",
+    "description": "Teleprompter button: start scrolling the script"
+  },
+  "teleprompterPause": {
+    "message": "暂停滚动",
+    "description": "Teleprompter button: pause scrolling the script"
+  },
+  "teleprompterMore": {
+    "message": "更多讲稿选项",
+    "description": "Teleprompter button: open the script options menu"
+  },
+  "teleprompterTextSize": {
+    "message": "文字大小",
+    "description": "Teleprompter menu row: text size"
+  },
+  "teleprompterSpeed": {
+    "message": "速度",
+    "description": "Teleprompter menu row: scroll speed"
+  },
+  "teleprompterSmaller": {
+    "message": "缩小文字",
+    "description": "Teleprompter button: decrease text size"
+  },
+  "teleprompterLarger": {
+    "message": "放大文字",
+    "description": "Teleprompter button: increase text size"
+  },
+  "teleprompterSlower": {
+    "message": "更慢",
+    "description": "Teleprompter button: scroll slower"
+  },
+  "teleprompterFaster": {
+    "message": "更快",
+    "description": "Teleprompter button: scroll faster"
+  },
+  "teleprompterWpmUnit": {
+    "message": "字/分钟",
+    "description": "Unit shown after the scroll speed, words per minute"
+  },
+  "teleprompterScrollOnStart": {
+    "message": "开始录制时自动滚动",
+    "description": "Teleprompter menu option: start scrolling when the recording starts"
+  },
+  "teleprompterRewind": {
+    "message": "滚动回顶部",
+    "description": "Teleprompter menu option: scroll the script back to the top"
+  },
+  "teleprompterHide": {
+    "message": "隐藏讲稿",
+    "description": "Teleprompter menu option: close the teleprompter window"
+  },
+  "teleprompterPlayDisabled": {
+    "message": "开始录制后会自动滚动",
+    "description": "Tooltip on the disabled teleprompter play button before recording starts"
+  },
+  "teleprompterClear": {
+    "message": "清除讲稿",
+    "description": "Script menu item: empty the script"
+  },
+  "teleprompterClearConfirm": {
+    "message": "再次点击以清除",
+    "description": "Script menu item after the first click: asks for a second click to empty the script"
   }
 }

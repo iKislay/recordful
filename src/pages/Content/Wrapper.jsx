@@ -14,6 +14,7 @@ import Modal from "./modal/Modal";
 import Warning from "./warning/Warning";
 
 import Region from "./region/Region";
+import TeleprompterController from "./teleprompter/TeleprompterController";
 
 // Using ShadowDOM
 import root from "react-shadow";
@@ -336,6 +337,7 @@ const Wrapper = () => {
 
   return (
     <div ref={parentRef}>
+      <TeleprompterController />
       {contentState.showExtension && (
         <iframe
           className="recordful-iframe"

@@ -8,6 +8,7 @@ import { MicrophoneSlash, VideoCameraSlash } from "@phosphor-icons/react";
 import TooltipWrap from "../components/TooltipWrap";
 
 import ApiIssueWarning from "../components/ApiIssueWarning";
+import TeleprompterRow from "../../teleprompter/TeleprompterRow";
 
 import { AlertIcon, TimeIcon } from "../../toolbar/components/SVG";
 
@@ -246,6 +247,8 @@ const RecordingType = (props) => {
           ></iframe>
         </div>
       )}
+      <div className="popup-content-divider"></div>
+      <TeleprompterRow />
       {contentState.isLoggedIn &&
         !contentState.recordingToScene &&
         // Instant mode bakes the whole recording into one non-editable

@@ -2124,5 +2124,93 @@
   "editorHandoffOfflineDescription": {
     "message": "आपकी रिकॉर्डिंग सुरक्षित है। ऑनलाइन होते ही यह Recordful एडिटर में खुल जाएगी।",
     "description": "Text shown before opening the web editor while offline"
+  },
+  "teleprompterLabel": {
+    "message": "टेलीप्रॉम्प्टर",
+    "description": "Switch label: opens the floating teleprompter window"
+  },
+  "teleprompterUnavailableLabel": {
+    "message": "टेलीप्रॉम्प्टर (इस पेज पर उपलब्ध नहीं)",
+    "description": "Switch label shown when the page cannot open the teleprompter window"
+  },
+  "teleprompterIntroTitle": {
+    "message": "टेलीप्रॉम्प्टर कैसे काम करता है",
+    "description": "Modal title shown the first time the teleprompter is switched on"
+  },
+  "teleprompterIntroDescription": {
+    "message": "आपकी स्क्रिप्ट एक फ़्लोटिंग विंडो में खुलती है, जो विंडो या टैब शेयर करने, किसी हिस्से को रिकॉर्ड करने या सिर्फ़ कैमरा रिकॉर्ड करने पर रिकॉर्डिंग में नहीं आती। अगर आप पूरी स्क्रीन शेयर करते हैं, तो विंडो वीडियो में दिखाई देगी, इसलिए शुरू करते ही वह बंद हो जाती है। आपकी स्क्रिप्ट हमेशा सेव रहती है।",
+    "description": "Modal body: where the script window shows and when it closes"
+  },
+  "teleprompterClosedToast": {
+    "message": "टेलीप्रॉम्प्टर बंद किया गया ताकि वह आपकी रिकॉर्डिंग में न दिखे",
+    "description": "Toast: the teleprompter window was closed because the whole screen is being recorded"
+  },
+  "teleprompterPlaceholder": {
+    "message": "अपनी स्क्रिप्ट लिखें या पेस्ट करें",
+    "description": "Placeholder in the empty teleprompter script box"
+  },
+  "teleprompterPlay": {
+    "message": "स्क्रोल शुरू करें",
+    "description": "Teleprompter button: start scrolling the script"
+  },
+  "teleprompterPause": {
+    "message": "स्क्रोल रोकें",
+    "description": "Teleprompter button: pause scrolling the script"
+  },
+  "teleprompterMore": {
+    "message": "स्क्रिप्ट के और विकल्प",
+    "description": "Teleprompter button: open the script options menu"
+  },
+  "teleprompterTextSize": {
+    "message": "टेक्स्ट का आकार",
+    "description": "Teleprompter menu row: text size"
+  },
+  "teleprompterSpeed": {
+    "message": "गति",
+    "description": "Teleprompter menu row: scroll speed"
+  },
+  "teleprompterSmaller": {
+    "message": "छोटा टेक्स्ट",
+    "description": "Teleprompter button: decrease text size"
+  },
+  "teleprompterLarger": {
+    "message": "बड़ा टेक्स्ट",
+    "description": "Teleprompter button: increase text size"
+  },
+  "teleprompterSlower": {
+    "message": "धीमा",
+    "description": "Teleprompter button: scroll slower"
+  },
+  "teleprompterFaster": {
+    "message": "तेज़",
+    "description": "Teleprompter button: scroll faster"
+  },
+  "teleprompterWpmUnit": {
+    "message": "शब्द/मिनट",
+    "description": "Unit shown after the scroll speed, words per minute"
+  },
+  "teleprompterScrollOnStart": {
+    "message": "रिकॉर्डिंग शुरू होने पर स्क्रोल करें",
+    "description": "Teleprompter menu option: start scrolling when the recording starts"
+  },
+  "teleprompterRewind": {
+    "message": "सबसे ऊपर वापस जाएं",
+    "description": "Teleprompter menu option: scroll the script back to the top"
+  },
+  "teleprompterHide": {
+    "message": "स्क्रिप्ट छिपाएं",
+    "description": "Teleprompter menu option: close the teleprompter window"
+  },
+  "teleprompterPlayDisabled": {
+    "message": "रिकॉर्डिंग शुरू होते ही अपने आप स्क्रोल होगा",
+    "description": "Tooltip on the disabled teleprompter play button before recording starts"
+  },
+  "teleprompterClear": {
+    "message": "स्क्रिप्ट साफ़ करें",
+    "description": "Script menu item: empty the script"
+  },
+  "teleprompterClearConfirm": {
+    "message": "साफ़ करने के लिए फिर क्लिक करें",
+    "description": "Script menu item after the first click: asks for a second click to empty the script"
   }
 }

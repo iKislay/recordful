@@ -2124,5 +2124,93 @@
   "editorHandoffOfflineDescription": {
     "message": "உங்கள் பதிவு பாதுகாப்பாக உள்ளது. மீண்டும் ஆன்லைனுக்கு வந்தவுடன் Recordful எடிட்டரில் திறக்கும்.",
     "description": "Text shown before opening the web editor while offline"
+  },
+  "teleprompterLabel": {
+    "message": "டெலிப்ராம்ப்டர்",
+    "description": "Switch label: opens the floating teleprompter window"
+  },
+  "teleprompterUnavailableLabel": {
+    "message": "டெலிப்ராம்ப்டர் (இந்தப் பக்கத்தில் கிடைக்கவில்லை)",
+    "description": "Switch label shown when the page cannot open the teleprompter window"
+  },
+  "teleprompterIntroTitle": {
+    "message": "டெலிப்ராம்ப்டர் எப்படி வேலை செய்கிறது",
+    "description": "Modal title shown the first time the teleprompter is switched on"
+  },
+  "teleprompterIntroDescription": {
+    "message": "நீங்கள் ஒரு சாளரத்தையோ தாவலையோ பகிரும்போது, ஒரு பகுதியைப் பதிவு செய்யும்போது அல்லது கேமராவை மட்டும் பதிவு செய்யும்போது, உங்கள் ஸ்கிரிப்ட் பதிவில் வராத மிதக்கும் சாளரத்தில் திறக்கும். முழுத் திரையையும் பகிர்ந்தால் அந்தச் சாளரம் வீடியோவில் தெரியும், அதனால் தொடங்கும்போது அது மூடப்படும். உங்கள் ஸ்கிரிப்ட் எப்போதும் சேமிக்கப்படும்.",
+    "description": "Modal body: where the script window shows and when it closes"
+  },
+  "teleprompterClosedToast": {
+    "message": "பதிவில் வராமல் இருக்க டெலிப்ராம்ப்டர் மூடப்பட்டது",
+    "description": "Toast: the teleprompter window was closed because the whole screen is being recorded"
+  },
+  "teleprompterPlaceholder": {
+    "message": "உங்கள் ஸ்கிரிப்டை எழுதவும் அல்லது ஒட்டவும்",
+    "description": "Placeholder in the empty teleprompter script box"
+  },
+  "teleprompterPlay": {
+    "message": "ஸ்க்ரோலிங்கைத் தொடங்கு",
+    "description": "Teleprompter button: start scrolling the script"
+  },
+  "teleprompterPause": {
+    "message": "ஸ்க்ரோலிங்கை இடைநிறுத்து",
+    "description": "Teleprompter button: pause scrolling the script"
+  },
+  "teleprompterMore": {
+    "message": "மேலும் ஸ்கிரிப்ட் விருப்பங்கள்",
+    "description": "Teleprompter button: open the script options menu"
+  },
+  "teleprompterTextSize": {
+    "message": "உரை அளவு",
+    "description": "Teleprompter menu row: text size"
+  },
+  "teleprompterSpeed": {
+    "message": "வேகம்",
+    "description": "Teleprompter menu row: scroll speed"
+  },
+  "teleprompterSmaller": {
+    "message": "சிறிய உரை",
+    "description": "Teleprompter button: decrease text size"
+  },
+  "teleprompterLarger": {
+    "message": "பெரிய உரை",
+    "description": "Teleprompter button: increase text size"
+  },
+  "teleprompterSlower": {
+    "message": "மெதுவாக",
+    "description": "Teleprompter button: scroll slower"
+  },
+  "teleprompterFaster": {
+    "message": "வேகமாக",
+    "description": "Teleprompter button: scroll faster"
+  },
+  "teleprompterWpmUnit": {
+    "message": "சொல்/நிமி",
+    "description": "Unit shown after the scroll speed, words per minute"
+  },
+  "teleprompterScrollOnStart": {
+    "message": "பதிவு தொடங்கும்போது ஸ்க்ரோல் செய்",
+    "description": "Teleprompter menu option: start scrolling when the recording starts"
+  },
+  "teleprompterRewind": {
+    "message": "மேலே திரும்ப ஸ்க்ரோல் செய்",
+    "description": "Teleprompter menu option: scroll the script back to the top"
+  },
+  "teleprompterHide": {
+    "message": "ஸ்கிரிப்டை மறை",
+    "description": "Teleprompter menu option: close the teleprompter window"
+  },
+  "teleprompterPlayDisabled": {
+    "message": "பதிவைத் தொடங்கியவுடன் தானாக ஸ்க்ரோல் ஆகும்",
+    "description": "Tooltip on the disabled teleprompter play button before recording starts"
+  },
+  "teleprompterClear": {
+    "message": "ஸ்கிரிப்டை அழி",
+    "description": "Script menu item: empty the script"
+  },
+  "teleprompterClearConfirm": {
+    "message": "அழிக்க மீண்டும் கிளிக் செய்யவும்",
+    "description": "Script menu item after the first click: asks for a second click to empty the script"
   }
 }
