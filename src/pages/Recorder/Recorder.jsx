@@ -57,7 +57,6 @@ import { acquireDisplayMediaWithFocusRetry } from "../utils/acquireDisplayMedia"
 import {
   resolveCaptureSurface,
   setCapturedSurface,
-  leaveCursorOut,
 } from "../utils/captureSurface";
 import { chooseWriter } from "./recorderStorage/chooseWriter";
 import { chooseReader } from "./recorderStorage/chooseReader";
@@ -3932,11 +3931,6 @@ const Recorder = () => {
         path: "getDisplayMedia",
         streamId: stream.id,
       });
-      const displaySurface = resolveCaptureSurface(
-        stream.getVideoTracks()[0].getSettings().displaySurface,
-      );
-      void setCapturedSurface(displaySurface);
-      void leaveCursorOut(stream.getVideoTracks()[0], displaySurface);
     } else {
       // Chrome's tab capture defaults to a 1920x1080 frame and pillarboxes
       // narrower tabs to fit. Match the constraint box to the tab's real
@@ -4075,15 +4069,21 @@ const Recorder = () => {
 
       helperVideoStream.current = stream;
       slLog("helperVideoStream-assigned", { path: "desktop/tab", streamId: stream.id });
+    }
 
-      const surface = stream.getVideoTracks()[0].getSettings().displaySurface;
+    // What was captured, from either path: the take keeps it, and the page
+    // being recorded places its clicks and pointer on a screen or a window
+    // by it. Not saying so left every point measured from the page alone, a
+    // toolbar's height above where it was on a screen or window recording.
+    if (data.recordingType !== "camera") {
+      const surface =
+        helperVideoStream.current.getVideoTracks()[0].getSettings()
+          .displaySurface;
       debug("Display surface", surface);
-      const capturedSurface = resolveCaptureSurface(surface, {
-        isTab: isTab.current,
-      });
-      void setCapturedSurface(capturedSurface);
-      void leaveCursorOut(stream.getVideoTracks()[0], capturedSurface);
-      chrome.runtime.sendMessage({ type: "set-surface", surface: surface });
+      void setCapturedSurface(
+        resolveCaptureSurface(surface, { isTab: isTab.current }),
+      );
+      chrome.runtime.sendMessage({ type: "set-surface", surface });
     }
 
     perfMark("Recorder pre-audio-setup");

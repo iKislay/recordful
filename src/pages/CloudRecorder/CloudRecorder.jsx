@@ -34,7 +34,6 @@ import { acquireDisplayMediaWithFocusRetry } from "../utils/acquireDisplayMedia"
 import {
   resolveCaptureSurface,
   setCapturedSurface,
-  leaveCursorOut,
 } from "../utils/captureSurface";
 import { startPrewarm, stopPrewarm } from "../Recorder/streamWarmup";
 import { preloadWebCodecsModules } from "../Recorder/webcodecs/WebCodecsRecorder";
@@ -7886,15 +7885,12 @@ const CloudRecorder = () => {
 
           // Report what was cropped, not the crop. preferCurrentTab
           // makes this browser unless the user switched panes.
-          const regionSurface = resolveCaptureSurface(
-            screenStream.current.getVideoTracks()[0].getSettings()
-              .displaySurface,
-            { isTab: isTab.current }
-          );
-          await setCapturedSurface(regionSurface);
-          void leaveCursorOut(
-            screenStream.current.getVideoTracks()[0],
-            regionSurface
+          await setCapturedSurface(
+            resolveCaptureSurface(
+              screenStream.current.getVideoTracks()[0].getSettings()
+                .displaySurface,
+              { isTab: isTab.current }
+            )
           );
 
           bindScreenTrack(screenStream.current.getVideoTracks()[0]);
@@ -8325,7 +8321,6 @@ const CloudRecorder = () => {
             isTab: isTab.current,
           });
           await setCapturedSurface(capturedSurface);
-          void leaveCursorOut(track, capturedSurface);
 
           traceStep("streamAcquired", {
             surface: surface || null,

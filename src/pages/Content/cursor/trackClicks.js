@@ -71,13 +71,11 @@ export function startClickTracking(
   // Refreshed on storage change: a restart can swap recordingType
   // (camera ↔ screen) and we'd otherwise dispatch against the prior mode.
   let cachedSurface = "unknown";
-  let cachedRecordingWindowId = null;
   let cachedRecordingType = null;
   chrome.storage.local
-    .get(["surface", "recordingWindowId", "recordingType"])
+    .get(["surface", "recordingType"])
     .then((vals) => {
       cachedSurface = vals.surface || "unknown";
-      cachedRecordingWindowId = vals.recordingWindowId ?? null;
       cachedRecordingType = vals.recordingType ?? null;
     })
     .catch(() => {});
@@ -85,8 +83,6 @@ export function startClickTracking(
   const onStorageChanged = (changes, area) => {
     if (area !== "local") return;
     if (changes.surface) cachedSurface = changes.surface.newValue || "unknown";
-    if (changes.recordingWindowId)
-      cachedRecordingWindowId = changes.recordingWindowId.newValue ?? null;
     if (changes.recordingType)
       cachedRecordingType = changes.recordingType.newValue ?? null;
   };
@@ -112,20 +108,20 @@ export function startClickTracking(
     return {
       x,
       y,
-      relativeToRegion: isRegion,
       // What x and y are measured against, so the point can be placed on
       // the recording whatever size it is played at.
       width: isRegion ? regionWidth : window.innerWidth,
       height: isRegion ? regionHeight : window.innerHeight,
+      // For a recording of a window or the whole screen: the event's place
+      // on the screen and the window's bounds there, in screen units. The
+      // background finds the page's corner from these and the page's zoom.
+      screenX: e.screenX,
+      screenY: e.screenY,
+      windowLeft: window.screenX,
+      windowTop: window.screenY,
       outerWidth: window.outerWidth,
       outerHeight: window.outerHeight,
-      // Where the page's top-left is on the screen, for a recording of the
-      // whole screen. Told by the event itself: the window's own bounds
-      // count borders Windows draws invisibly, a few pixels off the page.
-      screenLeft: e.screenX - e.clientX,
-      screenTop: e.screenY - e.clientY,
       surface: cachedSurface,
-      recordingWindowId: cachedRecordingWindowId,
       region: isRegion,
       isTab: cachedRecordingType === "region",
     };

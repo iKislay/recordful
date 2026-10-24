@@ -2250,80 +2250,86 @@ export const setupHandlers = () => {
   // function from the page's x and y to the point there (x, y) and as
   // fractions of the picture (fx, fy), or null when that cannot be told.
   const pictureOf = async (payload, sender) => {
-    const { surface, region, isTab, width, height, outerWidth, outerHeight } =
-      payload;
+    const {
+      surface,
+      region,
+      isTab,
+      x: anchorX,
+      y: anchorY,
+      width,
+      height,
+      screenX,
+      screenY,
+      windowLeft,
+      windowTop,
+      outerWidth,
+      outerHeight,
+    } = payload;
     const onPage = (x, y) => ({ x, y, fx: x / width, fy: y / height });
-    const windowId = sender.tab?.windowId;
-    if (
-      region ||
-      isTab ||
-      typeof windowId !== "number" ||
-      !["monitor", "window"].includes(surface)
-    ) {
+    if (region || isTab || !["monitor", "window"].includes(surface)) {
       return onPage;
     }
-    const win = await chrome.windows.get(windowId).catch(() => null);
-    if (!win) return null;
-    // A recorded window includes the browser's own bars above the page, and
-    // its borders beside it.
-    if (surface === "window") {
-      return (x, y) => ({
-        x: win.left + x,
-        y: win.top + y,
-        fx: (x + (outerWidth - width) / 2) / outerWidth,
-        fy: (y + outerHeight - height) / outerHeight,
-      });
+    if (
+      ![screenX, screenY, windowLeft, windowTop, outerWidth, outerHeight].every(
+        Number.isFinite,
+      )
+    ) {
+      return null;
     }
-    // The monitor most of the window is on. Not the one under its top-left
-    // corner: on Windows a maximized window starts a few pixels off the
-    // screen (its invisible resize border, at -7 or -8), so that corner is
-    // on no monitor at all and every click and move was dropped.
-    const winWidth = win.width ?? outerWidth;
-    const winHeight = win.height ?? outerHeight;
-    const overlap = ({ bounds: b }) =>
-      Math.max(
+    // Screen numbers are the display's own units, page numbers are the
+    // page's pixels, and a zoomed page has fewer of those: at 125% a page
+    // pixel is 1.25 on the screen.
+    const zoom =
+      typeof sender.tab?.id === "number"
+        ? await chrome.tabs.getZoom(sender.tab.id).catch(() => 1)
+        : 1;
+    // The page's top-left on the screen, from where the event was on both.
+    const pageLeft = screenX - anchorX * zoom;
+    const pageTop = screenY - anchorY * zoom;
+    const onScreen = (x, y) => [pageLeft + x * zoom, pageTop + y * zoom];
+
+    // The picture's bounds on the screen.
+    let picture;
+    if (surface === "window") {
+      // A recorded window is what Windows shows of it: its bounds less the
+      // resize border it draws invisibly at the sides and the bottom (none
+      // on a maximized window or a Mac). The page spans the window, so the
+      // border is what is left beside it, measured from the left edge and
+      // from both; a side panel widens one of them, never both.
+      const border = Math.max(
         0,
-        Math.min(win.left + winWidth, b.left + b.width) -
-          Math.max(win.left, b.left),
-      ) *
-      Math.max(
-        0,
-        Math.min(win.top + winHeight, b.top + b.height) -
-          Math.max(win.top, b.top),
+        Math.min(
+          pageLeft - windowLeft,
+          (outerWidth - width * zoom) / 2,
+        ),
       );
-    const displays = await chrome.system.display.getInfo();
-    // Where the page's top-left is on the screen, as its mouse events tell
-    // it. Exact: the window's bounds above are off by its invisible border.
-    const { screenLeft, screenTop } = payload;
-    const told = Number.isFinite(screenLeft) && Number.isFinite(screenTop);
-    const monitor =
-      (told &&
-        displays.find(
-          ({ bounds: b }) =>
-            screenLeft >= b.left &&
-            screenLeft < b.left + b.width &&
-            screenTop >= b.top &&
-            screenTop < b.top + b.height,
-        )) ||
-      displays.reduce(
-        (best, each) => (!best || overlap(each) > overlap(best) ? each : best),
-        null,
-      );
-    if (!monitor || (!told && !overlap(monitor))) return null;
-    // Without it, from the window: the page sits below the browser's own
-    // bars, and the window's border beside the page (none on a Mac) runs
-    // under it too, so that much of the height left over is below the page.
-    const border = (outerWidth - width) / 2;
-    const left = told ? screenLeft : win.left + border;
-    const top = told ? screenTop : win.top + outerHeight - height - border;
+      picture = {
+        left: windowLeft + border,
+        top: windowTop,
+        width: outerWidth - border * 2,
+        height: outerHeight - border,
+      };
+    } else {
+      // The monitor the page's corner is on.
+      const displays = await chrome.system.display.getInfo();
+      picture = displays.find(
+        ({ bounds: b }) =>
+          pageLeft >= b.left &&
+          pageLeft < b.left + b.width &&
+          pageTop >= b.top &&
+          pageTop < b.top + b.height,
+      )?.bounds;
+      if (!picture) return null;
+    }
     return (x, y) => {
-      const adjX = left + x - monitor.bounds.left;
-      const adjY = top + y - monitor.bounds.top;
+      const [left, top] = onScreen(x, y);
+      const across = left - picture.left;
+      const down = top - picture.top;
       return {
-        x: adjX,
-        y: adjY,
-        fx: adjX / monitor.bounds.width,
-        fy: adjY / monitor.bounds.height,
+        x: across,
+        y: down,
+        fx: across / picture.width,
+        fy: down / picture.height,
       };
     };
   };
