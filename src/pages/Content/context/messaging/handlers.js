@@ -855,9 +855,14 @@ export const setupHandlers = () => {
       return;
     }
 
+    // hasOpenedBefore mounts the recorder iframe (region.html or
+    // cloudrecorder.html). Only the toolbar icon set it, so a start from the
+    // shortcut or an AI agent, on a page that had been reloaded since the icon
+    // click, never got a recorder and hung at "Starting recording...".
     setContentState((prev) => ({
       ...prev,
       showExtension: true,
+      hasOpenedBefore: true,
       showPopup: true,
     }));
 
