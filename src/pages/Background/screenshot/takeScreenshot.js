@@ -84,7 +84,18 @@ async function shoot(tab, mode) {
   if (prep?.cancelled) return null;
   let bitmap;
   try {
-    bitmap = await capture(tab.windowId);
+    // Prefer a DOM-based capture for crisp text/code when the page supports it.
+    let domDataUrl = null;
+    if (ready && (mode === "visible" || mode === "area")) {
+      const res = await tell(tab.id, { type: "shot-dom-capture", scale: 2 });
+      domDataUrl = res?.dataUrl || null;
+    }
+    if (domDataUrl) {
+      const blob = await (await fetch(domDataUrl)).blob();
+      bitmap = await createImageBitmap(blob);
+    } else {
+      bitmap = await capture(tab.windowId);
+    }
   } finally {
     if (ready) void tell(tab.id, { type: "shot-restore" });
   }

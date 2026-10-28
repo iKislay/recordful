@@ -15,6 +15,8 @@
 // phone and card numbers, keys and tokens) so it can hide them in one click.
 // Positions are CSS pixels; the worker scales them to the picture.
 
+import { captureDomScreenshot, domCaptureAvailable } from "./domCapture";
+
 const OVERLAY_ID = "recordful-shot-overlay";
 const MAX_TEXTS = 6000;
 const MAX_TEXT_LENGTH = 2000;
@@ -545,6 +547,11 @@ const handle = async (message) => {
     case "shot-restore":
       showUi();
       return { ok: true };
+    case "shot-dom-capture": {
+      if (!domCaptureAvailable()) return { dataUrl: null };
+      const dataUrl = await captureDomScreenshot(message?.scale ?? 2);
+      return { dataUrl };
+    }
     case "shot-page-begin":
       return { ...about(), ...(await pageBegin(message.maxHeight)) };
     case "shot-page-scroll":
