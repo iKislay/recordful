@@ -122,7 +122,7 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 
 - [ ] Phase 3 hosted connector: `mcp.recordful.app` Worker, staging, extension relay, OAuth consent browser check, audit/revoke. — [hard · backend · high]
 - [ ] Phase 2 editor tools: `trim`, `cut_dead_air`, `zoom_at`, `add_caption`, `export`. — [mid · backend · mid]
-- [ ] Finish Phase 1 loose ends: on-page stop button, markers. — [easy · backend · less]
+- [x] Finish Phase 1 loose ends (2026-10-31): on-page Stop chip on the armed tab (hidden while recording, back on pause; Stop disconnects without reconnecting and clears the armed tab) and `add_marker` (timed on the video clock, returned by `stop_recording`). Verified in Chrome against the bridge over MCP; a real recording's `stop_recording` markers field is not e2e-tested. Not done: logging page actions on the timeline automatically.
 - [ ] Directory listings (Anthropic/OpenAI) after staging passes. — [easy · backend · less]
 
 ### Editor parity

@@ -2220,5 +2220,23 @@
   "teleprompterClearConfirm": {
     "message": "Cliquez à nouveau pour effacer",
     "description": "Script menu item after the first click: asks for a second click to empty the script"
+  },
+  "agentChipLabel": {
+    "message": "$APP$ utilise cet onglet",
+    "description": "On-page chip while an AI app drives the tab",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentChipLabelNoApp": {
+    "message": "Un agent IA utilise cet onglet",
+    "description": "On-page chip while an AI app drives the tab, when its name is unknown"
+  },
+  "agentChipStop": {
+    "message": "Arrêter",
+    "description": "Button on the on-page chip that ends the AI agent's session"
   }
 }

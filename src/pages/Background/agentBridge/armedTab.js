@@ -4,7 +4,7 @@
 // anything else the user has open.
 //
 // storage.session: survives the worker being recycled, not a browser restart.
-const ARMED_KEY = "agentBridgeArmedTab";
+export const ARMED_KEY = "agentBridgeArmedTab";
 
 export const armTab = async (tab, via) => {
   if (!Number.isInteger(tab?.id) || tab.id < 0) return;
@@ -20,11 +20,13 @@ export const getArmedTab = async () => {
   return armed && Number.isInteger(armed.tabId) ? armed : null;
 };
 
+export const clearArmedTab = () => chrome.storage.session.remove([ARMED_KEY]).catch(() => {});
+
 export const watchArmedTab = () => {
   chrome.tabs.onRemoved.addListener(async (tabId) => {
     const armed = await getArmedTab();
     if (armed?.tabId === tabId) {
-      await chrome.storage.session.remove([ARMED_KEY]).catch(() => {});
+      await clearArmedTab();
     }
   });
 };

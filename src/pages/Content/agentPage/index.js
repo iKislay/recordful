@@ -2,6 +2,7 @@
 // Background/agentBridge/pageCommands.js), on the tab the user handed over.
 import { performAction } from "./actions";
 import * as cursor from "./cursor";
+import { initStopChip } from "./stopChip";
 
 // Must match Background/agentBridge/pageCommands.js.
 const PAGE_MESSAGE = "recordful-agent-page";
@@ -40,6 +41,12 @@ export const initAgentPage = () => {
       };
     }
   };
+
+  // Re-injected copies skip it: the first copy's chip already listens.
+  if (!window.__recordfulAgentStopChip) {
+    window.__recordfulAgentStopChip = true;
+    initStopChip();
+  }
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message?.type !== PAGE_MESSAGE) return undefined;

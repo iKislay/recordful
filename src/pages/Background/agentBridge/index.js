@@ -5,6 +5,7 @@ import { registerMessage } from "../../../messaging/messageRouter";
 import { armTab, watchArmedTab } from "./armedTab";
 import { createBridgeClient } from "./client";
 import { commands } from "./commands";
+import { watchStopChip } from "./stopChip";
 
 const DEFAULT_PORT = 47823;
 
@@ -45,6 +46,7 @@ export const initAgentBridge = () => {
     client.wake("shortcut");
   });
   watchArmedTab();
+  watchStopChip({ stop: client.disconnect });
 
   registerMessage("open-agent-settings", () => {
     openAgentsPage().catch(() => {});

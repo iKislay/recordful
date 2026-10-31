@@ -56,6 +56,8 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
   let reconnectTimer = null;
   let pingTimer = null;
   let pairWindowId = null;
+  // Set when we end the session on purpose, so its close doesn't reconnect.
+  let ended = false;
   // Commands on the same queue run one at a time: two overlapping starts
   // would race the recorder's own in-flight guards, and two page actions
   // would fight over the cursor. Commands with no queue run at once.
@@ -136,6 +138,7 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
   };
 
   const disconnect = (reason) => {
+    ended = true;
     attemptsLeft = 0;
     if (reconnectTimer) clearTimeout(reconnectTimer);
     reconnectTimer = null;
@@ -264,6 +267,7 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
     if (ws || !(await isEnabled())) return;
     const port = await getPort();
     if (ws) return;
+    ended = false;
     const socket = new WebSocket(`ws://127.0.0.1:${port}${PATH}`);
     ws = socket;
     setStatus("connecting");
@@ -394,7 +398,7 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
         chrome.storage.session.remove([PAIR_PENDING_KEY]).catch(() => {});
         closePairWindow();
       }
-      if (authenticated) {
+      if (authenticated && !ended) {
         log("disconnected", { code: event.code, reason: event.reason });
         // The MCP server may just be restarting; give it about a minute.
         attempt = 0;
@@ -449,5 +453,5 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
     }
   });
 
-  return { wake, resumeIfWanted };
+  return { wake, resumeIfWanted, disconnect };
 };

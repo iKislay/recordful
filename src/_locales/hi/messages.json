@@ -2220,5 +2220,23 @@
   "teleprompterClearConfirm": {
     "message": "साफ़ करने के लिए फिर क्लिक करें",
     "description": "Script menu item after the first click: asks for a second click to empty the script"
+  },
+  "agentChipLabel": {
+    "message": "$APP$ इस टैब का उपयोग कर रहा है",
+    "description": "On-page chip while an AI app drives the tab",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentChipLabelNoApp": {
+    "message": "एक AI एजेंट इस टैब का उपयोग कर रहा है",
+    "description": "On-page chip while an AI app drives the tab, when its name is unknown"
+  },
+  "agentChipStop": {
+    "message": "रोकें",
+    "description": "Button on the on-page chip that ends the AI agent's session"
   }
 }

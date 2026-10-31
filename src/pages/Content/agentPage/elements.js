@@ -14,7 +14,14 @@ export const pageError = (code, message, data) =>
 // Recordful's own UI (popup, recording pill, countdown) and the agent cursor
 // are never part of the page as far as the agent is concerned.
 export const CURSOR_HOST_ID = "recordful-agent-cursor";
-const OWN_UI_IDS = ["recordful-ui", "recordful-root-container", "recordful-dev-hud-portal", CURSOR_HOST_ID];
+export const STOP_CHIP_HOST_ID = "recordful-agent-stop-chip";
+const OWN_UI_IDS = [
+  "recordful-ui",
+  "recordful-root-container",
+  "recordful-dev-hud-portal",
+  CURSOR_HOST_ID,
+  STOP_CHIP_HOST_ID,
+];
 const OWN_UI = OWN_UI_IDS.map((id) => `#${id}`).join(", ");
 export const isOwnUi = (el) => Boolean(el?.closest?.(OWN_UI));
 

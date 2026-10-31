@@ -10,6 +10,7 @@ import { AgentBridgeError, AgentErrorCode } from "./errors";
 import { pageCommands } from "./pageCommands";
 import { accountStatus, cloudAvailable, planOf, videoLinks } from "./cloud";
 import { LAST_RECORDING_KEY, videoCommands } from "./videoCommands";
+import { addMarker, markersFor } from "./markers";
 
 const POLL_MS = 250;
 // pendingRecording can clear before recording flips true on a healthy start
@@ -321,13 +322,17 @@ const stopRecording = async ({ timeoutMs } = {}) => {
     );
   }
 
+  // Times are into the video, pauses left out; add_marker placed them.
+  const markers = await markersFor(before.recordingStartTime);
+
   if (cloud && typeof projectId === "string" && projectId) {
     await chrome.storage.session
-      .set({ [LAST_RECORDING_KEY]: { kind: "cloud", videoId: projectId, at: Date.now() } })
+      .set({ [LAST_RECORDING_KEY]: { kind: "cloud", videoId: projectId, markers, at: Date.now() } })
       .catch(() => {});
     return {
       outcome: "stopped",
       recording: { kind: "cloud", videoId: projectId, ...videoLinks(projectId) },
+      markers,
       plan: "pro",
       hint: "It was recorded to the cloud and is finishing its upload. get_video follows it; get_transcript reads it back.",
     };
@@ -342,7 +347,7 @@ const stopRecording = async ({ timeoutMs } = {}) => {
   const { lastRecordingBackendRef } = await chrome.storage.local.get(["lastRecordingBackendRef"]);
   const takeId = finalized || lastRecordingBackendRef?.fileName || null;
   await chrome.storage.session
-    .set({ [LAST_RECORDING_KEY]: { kind: "local", takeId, at: Date.now() } })
+    .set({ [LAST_RECORDING_KEY]: { kind: "local", takeId, markers, at: Date.now() } })
     .catch(() => {});
 
   // The editor opens after the recording finalizes; report it when it shows.
@@ -363,6 +368,7 @@ const stopRecording = async ({ timeoutMs } = {}) => {
   return {
     outcome: "stopped",
     recording: { kind: "local", takeId },
+    markers,
     plan,
     editorTabId: editorTabId || null,
     editorUrl: editorTab?.url || null,
@@ -470,6 +476,8 @@ export const commands = {
   "recording.pause": { run: () => setPaused(true), queue: "recorder" },
   "recording.resume": { run: () => setPaused(false), queue: "recorder" },
   "capture.probe": { run: probeCapture, queue: "recorder" },
+  // Its own queue: a marker shouldn't wait behind a slow start or stop.
+  "recording.marker": { run: addMarker, queue: "marker" },
   ...pageCommands,
   ...videoCommands,
 };

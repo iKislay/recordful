@@ -2220,5 +2220,23 @@
   "teleprompterClearConfirm": {
     "message": "Kliknij ponownie, aby wyczyścić",
     "description": "Script menu item after the first click: asks for a second click to empty the script"
+  },
+  "agentChipLabel": {
+    "message": "$APP$ używa tej karty",
+    "description": "On-page chip while an AI app drives the tab",
+    "placeholders": {
+      "app": {
+        "content": "$1",
+        "example": "Claude Code"
+      }
+    }
+  },
+  "agentChipLabelNoApp": {
+    "message": "Agent AI używa tej karty",
+    "description": "On-page chip while an AI app drives the tab, when its name is unknown"
+  },
+  "agentChipStop": {
+    "message": "Zatrzymaj",
+    "description": "Button on the on-page chip that ends the AI agent's session"
   }
 }
