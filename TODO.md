@@ -89,8 +89,8 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 
 ### Trust and observability
 
-- [ ] Implement or remove the `recordful-ee/app/(site)/features/agents/page.tsx` claims: titles/summaries/chapters, reactions/replies/timestamps, Loom imports, developer apps/credits. — [mid · backend + frontend · mid]
-- [ ] Align pricing/storage across `recordful-ee/lib/site.ts`, `components/pricing-section.tsx` and `recordful-help/content/docs/pro/` ($13/$120/100 GB vs $3.99/$29.99/50 GB). — [easy · design + frontend · less]
+- [x] Implement or remove the `recordful-ee/app/(site)/features/agents/page.tsx` claims (2026-10-31): removed; the six cards and JSON-LD now list only what recordful-mcp 0.6.0 ships (transcript, video info/views/likes/comments, comment, like, title/visibility, folders, move, storage, delete, CLI). Re-add summaries/chapters, replies/reactions/timestamps, members/invites/analytics and Loom import when they ship.
+- [x] Align pricing/storage across `recordful-ee/lib/site.ts`, `components/pricing-section.tsx` and `recordful-help/content/docs/pro/` (2026-10-31): help now says $3.99/$29.99, 14-day trial on yearly, 50 GB (matches `SITE.price` and `STORAGE_LIMIT_BYTES`).
 - [ ] Opt-in telemetry, crash reporting and funnel metrics (record -> edit -> export -> share) in desktop, extension and web. — [hard · backend + frontend · high]
 - [ ] Fix stale Playwright/UI specs (`project-dashboard`, `feedback`, `login`, `onboarding`, `account-settings`) to the revamp labels and real flows; `project-dashboard` still targets Home/folder chips/sidebar cards and `HomeLoadingSkeleton` still draws the old dashboard. Install browser 1248. — [mid · design + frontend · mid]
 
@@ -352,12 +352,12 @@ Desktop-only wiring; Cap/Tella parity items live in the P0/P1 sections above.
 
 ## Claims, docs and trust fixes
 
-- [ ] `recordful-ee/app/(site)/features/agents/page.tsx`: claims titles/summaries/chapters (:181), timestamped comments/replies/reactions (:191), Loom imports/developer apps/credits (:201). Ship them or remove the claims. — [mid · backend + frontend · mid]
-- [ ] `recordful-help/content/docs/pro/storage.mdx` says 100 GB; `free-vs-pro.mdx` says $13/$120; the site says 50 GB and $3.99/$29.99. Pick one and update all. — [easy · design + frontend · less]
+- [x] `recordful-ee/app/(site)/features/agents/page.tsx`: unbacked claims removed (2026-10-31, see Trust and observability).
+- [x] Help docs pricing/storage now match the site: 50 GB, $3.99/$29.99 (2026-10-31).
 - [ ] Extension: replace the Tally feedback form with `/api/feedback`; keep or redirect the uninstall survey. — [mid · backend + frontend · mid]
 - [ ] Docs to add: dashboard/library, folders/trash, comments/analytics, teams/roles/invites, screenshots, Instant Mode, captions, embedding, billing, API/webhooks, security/compliance, password links, custom domains, self-hosting. — [easy · design + frontend · mid]
 - [ ] Security page, status page, DPA/subprocessors; publish the trust portal when compliance lands. — [mid · backend + frontend · mid]
-- [ ] Resolve extension store/marketplace wording against the actual runtime (verify `ExtensionManager` before editing). — [easy · design + frontend · less]
+- [x] Resolve extension store/marketplace wording against the actual runtime (2026-10-31): `ExtensionManager` says extensions are disabled, so the "Extensions & Marketplace" section is gone from `recordful-app/README.md`.
 
 ## Execution order
 
