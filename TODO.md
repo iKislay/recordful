@@ -331,7 +331,7 @@ Desktop-only wiring; Cap/Tella parity items live in the P0/P1 sections above.
 - [x] Capture-mode tiles (screen / window / region); region is the picker's existing macOS-only area capture; hidden on Wayland. Area capture on Windows/X11 still to build.
 - [ ] System audio toggle: confirm macOS 13+ path, add a Linux monitor-source path or hide the toggle there. — [mid · backend · mid]
 - [x] Restart recording (cancel, wait for `cancelRecording()` to release the capture, start) with confirm.
-- [ ] Camera preview toggle while recording (a floating webcam preview already exists: `floatingWebcamPreview.ts`). — [easy · backend · less]
+- [x] Camera preview toggle while recording: the recording HUD's More menu hides/shows the existing floating preview (`floatingWebcamPreview.ts`). (2026-10-31)
 - [ ] Max resolution / max FPS settings. — [mid · backend + frontend · mid]
 - [ ] Record-time cursor effect picker, persisted to the project so the editor applies it. — [mid · backend + frontend · mid]
 - [ ] Record-time blur regions (rect + start/end) stored as `blur` annotations. — [mid · backend · mid]
