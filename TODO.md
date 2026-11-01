@@ -64,7 +64,7 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 - [ ] Cross-OS recording journal: atomic project/segment writes, crash sentinel, startup scan of unfinished takes, media validation, reopen/repair/export. Extend recovery to Windows/Linux and handle helper death. — [hard · backend · high]
 - [ ] Health monitor: free disk, write stalls, encoder init/fallback, dropped frames, device loss, A/V drift. Show "recording degraded" with error codes and a one-click support bundle; pause/finalize instead of silently inserting silence. — [hard · backend + frontend · high]
 - [ ] Preflight before countdown: target display/window still exists, resolution/DPI, system audio, mic/camera, encoder probe, disk headroom for the selected duration. Permissions already exist (`preparePermissions`); do not rebuild them. — [mid · backend + frontend · mid]
-- [ ] Power lifecycle: `powerMonitor` suspend/resume/lock/shutdown; pause and finalize before sleep, resume without timestamp corruption, block quit while recording or offer "stop and save". No power handling exists today. — [mid · backend · mid]
+- [x] Power lifecycle (2026-10-31, recordful-app 90718e3): `electron/powerLifecycle.ts` pauses on suspend/lock and resumes when both clear, finalizes on shutdown; quitting while recording asks to stop and save.
 - [ ] Soak matrix: 30/60/120 min and a 6 h target on macOS/Windows/Linux X11, 4K/60, multi-monitor/DPI changes, disk-full, device unplug, network drop; assert duration, frame gaps, A/V drift, seekability, recovery. Define surface caps: extension Instant defaults to 1 h, local extension warns at 90 min, desktop has no explicit cap. — [mid · backend · high]
 - [ ] Export reliability: codec/disk preflight, monotonic progress/ETA, cancel (exists) + retry/re-render, resume after app close, post-export validation (`validateRecordedVideo` exists), and benchmarks vs Cap 0.6.2. — [hard · backend · high]
 
@@ -244,7 +244,8 @@ Changes needed in the main app beyond UI:
 - [ ] **Account/workspace in the desktop app**: read `workspaceId`, role and plan from `/api/auth/verify` (already returns `subscribed`); show the workspace name; later a workspace switcher (ee reads `session.activeOrganizationId`). — [mid · backend + frontend · mid]
 - [ ] **Auto-upload for Pro + desktop Instant Mode**: after recording/saving, upload every project to recordful-ee in the background (resumable, as the extension does); stream while recording so the link is ready when the take stops (see "Beat Cap — P0"). A per-project sync state (`local` / `uploading` / `uploaded` / `waiting-for-room` / `failed`) persisted next to the project, driving the badge. Map local project path ↔ cloud recording id (today `projectShareLinks.ts` only stores share URLs). — [hard · backend + frontend · high]
 - [ ] **Visibility API calls**: set a recording's visibility (ee: update `isPublic` / `isPrivate`), set a folder's visibility, read views. Default new uploads to private (ee's column default is workspace: `isPrivate=false`; uploads from the app must send `private`). — [mid · backend · mid]
-- [ ] **Folders on recordful-ee**: only have `isPublic` today. Sharing a folder with the workspace or keeping it private needs `isPrivate` (or a `visibility` column) on `folders`, the same check constraint, and cascading like `setFolderPublic`. Sync local folders (story `parentId`) to ee `folders` (`parentId` already exists there). — [mid · backend · mid]
+- [x] **Folders on recordful-ee** (2026-11-01, recordful-ee 3948c21): private / workspace / public folders (migration 0018, `lib/visibility.ts`, `ShareFolderDialog`).
+- [ ] Sync local folders (story `parentId`) to ee `folders` (`parentId` already exists there). — [mid · backend · mid]
 - [ ] **Custom thumbnails**: ee has no thumbnail column/upload; add one (frame time or uploaded image in R2) and use it on `/view/[id]` and OG images. — [mid · backend + frontend · mid]
 - [ ] **Storage add-ons**: billing for +50 GB packs at $2/month each (Polar/Stripe product, quantity), `STORAGE_LIMIT_BYTES` becomes base + packs, `/api/storage/quota` returns it; an upload over quota returns a clear error the app maps to `waiting-for-room`, and uploads resume when room appears. — [mid · backend + frontend · mid]
 - [x] Sign-up from the badge opens recordful.app sign-up (not sign-in) and returns to the app via the existing auth callback. (2026-10-31)
@@ -339,12 +340,12 @@ Desktop-only wiring; Cap/Tella parity items live in the P0/P1 sections above.
 - [ ] Undo / redo / clear for the live overlay. — [easy · backend · less]
 - [ ] Push-to-talk with uiohook; permission prompts; Wayland fallback message. — [mid · backend · mid]
 - [x] Teleprompter window (see "Porting the revamp into the app"). — [mid · backend + frontend · high]
-- [ ] Global shortcuts for start/stop/pause (extension has `shortcuts/Shortcuts.jsx`). — [mid · backend · mid]
+- [x] Global shortcuts (2026-10-31, recordful-app 90718e3): Cmd/Ctrl+Alt+R start/stop, Cmd/Ctrl+Alt+P pause (`electron/globalShortcuts.ts`).
 - [x] Platform gating helper: `src/lib/hudCapabilities.ts`, IPC `get-hud-capabilities`, renderer `useHudCapabilities()`. Flip a flag there when its backend lands.
 - [x] Dashboard revamp (see "Porting the revamp into the app"); Settings page still to wire.
 - [x] Nested folders for real (`parentId`, optional, so old lists load as top level), inline rename, folder preview.
-- [ ] Editor revamp: map `Revamp/Editor` onto `layout/EditorShell`, `EditorHeader`, `EditorSidebar`, `SettingsPanel` (3,400 lines; split it per section while porting), `timeline/`. — [hard · design + frontend · high]
-- [ ] Replace the real dialogs (`RecordfulSignInDialog`, `OnboardingLayout`, `FeedbackDialog`, `EditorDialogs`, `ShortcutsConfigDialog`, `AnnouncementDialog`) and floating windows (`CountdownOverlay`, `CapturePicker`, `SourceSelector`, `UpdateToastWindow`) with the revamp designs. — [mid · design + frontend · high]
+- [x] Editor revamp: chrome, rail, Settings tab, Publish panel ported (see "Porting the revamp into the app"); the inspector panels' inner look is the one item left there.
+- [x] Real dialogs and floating windows replaced with the revamp designs (see "Porting the revamp into the app").
 - [ ] Decide on the NEW settings/controls the designs introduce (listed above) before building them. — [easy · design + frontend · less]
 - [ ] Hardware encode + performance budgets; compare against Cap 0.6.2. — [mid · backend · mid]
 - [ ] Real-OS E2E matrix (macOS/Windows/Linux X11+Wayland, multi-monitor/DPI); telemetry/crash reporting is in P0. — [mid · backend + frontend · high]
