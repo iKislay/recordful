@@ -84,7 +84,7 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 ### Share controls
 
 - [x] `?t=<seconds>` start-at and `?captions=off` on /view and /embed (2026-11-01, recordful-ee fb759dc); `?autoplay=1` already worked on /embed.
-- [ ] Password-protected links + expiry: built on recordful-ee branch `share-locks` (fd1ae98), not merged. Needs migrations 0018 (folder visibility, already on main and NOT applied to Neon as of 2026-11-01) and 0019 applied first, then a browser check (lock screen, unlock, expiry, owner dialog). — [easy · backend · less]
+- [x] Password-protected links + expiry (2026-11-01, recordful-ee 3ccd057; migrations 0018 and 0019 applied to Neon). Checked in a browser as a signed-out visitor: lock screen on /view and /embed, wrong password refused, right one unlocks and survives a reload, expiry overrides an unlock, link preview 404. Not checked: the owner's "Password and expiry" dialog (local sign-in is broken by the JWKS secret mismatch).
 - [ ] Download toggle and CTA/end screen. Today only workspace members can download (`/editor/[id]/export` needs Pro membership); outsiders no longer see the button (ae55c2a). — [mid · backend + frontend · mid]
 - [ ] Custom domain links for Instant, Studio and screenshots. — [hard · backend · high]
 - [ ] Private-by-default org setting and real creation default: the server currently omits flags -> workspace; extension/desktop new shares default public. Add embed presets; OG dimensions. — [mid · backend · mid]
@@ -223,7 +223,7 @@ Left to port:
 ## Feedback (stored in Neon only)
 
 - Desktop app: the Feedback dialog sends to recordful-ee `POST /api/feedback`, which writes one row to `feedback_reports` in Neon (title, subject, message, redacted logs, attachment list). Attachments themselves go to R2 under `feedback/<user>/<id>/`; the row keeps their keys. Nothing is emailed or forwarded. Ten reports a day per account.
-- recordful-ee: migration `0017_desktop_feedback.sql` is generated but **not applied** to Neon, and the route (`app/api/feedback/`) is uncommitted there. Apply and commit before feedback works end to end.
+- recordful-ee: migration 0017 is applied and the route is committed.
 - [ ] Operator admin dashboard (later, by the owner) reads `feedback_reports` (and `export_error_reports`), with signed links to the R2 attachments. — [mid · backend + frontend · mid]
 - [x] **Extension feedback** (2026-11-01): every Tally link (report bug/error, support, review thumbs-down, popup help) opens `recordful.app/feedback` (`recordful-ee/app/feedback/`), which signs in first, saves to `/api/feedback` with the support context as logs and uploads attachments (the support zip). The uninstall survey stays on Tally (`tally.so/r/KYdb1X`): the API needs an account and the extension is gone by then.
 
