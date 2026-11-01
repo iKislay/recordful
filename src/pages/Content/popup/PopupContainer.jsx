@@ -78,13 +78,11 @@ const PopupContainer = (props) => {
       let baseURL = "https://help.recordful.app/";
 
       if (contentState?.isLoggedIn && contentState?.recordfulUser) {
-        const { name, email } = contentState.recordfulUser;
         const qs = await supportContextQuery({
           includeRecordingState: true,
           source: "popup",
-          user: { name, email },
         });
-        baseURL = `https://tally.so/r/q406A9?extension=true&${qs}`;
+        baseURL = `https://recordful.app/feedback?${qs}`;
       }
 
       setURL(baseURL);

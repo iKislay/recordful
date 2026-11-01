@@ -1,5 +1,5 @@
 /**
- * Builds a URL-safe support-context object for Tally form prefills.
+ * Builds a URL-safe support-context object for feedback links.
  * No URLs, tokens, page content, or blobs, only sanitized technical metadata.
  */
 
@@ -225,7 +225,7 @@ export const buildSupportContext = async (opts = {}) => {
             // means the SW restarted 4 times).
             .map((ev) => `${ev.e}@${ev.t}${ev.n > 1 ? `x${ev.n}` : ""}`)
             .join(",");
-          // Cap so a runaway log doesn't blow past Tally URL limits.
+          // Cap so a runaway log doesn't blow past URL limits.
           if (compact && compact.length <= 3000) {
             ctx.diagEvents = compact;
           } else if (compact) {
@@ -261,11 +261,6 @@ export const buildSupportContext = async (opts = {}) => {
     const hash = ctx.attemptId.replace(/[^a-z0-9]/gi, "").slice(-4).toUpperCase();
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
     ctx.supportCode = `SCR-${hash}-${date}`;
-  }
-
-  if (opts.user) {
-    if (opts.user.name) ctx.name = opts.user.name;
-    if (opts.user.email) ctx.email = opts.user.email;
   }
 
   return ctx;

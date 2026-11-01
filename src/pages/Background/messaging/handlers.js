@@ -1857,46 +1857,32 @@ export const setupHandlers = () => {
   registerMessage("open-home", () =>
     createTab("https://recordful.app/", true),
   );
-  registerMessage("report-bug", async (message) => {
+  // recordful.app/feedback saves to /api/feedback and signs in first if needed.
+  const openFeedback = async (subject, context, zipBundled) => {
     const qs = await supportContextQuery({
       includeRecordingState: true,
-      source: "settings",
+      ...context,
     });
-    const zipParam = message?.zipBundled ? "&zipBundled=1" : "";
-    createTab(`https://tally.so/r/q406A9?${qs}${zipParam}`, true);
-  });
-  registerMessage("report-error", async (message) => {
-    const errorCode = message?.errorCode || null;
-    const errorWhy = message?.errorWhy || null;
-    const source = message?.source || "error-modal";
-
-    let user = null;
-    let isLoggedIn = false;
-    if (CLOUD_FEATURES_ENABLED) {
-      try {
-        const auth = await loginWithWebsite({ force: true });
-        if (auth.authenticated && auth.user) {
-          user = auth.user;
-          isLoggedIn = true;
-        }
-      } catch { }
-    }
-
-    const qs = await supportContextQuery({
-      includeRecordingState: true,
-      source,
-      errorCode,
-      errorWhy,
-      user: isLoggedIn ? { name: user.name, email: user.email } : undefined,
-    });
-
-    const zipParam = message?.zipBundled ? "&zipBundled=1" : "";
-    if (isLoggedIn) {
-      createTab(`https://tally.so/r/q406A9?extension=true&${qs}`, true);
-    } else {
-      createTab(`https://tally.so/r/q406A9?feedbackType=Bug&${qs}${zipParam}`, true);
-    }
-  });
+    const zipParam = zipBundled ? "&zipBundled=1" : "";
+    createTab(
+      `https://recordful.app/feedback?subject=${subject}&${qs}${zipParam}`,
+      true,
+    );
+  };
+  registerMessage("report-bug", (message) =>
+    openFeedback("bug", { source: "settings" }, message?.zipBundled),
+  );
+  registerMessage("report-error", (message) =>
+    openFeedback(
+      "bug",
+      {
+        source: message?.source || "error-modal",
+        errorCode: message?.errorCode || null,
+        errorWhy: message?.errorWhy || null,
+      },
+      message?.zipBundled,
+    ),
+  );
   registerMessage("clear-recordings", () => clearAllRecordings());
   registerMessage("force-processing", (message) => forceProcessing(message));
   registerMessage("focus-this-tab", (message, sender) =>
@@ -3117,26 +3103,9 @@ export const setupHandlers = () => {
     }
     createTab(`${process.env.RECORDFUL_APP_BASE}/upgrade`, true);
   });
-  registerMessage("open-support", async () => {
-    if (!CLOUD_FEATURES_ENABLED) {
-      console.warn("Cloud features disabled");
-      return;
-    }
-    const { authenticated, user } = await loginWithWebsite({ force: true });
-    if (!authenticated || !user) {
-      console.warn("User not authenticated, cannot open support");
-      return;
-    }
-
-    const { name, email } = user;
-    const qs = await supportContextQuery({
-      includeRecordingState: true,
-      source: "settings",
-      user: { name, email },
-    });
-    const url = `https://tally.so/r/q406A9?extension=true&${qs}`;
-    createTab(url, true);
-  });
+  registerMessage("open-support", () =>
+    openFeedback("question", { source: "settings" }),
+  );
   registerMessage("check-banner-support", async (message, sendResponse) => {
     const { bannerSupport } = await chrome.storage.local.get(["bannerSupport"]);
     sendResponse({ bannerSupport: Boolean(bannerSupport) });
@@ -3176,13 +3145,9 @@ export const setupHandlers = () => {
   });
   // Thumbs-down opens the same feedback form as "Report a bug", tagged as
   // coming from the review prompt.
-  registerMessage("review-feedback", async () => {
-    const qs = await supportContextQuery({
-      includeRecordingState: true,
-      source: "review-prompt",
-    });
-    createTab(`https://tally.so/r/q406A9?${qs}`, true);
-  });
+  registerMessage("review-feedback", () =>
+    openFeedback("other", { source: "review-prompt" }),
+  );
   registerMessage("clear-recording-alarm", async () => {
     await chrome.alarms.clear("recording-alarm");
   });

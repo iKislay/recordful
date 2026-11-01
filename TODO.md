@@ -222,7 +222,7 @@ Left to port:
 - Desktop app: the Feedback dialog sends to recordful-ee `POST /api/feedback`, which writes one row to `feedback_reports` in Neon (title, subject, message, redacted logs, attachment list). Attachments themselves go to R2 under `feedback/<user>/<id>/`; the row keeps their keys. Nothing is emailed or forwarded. Ten reports a day per account.
 - recordful-ee: migration `0017_desktop_feedback.sql` is generated but **not applied** to Neon, and the route (`app/api/feedback/`) is uncommitted there. Apply and commit before feedback works end to end.
 - [ ] Operator admin dashboard (later, by the owner) reads `feedback_reports` (and `export_error_reports`), with signed links to the R2 attachments. — [mid · backend + frontend · mid]
-- [ ] **Extension feedback**: the Chrome extension (`recordful/`) still opens a Tally form (`https://tally.so/r/q406A9`, from `src/pages/Background/messaging/handlers.js` and `src/pages/Content/popup/PopupContainer.jsx`). Replace it with the same in-product feedback dialog posting to `/api/feedback` (the extension already has the account's session), so all feedback lands in `feedback_reports`. The uninstall survey (`tally.so/r/KYdb1X`, `uninstallSurvey.js`) can't use an in-product dialog (the extension is gone by then); keep it or point it at a recordful.app page that writes to Neon. — [mid · backend + frontend · mid]
+- [x] **Extension feedback** (2026-11-01): every Tally link (report bug/error, support, review thumbs-down, popup help) opens `recordful.app/feedback` (`recordful-ee/app/feedback/`), which signs in first, saves to `/api/feedback` with the support context as logs and uploads attachments (the support zip). The uninstall survey stays on Tally (`tally.so/r/KYdb1X`): the API needs an account and the extension is gone by then.
 
 ## Workspace sharing (designed in Storybook; partly wired, see above)
 
@@ -354,7 +354,7 @@ Desktop-only wiring; Cap/Tella parity items live in the P0/P1 sections above.
 
 - [x] `recordful-ee/app/(site)/features/agents/page.tsx`: unbacked claims removed (2026-10-31, see Trust and observability).
 - [x] Help docs pricing/storage now match the site: 50 GB, $3.99/$29.99 (2026-10-31).
-- [ ] Extension: replace the Tally feedback form with `/api/feedback`; keep or redirect the uninstall survey. — [mid · backend + frontend · mid]
+- [x] Extension: Tally feedback form replaced with `recordful.app/feedback` -> `/api/feedback`; uninstall survey kept (2026-11-01).
 - [ ] Docs to add: dashboard/library, folders/trash, comments/analytics, teams/roles/invites, screenshots, Instant Mode, captions, embedding, billing, API/webhooks, security/compliance, password links, custom domains, self-hosting. — [easy · design + frontend · mid]
 - [ ] Security page, status page, DPA/subprocessors; publish the trust portal when compliance lands. — [mid · backend + frontend · mid]
 - [x] Resolve extension store/marketplace wording against the actual runtime (2026-10-31): `ExtensionManager` says extensions are disabled, so the "Extensions & Marketplace" section is gone from `recordful-app/README.md`.
