@@ -1,6 +1,13 @@
 # Changelog
 
-## 4.6.26 (2026-10-29)
+## 4.6.26 (2026-11-01)
+
+### AI agents: Stop from the page, and markers
+- **Stop chip**: while an AI app is connected, the tab it drives shows "<app> is using this tab" with a Stop button. Hidden while recording (back on pause) so it stays out of the video. Stop disconnects without reconnecting and clears the handed-over tab.
+- **Markers**: `recording.marker` (recordful-mcp `add_marker`) labels a moment on the recording's own clock, pauses excluded; `stop_recording` returns the markers.
+
+### Fixes
+- Starting from the shortcut or an AI agent on a page reloaded since the icon click no longer hangs at "Starting recording...".
 
 ### Crisp Screenshot Capture (DOM-based)
 - Screenshots of web pages now render the live DOM to a PNG via the browser's own layout engine, keeping text and code crisp at any zoom instead of rasterising the tab. Falls back to the previous pixel capture automatically on pages where DOM capture is unavailable or fails (restricted pages, cross-origin content, canvas-heavy apps).
