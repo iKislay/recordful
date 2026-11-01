@@ -360,7 +360,8 @@ Desktop-only wiring; Cap/Tella parity items live in the P0/P1 sections above.
 - [x] `recordful-ee/app/(site)/features/agents/page.tsx`: unbacked claims removed (2026-10-31, see Trust and observability).
 - [x] Help docs pricing/storage now match the site: 50 GB, $3.99/$29.99 (2026-10-31).
 - [x] Extension: Tally feedback form replaced with `recordful.app/feedback` -> `/api/feedback`; uninstall survey kept (2026-11-01).
-- [ ] Docs to add: dashboard/library, folders/trash, comments/analytics, teams/roles/invites, screenshots, Instant Mode, captions, embedding, billing, API/webhooks, security/compliance, password links, custom domains, self-hosting. — [easy · design + frontend · mid]
+- [x] Help: share links rewritten for Who can watch, `?t=`/`?captions=off`, embedding and downloads (2026-11-01, recordful-help 20ea912).
+- [ ] Docs to add: dashboard/library, folders/trash, comments/analytics, teams/roles/invites, screenshots, Instant Mode, captions, billing, API/webhooks, security/compliance, password links, custom domains, self-hosting. — [easy · design + frontend · mid]
 - [ ] Security page, status page, DPA/subprocessors; publish the trust portal when compliance lands. — [mid · backend + frontend · mid]
 - [x] Resolve extension store/marketplace wording against the actual runtime (2026-10-31): `ExtensionManager` says extensions are disabled, so the "Extensions & Marketplace" section is gone from `recordful-app/README.md`.
 
