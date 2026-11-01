@@ -94,7 +94,7 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 - [x] Implement or remove the `recordful-ee/app/(site)/features/agents/page.tsx` claims (2026-10-31): removed; the six cards and JSON-LD now list only what recordful-mcp 0.6.0 ships (transcript, video info/views/likes/comments, comment, like, title/visibility, folders, move, storage, delete, CLI). Re-add summaries/chapters, replies/reactions/timestamps, members/invites/analytics and Loom import when they ship.
 - [x] Align pricing/storage across `recordful-ee/lib/site.ts`, `components/pricing-section.tsx` and `recordful-help/content/docs/pro/` (2026-10-31): help now says $3.99/$29.99, 14-day trial on yearly, 50 GB (matches `SITE.price` and `STORAGE_LIMIT_BYTES`).
 - [ ] Opt-in telemetry, crash reporting and funnel metrics (record -> edit -> export -> share) in desktop, extension and web. — [hard · backend + frontend · high]
-- [ ] Fix stale Playwright/UI specs (`project-dashboard`, `feedback`, `login`, `onboarding`, `account-settings`) to the revamp labels and real flows; `project-dashboard` still targets Home/folder chips/sidebar cards and `HomeLoadingSkeleton` still draws the old dashboard. Install browser 1248. — [mid · design + frontend · mid]
+- [x] Playwright/UI specs (2026-11-01, recordful-app a7b7286): `project-dashboard`, `feedback`, `login`, `onboarding`, `account-settings` were not stale. A cold dev server opens the editor in 30-40 s, past the 30 s test timeout; `tests/ui/warm.ts` opens it once first and the suite runs two workers. All 37 pass. `HomeLoadingSkeleton` already matches the revamp. Browser 1248 is installed.
 
 ## Beat Cap — P1 (30-90 days)
 
