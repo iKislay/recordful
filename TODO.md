@@ -84,8 +84,8 @@ Current state: macOS has native capture-output recovery (`recoverNativeMacCaptur
 ### Share controls
 
 - [x] `?t=<seconds>` start-at and `?captions=off` on /view and /embed (2026-11-01, recordful-ee fb759dc); `?autoplay=1` already worked on /embed.
-- [ ] Password-protected links + expiry: built on recordful-ee branch `share-locks` (45c0fa1), not merged. Needs migrations 0018 (folder visibility, already on main and NOT applied to Neon as of 2026-11-01) and 0019 applied first, then a browser check (lock screen, unlock, expiry, owner dialog). — [easy · backend · less]
-- [ ] Download toggle and CTA/end screen. Today only workspace members can download (`/editor/[id]/export` needs Pro membership), yet outsiders see the Download button. — [mid · backend + frontend · mid]
+- [ ] Password-protected links + expiry: built on recordful-ee branch `share-locks` (fd1ae98), not merged. Needs migrations 0018 (folder visibility, already on main and NOT applied to Neon as of 2026-11-01) and 0019 applied first, then a browser check (lock screen, unlock, expiry, owner dialog). — [easy · backend · less]
+- [ ] Download toggle and CTA/end screen. Today only workspace members can download (`/editor/[id]/export` needs Pro membership); outsiders no longer see the button (ae55c2a). — [mid · backend + frontend · mid]
 - [ ] Custom domain links for Instant, Studio and screenshots. — [hard · backend · high]
 - [ ] Private-by-default org setting and real creation default: the server currently omits flags -> workspace; extension/desktop new shares default public. Add embed presets; OG dimensions. — [mid · backend · mid]
 
