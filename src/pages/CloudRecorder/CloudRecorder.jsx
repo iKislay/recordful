@@ -5979,6 +5979,26 @@ const CloudRecorder = () => {
         cameraRecorder.current?.state === "recording" ||
         audioRecorder.current?.state === "recording";
 
+      // An area recorder dies with the page it is injected into, paused or not.
+      // Tell BG now: the async stop below won't outlive the frame (sendMessage is sync IPC).
+      const ownsTake = [screenRecorder, cameraRecorder, audioRecorder].some(
+        (r) => r.current && r.current.state !== "inactive"
+      );
+      if (
+        IS_INJECTED_IFRAME &&
+        isActualUnload &&
+        ownsTake &&
+        !sentLast.current &&
+        !isFinishing.current
+      ) {
+        try {
+          chrome.runtime.sendMessage({
+            type: "region-iframe-destroyed",
+            cloud: true,
+          });
+        } catch {}
+      }
+
       if (!unloadGuardRef.current.pagehideSeen) {
         unloadGuardRef.current.pagehideSeen = true;
         void emitUploadTelemetry("upload_pagehide", {

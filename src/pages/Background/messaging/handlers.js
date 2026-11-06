@@ -18,6 +18,7 @@ import {
   clearInMemoryEditorLock,
 } from "../recording/stopRecording";
 import { chunksStore } from "../recording/chunkHandler";
+import { endLostCloudRegionTake } from "../recording/regionRecorderLost";
 import { openExistingChunksStore } from "../../CloudRecorder/recorderStorage/chooseChunksStore";
 import { destroySessionDir } from "../../CloudRecorder/recorderStorage/opfsKvStore";
 import { handleSaveToDrive } from "../drive/handleSaveToDrive";
@@ -1354,7 +1355,12 @@ export const setupHandlers = () => {
   });
 
   // pagehide from Region/Recorder.jsx; user navigated away from the recorded tab
-  registerMessage("region-iframe-destroyed", async () => {
+  registerMessage("region-iframe-destroyed", async (message, sender) => {
+    // CloudRecorder (Pro) uploads as it records, so it recovers through the upload resume.
+    if (message?.cloud) {
+      await endLostCloudRegionTake("pagehide", sender?.tab?.id);
+      return;
+    }
     const { recording, recorderSession, customRegion } =
       await chrome.storage.local.get([
         "recording",

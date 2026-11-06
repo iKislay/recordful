@@ -6,6 +6,7 @@ import { waitForContentScript } from "../utils/waitForContentScript";
 import { diagEvent, endDiagSession } from "../../utils/diagnosticLog";
 import { registerRetainable } from "./recordingRetention";
 import { perfMark, perfSpan } from "../../utils/perfMarks";
+import { endLostCloudRegionTake } from "./regionRecorderLost";
 
 // As soon as the editor tab exists, not inside the tab-load callbacks. Those
 // await the content script, and a slow load left the recording unprotected.
@@ -863,6 +864,8 @@ export const handleStopRecordingTab = async (request) => {
     } catch (err) {
       endAck({ result: String(err?.message || err).slice(0, 60) });
       diagEvent("stop-ack-failed", { error: String(err).slice(0, 120) });
+      // A cloud area take whose page reloaded has no recorder left to answer.
+      if (isSubscribed && (await endLostCloudRegionTake("stop-no-ack"))) return;
       try {
         const { activeTab } = await chrome.storage.local.get(["activeTab"]);
         if (activeTab) {
