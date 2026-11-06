@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.6.28 (2026-11-06)
+
+### Fixes
+- Reloading the page during a custom-area recording (Pro) no longer leaves "Preparing..." on screen forever, or again on the next icon click. The recording ends at the reload, what was captured finishes uploading, and it opens in the web editor. If the recorder vanishes without warning (a crashed tab), the next stop does the same.
+- Report a bug, support, the review thumbs-down and the popup's help icon open recordful.app/feedback instead of a Tally form. The uninstall survey stays on Tally.
+
 ## 4.6.27 (2026-11-01)
 
 ### AI agents: Stop from the page, and markers
