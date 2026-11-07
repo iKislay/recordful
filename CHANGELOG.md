@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.6.29 (2026-11-07)
+
+### Fixes
+- Area recording recovery after a page reload no longer depends on the optional `alarms` permission: without it, the take was ended but the upload resume and the editor were skipped.
+- Reloading before the first chunk of an area recording was saved shows "Recording was too short to save" on the reloaded page instead of opening an empty editor.
+
 ## 4.6.28 (2026-11-06)
 
 ### Fixes
