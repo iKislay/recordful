@@ -611,6 +611,9 @@ const CloudRecorder = () => {
 
     const attempt = pendingStartAttempts.current + 1;
     pendingStartAttempts.current = attempt;
+    // The background re-checks a start 2.5 s in and ends one that has written
+    // no heartbeat. Waiting here on slow uploads set-up is still starting.
+    if (attempt % 5 === 1) markStartProgress("awaiting-ready");
     if (attempt === 1) {
       // The countdown finished before the recorder was ready, so capture
       // starts late and the user loses the head of the recording. Each poll
@@ -1563,6 +1566,9 @@ const CloudRecorder = () => {
     audioLayout = null,
     durations = null,
     dimensions = null,
+    // What the editor's cursor, click sounds and auto-zoom read. Without
+    // them a recovered scene opened with none of those.
+    pointer = null,
   }) => {
     if (!projectId || !sceneId) return { ok: false, error: "missing-ids" };
     const mediaIds = [screenMediaId, cameraMediaId, audioMediaId].filter(
@@ -1590,6 +1596,7 @@ const CloudRecorder = () => {
         // real length instead of waiting for the server to measure it.
         durations: durations || undefined,
         dimensions: dimensions || undefined,
+        ...(pointer || {}),
       }),
     });
     if (!res.ok) {
@@ -3289,6 +3296,21 @@ const CloudRecorder = () => {
     };
   };
 
+  // An offscreen document (the cloud recorder's usual host) has no
+  // chrome.downloads, so the background saves the file for it.
+  const downloadUrl = async (url, filename) => {
+    if (chrome.downloads?.download) {
+      await chrome.downloads.download({ url, filename, saveAs: false });
+      return;
+    }
+    const res = await chrome.runtime.sendMessage({
+      type: "download-url",
+      url,
+      filename,
+    });
+    if (!res?.ok) throw new Error(res?.error || "download-url failed");
+  };
+
   const exportFinalizeDiagnostics = async (diagnostics) => {
     try {
       const payload = diagnostics ||
@@ -3298,11 +3320,10 @@ const CloudRecorder = () => {
       });
       const objectUrl = URL.createObjectURL(blob);
       try {
-        await chrome.downloads.download({
-          url: objectUrl,
-          filename: `Recordful-Finalize-Diagnostics-${new Date().toISOString()}.json`,
-          saveAs: false,
-        });
+        await downloadUrl(
+          objectUrl,
+          `Recordful-Finalize-Diagnostics-${new Date().toISOString()}.json`
+        );
       } finally {
         URL.revokeObjectURL(objectUrl);
       }
@@ -3377,13 +3398,12 @@ const CloudRecorder = () => {
         fromMemoryWindow || chunksPurgedDuringRecordingRef.current === true;
       const objectUrl = URL.createObjectURL(blob);
       try {
-        await chrome.downloads.download({
-          url: objectUrl,
-          filename: `Recordful-${
+        await downloadUrl(
+          objectUrl,
+          `Recordful-${
             partial ? "Partial" : "Recovery"
-          }-${new Date().toISOString()}-${reason}.webm`,
-          saveAs: false,
-        });
+          }-${new Date().toISOString()}-${reason}.webm`
+        );
         chrome.runtime.sendMessage({
           type: "show-toast",
           message: "Upload stalled. A recovery file was saved locally.",
@@ -6646,6 +6666,11 @@ const CloudRecorder = () => {
           // away, instead of waiting for the server.
           durations: payload?.durations || null,
           dimensions: payload?.dimensions || null,
+          pointer: {
+            clickEvents: payload.clickEvents,
+            pointerMoves: payload.pointerMoves,
+            autoZoom: payload.autoZoom,
+          },
         });
 
         if (recoverResult.ok) {
@@ -7075,6 +7100,12 @@ const CloudRecorder = () => {
 
     const screenMeta = screenUploader.current?.getMeta?.() || null;
     const cameraMeta = cameraUploader.current?.getMeta?.() || null;
+    // uploadMeta was read before finalize. A take under one 5 MB part has sent
+    // nothing until finalize, so that copy said 0 bytes: the take was called
+    // "no media uploaded" and its scene (clicks, pointer path, auto-zoom,
+    // length) was never created. Everything below reads the finalized state.
+    if (screenMeta) uploadMeta.screen = screenMeta;
+    if (cameraMeta) uploadMeta.camera = cameraMeta;
     const incompleteUploaders = [];
 
     if (screenUploader.current && screenMeta?.status !== "completed") {

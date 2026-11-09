@@ -2049,6 +2049,29 @@ export const setupHandlers = () => {
     async (message, sender) =>
       await handleSaveToDrive(message, true, sender?.tab?.id ?? null),
   );
+  // Saves a file for an offscreen recorder, which has no chrome.downloads (a
+  // recovery copy of a take whose upload failed). Only extension pages send
+  // this, and only blob: URLs of this extension are taken.
+  registerMessage("download-url", async ({ url, filename }, sender) => {
+    const ownBlob = `blob:${chrome.runtime.getURL("")}`.replace(/\/$/, "");
+    if (
+      sender?.id !== chrome.runtime.id ||
+      typeof url !== "string" ||
+      !url.startsWith(ownBlob)
+    ) {
+      return { ok: false, error: "refused" };
+    }
+    try {
+      const id = await chrome.downloads.download({
+        url,
+        filename,
+        saveAs: false,
+      });
+      return { ok: true, id };
+    } catch (err) {
+      return { ok: false, error: err?.message || String(err) };
+    }
+  });
   registerMessage("request-download", (message) =>
     requestDownload(message.base64, message.title),
   );

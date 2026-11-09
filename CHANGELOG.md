@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.6.30 (2026-11-09)
+
+### Fixes
+- Cloud recordings under one 5 MB upload part (most short takes) lost their scene: stop read the uploaders' state from before finalize, saw 0 bytes, reported "No media was successfully uploaded" and never sent clicks, pointer path, auto-zoom or durations. Stop now reads the finalized state. Proven in real Chrome against a signed-in Pro account: 8 clicks and 18 pointer samples reached the scene and the editor opened with an auto-zoom.
+- A cloud recording whose upload set-up took longer than 2.5 s was cancelled as "no capture stream" by the background's start re-check. The recorder now writes the start heartbeat while it waits.
+- The `/recover-scene` fallback carries clicks, pointer path and the auto-zoom setting.
+- Recovery and finalize-diagnostic downloads from the offscreen recorder (which has no `chrome.downloads`) go through the background, which only accepts this extension's own blob URLs.
+
 ## 4.6.29 (2026-11-07)
 
 ### Fixes
