@@ -2320,15 +2320,13 @@ export const setupHandlers = () => {
       // A recorded window is what Windows shows of it: its bounds less the
       // resize border it draws invisibly at the sides and the bottom (none
       // on a maximized window or a Mac). The page spans the window, so the
-      // border is what is left beside it, measured from the left edge and
-      // from both; a side panel widens one of them, never both.
-      const border = Math.max(
-        0,
-        Math.min(
-          pageLeft - windowLeft,
-          (outerWidth - width * zoom) / 2,
-        ),
-      );
+      // border is what is left beside it on the narrower side: vertical
+      // tabs widen the left, a side panel the right. Halving the two sides'
+      // sum instead put clicks up to half a tab strip off. With something on
+      // both sides the border cannot be told and is taken as Windows' 8.
+      const leftGap = pageLeft - windowLeft;
+      const rightGap = outerWidth - width * zoom - leftGap;
+      const border = Math.max(0, Math.min(leftGap, rightGap, 8));
       picture = {
         left: windowLeft + border,
         top: windowTop,
