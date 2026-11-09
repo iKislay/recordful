@@ -3322,7 +3322,7 @@ const CloudRecorder = () => {
       try {
         await downloadUrl(
           objectUrl,
-          `Recordful-Finalize-Diagnostics-${new Date().toISOString()}.json`
+          `Recordful-Finalize-Diagnostics-${new Date().toISOString().replace(/:/g, "-")}.json`
         );
       } finally {
         URL.revokeObjectURL(objectUrl);
@@ -3402,7 +3402,7 @@ const CloudRecorder = () => {
           objectUrl,
           `Recordful-${
             partial ? "Partial" : "Recovery"
-          }-${new Date().toISOString()}-${reason}.webm`
+          }-${new Date().toISOString().replace(/:/g, "-")}-${reason}.webm`
         );
         chrome.runtime.sendMessage({
           type: "show-toast",
