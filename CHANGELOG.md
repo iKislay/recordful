@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.6.31 (2026-11-10)
+
+### Fixes
+- Window recordings placed clicks and the pointer path too far right (and left, on the other half) when something sat beside the page on the left only: Chrome's vertical tabs, a left side panel, DevTools docked left. The window's invisible border was taken as half of everything beside the page; it is now what is beside it on the narrower side, at most 8. Measured in real Chrome against the window's frame from Windows, DevTools docked left: the old rule was up to 464 px off, the new one within 1 px.
+- Recovery and diagnostic download names no longer contain colons, which Windows refuses in a file name.
+
 ## 4.6.30 (2026-11-09)
 
 ### Fixes
