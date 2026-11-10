@@ -113,7 +113,7 @@ const Welcome = (props) => {
                 marginLeft: "8px",
               }}
             >
-              $3.99/mo
+              $19/mo
             </span>
           </div>
           <div

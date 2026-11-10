@@ -90,7 +90,7 @@ const Welcome = (props) => {
                 fontSize: "14px",
               }}
             >
-              $3.99/mo
+              $19/mo
             </span>
           </a>
           <a
