@@ -2358,6 +2358,12 @@ export const setupHandlers = () => {
     };
   };
 
+  // The zoom of the page asking, which sizes the click effect it draws: the
+  // same number `pictureOf` places its clicks by.
+  registerMessage("get-zoom", (_message, sender) =>
+    chrome.tabs.getZoom(sender.tab.id),
+  );
+
   registerMessage("click-event", async ({ payload }, sender) => {
     const { x, y, surface, region } = payload;
     const clockTime = await clickTimeFromClock();

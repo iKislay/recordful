@@ -13,7 +13,13 @@ const CursorModes = () => {
   // Refs to avoid querySelector per mousemove.
   const cursorHighlightRef = useRef(null);
   // What is recorded, which sets how large a click's effect is.
-  const pictureRef = useRef({ surface: "default", region: false, regionHeight: 0 });
+  const pictureRef = useRef({
+    surface: "default",
+    region: false,
+    regionHeight: 0,
+    tab: false,
+    zoom: 1,
+  });
   const spotlightRef = useRef(null);
 
   useEffect(() => {
@@ -31,16 +37,51 @@ const CursorModes = () => {
     };
   }, [contentState.customRegion, contentState.regionHeight]);
 
+  // The page's zoom, which only the background can read. Asked when a
+  // recording starts and again when the zoom changes: that changes the pixel
+  // ratio and resizes the page. An answer that never came is asked for again.
+  useEffect(() => {
+    let ratio = 0;
+    const read = () => {
+      const asked = window.devicePixelRatio;
+      if (asked === ratio) return;
+      chrome.runtime
+        .sendMessage({ type: "get-zoom" })
+        .then((zoom) => {
+          if (!(zoom > 0)) return;
+          ratio = asked;
+          pictureRef.current = { ...pictureRef.current, zoom };
+        })
+        .catch(() => {});
+    };
+    read();
+    window.addEventListener("resize", read);
+    return () => window.removeEventListener("resize", read);
+  }, [contentState.recording]);
+
   useEffect(() => {
     const surfaceOf = (surface) => {
       pictureRef.current = { ...pictureRef.current, surface: surface || "default" };
     };
+    // Read from storage, as the click tracker does: this page's own state
+    // does not follow a recording started from another tab.
+    const typeOf = (recordingType) => {
+      pictureRef.current = {
+        ...pictureRef.current,
+        tab: recordingType === "region",
+      };
+    };
     chrome.storage.local
-      .get("surface")
-      .then(({ surface }) => surfaceOf(surface))
+      .get(["surface", "recordingType"])
+      .then(({ surface, recordingType }) => {
+        surfaceOf(surface);
+        typeOf(recordingType);
+      })
       .catch(() => {});
     const onChanged = (changes, area) => {
-      if (area === "local" && changes.surface) surfaceOf(changes.surface.newValue);
+      if (area !== "local") return;
+      if (changes.surface) surfaceOf(changes.surface.newValue);
+      if (changes.recordingType) typeOf(changes.recordingType.newValue);
     };
     chrome.storage.onChanged.addListener(onChanged);
     return () => chrome.storage.onChanged.removeListener(onChanged);
@@ -117,12 +158,15 @@ const CursorModes = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", mouseDownHandler);
+    // On the window and before the page, as the click is recorded
+    // (trackClicks): a control that keeps its mousedown to itself is still
+    // noted as a click with an effect drawn, so one has to be.
+    window.addEventListener("mousedown", mouseDownHandler, true);
     document.addEventListener("mousemove", mouseMoveHandler);
     document.addEventListener("scroll", scrollHandler);
 
     return () => {
-      document.removeEventListener("mousedown", mouseDownHandler);
+      window.removeEventListener("mousedown", mouseDownHandler, true);
       document.removeEventListener("mousemove", mouseMoveHandler);
       document.removeEventListener("scroll", scrollHandler);
       if (stateRafRef.current !== null) {

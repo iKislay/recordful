@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased (next: 4.6.32)
+
+### Fixes
+- Toolbar click effects (circle, ripple, pressure) are drawn on the window in the capture phase, as clicks are tracked. A control that stopped its own `mousedown` was recorded as a click with an effect drawn (`drawn: true`) while none was, so neither the recording nor the editor showed one.
+- The effect's size follows the same rule as the click's place (`pictureOf`): a tab recording is sized by the page whatever `surface` the previous recording left in storage (it was 24% too large after a screen recording), and a screen or window recording divides by the page's zoom, read from the background (`get-zoom`; it was 25% too large at 125%).
+- Pressure has a light rim, so it shows on dark pages. Same change in the web editor (`lib/cursor.ts`); the two `drawEffect` bodies are still identical.
+
+Checked in real Chrome on a build of this source during a real screen recording: effect centred on the click and 84 px wide as the editor draws it, drawn on a control that stops propagation, 85 px on screen at 125% zoom (84 wanted), 68 px in a tab recording (68 wanted), nothing drawn with no effect chosen.
+
 ## 4.6.31 (2026-11-10)
 
 ### Fixes

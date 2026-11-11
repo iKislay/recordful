@@ -68,11 +68,15 @@ function drawEffect(context, effect, since, unit) {
       context.stroke();
     }
   } else {
-    // A soft dent, closing as it lets go.
+    // A soft dent, closing as it lets go. Its light rim is what shows on a
+    // dark page, where the dent alone cannot be seen.
     context.beginPath();
     context.arc(0, 0, unit * 0.55 * (1 - 0.4 * out(t)), 0, Math.PI * 2);
     context.fillStyle = `rgba(0, 0, 0, ${0.18 * (1 - t)})`;
     context.fill();
+    context.lineWidth = unit * 0.05;
+    context.strokeStyle = `rgba(255, 255, 255, ${0.5 * (1 - t)})`;
+    context.stroke();
   }
   context.restore();
 }
@@ -80,12 +84,19 @@ function drawEffect(context, effect, since, unit) {
 /**
  * How tall the recorded picture is, in the page's pixels: the page's own
  * height for a tab, the region's for a region, and the window's or the
- * screen's when those are what is recorded.
+ * screen's when those are what is recorded. Decided as the background places
+ * the click (`pictureOf` in its handlers): keep the two in step.
  */
-export function pictureHeight({ surface, region, regionHeight }) {
+export function pictureHeight({ surface, region, regionHeight, tab, zoom }) {
   if (region) return regionHeight;
-  if (surface === "monitor") return window.screen.height;
-  if (surface === "window") return window.outerHeight;
+  // A tab's recording is the page, whatever surface the recording before it
+  // left behind: a tab capture names none.
+  if (tab) return window.innerHeight;
+  // A screen and a window are measured in the display's units, and a zoomed
+  // page has fewer pixels: at 125% a page pixel is 1.25 of them.
+  const scale = zoom > 0 ? zoom : 1;
+  if (surface === "monitor") return window.screen.height / scale;
+  if (surface === "window") return window.outerHeight / scale;
   return window.innerHeight;
 }
 
