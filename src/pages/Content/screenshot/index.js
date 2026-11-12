@@ -15,6 +15,7 @@
 // phone and card numbers, keys and tokens) so it can hide them in one click.
 // Positions are CSS pixels; the worker scales them to the picture.
 
+import { CURSOR_HOST_ID, STOP_CHIP_HOST_ID } from "../agentPage/elements";
 import { captureDomScreenshot, domCaptureAvailable } from "./domCapture";
 
 const OVERLAY_ID = "recordful-shot-overlay";
@@ -31,16 +32,19 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // ---------------------------------------------------------------------------
 // Recordful's own UI is never in the picture.
 
+// The popup, and an AI agent's cursor and Stop chip.
+const OWN_UI = ["recordful-ui", CURSOR_HOST_ID, STOP_CHIP_HOST_ID];
 let hiddenUi = null;
 const hideUi = () => {
-  const root = document.getElementById("recordful-ui");
-  if (!root || hiddenUi) return;
-  hiddenUi = { root, visibility: root.style.visibility };
-  root.style.setProperty("visibility", "hidden", "important");
+  if (hiddenUi) return;
+  hiddenUi = OWN_UI.map((id) => document.getElementById(id))
+    .filter(Boolean)
+    .map((root) => ({ root, visibility: root.style.visibility }));
+  for (const { root } of hiddenUi) root.style.setProperty("visibility", "hidden", "important");
 };
 const showUi = () => {
   if (!hiddenUi) return;
-  hiddenUi.root.style.visibility = hiddenUi.visibility;
+  for (const { root, visibility } of hiddenUi) root.style.visibility = visibility;
   hiddenUi = null;
 };
 
