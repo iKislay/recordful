@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased (next: 4.6.32)
+## 4.6.32 (2026-11-12)
 
 ### Fixes
 - Toolbar click effects (circle, ripple, pressure) are drawn on the window in the capture phase, as clicks are tracked. A control that stopped its own `mousedown` was recorded as a click with an effect drawn (`drawn: true`) while none was, so neither the recording nor the editor showed one.
