@@ -4,6 +4,7 @@
 // inside the page happens in the content script (Content/agentPage), which
 // also draws the cursor the video shows; this side picks the tab, carries
 // state across navigations and handles what only the worker can do.
+import { takeScreenshot } from "../screenshot/takeScreenshot";
 import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
 import { getArmedTab } from "./armedTab";
 import { AgentBridgeError, AgentErrorCode } from "./errors";
@@ -350,7 +351,8 @@ const encodeScreenshot = async (dataUrl) => {
   throw new AgentBridgeError(AgentErrorCode.Internal, "Screenshot too large to send");
 };
 
-const screenshot = async () => {
+// Chrome only captures the tab in front of a window that is not minimized.
+const showingTab = async () => {
   const tab = await resolvePageTab();
   const win = await chrome.windows.get(tab.windowId).catch(() => null);
   if (!tab.active || !win || win.state === "minimized") {
@@ -360,9 +362,32 @@ const screenshot = async () => {
       { tab: describeTab(tab) },
     );
   }
+  return tab;
+};
+
+const screenshot = async () => {
+  const tab = await showingTab();
   const dataUrl = await chrome.tabs.captureVisibleTab(tab.windowId, { format: "jpeg", quality: 80 });
   const image = await encodeScreenshot(dataUrl);
   return { mimeType: "image/jpeg", ...image, ...describeTab(tab) };
+};
+
+// A Recordful screenshot, as the popup takes it, opened in the screenshot
+// editor. Answers in a few bytes: the agent doesn't need to see the picture.
+const takeShot = async ({ mode = "visible", look } = {}) => {
+  if (mode !== "visible" && mode !== "page") {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, 'mode must be "visible" or "page"');
+  }
+  if (look !== undefined && (typeof look !== "string" || look.length > 40)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "look must be a short name");
+  }
+  const tab = await showingTab();
+  const result = await takeScreenshot(mode, tab, look);
+  if (result?.ok) return { ok: true, openedIn: "screenshot editor" };
+  if (result?.error === "restricted") {
+    throw new AgentBridgeError(AgentErrorCode.TabNotRecordable, "Chrome doesn't let extensions capture this page.", { tab: describeTab(tab) });
+  }
+  throw new AgentBridgeError(AgentErrorCode.Internal, `Screenshot failed: ${result?.error || "cancelled"}`);
 };
 
 // Page actions run one at a time on their own queue, so a snapshot never
@@ -377,4 +402,5 @@ export const pageCommands = {
   "page.scroll": { run: scroll, queue: "page" },
   "page.waitFor": { run: waitFor, queue: "page" },
   "page.screenshot": { run: screenshot, queue: "page" },
+  "shot.take": { run: takeShot, queue: "page" },
 };

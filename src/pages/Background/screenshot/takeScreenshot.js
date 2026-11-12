@@ -179,17 +179,20 @@ async function shootPage(tab) {
 }
 
 /** Keeps a picture taken elsewhere (a screen or window) and opens the editor. */
-async function keepAndOpen(taken, tab) {
+async function keepAndOpen(taken, tab, look) {
   const name = `${SHOT_PREFIX}${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
   await putShot({ name, takenAt: Date.now(), ...taken });
   void pruneShots().catch(() => {});
-  const url = `${EDITOR_BASE}/editor/shot?take=${encodeURIComponent(name)}&ext=${chrome.runtime.id}`;
+  const url = `${EDITOR_BASE}/editor/shot?take=${encodeURIComponent(name)}&ext=${chrome.runtime.id}${look ? `&look=${encodeURIComponent(look)}` : ""}`;
   await chrome.tabs.create({ url, ...(tab ? { index: tab.index + 1, openerTabId: tab.id } : {}) });
   return { ok: true, name };
 }
 
-/** Takes a screenshot of `tab` (else the active tab) and opens the editor. */
-export async function takeScreenshot(mode = "area", tab = null) {
+/**
+ * Takes a screenshot of `tab` (else the active tab) and opens the editor,
+ * in `look` (a preset or "3d", from an AI agent) instead of the remembered one.
+ */
+export async function takeScreenshot(mode = "area", tab = null, look = "") {
   if (busy) return { error: "busy" };
   const target = tab ?? (await getCurrentTab());
   if (!target?.id) return { error: "no-tab" };
@@ -198,7 +201,7 @@ export async function takeScreenshot(mode = "area", tab = null) {
   try {
     const taken = await shoot(target, mode);
     if (!taken) return { cancelled: true };
-    return await keepAndOpen(taken, target);
+    return await keepAndOpen(taken, target, look);
   } catch (err) {
     console.warn("[recordful] screenshot failed", err);
     return { error: String(err?.message || err) };
