@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.6.33 (2026-11-12)
+
+### Features
+- AI agents take Recordful screenshots: `shot.take` (recordful-mcp 0.8.0's `take_screenshot`) captures the armed tab, `visible` or the whole `page`, with the popup's own screenshot code, and opens the web screenshot editor. An optional `look` ("3d" or a preset name) goes on the editor link as `&look=`; without it the remembered look is used. It answers `{ ok, openedIn }` only, so no picture goes back to the agent.
+
+### Fixes
+- Screenshots leave an AI agent's cursor and Stop chip out of the picture (they were captured along with the page).
+
+Checked in real Chrome on a dev build of this source driven by the recordful-mcp 0.8.0 CLI over the bridge: NOT_ARMED with no tab handed over, TAB_NOT_ACTIVE with the tab behind another, `--look 3d` opens `/editor/shot?…&look=3d` tilted in the default look, `--page` opens it flat in the default look, and no chip in either picture.
+
 ## 4.6.32 (2026-11-12)
 
 ### Fixes
