@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.8.0 (2026-11-14)
+
+AI agents can run the user's Recordful library, not just record into it. A minor version: new agent methods for recordful-mcp 1.2.0, nothing changes for people who don't use agents.
+
+### Features
+- `video.summary`: the AI summary and chapters from recordful.app. Reading is free; `generate` or `regenerate` writes one and spends the workspace's AI credits.
+- Views over time: `video.engagement` takes `days` (1 to 365) and returns `viewsBy` (sources, link page vs embeds, countries) and `daily`; `analytics.get` covers the whole workspace with its most viewed videos.
+- Trash: `trash.list` and `video.restore`; `video.delete` says the video goes to trash for 7 days, and `dryRun` returns what would go without deleting.
+- Link locks: `video.update` takes `password` (null removes it) and `expiresAt` (a future time, null for never), validated before they leave the extension; `video.get` and `video.update` report `passwordProtected` and `linkExpiresAt`, never the password.
+- `video.commentDelete` (named comment, `confirm`), `members.list`, and `members.invite` (owner only, `confirm`, since it emails someone).
+
+### Fixes
+- An agent whose workspace had spent its AI credits was told to upgrade to Pro; it now gets `OUT_OF_CREDITS` with the renewal date.
+
+Checked in real Chrome on a localhost build of this source, signed in as a throwaway Pro account on recordful.app's cap-parity build and its database, driven by the recordful-mcp 1.2.0 CLI over the bridge (21 of 21): transcript search; an expiry and a password set, stored hashed, reported without the password and cleared; views by source, country and day for a video and the workspace; a summary read (none), generated once (2 credits) and returned free the second time; a comment posted and deleted, refused without --yes; members listed and an invite refused without confirm; a delete previewed with nothing deleted, moved to trash, listed with its purge date and restored. The throwaway account and its rows were removed afterwards.
+
 ## 4.7.0 (2026-11-13)
 
 AI agents no longer need a toolbar click for everything. A minor version: a new way to connect, and agents get tabs of their own.
