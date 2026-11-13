@@ -424,10 +424,27 @@ const TRASH_DAYS = 7;
 
 // Never defaults to "the last recording" and needs an explicit confirm. It
 // goes to trash, where restore_video can bring it back for TRASH_DAYS.
-const deleteVideo = async ({ videoId, confirm } = {}) => {
+const deleteVideo = async ({ videoId, confirm, dryRun } = {}) => {
   await requirePro();
   if (typeof videoId !== "string" || !VIDEO_ID.test(videoId)) {
     throw new AgentBridgeError(AgentErrorCode.InvalidParams, "videoId must be the Recordful video ID to delete (list_videos shows them)");
+  }
+  // What would go, to show the user before they confirm. Changes nothing.
+  if (dryRun === true) {
+    const { video } = await api(`/videos/${videoId}`);
+    return {
+      dryRun: true,
+      wouldDelete: {
+        videoId,
+        title: video?.title ?? null,
+        createdAt: video?.createdAt ?? null,
+        durationSeconds: video?.durationSeconds ?? null,
+        visibility: video ? visibilityOf(video) : null,
+        views: video?.views ?? 0,
+        ...videoLinks(videoId),
+      },
+      note: `Nothing was deleted. Deleting moves it to trash; it's gone for good after ${TRASH_DAYS} days.`,
+    };
   }
   if (confirm !== true) {
     throw new AgentBridgeError(
@@ -500,6 +517,26 @@ const commentOnVideo = async ({ videoId, body } = {}) => {
   };
 };
 
+// Its author may delete a comment, and so may whoever manages the video.
+// Needs the exact video and comment plus confirm: comments don't go to trash.
+const deleteComment = async ({ videoId, commentId, confirm } = {}) => {
+  await requirePro();
+  if (typeof videoId !== "string" || !VIDEO_ID.test(videoId)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "videoId must be the Recordful video the comment is on");
+  }
+  if (typeof commentId !== "string" || !VIDEO_ID.test(commentId)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "commentId must come from get_video_activity");
+  }
+  if (confirm !== true) {
+    throw new AgentBridgeError(
+      AgentErrorCode.InvalidParams,
+      "A deleted comment can't be brought back. Show the user the comment, then call again with confirm: true.",
+    );
+  }
+  await api(`/public/videos/${videoId}/comments/${commentId}/delete`, { method: "POST" });
+  return { deleted: true, videoId, commentId };
+};
+
 const likeVideo = async ({ videoId, liked = true } = {}) => {
   await requirePro();
   if (typeof liked !== "boolean") throw new AgentBridgeError(AgentErrorCode.InvalidParams, "liked must be true or false");
@@ -567,6 +604,7 @@ export const videoCommands = {
   "trash.list": { run: listTrash, queue: null },
   "video.engagement": { run: getEngagement, queue: null },
   "video.comment": { run: commentOnVideo, queue: null },
+  "video.commentDelete": { run: deleteComment, queue: null },
   "video.like": { run: likeVideo, queue: null },
   "video.move": { run: moveVideos, queue: null },
   "folder.list": { run: listFolders, queue: null },
