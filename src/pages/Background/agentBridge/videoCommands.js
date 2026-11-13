@@ -350,6 +350,34 @@ const getTranscript = async ({ videoId, start = true } = {}) => {
   return { videoId: id, status: now.status };
 };
 
+// The AI summary and chapters. Reading is free; writing one spends the
+// workspace's AI credits, so it only happens when the agent asks (generate).
+const getSummary = async ({ videoId, generate = false, regenerate = false } = {}) => {
+  await requirePro();
+  if (typeof generate !== "boolean" || typeof regenerate !== "boolean") {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "generate and regenerate must be true or false");
+  }
+  const id = await requireVideoId(videoId);
+  let now = await api(`/videos/${id}/summary`);
+  if (now.status === "no_transcript") {
+    return { videoId: id, status: "no_transcript", note: "Transcribe it first (get_transcript), then ask again." };
+  }
+  if ((now.status === "none" && generate) || regenerate) {
+    now = await api(`/videos/${id}/summary`, { method: "POST", body: { regenerate } });
+  }
+  if (now.status !== "done") {
+    return { videoId: id, status: "none", note: "No summary yet. Writing one spends AI credits: ask the user, then call again with generate: true." };
+  }
+  return {
+    videoId: id,
+    status: "done",
+    summary: now.summary,
+    chapters: now.chapters ?? [],
+    summarizedAt: now.summarizedAt ?? null,
+    ...videoLinks(id),
+  };
+};
+
 // ---- managing videos, folders and comments (Recordful Pro) -------------------
 
 const MAX_COMMENT = 2000;
@@ -624,6 +652,7 @@ export const videoCommands = {
   "video.get": { run: getVideo, queue: null },
   "video.list": { run: listVideos, queue: null },
   "video.transcript": { run: getTranscript, queue: null },
+  "video.summary": { run: getSummary, queue: null },
   "video.update": { run: updateVideo, queue: null },
   "video.delete": { run: deleteVideo, queue: null },
   "video.restore": { run: restoreVideo, queue: null },
