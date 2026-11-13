@@ -141,6 +141,7 @@
     "offscreen",
     "desktopCapture",
     "alarms",
-    "clipboardWrite"
+    "clipboardWrite",
+    "nativeMessaging"
   ]
 }

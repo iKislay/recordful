@@ -149,7 +149,8 @@ const showManage = async () => {
   const capturePermissions = ["desktopCapture", "alarms", "offscreen"];
   if (local.isLoggedIn && local.isSubscribed) capturePermissions.push("clipboardWrite");
   toggle.addEventListener("change", () => {
-    if (toggle.checked) chrome.permissions.request({ permissions: capturePermissions }).catch(() => {});
+    // nativeMessaging lets Recordful reconnect to an agent by itself (nativeLink.js).
+    if (toggle.checked) chrome.permissions.request({ permissions: [...capturePermissions, "nativeMessaging"] }).catch(() => {});
     chrome.storage.local.set({ [ENABLED_KEY]: toggle.checked });
   });
 

@@ -10,12 +10,15 @@
 // needs anyway). It never polls: Chrome logs every refused WebSocket on
 // chrome://extensions. After an established session drops it retries for
 // about a minute in case the MCP server is restarting, then goes quiet.
+// With the relay the MCP server registers (nativeLink.js), it also connects
+// by itself whenever the bridge comes up, with no click.
 //
 // The first time it meets a machine's bridge it asks to pair: Recordful opens
 // a small window naming the app and showing a code the agent also shows in
 // chat, and on Allow hands the bridge a fresh secret both sides keep.
 import { computeProof, newNonce, newSecret, proofsEqual } from "./auth";
 import { AgentBridgeError, AgentErrorCode } from "./errors";
+import { nativeLinkUp, openNativeSocket, startNativeLink, stopNativeLink } from "./nativeLink";
 import {
   ENABLED_KEY,
   PAIR_DECISION_KEY,
@@ -124,7 +127,22 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
     connect({ mayPair: true });
   };
 
+  // The relay said the bridge is up: connect like a reconnect would (never
+  // pairs; a first pairing still needs the user's click).
+  const startRelay = async () =>
+    startNativeLink({
+      bridgePort: await getPort(),
+      path: PATH,
+      onUp: () => {
+        if (ws || reconnectTimer) return;
+        attempt = 0;
+        attemptsLeft = RECONNECT_BACKOFF_MS.length;
+        connect({ mayPair: false });
+      },
+    });
+
   const resumeIfWanted = async () => {
+    if (await isEnabled()) startRelay();
     const { [WANTED_KEY]: wanted } = await chrome.storage.session
       .get([WANTED_KEY])
       .catch(() => ({}));
@@ -268,7 +286,7 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
     const port = await getPort();
     if (ws) return;
     ended = false;
-    const socket = new WebSocket(`ws://127.0.0.1:${port}${PATH}`);
+    const socket = nativeLinkUp() ? openNativeSocket() : new WebSocket(`ws://127.0.0.1:${port}${PATH}`);
     ws = socket;
     setStatus("connecting");
     const clientNonce = newNonce();
@@ -438,8 +456,10 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
       if (changes[ENABLED_KEY].newValue === true) {
         // Turning it on is itself a gesture: try right away.
         wake("enabled");
+        startRelay();
       } else {
         disconnect("AI agents turned off");
+        stopNativeLink();
         setStatus("off");
       }
     }
@@ -451,6 +471,12 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
       if (ws) ws.close(1000, "port changed");
       else wake("port-changed");
     }
+  });
+
+  // The switch asks for nativeMessaging and flips the setting at once; the
+  // grant can land after the setting, so start the relay when it does.
+  chrome.permissions.onAdded.addListener(async ({ permissions = [] }) => {
+    if (permissions.includes("nativeMessaging") && (await isEnabled())) startRelay();
   });
 
   return { wake, resumeIfWanted, disconnect };
