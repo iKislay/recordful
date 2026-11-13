@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Añade este servidor MCP a tu app de IA y pídele que grabe algo. Cuando te lo pida, haz clic en el icono de Recordful en la pestaña que quieras grabar.",
+    "message": "Añade este servidor MCP a tu app de IA y pídele que grabe algo. Después de la primera vez se conecta sola. Para grabar una pestaña, haz clic en el icono de Recordful en esa pestaña cuando tu app de IA te lo pida.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Activado. Haz clic en el icono de Recordful en una pestaña cuando tu app de IA te lo pida.",
+    "message": "Activado. Esperando a tu app de IA. La primera vez, haz clic en el icono de Recordful para conectarla.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ podrá iniciar, pausar y detener grabaciones, y hacer clic y escribir en la pestaña que le entregues con el icono de Recordful. Permítelo solo si $APP$ te muestra este código:",
+    "message": "$APP$ podrá iniciar, pausar y detener grabaciones, y hacer clic y escribir en las pestañas que abra y en la pestaña que le des con el icono de Recordful. Permítelo solo si $APP$ te muestra este código:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

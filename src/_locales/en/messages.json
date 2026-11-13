@@ -1980,7 +1980,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Add this MCP server to your AI app, then ask it to record something. When it asks, click the Recordful icon on the tab to record.",
+    "message": "Add this MCP server to your AI app, then ask it to record something. It connects by itself after the first time. To record a tab, click the Recordful icon on it when your AI app asks.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1996,7 +1996,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "On. Click the Recordful icon on a tab when your AI app asks.",
+    "message": "On. Waiting for your AI app. The first time, click the Recordful icon to connect it.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2040,7 +2040,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ will be able to start, pause and stop recordings, and to click and type in the tab you hand it with the Recordful icon. Allow only if $APP$ shows you this code:",
+    "message": "$APP$ will be able to start, pause and stop recordings, and to click and type in tabs it opens and in the tab you hand it with the Recordful icon. Allow only if $APP$ shows you this code:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

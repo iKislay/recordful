@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Tambahkan server MCP ini ke aplikasi AI Anda, lalu minta untuk merekam sesuatu. Saat diminta, klik ikon Recordful di tab yang ingin direkam.",
+    "message": "Tambahkan server MCP ini ke aplikasi AI Anda, lalu minta untuk merekam sesuatu. Setelah pertama kali, aplikasi akan terhubung sendiri. Untuk merekam tab, klik ikon Recordful di tab itu saat aplikasi AI Anda memintanya.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Aktif. Klik ikon Recordful di sebuah tab saat aplikasi AI Anda memintanya.",
+    "message": "Aktif. Menunggu aplikasi AI Anda. Pertama kali, klik ikon Recordful untuk menghubungkannya.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ akan dapat memulai, menjeda, dan menghentikan rekaman, serta mengklik dan mengetik di tab yang Anda serahkan dengan ikon Recordful. Izinkan hanya jika $APP$ menampilkan kode ini kepada Anda:",
+    "message": "$APP$ akan dapat memulai, menjeda, dan menghentikan rekaman, serta mengklik dan mengetik di tab yang dibukanya dan di tab yang Anda berikan dengan ikon Recordful. Izinkan hanya jika $APP$ menampilkan kode ini:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

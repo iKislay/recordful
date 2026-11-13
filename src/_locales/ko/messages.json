@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "이 MCP 서버를 AI 앱에 추가한 다음 무언가를 녹화해 달라고 요청하세요. AI 앱이 요청하면 녹화할 탭에서 Recordful 아이콘을 클릭하세요.",
+    "message": "이 MCP 서버를 AI 앱에 추가한 다음 무언가를 녹화해 달라고 요청하세요. 처음 한 번 이후에는 자동으로 연결됩니다. 탭을 녹화하려면 AI 앱이 요청할 때 그 탭에서 Recordful 아이콘을 클릭하세요.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "켜짐. AI 앱이 요청하면 탭에서 Recordful 아이콘을 클릭하세요.",
+    "message": "켜짐. AI 앱을 기다리는 중입니다. 처음에는 Recordful 아이콘을 클릭해 연결하세요.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$이(가) 녹화를 시작, 일시정지, 중지하고, Recordful 아이콘으로 넘겨준 탭에서 클릭하고 입력할 수 있게 됩니다. $APP$에 이 코드가 표시될 때만 허용하세요:",
+    "message": "$APP$이(가) 녹화를 시작, 일시 중지, 중지할 수 있고, 직접 연 탭과 Recordful 아이콘으로 넘겨준 탭에서 클릭하고 입력할 수 있습니다. $APP$이(가) 이 코드를 보여 줄 때만 허용하세요:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

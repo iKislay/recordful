@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Ajoutez ce serveur MCP à votre app d'IA, puis demandez-lui d'enregistrer quelque chose. Quand elle vous le demande, cliquez sur l'icône Recordful dans l'onglet à enregistrer.",
+    "message": "Ajoutez ce serveur MCP à votre app d'IA, puis demandez-lui d'enregistrer quelque chose. Après la première fois, elle se connecte toute seule. Pour enregistrer un onglet, cliquez sur l'icône Recordful dans cet onglet quand votre app d'IA vous le demande.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Activé. Cliquez sur l'icône Recordful dans un onglet quand votre app d'IA vous le demande.",
+    "message": "Activé. En attente de votre app d'IA. La première fois, cliquez sur l'icône Recordful pour la connecter.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ pourra démarrer, mettre en pause et arrêter des enregistrements, et cliquer et saisir du texte dans l'onglet que vous lui confiez avec l'icône Recordful. N'autorisez que si $APP$ vous affiche ce code :",
+    "message": "$APP$ pourra démarrer, mettre en pause et arrêter des enregistrements, et cliquer et taper dans les onglets qu'elle ouvre et dans l'onglet que vous lui confiez avec l'icône Recordful. N'autorisez que si $APP$ vous montre ce code :",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

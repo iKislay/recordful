@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "இந்த MCP சர்வரை உங்கள் AI ஆப்பில் சேர்த்து, ஏதாவது பதிவு செய்யச் சொல்லுங்கள். அது கேட்கும்போது, பதிவு செய்ய வேண்டிய டேபில் Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
+    "message": "இந்த MCP சர்வரை உங்கள் AI செயலியில் சேர்த்து, ஏதாவது பதிவு செய்யச் சொல்லுங்கள். முதல் முறைக்குப் பிறகு அது தானாக இணையும். ஒரு தாவலைப் பதிவு செய்ய, உங்கள் AI செயலி கேட்கும்போது அந்தத் தாவலில் Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "இயக்கத்தில் உள்ளது. உங்கள் AI ஆப் கேட்கும்போது ஒரு டேபில் Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
+    "message": "இயக்கத்தில். உங்கள் AI செயலிக்காகக் காத்திருக்கிறது. முதல் முறை இணைக்க Recordful ஐகானைக் கிளிக் செய்யுங்கள்.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ பதிவுகளைத் தொடங்கவும், இடைநிறுத்தவும், நிறுத்தவும், Recordful ஐகான் மூலம் நீங்கள் ஒப்படைக்கும் டேபில் கிளிக் செய்யவும் தட்டச்சு செய்யவும் முடியும். $APP$ இந்தக் குறியீட்டைக் காட்டினால் மட்டுமே அனுமதியுங்கள்:",
+    "message": "$APP$ பதிவுகளைத் தொடங்க, இடைநிறுத்த, நிறுத்த முடியும்; அது திறக்கும் தாவல்களிலும் Recordful ஐகானால் நீங்கள் ஒப்படைக்கும் தாவலிலும் கிளிக் செய்து தட்டச்சு செய்ய முடியும். $APP$ இந்தக் குறியீட்டைக் காட்டினால் மட்டுமே அனுமதியுங்கள்:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

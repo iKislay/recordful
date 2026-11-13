@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Добавьте этот MCP-сервер в своё ИИ-приложение и попросите его что-нибудь записать. Когда оно попросит, нажмите на значок Recordful во вкладке, которую нужно записать.",
+    "message": "Добавьте этот MCP-сервер в своё ИИ-приложение и попросите его что-нибудь записать. После первого раза оно подключается само. Чтобы записать вкладку, нажмите значок Recordful на этой вкладке, когда ИИ-приложение попросит.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Включено. Нажмите на значок Recordful во вкладке, когда ИИ-приложение попросит.",
+    "message": "Включено. Ждём ваше ИИ-приложение. В первый раз нажмите значок Recordful, чтобы подключить его.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ сможет начинать, приостанавливать и останавливать запись, а также нажимать и вводить текст во вкладке, которую вы передадите ему значком Recordful. Разрешайте, только если $APP$ показывает вам этот код:",
+    "message": "$APP$ сможет начинать, приостанавливать и останавливать запись, а также нажимать и вводить текст во вкладках, которые откроет, и во вкладке, которую вы передадите значком Recordful. Разрешайте, только если $APP$ показывает вам этот код:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

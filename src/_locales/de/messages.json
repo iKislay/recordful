@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Füge diesen MCP-Server zu deiner KI-App hinzu und bitte sie, etwas aufzunehmen. Wenn sie dich darum bittet, klicke im aufzunehmenden Tab auf das Recordful-Symbol.",
+    "message": "Füge diesen MCP-Server zu deiner KI-App hinzu und bitte sie, etwas aufzunehmen. Nach dem ersten Mal verbindet sie sich von selbst. Um einen Tab aufzunehmen, klicke auf das Recordful-Symbol in diesem Tab, wenn deine KI-App darum bittet.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "An. Klicke auf einem Tab auf das Recordful-Symbol, wenn deine KI-App danach fragt.",
+    "message": "An. Warte auf deine KI-App. Klicke beim ersten Mal auf das Recordful-Symbol, um sie zu verbinden.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ kann dann Aufnahmen starten, pausieren und beenden sowie in dem Tab klicken und tippen, den du ihm mit dem Recordful-Symbol übergibst. Erlaube es nur, wenn $APP$ dir diesen Code zeigt:",
+    "message": "$APP$ kann Aufnahmen starten, pausieren und beenden sowie in Tabs, die sie öffnet, und in dem Tab, den du ihr mit dem Recordful-Symbol übergibst, klicken und tippen. Erlaube es nur, wenn $APP$ dir diesen Code zeigt:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

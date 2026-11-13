@@ -1957,7 +1957,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "将这个 MCP 服务器添加到你的 AI 应用，然后让它录制内容。当它提出请求时，在要录制的标签页上点击 Recordful 图标。",
+    "message": "将此 MCP 服务器添加到你的 AI 应用，然后让它录制一些内容。第一次之后它会自动连接。要录制某个标签页，请在 AI 应用提示时点击该标签页上的 Recordful 图标。",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1973,7 +1973,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "已开启。AI 应用请求时，在标签页上点击 Recordful 图标。",
+    "message": "已开启。正在等待你的 AI 应用。第一次请点击 Recordful 图标进行连接。",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2017,7 +2017,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ 将可以开始、暂停和停止录制，并在你通过 Recordful 图标交给它的标签页中点击和输入。仅当 $APP$ 向你显示此代码时才允许：",
+    "message": "$APP$ 将能够开始、暂停和停止录制，并在它打开的标签页以及你用 Recordful 图标交给它的标签页中点击和输入。仅当 $APP$ 向你显示此代码时才允许：",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

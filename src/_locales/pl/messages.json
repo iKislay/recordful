@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Dodaj ten serwer MCP do swojej aplikacji AI, a potem poproś ją o nagranie czegoś. Gdy o to poprosi, kliknij ikonę Recordful na karcie, którą chcesz nagrać.",
+    "message": "Dodaj ten serwer MCP do swojej aplikacji AI, a potem poproś ją o nagranie czegoś. Po pierwszym razie łączy się sama. Aby nagrać kartę, kliknij ikonę Recordful na tej karcie, gdy aplikacja AI o to poprosi.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Włączone. Kliknij ikonę Recordful na karcie, gdy aplikacja AI o to poprosi.",
+    "message": "Włączone. Czekam na aplikację AI. Za pierwszym razem kliknij ikonę Recordful, aby ją połączyć.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ będzie mogła rozpoczynać, wstrzymywać i kończyć nagrania oraz klikać i pisać na karcie, którą jej przekażesz ikoną Recordful. Zezwól tylko wtedy, gdy $APP$ pokazuje Ci ten kod:",
+    "message": "$APP$ będzie mogła rozpoczynać, wstrzymywać i zatrzymywać nagrania oraz klikać i pisać na kartach, które otworzy, i na karcie przekazanej jej ikoną Recordful. Zezwól tylko, jeśli $APP$ pokazuje ci ten kod:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

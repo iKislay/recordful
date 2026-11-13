@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "Bu MCP sunucusunu yapay zekâ uygulamana ekle, sonra ondan bir şey kaydetmesini iste. İstediğinde, kaydedilecek sekmede Recordful simgesine tıkla.",
+    "message": "Bu MCP sunucusunu yapay zekâ uygulamanıza ekleyin, sonra ondan bir şey kaydetmesini isteyin. İlk seferden sonra kendiliğinden bağlanır. Bir sekmeyi kaydetmek için yapay zekâ uygulamanız istediğinde o sekmede Recordful simgesine tıklayın.",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "Açık. Yapay zekâ uygulaman istediğinde bir sekmede Recordful simgesine tıkla.",
+    "message": "Açık. Yapay zekâ uygulamanız bekleniyor. İlk seferde bağlamak için Recordful simgesine tıklayın.",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ kayıtları başlatabilecek, duraklatabilecek ve durdurabilecek; Recordful simgesiyle ona verdiğin sekmede tıklayıp yazabilecek. Yalnızca $APP$ sana bu kodu gösteriyorsa izin ver:",
+    "message": "$APP$ kayıtları başlatabilecek, duraklatabilecek ve durdurabilecek; açtığı sekmelerde ve Recordful simgesiyle ona verdiğiniz sekmede tıklayıp yazabilecek. Yalnızca $APP$ size bu kodu gösteriyorsa izin verin:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {

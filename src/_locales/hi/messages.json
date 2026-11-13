@@ -1958,7 +1958,7 @@
     "description": "Heading of the setup section"
   },
   "agentsSetupHint": {
-    "message": "इस MCP सर्वर को अपने AI ऐप में जोड़ें, फिर उससे कुछ रिकॉर्ड करने को कहें। जब वह कहे, तो जिस टैब को रिकॉर्ड करना है उस पर Recordful आइकन पर क्लिक करें।",
+    "message": "इस MCP सर्वर को अपने AI ऐप में जोड़ें, फिर उससे कुछ रिकॉर्ड करने को कहें। पहली बार के बाद यह अपने आप कनेक्ट हो जाता है। किसी टैब को रिकॉर्ड करने के लिए, जब आपका AI ऐप कहे तो उस टैब पर Recordful आइकन पर क्लिक करें।",
     "description": "Setup instructions above the MCP server command"
   },
   "agentsSetupLink": {
@@ -1974,7 +1974,7 @@
     "description": "Shown after the setup command was copied"
   },
   "agentsStatusIdle": {
-    "message": "चालू। जब आपका AI ऐप कहे, तो किसी टैब पर Recordful आइकन पर क्लिक करें।",
+    "message": "चालू। आपके AI ऐप का इंतज़ार है। पहली बार इसे कनेक्ट करने के लिए Recordful आइकन पर क्लिक करें।",
     "description": "Status when AI agents are on but no app is connected"
   },
   "agentsStatusConnecting": {
@@ -2018,7 +2018,7 @@
     }
   },
   "agentsPairBody": {
-    "message": "$APP$ रिकॉर्डिंग शुरू, रोक और बंद कर सकेगा, और उस टैब में क्लिक और टाइप कर सकेगा जो आप उसे Recordful आइकन से सौंपेंगे। तभी अनुमति दें जब $APP$ आपको यह कोड दिखाए:",
+    "message": "$APP$ रिकॉर्डिंग शुरू, रोक और बंद कर सकेगा, और अपने खोले गए टैब में और उस टैब में क्लिक और टाइप कर सकेगा जो आप उसे Recordful आइकन से सौंपते हैं। केवल तभी अनुमति दें जब $APP$ आपको यह कोड दिखाए:",
     "description": "Explanation in the pairing window, followed by the code",
     "placeholders": {
       "app": {
