@@ -289,6 +289,7 @@ const getVideo = async ({ videoId } = {}) => {
     durationSeconds: video?.durationSeconds ?? null,
     createdAt: video?.createdAt ?? null,
     folderId: video?.folderId ?? null,
+    ...linkLock(video),
     ...videoLinks(id),
     // "uploading" → "processing" → "ready" (the site's own upload stages).
     stage: uploadingHere ? "uploading" : status?.stage ?? "uploading",
@@ -368,10 +369,34 @@ const requireFolderId = (value, name) => {
   return value;
 };
 
-const updateVideo = async ({ videoId, title, visibility } = {}) => {
+// Whether the share link asks outsiders for a password, and when it stops
+// working. The password itself is never read back.
+const linkLock = (video) => ({
+  passwordProtected: Boolean(video?.locked),
+  linkExpiresAt: video?.shareExpiresAt ?? null,
+});
+
+const cleanPassword = (value) => {
+  if (value === null) return null;
+  if (typeof value !== "string" || value.length < 1 || value.length > 200) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "password must be 1 to 200 characters, or null to remove it");
+  }
+  return value;
+};
+
+const cleanExpiry = (value) => {
+  if (value === null) return null;
+  const at = typeof value === "string" ? Date.parse(value) : NaN;
+  if (!Number.isFinite(at) || at <= Date.now()) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "expiresAt must be a future date and time (ISO 8601), or null for a link that never expires");
+  }
+  return new Date(at).toISOString();
+};
+
+const updateVideo = async ({ videoId, title, visibility, password, expiresAt } = {}) => {
   await requirePro();
-  if (title === undefined && visibility === undefined) {
-    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "Give a new title or a visibility to change.");
+  if ([title, visibility, password, expiresAt].every((v) => v === undefined)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "Give a new title, visibility, password or expiresAt to change.");
   }
   if (visibility !== undefined && !VISIBILITIES.includes(visibility)) {
     throw new AgentBridgeError(AgentErrorCode.InvalidParams, `visibility must be one of ${VISIBILITIES.join(", ")}`);
@@ -379,11 +404,19 @@ const updateVideo = async ({ videoId, title, visibility } = {}) => {
   const body = {
     ...(title !== undefined ? { title: cleanText(title, "title", 200) } : {}),
     ...(visibility !== undefined ? { visibility } : {}),
+    ...(password !== undefined ? { password: cleanPassword(password) } : {}),
+    ...(expiresAt !== undefined ? { expiresAt: cleanExpiry(expiresAt) } : {}),
   };
   const id = await requireVideoId(videoId);
   await api(`/videos/${id}`, { method: "PATCH", body });
   const { video } = await api(`/videos/${id}`);
-  return { videoId: id, title: video?.title ?? null, visibility: video ? visibilityOf(video) : null, ...videoLinks(id) };
+  return {
+    videoId: id,
+    title: video?.title ?? null,
+    visibility: video ? visibilityOf(video) : null,
+    ...linkLock(video),
+    ...videoLinks(id),
+  };
 };
 
 // recordful-ee purges trash after this many days (lib/inngest/functions.ts).
