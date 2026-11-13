@@ -483,10 +483,22 @@ const restoreVideo = async ({ videoId } = {}) => {
   return { restored: true, videoId, ...videoLinks(videoId) };
 };
 
-const getEngagement = async ({ videoId } = {}) => {
+const MAX_DAYS = 365;
+
+// A day range for views over time: 1..MAX_DAYS, or undefined for the site's default (30).
+const cleanDays = (days) => {
+  if (days === undefined) return undefined;
+  if (!Number.isInteger(days) || days < 1 || days > MAX_DAYS) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, `days must be a whole number from 1 to ${MAX_DAYS}`);
+  }
+  return days;
+};
+
+const getEngagement = async ({ videoId, days } = {}) => {
   await requirePro();
+  const range = cleanDays(days);
   const id = await requireVideoId(videoId);
-  const e = await api(`/videos/${id}/engagement`);
+  const e = await api(`/videos/${id}/engagement`, { query: { days: range } });
   const comments = (e.comments || []).slice(-200).map((c) => ({
     id: c.id,
     body: c.body,
@@ -498,6 +510,8 @@ const getEngagement = async ({ videoId } = {}) => {
     views: e.views ?? 0,
     // { sources, linkPage, embedded, countries }; null from older recordful.app or with no views.
     viewsBy: e.viewsBy ?? null,
+    // [{ date, views }] per UTC day, oldest first; null from older recordful.app.
+    daily: e.daily ?? null,
     likes: e.likes ?? 0,
     likedByUser: Boolean(e.liked),
     comments,
@@ -576,6 +590,18 @@ const moveVideos = async ({ videoIds, folderId } = {}) => {
   };
 };
 
+// Views across the workspace's videos the user can see.
+const getAnalytics = async ({ days } = {}) => {
+  await requirePro();
+  const a = await api("/analytics", { query: { days: cleanDays(days) } });
+  return {
+    days: a.days,
+    views: a.views ?? 0,
+    daily: a.daily ?? null,
+    topVideos: (a.topVideos || []).map((v) => ({ videoId: v.id, title: v.title ?? null, views: v.views, ...videoLinks(v.id) })),
+  };
+};
+
 const getStorage = async () => {
   await requirePro();
   const q = await api("/storage/quota");
@@ -609,6 +635,7 @@ export const videoCommands = {
   "video.move": { run: moveVideos, queue: null },
   "folder.list": { run: listFolders, queue: null },
   "folder.create": { run: createFolder, queue: null },
+  "analytics.get": { run: getAnalytics, queue: null },
   "storage.get": { run: getStorage, queue: null },
 };
 
