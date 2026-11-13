@@ -191,8 +191,11 @@ const navigate = async ({ url, timeoutMs } = {}) => {
   // Nothing handed over yet: open a tab of the agent's own instead of asking
   // for a click. The user's existing tabs stay out of reach; the Stop chip and
   // the badge mark this one.
-  let tab = await resolvePageTab().catch((err) => {
+  let tab = await resolvePageTab().catch(async (err) => {
     if (err?.code === AgentErrorCode.NotArmed) return null;
+    // A handed-over New Tab or chrome:// page: leaving it is the point.
+    const stuck = err?.code === AgentErrorCode.PageNotScriptable && err.data?.tab?.tabId;
+    if (stuck) return chrome.tabs.get(err.data.tab.tabId).catch(() => null);
     throw err;
   });
   const openedTab = !tab;
