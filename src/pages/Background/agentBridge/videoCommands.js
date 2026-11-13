@@ -443,7 +443,16 @@ const getEngagement = async ({ videoId } = {}) => {
     createdAt: c.createdAt,
     author: c.author?.name ?? null,
   }));
-  return { videoId: id, views: e.views ?? 0, likes: e.likes ?? 0, likedByUser: Boolean(e.liked), comments, ...videoLinks(id) };
+  return {
+    videoId: id,
+    views: e.views ?? 0,
+    // { sources, linkPage, embedded, countries }; null from older recordful.app or with no views.
+    viewsBy: e.viewsBy ?? null,
+    likes: e.likes ?? 0,
+    likedByUser: Boolean(e.liked),
+    comments,
+    ...videoLinks(id),
+  };
 };
 
 const commentOnVideo = async ({ videoId, body } = {}) => {
