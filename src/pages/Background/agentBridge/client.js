@@ -119,7 +119,11 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
   // A user gesture: one attempt, no retries, so a click with no bridge
   // running costs exactly one logged error. Only a gesture may start pairing.
   const wake = async (reason) => {
-    if (ws || !(await isEnabled())) return;
+    if (!(await isEnabled())) return;
+    // The relay may have been registered after this worker started (the
+    // MCP server was installed with Chrome open): try it again on a click.
+    startRelay();
+    if (ws) return;
     if (reconnectTimer) clearTimeout(reconnectTimer);
     reconnectTimer = null;
     attempt = 0;
@@ -462,7 +466,6 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
       if (changes[ENABLED_KEY].newValue === true) {
         // Turning it on is itself a gesture: try right away.
         wake("enabled");
-        startRelay();
       } else {
         disconnect("AI agents turned off");
         stopNativeLink();
