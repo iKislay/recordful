@@ -43,6 +43,7 @@ const CloseCode = {
   AuthFailed: 4401,
   BadMessage: 4400,
   PairingRejected: 4403,
+  Superseded: 4409,
   ProtocolVersion: 4426,
 };
 
@@ -135,8 +136,10 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
       path: PATH,
       onUp: () => {
         if (ws || reconnectTimer) return;
+        // One try: the relay says "up" again the next time the bridge comes
+        // up, and an established session that drops gets its own retries.
         attempt = 0;
-        attemptsLeft = RECONNECT_BACKOFF_MS.length;
+        attemptsLeft = 0;
         connect({ mayPair: false });
       },
     });
@@ -433,11 +436,14 @@ export const createBridgeClient = ({ port: buildPort, buildToken, commands }) =>
           return;
         }
       }
-      // Retrying can't fix a version or secret mismatch, or a refusal.
+      // Retrying can't fix a version or secret mismatch, or a refusal. And a
+      // newer connection (another profile, another click) took over on
+      // purpose: taking it back would make the two bounce off each other.
       if (
         event.code === CloseCode.ProtocolVersion ||
         event.code === CloseCode.AuthFailed ||
-        event.code === CloseCode.PairingRejected
+        event.code === CloseCode.PairingRejected ||
+        event.code === CloseCode.Superseded
       ) {
         attemptsLeft = 0;
       }
