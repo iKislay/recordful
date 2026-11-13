@@ -618,6 +618,45 @@ const moveVideos = async ({ videoIds, folderId } = {}) => {
   };
 };
 
+// The user's workspace: who is in it, and who is invited.
+const listMembers = async () => {
+  await requirePro();
+  const { members, invites } = await api("/members");
+  return {
+    members: (members || []).map((m) => ({ name: m.name, email: m.email, role: m.role })),
+    invites: (invites || []).map((i) => ({ email: i.email })),
+  };
+};
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Sends an invitation email to someone else, so it needs confirm.
+const inviteMember = async ({ email, confirm } = {}) => {
+  await requirePro();
+  if (typeof email !== "string" || email.length > 254 || !EMAIL.test(email)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "email must be an email address");
+  }
+  if (confirm !== true) {
+    throw new AgentBridgeError(
+      AgentErrorCode.InvalidParams,
+      "Inviting emails this person and lets them into the workspace. Ask the user to confirm this exact address, then call again with confirm: true.",
+    );
+  }
+  try {
+    const { invite } = await api("/members", { method: "POST", body: { email } });
+    return { invited: true, email: invite.email };
+  } catch (err) {
+    const reason = err?.data?.error;
+    if (reason === "already_member_or_invited") {
+      throw new AgentBridgeError(AgentErrorCode.InvalidParams, `${email} is already in the workspace or already invited (list_members shows who).`);
+    }
+    if (reason === "member_limit") {
+      throw new AgentBridgeError(AgentErrorCode.CloudError, "The workspace has reached its member limit. The user can contact support to raise it.");
+    }
+    throw err;
+  }
+};
+
 // Views across the workspace's videos the user can see.
 const getAnalytics = async ({ days } = {}) => {
   await requirePro();
@@ -665,6 +704,8 @@ export const videoCommands = {
   "folder.list": { run: listFolders, queue: null },
   "folder.create": { run: createFolder, queue: null },
   "analytics.get": { run: getAnalytics, queue: null },
+  "members.list": { run: listMembers, queue: null },
+  "members.invite": { run: inviteMember, queue: null },
   "storage.get": { run: getStorage, queue: null },
 };
 
