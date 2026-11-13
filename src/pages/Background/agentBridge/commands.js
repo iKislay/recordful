@@ -187,6 +187,13 @@ const startRecording = async ({ tabId, timeoutMs } = {}) => {
   // Chrome only allows tab capture after the user invoked Recordful on that
   // tab; without it the start stalls at "Starting recording…". Fail fast and
   // say what's needed. Screen and camera modes don't depend on it.
+  if (TAB_CAPTURE_MODES.has(before.recordingType) && armed?.tabId === tab.id && armed.via === "agent") {
+    throw new AgentBridgeError(
+      AgentErrorCode.NotArmed,
+      "Recordful opened this tab for you, and Chrome only lets it record a tab after the user clicks the Recordful toolbar icon on it. Ask them to click it once on this tab, then retry.",
+      { tabId: tab.id, url: tab.url || null, armedTabId: armed.tabId },
+    );
+  }
   if (TAB_CAPTURE_MODES.has(before.recordingType) && armed?.tabId !== tab.id) {
     throw new AgentBridgeError(
       AgentErrorCode.NotArmed,

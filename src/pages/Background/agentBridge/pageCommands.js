@@ -6,7 +6,7 @@
 // state across navigations and handles what only the worker can do.
 import { takeScreenshot } from "../screenshot/takeScreenshot";
 import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
-import { getArmedTab } from "./armedTab";
+import { armTab, getArmedTab } from "./armedTab";
 import { AgentBridgeError, AgentErrorCode } from "./errors";
 
 // Must match Content/agentPage/index.js.
@@ -67,15 +67,15 @@ const resolvePageTab = async () => {
   if (candidates.length === 0) {
     throw new AgentBridgeError(
       AgentErrorCode.NotArmed,
-      "No tab has been handed to Recordful. Ask the user to click the Recordful toolbar icon on the tab to record.",
-      { hint: "Page tools only act on the tab where the user clicked the Recordful icon, or the tab being recorded." },
+      "No tab has been handed to Recordful. Call navigate(url) and Recordful opens a tab of its own, or ask the user to click the Recordful toolbar icon on the tab to use.",
+      { hint: "Page tools only act on the tab Recordful opened for you, the tab where the user clicked the Recordful icon, or the tab being recorded." },
     );
   }
   const tab = await chrome.tabs.get(candidates[candidates.length - 1]).catch(() => null);
   if (!tab) {
     throw new AgentBridgeError(
       AgentErrorCode.NotArmed,
-      "The tab handed to Recordful was closed. Ask the user to click the Recordful icon on the tab to record.",
+      "The tab handed to Recordful was closed. Call navigate(url) to open a new one, or ask the user to click the Recordful icon on the tab to use.",
     );
   }
   throw new AgentBridgeError(
@@ -188,10 +188,22 @@ const navigate = async ({ url, timeoutMs } = {}) => {
     throw invalid("url must be an absolute http(s) URL");
   }
   const timeout = optionalInt(timeoutMs, "timeoutMs", 1000, 60000, 20000);
-  const tab = await resolvePageTab();
+  // Nothing handed over yet: open a tab of the agent's own instead of asking
+  // for a click. The user's existing tabs stay out of reach; the Stop chip and
+  // the badge mark this one.
+  let tab = await resolvePageTab().catch((err) => {
+    if (err?.code === AgentErrorCode.NotArmed) return null;
+    throw err;
+  });
+  const openedTab = !tab;
   const startedAt = Date.now();
   try {
-    await chrome.tabs.update(tab.id, { url: parsed.href });
+    if (tab) {
+      await chrome.tabs.update(tab.id, { url: parsed.href });
+    } else {
+      tab = await chrome.tabs.create({ url: parsed.href, active: true });
+      await armTab(tab, "agent");
+    }
   } catch (err) {
     throw new AgentBridgeError(AgentErrorCode.NavigationFailed, String(err?.message || err));
   }
@@ -204,6 +216,7 @@ const navigate = async ({ url, timeoutMs } = {}) => {
     title: after.title || null,
     loaded,
     waitedMs: Date.now() - startedAt,
+    ...(openedTab ? { openedTab: true } : {}),
     ...(loaded ? {} : { hint: "The page was still loading when the wait ran out; it may still be usable." }),
   };
 };
