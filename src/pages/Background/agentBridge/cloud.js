@@ -52,6 +52,13 @@ const requireCloud = () => {
 const errorFor = (status, body) => {
   const code = body?.error;
   if (status === 401) return notSignedInError();
+  if (code === "out_of_credits") {
+    return new AgentBridgeError(
+      AgentErrorCode.OutOfCredits,
+      "The user's workspace has no AI credits left this month; they renew on the date given.",
+      { renewsAt: body?.renewsAt ?? null },
+    );
+  }
   if (status === 402 || code === "pro_required") return proRequiredError();
   if (status === 403) {
     return new AgentBridgeError(

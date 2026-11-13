@@ -35,6 +35,8 @@ export const AgentErrorCode = {
   UploadInterrupted: "UPLOAD_INTERRUPTED",
   // managing videos, folders and comments
   Forbidden: "FORBIDDEN",
+  // AI summaries
+  OutOfCredits: "OUT_OF_CREDITS",
 };
 
 export class AgentBridgeError extends Error {
