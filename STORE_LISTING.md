@@ -15,31 +15,51 @@ same filenames, same pixel sizes.
 
 ## Short description (132 chars max, shows under title)
 
-Free screen recorder: capture tab, screen or camera, annotate live, trim and export. No sign-in needed.
+Free screen recorder and screenshot tool. Record tab, window or screen, auto-zoom edits, 4K export, and let AI agents record demos.
 
 ## Full description
 
-Recordful is the free and privacy-friendly screen recorder with no sign in needed.
+Recordful is a free screen recorder and screenshot tool for Chrome. Record a tab, a window, an area or your whole screen, and turn it into a polished video in minutes. No account needed to start.
 
-Record a tab, an app window, your whole screen, or just the camera. Include
-mic and system audio, draw and annotate live, spotlight the cursor, blur
-sensitive parts, and zoom into details while you record.
+RECORD
+• Tab, window, area or full screen, with microphone, system audio and camera
+• Camera bubble with background blur
+• Draw, blur and spotlight while you record
+• Click effects (circle, ripple, pressure) and click sounds
+• A floating teleprompter that stays out of your video
+• Pause and resume, with keyboard shortcuts to start, pause, stop and mute the mic
 
-After you stop, trim, crop, mute sections, add your own audio, and export to
-MP4, WebM or GIF, or save to Google Drive. Your videos never leave your
-machine unless you choose to export or share them.
+EDIT, FREE IN YOUR BROWSER
+• Auto-zoom that follows your clicks
+• Backgrounds, frames and camera layouts
+• Cut, trim and speed up clips, combine recordings, reorder them, and record a voiceover
+• Your own watermark: your logo, a line of text, both, or none
+• Export MP4 or WebM up to 4K at 60 FPS
 
-Everything local is unlimited and free: unlimited recordings, no watermarks,
-no account. Recordful Pro (recordful.app/pro) adds cloud storage with share
-links, multi-scene editing, auto-zoom on clicks, and captions, and supports
-indie builder Kislay.
+SCREENSHOTS
+• Capture the visible page, an area, the full scrolling page or a whole screen
+• Make it beautiful with a wallpaper picked to match, frames, rounded corners and a 3D tilt
+• Copy, download, or share to X, Threads or Forg
 
-Open source (GPLv3): https://github.com/ikislay/recordful
+AI AGENTS
+• Let Claude Code, Cursor, Codex and other AI apps record a demo of what they just built, through the free recordful-mcp server
+• Pair once and it connects by itself. Your AI works in its own tab and never touches your other tabs
+• It navigates, clicks and types with a smooth on-screen cursor, takes screenshots, and you can stop it any time
+
+PRIVATE BY DEFAULT
+Local recordings stay on your device until you export or share them, with no time limit.
+
+RECORDFUL PRO
+Cloud storage and instant share links (with a password or an end date), captions, voice cleanup that removes filler words and long pauses, 3D perspective, views, likes and comments on your videos, and the Recordful Agent that edits your video while you chat with it. recordful.app/pro
+
+Also on macOS, Windows and Linux: recordful.app/download
+Open source (GPLv3): github.com/ikislay/recordful
 
 ## Single purpose (required field)
 
-Screen recording: capture the current tab, screen or camera with audio,
-annotate while recording, then edit and export locally.
+Screen capture: record the current tab, a window or the screen with audio and
+camera, or take a screenshot of it, then edit and export locally. AI apps the
+user connects can drive the same recording and screenshot tools.
 
 ## Why `<all_urls>` (reviewer justification, paste into justification box)
 
@@ -67,6 +87,7 @@ annotation UI must persist while the user switches tabs mid-recording.
 - `offscreen` (optional): runs the recorder offscreen where Chrome requires it.
 - `alarms` (optional): fires the user-set recording time limit.
 - `clipboardWrite` (optional): copies the share link on click.
+- `nativeMessaging` (optional): requested only when the user turns on AI agents. It connects Recordful to the user's own local recordful-mcp server (the AI agents feature) without polling. Nothing leaves the computer through it.
 - `externally_connectable https://recordful.app/*`: login bridge + Pro cloud upload only. Self-hosted builds strip this.
 - Host `recordful.app/help`: help articles opened only on user click.
 
