@@ -386,8 +386,11 @@ const updateVideo = async ({ videoId, title, visibility } = {}) => {
   return { videoId: id, title: video?.title ?? null, visibility: video ? visibilityOf(video) : null, ...videoLinks(id) };
 };
 
-// Never defaults to "the last recording" and needs an explicit confirm: a
-// deleted video can't come back.
+// recordful-ee purges trash after this many days (lib/inngest/functions.ts).
+const TRASH_DAYS = 7;
+
+// Never defaults to "the last recording" and needs an explicit confirm. It
+// goes to trash, where restore_video can bring it back for TRASH_DAYS.
 const deleteVideo = async ({ videoId, confirm } = {}) => {
   await requirePro();
   if (typeof videoId !== "string" || !VIDEO_ID.test(videoId)) {
@@ -396,13 +399,38 @@ const deleteVideo = async ({ videoId, confirm } = {}) => {
   if (confirm !== true) {
     throw new AgentBridgeError(
       AgentErrorCode.InvalidParams,
-      "Deleting a video can't be undone. Ask the user to confirm this exact video, then call again with confirm: true.",
+      `Deleting moves the video to trash, and it's gone for good after ${TRASH_DAYS} days. Ask the user to confirm this exact video, then call again with confirm: true.`,
     );
   }
   await api(`/videos/${videoId}/delete`, { method: "POST", body: { deleteProject: true } });
   const last = await getSession(LAST_RECORDING_KEY);
   if (last?.videoId === videoId) await chrome.storage.session.remove(LAST_RECORDING_KEY).catch(() => {});
-  return { deleted: true, videoId };
+  return { deleted: true, videoId, inTrash: true, note: `In trash for ${TRASH_DAYS} days; restore_video brings it back.` };
+};
+
+const listTrash = async () => {
+  await requirePro();
+  const { items } = await api("/trash");
+  return {
+    trashDays: TRASH_DAYS,
+    videos: (items || []).map((v) => ({
+      videoId: v.id,
+      title: v.title ?? null,
+      kind: v.kind,
+      deletedAt: v.deletedAt,
+      purgesAt: new Date(Date.parse(v.deletedAt) + TRASH_DAYS * 86_400_000).toISOString(),
+      durationSeconds: v.durationSeconds ?? null,
+    })),
+  };
+};
+
+const restoreVideo = async ({ videoId } = {}) => {
+  await requirePro();
+  if (typeof videoId !== "string" || !VIDEO_ID.test(videoId)) {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "videoId must be a video in trash (list_trash shows them)");
+  }
+  await api(`/videos/${videoId}/restore`, { method: "POST" });
+  return { restored: true, videoId, ...videoLinks(videoId) };
 };
 
 const getEngagement = async ({ videoId } = {}) => {
@@ -493,6 +521,8 @@ export const videoCommands = {
   "video.transcript": { run: getTranscript, queue: null },
   "video.update": { run: updateVideo, queue: null },
   "video.delete": { run: deleteVideo, queue: null },
+  "video.restore": { run: restoreVideo, queue: null },
+  "trash.list": { run: listTrash, queue: null },
   "video.engagement": { run: getEngagement, queue: null },
   "video.comment": { run: commentOnVideo, queue: null },
   "video.like": { run: likeVideo, queue: null },
