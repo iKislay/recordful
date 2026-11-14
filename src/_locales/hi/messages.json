@@ -2238,5 +2238,13 @@
   "agentChipStop": {
     "message": "रोकें",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "addMarkerTooltip": {
+    "message": "मार्कर जोड़ें",
+    "description": "Recording toolbar button that marks the current moment for the editor"
+  },
+  "markerAddedToast": {
+    "message": "मार्कर जोड़ा गया",
+    "description": "Toast shown after a marker is added while recording"
   }
 }

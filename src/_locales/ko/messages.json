@@ -2238,5 +2238,13 @@
   "agentChipStop": {
     "message": "중지",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "addMarkerTooltip": {
+    "message": "마커 추가",
+    "description": "Recording toolbar button that marks the current moment for the editor"
+  },
+  "markerAddedToast": {
+    "message": "마커가 추가됨",
+    "description": "Toast shown after a marker is added while recording"
   }
 }

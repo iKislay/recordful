@@ -2256,5 +2256,13 @@
   "agentChipStop": {
     "message": "Stop",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "addMarkerTooltip": {
+    "message": "Add marker",
+    "description": "Recording toolbar button that marks the current moment for the editor"
+  },
+  "markerAddedToast": {
+    "message": "Marker added",
+    "description": "Toast shown after a marker is added while recording"
   }
 }

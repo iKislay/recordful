@@ -2238,5 +2238,13 @@
   "agentChipStop": {
     "message": "நிறுத்து",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "addMarkerTooltip": {
+    "message": "குறிப்பான் சேர்",
+    "description": "Recording toolbar button that marks the current moment for the editor"
+  },
+  "markerAddedToast": {
+    "message": "குறிப்பான் சேர்க்கப்பட்டது",
+    "description": "Toast shown after a marker is added while recording"
   }
 }
