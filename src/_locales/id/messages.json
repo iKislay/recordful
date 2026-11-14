@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "Hentikan",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "Rekaman terakhir Anda terputus",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful menyimpannya selama merekam. Pulihkan untuk membukanya di editor, sampai saat rekaman berhenti.",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "Pulihkan rekaman",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "Buang",
+    "description": "Button: discard the interrupted recording"
   }
 }

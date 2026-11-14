@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "중지",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "마지막 녹화가 중단되었습니다",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful이 녹화하는 동안 계속 저장했습니다. 복구하면 중단된 시점까지의 녹화를 편집기에서 열 수 있습니다.",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "녹화 복구",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "삭제",
+    "description": "Button: discard the interrupted recording"
   }
 }

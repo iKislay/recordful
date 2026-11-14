@@ -2237,5 +2237,21 @@
   "agentChipStop": {
     "message": "停止",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "你上次的录制被中断了",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful 在录制过程中一直在保存。恢复后即可在编辑器中打开，内容截至中断的那一刻。",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "恢复录制",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "丢弃",
+    "description": "Button: discard the interrupted recording"
   }
 }

@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "Durdur",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "Son kaydınız yarıda kesildi",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful kaydı ilerledikçe kaydetti. Durduğu ana kadar düzenleyicide açmak için kurtarın.",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "Kaydı kurtar",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "At",
+    "description": "Button: discard the interrupted recording"
   }
 }

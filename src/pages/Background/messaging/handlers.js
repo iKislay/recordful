@@ -76,6 +76,8 @@ import {
   markRetainedSaved,
   markRetainedHanded,
   unsavedRetained,
+  interruptedTake,
+  dropInterruptedTake,
 } from "../recording/recordingRetention";
 import { setMicActiveTab } from "../tabManagement/tabHelpers";
 import { handleSignOutDrive } from "../drive/handleSignOutDrive";
@@ -1980,6 +1982,16 @@ export const setupHandlers = () => {
     sendResponse(response);
     return true;
   });
+  // The popup asks once per open: a take whose recorder died, still on disk.
+  registerMessage("interrupted-take", async (_message, _sender, sendResponse) => {
+    const take = await interruptedTake();
+    const { recording } = await chrome.storage.local.get(["recording"]);
+    const onDisk = take && !recording ? (await checkRestore()).restore : false;
+    if (take && !onDisk && !recording) await dropInterruptedTake();
+    sendResponse({ take: onDisk ? take : null });
+    return true;
+  });
+  registerMessage("discard-interrupted-take", () => dropInterruptedTake());
   registerMessage(
     "check-cloud-restore",
     async (_message, _sender, sendResponse) => {

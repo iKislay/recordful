@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "நிறுத்து",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "உங்கள் கடைசி பதிவு இடையில் நின்றுவிட்டது",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful பதிவின்போதே அதைச் சேமித்தது. அது நின்ற தருணம் வரை எடிட்டரில் திறக்க அதை மீட்டெடுக்கவும்.",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "பதிவை மீட்டெடு",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "நிராகரி",
+    "description": "Button: discard the interrupted recording"
   }
 }

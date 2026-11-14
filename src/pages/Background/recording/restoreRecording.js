@@ -1,5 +1,9 @@
 import { sendMessageTab, getCurrentTab } from "../tabManagement";
-import { pruneRetained, registerRetainable } from "./recordingRetention";
+import {
+  pruneRetained,
+  registerRetainable,
+  dropInterruptedTake,
+} from "./recordingRetention";
 import {
   CHUNK_SLOT_A,
   CHUNK_SLOT_B,
@@ -108,6 +112,8 @@ export const checkRestore = async () => {
 };
 
 export const restoreRecording = async () => {
+  // The recovered take registers again under its editor tab below.
+  await dropInterruptedTake().catch(() => {});
   // capture trigger tab now; restore can take 30s+ and the user may switch
   let triggerTabId = null;
   try {

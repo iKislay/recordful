@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "Остановить",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "Ваша последняя запись прервалась",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful сохранял её по ходу записи. Восстановите её, чтобы открыть в редакторе до момента остановки.",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "Восстановить запись",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "Удалить",
+    "description": "Button: discard the interrupted recording"
   }
 }

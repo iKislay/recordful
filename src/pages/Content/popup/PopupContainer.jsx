@@ -59,6 +59,33 @@ const PopupContainer = (props) => {
     });
   }, []);
 
+  // A take whose recorder died (browser closed, crash, update) is still on
+  // disk: offer it back once per popup open, like Cap and Loom do.
+  const askedInterruptedRef = useRef(false);
+  useEffect(() => {
+    if (askedInterruptedRef.current) return;
+    if (typeof contentState.openModal !== "function") return;
+    askedInterruptedRef.current = true;
+    chrome.runtime
+      .sendMessage({ type: "interrupted-take" })
+      .then((response) => {
+        if (!response?.take) return;
+        contentStateRef.current.openModal(
+          chrome.i18n.getMessage("interruptedTakeTitle"),
+          chrome.i18n.getMessage("interruptedTakeDescription"),
+          chrome.i18n.getMessage("interruptedTakeRecover"),
+          chrome.i18n.getMessage("interruptedTakeDiscard"),
+          () => chrome.runtime.sendMessage({ type: "restore-recording" }),
+          () => chrome.runtime.sendMessage({ type: "discard-interrupted-take" }),
+          null,
+          null,
+          null,
+          true,
+        );
+      })
+      .catch(() => {});
+  }, [contentState.openModal]);
+
   useEffect(() => {
     if (contentState.isLoggedIn) {
       setOnboarding(false);

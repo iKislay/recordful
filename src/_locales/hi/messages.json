@@ -2238,5 +2238,21 @@
   "agentChipStop": {
     "message": "रोकें",
     "description": "Button on the on-page chip that ends the AI agent's session"
+  },
+  "interruptedTakeTitle": {
+    "message": "आपकी पिछली रिकॉर्डिंग बीच में रुक गई",
+    "description": "Popup prompt title when a recording stopped unexpectedly (browser closed, crash)"
+  },
+  "interruptedTakeDescription": {
+    "message": "Recordful इसे साथ-साथ सेव करता रहा। इसे रिकवर करें और एडिटर में खोलें, जहाँ तक यह रिकॉर्ड हुई थी।",
+    "description": "Popup prompt body for an interrupted recording"
+  },
+  "interruptedTakeRecover": {
+    "message": "रिकॉर्डिंग रिकवर करें",
+    "description": "Button: recover the interrupted recording"
+  },
+  "interruptedTakeDiscard": {
+    "message": "हटाएँ",
+    "description": "Button: discard the interrupted recording"
   }
 }
