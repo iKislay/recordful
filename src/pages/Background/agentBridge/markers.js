@@ -1,4 +1,4 @@
-// Markers an agent drops while recording ("signed in", "error shown"), timed
+// Markers an agent or the person drops while recording ("signed in", "error shown"), timed
 // on the recording's own clock (pauses left out) so editing can cut or zoom
 // at them later. One recording's worth, in storage.session, keyed by its
 // start time so a new recording starts a fresh list.
@@ -51,4 +51,12 @@ export const addMarker = async ({ label } = {}) => {
     [MARKERS_KEY]: { recordingStartTime: snap.recordingStartTime, markers: next },
   });
   return { marker, count: next.length };
+};
+
+// The person's own marker, from the toolbar or the shortcut: numbered, and
+// renamed in the editor.
+export const addUserMarker = async () => {
+  const { recordingStartTime } = await chrome.storage.local.get(["recordingStartTime"]);
+  const count = (await markersFor(recordingStartTime)).length;
+  return addMarker({ label: `Marker ${count + 1}` });
 };
