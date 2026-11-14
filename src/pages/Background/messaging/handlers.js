@@ -1,5 +1,6 @@
 import JSZip from "jszip";
 import { registerMessage } from "../../../messaging/messageRouter";
+import { dropUserMarker } from "../recording/userMarker";
 import { appendUploadTelemetryEventSerialized } from "../utils/serializedTelemetryStore";
 import { noteApiError, noteApiResponse } from "../utils/apiReachability";
 import { perfMark, perfSpan } from "../../utils/perfMarks";
@@ -2360,6 +2361,8 @@ export const setupHandlers = () => {
 
   // The zoom of the page asking, which sizes the click effect it draws: the
   // same number `pictureOf` places its clicks by.
+  registerMessage("add-marker", () => dropUserMarker());
+
   registerMessage("get-zoom", (_message, sender) =>
     chrome.tabs.getZoom(sender.tab.id),
   );
