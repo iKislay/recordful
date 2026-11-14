@@ -1,4 +1,5 @@
 # Recordful
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/iKislay)
 
 **Beautiful screen recordings, in minutes.**
 
