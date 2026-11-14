@@ -30,6 +30,7 @@ import {
   StopIcon,
   DrawIcon,
   PauseIcon,
+  MarkerIcon,
   ResumeIcon,
   CursorIcon,
   ClickCircleIcon,
@@ -567,6 +568,16 @@ const ToolbarWrap = () => {
                 <ResumeIcon />
               </ToolTrigger>
             )}
+            <ToolTrigger
+              type="button"
+              content={chrome.i18n.getMessage("addMarkerTooltip")}
+              disabled={!contentState.recording || contentState.finalizingRecording}
+              onClick={() => {
+                chrome.runtime.sendMessage({ type: "add-marker" });
+              }}
+            >
+              <MarkerIcon />
+            </ToolTrigger>
             <ToolTrigger
               type="button"
               content={chrome.i18n.getMessage("cancelRecordingTooltip")}
