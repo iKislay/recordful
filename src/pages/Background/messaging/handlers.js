@@ -1,6 +1,7 @@
 import JSZip from "jszip";
 import { registerMessage } from "../../../messaging/messageRouter";
 import { dropUserMarker } from "../recording/userMarker";
+import { clearMarkers } from "../agentBridge/markers";
 import { appendUploadTelemetryEventSerialized } from "../utils/serializedTelemetryStore";
 import { noteApiError, noteApiResponse } from "../utils/apiReachability";
 import { perfMark, perfSpan } from "../../utils/perfMarks";
@@ -2503,6 +2504,8 @@ export const setupHandlers = () => {
       _moveWriteQueue = _moveWriteQueue.then(() =>
         chrome.storage.session.remove("pointerMoves").catch(() => {}),
       );
+      // Nor markers; the last take's were archived beside its file.
+      void clearMarkers();
       return;
     }
     flushClicks();

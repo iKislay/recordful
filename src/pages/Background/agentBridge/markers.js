@@ -23,6 +23,13 @@ export const markersFor = async (recordingStartTime) => {
   return list && list.recordingStartTime === recordingStartTime ? list.markers : [];
 };
 
+// The latest take's markers, after it stopped (its start time is cleared by
+// then). The list is emptied as the next recording starts.
+export const latestMarkers = async () => (await stored())?.markers || [];
+
+export const clearMarkers = () =>
+  chrome.storage.session.remove(MARKERS_KEY).catch(() => {});
+
 export const addMarker = async ({ label } = {}) => {
   const text = typeof label === "string" ? label.trim() : "";
   if (!text || text.length > LABEL_MAX) {
