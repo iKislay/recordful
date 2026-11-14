@@ -18,6 +18,7 @@ import {
 import { handleGetStreamingData } from "./recording/recordingHelpers";
 import { initUninstallSurvey } from "./utils/uninstallSurvey";
 import { initAgentBridge } from "./agentBridge";
+import { keepInterruptedTake } from "./recording/recordingRetention";
 
 // Don't tear down an in-flight start on SW restart: a fresh start is
 // mid-setup (recorder tab not loaded yet), not dead. Mirrors the alarm
@@ -115,6 +116,23 @@ const clearStaleLocks = async () => {
         });
       }
       if (!recorderAlive && !startIsFresh) {
+        // The recorder died mid-take. A local take's bytes are still on disk
+        // (fragmented MP4 in OPFS, or IDB chunks); keep them from the next
+        // recording's sweep and offer them back. Cloud takes have no ref and
+        // resume their upload instead (resumePendingUploads).
+        try {
+          const got = await chrome.storage.local.get([
+            "lastRecordingBackendRef",
+            "activeChunkSlot",
+            "recordingDuration",
+          ]);
+          const take = await keepInterruptedTake({
+            ref: got.lastRecordingBackendRef,
+            slot: got.activeChunkSlot,
+            durationMs: got.recordingDuration,
+          });
+          if (take) diagEvent("interrupted-take-kept", take);
+        } catch {}
         stale.recording = false;
         stale.pendingRecording = false;
         stale.restarting = false;

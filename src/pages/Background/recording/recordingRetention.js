@@ -100,6 +100,58 @@ export const registerRetainable = async (entry) => {
   await write(next);
 };
 
+// A take whose recorder died mid-recording (browser crash, power cut,
+// extension update) never reached stop, so nothing registered it and the next
+// recording swept it. Kept here with no tab, like any unsaved take, and
+// flagged so the popup offers to recover it.
+const INTERRUPTED_KEY = "interruptedTake";
+
+export const keepInterruptedTake = async ({ ref, slot, durationMs } = {}) => {
+  if (!ref?.backend) return null;
+  const opfs = ref.backend === "opfs";
+  if (opfs && !ref.fileName) return null;
+  if (!opfs && !slot) return null;
+  const id = opfs ? ref.fileName : `interrupted:${slot}`;
+  const list = (await read()).filter((e) => e.recordingId !== id);
+  list.push({
+    recordingId: id,
+    backend: ref.backend,
+    fileName: opfs ? ref.fileName : null,
+    slot: opfs ? null : slot,
+    tabId: null,
+    durationMs: Number(durationMs) || 0,
+    saved: false,
+    handed: false,
+    handedAt: null,
+    interrupted: true,
+    at: Date.now(),
+  });
+  await write(list);
+  const take = { id, durationMs: Number(durationMs) || 0, at: Date.now() };
+  await chrome.storage.local.set({ [INTERRUPTED_KEY]: take }).catch(() => {});
+  return take;
+};
+
+export const interruptedTake = async () => {
+  try {
+    const got = await chrome.storage.local.get([INTERRUPTED_KEY]);
+    return got?.[INTERRUPTED_KEY] || null;
+  } catch {
+    return null;
+  }
+};
+
+// Recover registers the take again under its editor tab; Discard lets the
+// next recording sweep it. Either way this protection and the prompt end.
+export const dropInterruptedTake = async () => {
+  const take = await interruptedTake();
+  await chrome.storage.local.remove(INTERRUPTED_KEY).catch(() => {});
+  if (!take) return;
+  const list = await read();
+  const next = list.filter((e) => !(e.interrupted && e.recordingId === take.id));
+  if (next.length !== list.length) await write(next);
+};
+
 // A download or Drive save means the user has their own copy, so this stops
 // being protected and stops being warned about.
 export const markRetainedSaved = async (recordingId, tabId = null) => {
