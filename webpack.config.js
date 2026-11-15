@@ -260,13 +260,17 @@ const config = {
   performance: { hints: false },
   entry: entryPoints,
 
-  // Persistent filesystem cache for fast rebuilds
-  cache: {
-    type: "filesystem",
-    buildDependencies: {
-      config: [__filename],
-    },
-  },
+  // Persistent filesystem cache for fast dev rebuilds only. In production it
+  // handed back stale copied files (the manifest version, _locales strings),
+  // so a release could ship without its own changes.
+  cache: isDev
+    ? {
+        type: "filesystem",
+        buildDependencies: {
+          config: [__filename],
+        },
+      }
+    : false,
 
   output: {
     filename: "[name].bundle.js",
