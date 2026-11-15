@@ -15,6 +15,7 @@ import {
   DotsThree,
   Eraser,
   Eyedropper,
+  Flag,
   EyeSlash,
   Flashlight,
   Highlighter,
@@ -65,6 +66,7 @@ const GrabIcon = make(DotsSixVertical);
 const StopIcon = make(StopCircle, "fill");
 const DrawIcon = make(PencilSimpleLine);
 const PauseIcon = make(Pause, "fill");
+const MarkerIcon = make(Flag);
 const ResumeIcon = make(Play, "fill");
 const CursorIcon = make(Cursor);
 const MicIcon = make(Microphone);
@@ -162,6 +164,7 @@ const NotSupportedIcon = make(Prohibit);
 
 export {
   GrabIcon,
+  MarkerIcon,
   StopIcon,
   DrawIcon,
   PauseIcon,

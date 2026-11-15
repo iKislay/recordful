@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import { latestMarkers } from "../Background/agentBridge/markers";
 import RecorderUI from "./RecorderUI";
 import {
   sendRecordingError as sendRecordingErrorBase,
@@ -6454,6 +6455,8 @@ const CloudRecorder = () => {
     const { pointerMoves } = await chrome.storage.session
       .get("pointerMoves")
       .catch(() => ({}));
+    // Moments marked while recording ({ atMs, label }), for the editor.
+    const markers = await latestMarkers().catch(() => []);
 
     let insertAfterSceneId = null;
     if (multiMode) {
@@ -6584,6 +6587,7 @@ const CloudRecorder = () => {
         },
         clickEvents: scaledClickEvents,
         pointerMoves: Array.isArray(pointerMoves) ? pointerMoves : [],
+        markers,
         // Whether the editor opens the take with zooms on its clicks; on
         // unless the person turned it off, as in the local editor.
         autoZoom: autoZoom !== false,
@@ -6670,6 +6674,7 @@ const CloudRecorder = () => {
             clickEvents: payload.clickEvents,
             pointerMoves: payload.pointerMoves,
             autoZoom: payload.autoZoom,
+            markers: payload.markers,
           },
         });
 

@@ -9,6 +9,7 @@ import {
   CHUNK_SLOT_B,
   instanceForSlot,
 } from "../../utils/chunkStores";
+import { latestMarkers } from "../agentBridge/markers";
 
 const KEY = "retainedRecordings";
 // Below this much free space the grace copies of handed takes yield. A take
@@ -245,6 +246,7 @@ export const archiveTakeMeta = async () => {
   try {
     ({ pointerMoves = [] } = await chrome.storage.session.get("pointerMoves"));
   } catch {}
+  const markers = await latestMarkers().catch(() => []);
   const dir = await opfsDir();
   if (!dir) return;
   try {
@@ -262,6 +264,7 @@ export const archiveTakeMeta = async () => {
           ? pointerMoves.slice(-MOVES_MAX)
           : [],
         autoZoom: autoZoom !== false,
+        markers,
         at: Date.now(),
       }),
     );

@@ -2,6 +2,7 @@ import { sendMessageTab, getCurrentTab } from "../tabManagement";
 import { sendMessageRecord } from "../recording/sendMessageRecord.js";
 import { sendMessageEnsuringContentScript } from "../utils/executeScripts";
 import { takeScreenshot } from "../screenshot/takeScreenshot";
+import { dropUserMarker } from "../recording/userMarker";
 
 const SCREENSHOT_COMMANDS = {
   "screenshot-area": "area",
@@ -19,6 +20,11 @@ export const onCommandListener = () => {
 
     if (SCREENSHOT_COMMANDS[command]) {
       void takeScreenshot(SCREENSHOT_COMMANDS[command], activeTab);
+      return;
+    }
+
+    if (command === "add-marker") {
+      void dropUserMarker();
       return;
     }
 

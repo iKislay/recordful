@@ -4,6 +4,7 @@
 // (uploads them for an agent). Works in pages and in the service worker.
 import { chooseReader } from "../EditorApp/recorderStorage/chooseReader";
 import { CAMERA_OFFSETS, CAMERA_SUFFIX } from "../Recorder/cameraTrack";
+import { latestMarkers } from "../Background/agentBridge/markers";
 
 const OPFS_RECORDING_PREFIX = "recording-";
 const META_SUFFIX = ".meta.json";
@@ -45,6 +46,7 @@ const readTakeMeta = async (fileName) => {
       clicks: Array.isArray(parsed.clicks) ? parsed.clicks : null,
       moves: Array.isArray(parsed.moves) ? parsed.moves : null,
       autoZoom: parsed.autoZoom === true,
+      markers: Array.isArray(parsed.markers) ? parsed.markers : null,
     };
   } catch {
     return null;
@@ -85,6 +87,12 @@ const normalizeClicks = (clickEvents) =>
       ...(click.drawn === true && { drawn: true }),
     }));
 
+// Moments marked while recording: seconds into the video, and a label.
+const normalizeMarkers = (markers) =>
+  (markers || [])
+    .filter((m) => Number.isFinite(m?.atMs) && typeof m.label === "string")
+    .map((m) => ({ time: m.atMs / 1000, label: m.label }));
+
 const normalizeMoves = (pointerMoves) =>
   (pointerMoves || [])
     .filter((move) => move.every(Number.isFinite))
@@ -115,6 +123,7 @@ export const readRecording = async (fileName = null) => {
         moves: normalizeMoves(pointerMoves),
         // On unless switched off in the popup's options.
         autoZoom: autoZoom !== false,
+        markers: normalizeMarkers(await latestMarkers().catch(() => [])),
       };
     }
     return {};
@@ -140,5 +149,10 @@ export const readRecording = async (fileName = null) => {
     moves: normalizeMoves(archived?.moves ?? (isLatest ? pointerMoves : [])),
     // On unless switched off in the popup's options.
     autoZoom: archived ? archived.autoZoom : autoZoom !== false,
+    // Moments marked while recording, for the editor's timeline.
+    markers: normalizeMarkers(
+      archived?.markers ??
+        (isLatest ? await latestMarkers().catch(() => []) : []),
+    ),
   };
 };

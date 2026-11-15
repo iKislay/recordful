@@ -91,6 +91,9 @@
       },
       "description": "Stop recording"
     },
+    "add-marker": {
+      "description": "Add a marker at this moment of the recording"
+    },
     "toggle-drawing-mode": {
       "description": "Toggle drawing mode (set a shortcut for Alt+Shift+D)"
     },

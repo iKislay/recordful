@@ -2252,5 +2252,13 @@
   "interruptedTakeDiscard": {
     "message": "Видалити",
     "description": "Button: discard the interrupted recording"
+  },
+  "addMarkerTooltip": {
+    "message": "Додати позначку",
+    "description": "Recording toolbar button that marks the current moment for the editor"
+  },
+  "markerAddedToast": {
+    "message": "Позначку додано",
+    "description": "Toast shown after a marker is added while recording"
   }
 }
