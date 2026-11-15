@@ -272,18 +272,6 @@ export const archiveTakeMeta = async () => {
   } catch {}
 };
 
-export const removeTakeMeta = async (fileName) => {
-  if (!fileName) return;
-  const dir = await opfsDir();
-  if (!dir) return;
-  await dir.removeEntry(takeMetaName(fileName)).catch(() => {});
-};
-
-
-// No length floor. A short recording can matter as much as a long one, and
-// still open and never saved is the whole condition.
-export const PROMPT_MIN_DURATION_MS = 0;
-
 // The dismissal expires. The button never said forever, and this is the only
 // warning before an unsaved recording is destroyed.
 const PROMPT_DISMISS_TTL_MS = 30 * 24 * 60 * 60 * 1000;
@@ -362,14 +350,6 @@ export const computeRetentionPlan = async () => {
       : CHUNK_SLOT_A;
 
   return { keepNames, retainSlot, activeSlot };
-};
-
-// The chunk slot the editor in this tab owns, if it is a retained IDB one.
-export const slotForTab = async (tabId) => {
-  if (typeof tabId !== "number") return null;
-  const list = await read();
-  const mine = list.find((e) => e.tabId === tabId);
-  return mine?.slot || null;
 };
 
 // Separates "this tab owns no retained recording" from "it owns one holding no
