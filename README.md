@@ -19,7 +19,11 @@ workflow.
 - Live annotation: draw, text, arrows, shapes, spotlight, click highlight
 - AI camera backgrounds and blur, sensitive-content blur
 - Smooth zoom to focus on details while recording
-- Built-in editor: trim, crop, and manage audio tracks
+- Markers: flag moments while recording, then jump to them in the editor
+- Crash recovery: if Chrome crashes or the power cuts out mid-recording, the
+  recording is kept and offered back the next time you open Recordful
+- The Recordful editor: trim, cut, crop, zooms, shapes, transitions, style
+  presets, captions, and (Pro) edit by transcript and a voice EQ
 - Export to MP4, GIF, and WebM, or save to Google Drive
 - Alarms, countdown, movable toolbar, fully offline-capable
 - AI agents: let Claude, Cursor, opencode or any MCP app record product demos for you
@@ -36,7 +40,7 @@ Install [Recordful from the Chrome Web Store](https://chromewebstore.google.com/
 
 To run a release unpacked instead:
 
-1. Download the newest `Build.zip` from the
+1. Download the newest `recordful-<version>-cws.zip` from the
    [releases page](https://github.com/iKislay/recordful/releases) and unzip it.
 2. Open `chrome://extensions/` and enable developer mode.
 3. Click **Load unpacked** and select the unzipped folder.
@@ -66,7 +70,12 @@ every plan; on the free plan the AI says links and transcripts need Pro.
 3. When your AI asks, click the Recordful icon on the tab to record, and
    approve the pairing code the first time.
 
-It's off until you turn it on, runs on your computer (the server listens on
+To only read your library (videos, transcripts, summaries, views) from Claude
+or another app that takes a remote MCP server, nothing needs installing: add
+`https://recordful.app/mcp` as a connector and sign in. See
+[Connect an AI app with no install](https://help.recordful.app/docs/ai-agents/connector).
+
+The local server is off until you turn it on, runs on your computer (the server listens on
 `127.0.0.1` only, and a recording leaves it only when it's uploaded), pairs
 once per computer against a code you check, and acts only in the tab you hand
 over. Uploads and transcripts go through recordful.app's API as the signed-in
