@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.9.0 (2026-11-15)
+
+Recordings survive a crash, and markers. A minor version: the extension side of the big 4.9 release, whose editor and share-page features are on recordful.app.
+
+### Features
+- Crash recovery: when the background worker starts and finds a local take whose recorder died (browser crash, power cut, extension update), the take is registered as an unsaved, tabless retained entry so the next recording's sweep keeps it, and flagged as `interruptedTake`. The popup asks once per open: Recover recording (the existing restore flow, into the web editor) or Discard (drops the protection). Cloud takes keep resuming their upload instead.
+- Markers: a flag on the recording toolbar and an `add-marker` command (no default key) drop a marker at the recording time, paused time excluded, with a "Marker added" toast. User markers share the agent marker store, are archived with the take's `.meta.json`, and travel with local takes and cloud scenes to the web editor.
+
+### Fixes
+- Production builds no longer use webpack's filesystem cache, which handed back stale copied files (the manifest version, `_locales`).
+- Removed retention exports nothing used (`removeTakeMeta`, `PROMPT_MIN_DURATION_MS`, `slotForTab`).
+
+Checked in real Chrome on a localhost build of this source against the merged recordful.app build: a screen recording with a toolbar marker, a pause and a message marker reached the web editor with both flags at the right times and no console errors; a seeded mid-recording take survived a cold service-worker restart, the popup offered it, Recover opened it in the web editor and the site acknowledged a whole copy, and Discard dropped the protection.
+
 ## 4.8.0 (2026-11-14)
 
 AI agents can run the user's Recordful library, not just record into it. A minor version: new agent methods for recordful-mcp 1.2.0, nothing changes for people who don't use agents.
