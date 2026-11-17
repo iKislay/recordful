@@ -6,6 +6,7 @@ import {
   accountStatus,
   api,
   cloudAvailable,
+  mcp,
   notSignedInError,
   proRequiredError,
   uploadMedia,
@@ -707,6 +708,7 @@ export const videoCommands = {
   "members.list": { run: listMembers, queue: null },
   "members.invite": { run: inviteMember, queue: null },
   "storage.get": { run: getStorage, queue: null },
+  "cloud.mcp": { run: mcp, queue: null },
 };
 
 export { cloudAvailable };

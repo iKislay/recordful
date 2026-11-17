@@ -156,6 +156,41 @@ export const api = async (path, { method = "GET", body, query } = {}) => {
   return parsed ?? {};
 };
 
+// Hosted edits (silences, captions) can take a while; recordful-mcp waits 100 s.
+const MCP_TIMEOUT_MS = 100000;
+
+// cloud.mcp: one JSON-RPC message to the hosted MCP server (recordful.app/mcp)
+// as the signed-in user, for recordful-mcp's proxy, so the session token
+// never leaves the extension. Tool errors come back inside a 200, untouched.
+export const mcp = async ({ message } = {}) => {
+  if (!message || typeof message !== "object") {
+    throw new AgentBridgeError(AgentErrorCode.InvalidParams, "message must be a JSON-RPC message");
+  }
+  requireCloud();
+  const res = await send(`${APP_BASE}/mcp`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
+    body: JSON.stringify(message),
+    timeoutMs: MCP_TIMEOUT_MS,
+  });
+  if (res.status === 401) throw notSignedInError();
+  // A notification is accepted with no answer.
+  if (res.status === 202) return null;
+  const text = await res.text();
+  if (!res.ok) {
+    let reason = null;
+    try {
+      reason = JSON.parse(text)?.error?.message ?? null;
+    } catch {}
+    throw new AgentBridgeError(AgentErrorCode.CloudError, `recordful.app answered ${res.status}${reason ? `: ${reason}` : ""}.`, { status: res.status });
+  }
+  // A streamed answer carries the response as its last data line.
+  const data = res.headers.get("content-type")?.includes("text/event-stream")
+    ? text.split(/\r?\n/).filter((line) => line.startsWith("data:")).pop()?.slice(5)
+    : text;
+  return JSON.parse(data);
+};
+
 // Who the agent is acting for: signed in at all, and on Pro.
 export const accountStatus = async () => {
   if (!cloudAvailable()) return { cloud: false, signedIn: false, pro: false, plan: "unavailable" };
