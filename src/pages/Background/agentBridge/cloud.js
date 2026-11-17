@@ -102,26 +102,18 @@ const getToken = async () => {
   return recordfulToken || null;
 };
 
-// One call to recordful.app. A 401 gets one silent retry after the extension
-// refreshes its session (the same refresh the recorder uses).
-export const api = async (path, { method = "GET", body, query } = {}) => {
-  requireCloud();
-  const url = new URL(`${API_BASE}${path}`);
-  for (const [key, value] of Object.entries(query || {})) {
-    if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
-  }
-
-  const send = async (token) => {
+// One request to recordful.app with the user's session. A 401 gets one silent
+// retry after the extension refreshes its session (the same refresh the
+// recorder uses).
+const send = async (url, { method = "GET", headers, body, timeoutMs = REQUEST_TIMEOUT_MS } = {}) => {
+  const sendWith = async (token) => {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
       return await fetch(url, {
         method,
-        headers: {
-          ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-        body: body !== undefined ? JSON.stringify(body) : undefined,
+        headers: { ...headers, Authorization: `Bearer ${token}` },
+        body,
         signal: controller.signal,
         cache: "no-store",
       });
@@ -135,17 +127,27 @@ export const api = async (path, { method = "GET", body, query } = {}) => {
     }
   };
 
-  let token = await getToken();
-  if (!token) throw errorFor(401);
-  let res = await send(token);
-  if (res.status === 401) {
-    await loginWithWebsite({ force: true }).catch(() => null);
-    const fresh = await getToken();
-    if (fresh && fresh !== token) {
-      token = fresh;
-      res = await send(token);
-    }
+  const token = await getToken();
+  if (!token) throw notSignedInError();
+  const res = await sendWith(token);
+  if (res.status !== 401) return res;
+  await loginWithWebsite({ force: true }).catch(() => null);
+  const fresh = await getToken();
+  return fresh && fresh !== token ? sendWith(fresh) : res;
+};
+
+// One call to recordful.app's JSON API.
+export const api = async (path, { method = "GET", body, query } = {}) => {
+  requireCloud();
+  const url = new URL(`${API_BASE}${path}`);
+  for (const [key, value] of Object.entries(query || {})) {
+    if (value !== undefined && value !== null) url.searchParams.set(key, String(value));
   }
+  const res = await send(url, {
+    method,
+    headers: body !== undefined ? { "Content-Type": "application/json" } : {},
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  });
   let parsed = null;
   try {
     parsed = await res.json();
