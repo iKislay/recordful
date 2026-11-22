@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.10.0 (unreleased)
+
+Your AI app can edit your videos through recordful-mcp 2.0. A minor version: the extension side of the hosted MCP release, whose tools are on recordful.app.
+
+### Features
+- `cloud.mcp` bridge method: recordful-mcp 2.0 sends one JSON-RPC message, the extension posts it to `recordful.app/mcp` with its own session token (refreshed once on a 401, as every cloud call) and returns the answer, or `null` for a notification. Signed out → `NOT_SIGNED_IN`, offline → `CLOUD_UNREACHABLE`, other HTTP → `CLOUD_ERROR`. It waits up to 100 s, as the hosted edit tools can. The token never leaves the extension.
+- Every recordful.app call goes through one authorized `send()` (session, timeout, refresh-once).
+
 ## 4.9.0 (2026-11-15)
 
 Recordings survive a crash, and markers. A minor version: the extension side of the big 4.9 release, whose editor and share-page features are on recordful.app.
