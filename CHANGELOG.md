@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.10.0 (unreleased)
+## 4.10.0 (2026-11-23)
 
 Your AI app can edit your videos through recordful-mcp 2.0. A minor version: the extension side of the hosted MCP release, whose tools are on recordful.app.
 
