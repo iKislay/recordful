@@ -74,6 +74,25 @@ export async function getFreeCaptureCaps() {
   }
 }
 
+const QUALITY_ORDER = ["240p", "360p", "480p", "720p", "1080p", "4k"];
+
+export const clampQualityValue = (value, maxValue) => {
+  const current = QUALITY_ORDER.includes(value) ? value : "1080p";
+  const max = QUALITY_ORDER.includes(maxValue) ? maxValue : "1080p";
+  return QUALITY_ORDER.indexOf(current) <= QUALITY_ORDER.indexOf(max)
+    ? current
+    : max;
+};
+
+// The saved max resolution, held to the free cap without Pro (4K is Pro).
+export async function getEffectiveQualityValue() {
+  const [{ qualityValue }, { isPro, maxQuality }] = await Promise.all([
+    chrome.storage.local.get(["qualityValue"]),
+    getFreeCaptureCaps(),
+  ]);
+  return isPro ? qualityValue : clampQualityValue(qualityValue, maxQuality);
+}
+
 // Every encode cap we ship is landscape, so a portrait source binds on HEIGHT
 // and collapses the width (412x924 encoded to 482x1080). Orient the box to the
 // source first so a cap means pixels on the long edge, not a shape.

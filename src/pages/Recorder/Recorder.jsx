@@ -24,6 +24,7 @@ import { activeChunksStore, loadActiveSlot } from "../utils/chunkStores";
 import {
   getBitrates,
   getResolutionForQuality,
+  clampQualityValue,
   computeTargetVideoBps,
   getFreeCaptureCaps,
   orientBoxToSource,
@@ -160,16 +161,6 @@ function logRecordingSnapshot(label, data) {
   if (!DEBUG_RECORDER && !isRecordingDebugEnabled()) return;
   debug(`Recording snapshot: ${label}`, data);
 }
-
-const QUALITY_ORDER = ["240p", "360p", "480p", "720p", "1080p", "4k"];
-
-const clampQualityValue = (value, maxValue) => {
-  const current = QUALITY_ORDER.includes(value) ? value : "1080p";
-  const max = QUALITY_ORDER.includes(maxValue) ? maxValue : "1080p";
-  return QUALITY_ORDER.indexOf(current) <= QUALITY_ORDER.indexOf(max)
-    ? current
-    : max;
-};
 
 const Recorder = () => {
   const isRestarting = useRef(false);

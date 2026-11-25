@@ -37,7 +37,10 @@ import {
   validateFastRecorderOutputBlob,
   isFastRecorderFailureTransient,
 } from "../../media/fastRecorderGate";
-import { getResolutionForQuality } from "../Recorder/recorderConfig";
+import {
+  getEffectiveQualityValue,
+  getResolutionForQuality,
+} from "../Recorder/recorderConfig";
 import { chooseWriter } from "../Recorder/recorderStorage/chooseWriter";
 import { chooseReader } from "../Recorder/recorderStorage/chooseReader";
 import { lifecycle } from "../utils/lifecycleLog";
@@ -839,7 +842,7 @@ const Recorder = () => {
     await chunksStore.clear();
 
     try {
-      const { qualityValue } = await chrome.storage.local.get(["qualityValue"]);
+      const qualityValue = await getEffectiveQualityValue();
       const { fpsValue } = await chrome.storage.local.get(["fpsValue"]);
       const activeVideoTrack =
         liveStream.current?.getVideoTracks?.()[0] ||
@@ -2306,7 +2309,7 @@ const Recorder = () => {
     });
     try {
       const endStorageReads = perfSpan("Region.Recorder storage.reads");
-      const { qualityValue } = await chrome.storage.local.get(["qualityValue"]);
+      const qualityValue = await getEffectiveQualityValue();
       const { width, height } = getResolutionForQuality(qualityValue);
       const { fpsValue } = await chrome.storage.local.get(["fpsValue"]);
       let fps = parseInt(fpsValue);
