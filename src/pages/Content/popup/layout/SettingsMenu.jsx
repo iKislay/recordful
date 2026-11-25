@@ -37,6 +37,7 @@ const SettingsMenu = (props) => {
   const [restore, setRestore] = useState(false);
   const [cloudRestore, setCloudRestore] = useState(false);
   const [openQuality, setOpenQuality] = useState(false);
+  const isPro = Boolean(contentState.isLoggedIn && contentState.isSubscribed);
   const [openResize, setOpenResize] = useState(false);
   const [openFPS, setOpenFPS] = useState(false);
   const [RAM, setRAM] = useState(0);
@@ -315,380 +316,388 @@ const SettingsMenu = (props) => {
         )}
       >
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          {!contentState.isSubscribed && !contentState.isLoggedIn && (
-            <DropdownMenu.Sub
-              open={openResize}
-              onOpenChange={(open) => {
-                if (open) {
-                  setOpenFPS(false);
-                  setOpenQuality(false);
-                }
-                setOpenResize(open);
-              }}
-            >
-              <DropdownMenu.SubTrigger className="DropdownMenuItem">
-                {chrome.i18n.getMessage("resizeWindowLabel")}
-                <div className="ItemIndicatorArrow">
-                  <CaretRight size={14} />
-                </div>
-              </DropdownMenu.SubTrigger>
-              <DropdownMenu.Portal>
-                <DropdownMenu.SubContent
-                  className="RecordfulDropdownMenuContent"
-                  sideOffset={0}
-                  alignOffset={-3}
+          <DropdownMenu.Sub
+            open={openResize}
+            onOpenChange={(open) => {
+              if (open) {
+                setOpenFPS(false);
+                setOpenQuality(false);
+              }
+              setOpenResize(open);
+            }}
+          >
+            <DropdownMenu.SubTrigger className="DropdownMenuItem">
+              {chrome.i18n.getMessage("resizeWindowLabel")}
+              <div className="ItemIndicatorArrow">
+                <CaretRight size={14} />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="RecordfulDropdownMenuContent"
+                sideOffset={0}
+                alignOffset={-3}
+              >
+                <TooltipWrap
+                  content={
+                    width < 3840 || height < 2160
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
                 >
-                  <TooltipWrap
-                    content={
-                      width < 3840 || height < 2160
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 3840,
-                          height: 2160,
-                        });
-                      }}
-                      disabled={width < 3840 || height < 2160}
-                    >
-                      3840 x 2160 (4k)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                  <TooltipWrap
-                    content={
-                      width < 1920 || height < 1080
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 1920,
-                          height: 1080,
-                        });
-                      }}
-                      disabled={width < 1920 || height < 1080}
-                    >
-                      1920 x 1080 (1080p)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                  <TooltipWrap
-                    content={
-                      width < 1280 || height < 720
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 1280,
-                          height: 720,
-                        });
-                      }}
-                      disabled={width < 1280 || height < 720}
-                    >
-                      1280 x 720 (720p)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                  <TooltipWrap
-                    content={
-                      width < 640 || height < 480
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 640,
-                          height: 480,
-                        });
-                      }}
-                      disabled={width < 640 || height < 480}
-                    >
-                      640 x 480 (480p)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                  <TooltipWrap
-                    content={
-                      width < 480 || height < 360
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 480,
-                          height: 360,
-                        });
-                      }}
-                      disabled={width < 480 || height < 360}
-                    >
-                      480 x 360 (360p)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                  <TooltipWrap
-                    content={
-                      width < 320 || height < 240
-                        ? chrome.i18n.getMessage("screenTooSmallTooltip")
-                        : ""
-                    }
-                  >
-                    <DropdownMenu.Item
-                      className="RecordfulDropdownMenuItem"
-                      onClick={(e) => {
-                        chrome.runtime.sendMessage({
-                          type: "resize-window",
-                          width: 320,
-                          height: 240,
-                        });
-                      }}
-                      disabled={width < 320 || height < 240}
-                    >
-                      320 x 240 (240p)
-                    </DropdownMenu.Item>
-                  </TooltipWrap>
-                </DropdownMenu.SubContent>
-              </DropdownMenu.Portal>
-            </DropdownMenu.Sub>
-          )}
-          {!contentState.isSubscribed && !contentState.isLoggedIn && (
-            <DropdownMenu.Sub
-              open={openQuality}
-              onOpenChange={(open) => {
-                if (open) {
-                  setOpenFPS(false);
-                  setOpenResize(false);
-                }
-                setOpenQuality(open);
-              }}
-            >
-              <DropdownMenu.SubTrigger className="DropdownMenuItem">
-                {chrome.i18n.getMessage("maxResolutionLabel") +
-                  " (" +
-                  contentState.qualityValue +
-                  ")"}
-                <div className="ItemIndicatorArrow">
-                  <CaretRight size={14} />
-                </div>
-              </DropdownMenu.SubTrigger>
-              <DropdownMenu.Portal>
-                <DropdownMenu.SubContent
-                  className="RecordfulDropdownMenuContent"
-                  sideOffset={0}
-                  alignOffset={-3}
-                >
-                  <DropdownMenu.RadioGroup
-                    value={contentState.qualityValue}
-                    onValueChange={(value) => {
-                      setContentState((prevContentState) => ({
-                        ...prevContentState,
-                        qualityValue: value,
-                      }));
-                      chrome.storage.local.set({
-                        qualityValue: value,
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 3840,
+                        height: 2160,
                       });
                     }}
+                    disabled={width < 3840 || height < 2160}
                   >
-                    <TooltipWrap
-                      content={
-                        RAM < 8 || width < 3840 || height < 2160
-                          ? chrome.i18n.getMessage("maxResolutionTooltip")
-                          : ""
-                      }
-                    >
-                      <DropdownMenu.RadioItem
-                        className="RecordfulDropdownMenuItem"
-                        value="4k"
-                        disabled={RAM < 8 || width < 3840 || height < 2160}
-                      >
-                        4k
-                        <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                          <Check size={16} weight="bold" />
-                        </DropdownMenu.ItemIndicator>
-                      </DropdownMenu.RadioItem>
-                    </TooltipWrap>
-                    <TooltipWrap
-                      content={
-                        RAM < 4 || width < 1920 || height < 1080
-                          ? chrome.i18n.getMessage("maxResolutionTooltip")
-                          : ""
-                      }
-                    >
-                      <DropdownMenu.RadioItem
-                        className="RecordfulDropdownMenuItem"
-                        value="1080p"
-                        disabled={RAM < 4 || width < 1920 || height < 1080}
-                      >
-                        1080p
-                        <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                          <Check size={16} weight="bold" />
-                        </DropdownMenu.ItemIndicator>
-                      </DropdownMenu.RadioItem>
-                    </TooltipWrap>
-                    <TooltipWrap
-                      content={
-                        RAM < 2 || width < 1280 || height < 720
-                          ? chrome.i18n.getMessage("maxResolutionTooltip")
-                          : ""
-                      }
-                    >
-                      <DropdownMenu.RadioItem
-                        className="RecordfulDropdownMenuItem"
-                        value="720p"
-                        disabled={RAM < 2 || width < 1280 || height < 720}
-                      >
-                        720p
-                        <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                          <Check size={16} weight="bold" />
-                        </DropdownMenu.ItemIndicator>
-                      </DropdownMenu.RadioItem>
-                    </TooltipWrap>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="480p"
-                    >
-                      480p
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="360p"
-                    >
-                      360p
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="240p"
-                    >
-                      240p
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                  </DropdownMenu.RadioGroup>
-                </DropdownMenu.SubContent>
-              </DropdownMenu.Portal>
-            </DropdownMenu.Sub>
-          )}
-          {!contentState.isSubscribed && !contentState.isLoggedIn && (
-            <DropdownMenu.Sub
-              open={openFPS}
-              onOpenChange={(open) => {
-                if (open) {
-                  setOpenQuality(false);
-                  setOpenResize(false);
-                }
-                setOpenFPS(open);
-              }}
-            >
-              <DropdownMenu.SubTrigger className="DropdownMenuItem">
-                {chrome.i18n.getMessage("maxFPSLabel") +
-                  " (" +
-                  contentState.fpsValue +
-                  " fps)"}
-                <div className="ItemIndicatorArrow">
-                  <CaretRight size={14} />
-                </div>
-              </DropdownMenu.SubTrigger>
-              <DropdownMenu.Portal>
-                <DropdownMenu.SubContent
-                  className="RecordfulDropdownMenuContent"
-                  sideOffset={0}
-                  alignOffset={-3}
+                    3840 x 2160 (4k)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+                <TooltipWrap
+                  content={
+                    width < 1920 || height < 1080
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
                 >
-                  <DropdownMenu.RadioGroup
-                    value={contentState.fpsValue}
-                    onValueChange={(value) => {
-                      setContentState((prevContentState) => ({
-                        ...prevContentState,
-                        fpsValue: value,
-                      }));
-                      chrome.storage.local.set({
-                        fpsValue: value,
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 1920,
+                        height: 1080,
                       });
                     }}
+                    disabled={width < 1920 || height < 1080}
+                  >
+                    1920 x 1080 (1080p)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+                <TooltipWrap
+                  content={
+                    width < 1280 || height < 720
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
+                >
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 1280,
+                        height: 720,
+                      });
+                    }}
+                    disabled={width < 1280 || height < 720}
+                  >
+                    1280 x 720 (720p)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+                <TooltipWrap
+                  content={
+                    width < 640 || height < 480
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
+                >
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 640,
+                        height: 480,
+                      });
+                    }}
+                    disabled={width < 640 || height < 480}
+                  >
+                    640 x 480 (480p)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+                <TooltipWrap
+                  content={
+                    width < 480 || height < 360
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
+                >
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 480,
+                        height: 360,
+                      });
+                    }}
+                    disabled={width < 480 || height < 360}
+                  >
+                    480 x 360 (360p)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+                <TooltipWrap
+                  content={
+                    width < 320 || height < 240
+                      ? chrome.i18n.getMessage("screenTooSmallTooltip")
+                      : ""
+                  }
+                >
+                  <DropdownMenu.Item
+                    className="RecordfulDropdownMenuItem"
+                    onClick={(e) => {
+                      chrome.runtime.sendMessage({
+                        type: "resize-window",
+                        width: 320,
+                        height: 240,
+                      });
+                    }}
+                    disabled={width < 320 || height < 240}
+                  >
+                    320 x 240 (240p)
+                  </DropdownMenu.Item>
+                </TooltipWrap>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+          <DropdownMenu.Sub
+            open={openQuality}
+            onOpenChange={(open) => {
+              if (open) {
+                setOpenFPS(false);
+                setOpenResize(false);
+              }
+              setOpenQuality(open);
+            }}
+          >
+            <DropdownMenu.SubTrigger className="DropdownMenuItem">
+              {chrome.i18n.getMessage("maxResolutionLabel") +
+                " (" +
+                contentState.qualityValue +
+                ")"}
+              <div className="ItemIndicatorArrow">
+                <CaretRight size={14} />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="RecordfulDropdownMenuContent"
+                sideOffset={0}
+                alignOffset={-3}
+              >
+                <DropdownMenu.RadioGroup
+                  value={contentState.qualityValue}
+                  onValueChange={(value) => {
+                    if (value === "4k" && !isPro) {
+                      contentState.openModal(
+                        chrome.i18n.getMessage("record4kProTitle") ||
+                          "Record in 4K with Pro",
+                        chrome.i18n.getMessage("record4kProDescription") ||
+                          "Without Pro, recordings are up to 1080p. Recordful Pro records and exports in 4K.",
+                        chrome.i18n.getMessage("upgradeToProButton") ||
+                          "Upgrade to Pro",
+                        chrome.i18n.getMessage("closeModalLabel"),
+                        () => chrome.runtime.sendMessage({ type: "handle-upgrade" }),
+                        () => {},
+                      );
+                      return;
+                    }
+                    setContentState((prevContentState) => ({
+                      ...prevContentState,
+                      qualityValue: value,
+                    }));
+                    chrome.storage.local.set({
+                      qualityValue: value,
+                    });
+                  }}
+                >
+                  <TooltipWrap
+                    content={
+                      RAM < 8 || width < 3840 || height < 2160
+                        ? chrome.i18n.getMessage("maxResolutionTooltip")
+                        : ""
+                    }
                   >
                     <DropdownMenu.RadioItem
                       className="RecordfulDropdownMenuItem"
-                      value="60"
+                      value="4k"
+                      disabled={RAM < 8 || width < 3840 || height < 2160}
                     >
-                      60 fps
+                      {isPro ? "4k" : "4k · Pro"}
                       <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
                         <Check size={16} weight="bold" />
                       </DropdownMenu.ItemIndicator>
                     </DropdownMenu.RadioItem>
+                  </TooltipWrap>
+                  <TooltipWrap
+                    content={
+                      RAM < 4 || width < 1920 || height < 1080
+                        ? chrome.i18n.getMessage("maxResolutionTooltip")
+                        : ""
+                    }
+                  >
                     <DropdownMenu.RadioItem
                       className="RecordfulDropdownMenuItem"
-                      value="30"
+                      value="1080p"
+                      disabled={RAM < 4 || width < 1920 || height < 1080}
                     >
-                      30 fps
+                      1080p
                       <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
                         <Check size={16} weight="bold" />
                       </DropdownMenu.ItemIndicator>
                     </DropdownMenu.RadioItem>
+                  </TooltipWrap>
+                  <TooltipWrap
+                    content={
+                      RAM < 2 || width < 1280 || height < 720
+                        ? chrome.i18n.getMessage("maxResolutionTooltip")
+                        : ""
+                    }
+                  >
                     <DropdownMenu.RadioItem
                       className="RecordfulDropdownMenuItem"
-                      value="24"
+                      value="720p"
+                      disabled={RAM < 2 || width < 1280 || height < 720}
                     >
-                      24 fps
+                      720p
                       <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
                         <Check size={16} weight="bold" />
                       </DropdownMenu.ItemIndicator>
                     </DropdownMenu.RadioItem>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="15"
-                    >
-                      15 fps
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="10"
-                    >
-                      10 fps
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                    <DropdownMenu.RadioItem
-                      className="RecordfulDropdownMenuItem"
-                      value="5"
-                    >
-                      5 fps
-                      <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
-                        <Check size={16} weight="bold" />
-                      </DropdownMenu.ItemIndicator>
-                    </DropdownMenu.RadioItem>
-                  </DropdownMenu.RadioGroup>
-                </DropdownMenu.SubContent>
-              </DropdownMenu.Portal>
-            </DropdownMenu.Sub>
-          )}
+                  </TooltipWrap>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="480p"
+                  >
+                    480p
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="360p"
+                  >
+                    360p
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="240p"
+                  >
+                    240p
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                </DropdownMenu.RadioGroup>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
+          <DropdownMenu.Sub
+            open={openFPS}
+            onOpenChange={(open) => {
+              if (open) {
+                setOpenQuality(false);
+                setOpenResize(false);
+              }
+              setOpenFPS(open);
+            }}
+          >
+            <DropdownMenu.SubTrigger className="DropdownMenuItem">
+              {chrome.i18n.getMessage("maxFPSLabel") +
+                " (" +
+                contentState.fpsValue +
+                " fps)"}
+              <div className="ItemIndicatorArrow">
+                <CaretRight size={14} />
+              </div>
+            </DropdownMenu.SubTrigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.SubContent
+                className="RecordfulDropdownMenuContent"
+                sideOffset={0}
+                alignOffset={-3}
+              >
+                <DropdownMenu.RadioGroup
+                  value={contentState.fpsValue}
+                  onValueChange={(value) => {
+                    setContentState((prevContentState) => ({
+                      ...prevContentState,
+                      fpsValue: value,
+                    }));
+                    chrome.storage.local.set({
+                      fpsValue: value,
+                    });
+                  }}
+                >
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="60"
+                  >
+                    60 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="30"
+                  >
+                    30 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="24"
+                  >
+                    24 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="15"
+                  >
+                    15 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="10"
+                  >
+                    10 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                  <DropdownMenu.RadioItem
+                    className="RecordfulDropdownMenuItem"
+                    value="5"
+                  >
+                    5 fps
+                    <DropdownMenu.ItemIndicator className="RecordfulItemIndicator">
+                      <Check size={16} weight="bold" />
+                    </DropdownMenu.ItemIndicator>
+                  </DropdownMenu.RadioItem>
+                </DropdownMenu.RadioGroup>
+              </DropdownMenu.SubContent>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Sub>
           <MenuCheckboxItem
             checked={contentState.systemAudio}
             onCheckedChange={(checked) => {
