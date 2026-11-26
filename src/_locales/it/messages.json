@@ -2259,11 +2259,11 @@
     "description": "Toast shown after a marker is added while recording"
   },
   "record4kProTitle": {
-    "message": "Record in 4K with Pro",
+    "message": "Registra in 4K con Pro",
     "description": "Title of the dialog shown when a free user picks 4K max resolution"
   },
   "record4kProDescription": {
-    "message": "Without Pro, recordings are up to 1080p. Recordful Pro records and exports in 4K.",
+    "message": "Senza Pro, le registrazioni arrivano fino a 1080p. Recordful Pro registra ed esporta in 4K.",
     "description": "Body of the dialog shown when a free user picks 4K max resolution"
   }
 }

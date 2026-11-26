@@ -2264,11 +2264,11 @@
     "description": "Toast shown after a marker is added while recording"
   },
   "record4kProTitle": {
-    "message": "Record in 4K with Pro",
+    "message": "Pro உடன் 4K இல் பதிவு செய்யுங்கள்",
     "description": "Title of the dialog shown when a free user picks 4K max resolution"
   },
   "record4kProDescription": {
-    "message": "Without Pro, recordings are up to 1080p. Recordful Pro records and exports in 4K.",
+    "message": "Pro இல்லாமல் பதிவுகள் 1080p வரை இருக்கும். Recordful Pro 4K இல் பதிவுசெய்து ஏற்றுமதி செய்கிறது.",
     "description": "Body of the dialog shown when a free user picks 4K max resolution"
   }
 }
