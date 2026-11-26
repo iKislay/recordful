@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.10.1 (2026-11-26)
+
+4K is part of Pro, and signed-in users get their recording settings back. A patch: fixes and a plan change, no new features.
+
+### Fixes
+- The resolution, FPS and resize submenus in the popup's settings showed only when signed out, so a signed-in user couldn't pick a resolution. They show for everyone.
+- Area recording read the saved max resolution raw; the tab and screen recorders held free users to 1080p. All recorders now share one clamp in `recorderConfig.js`.
+
+### Changes
+- 4K is part of Pro. The 4K option stays in Max resolution for free users, marked "4k · Pro"; choosing it opens a "Record in 4K with Pro" dialog that leads to the upgrade page and saves nothing. Translated in all 17 locales.
+
+Checked in real Chrome on the production build: signed in on the free plan, settings show Max resolution and Max FPS, 4K reads "4k · Pro", and choosing it (with the screen check loosened in a test copy, since this monitor isn't 4K) opens the dialog and leaves the saved resolution unchanged. Not checked: a real signed-in Pro account (the popup re-verifies the plan with recordful.app, so it can't be faked).
+
 ## 4.10.0 (2026-11-23)
 
 Your AI app can edit your videos through recordful-mcp 2.0. A minor version: the extension side of the hosted MCP release, whose tools are on recordful.app.
